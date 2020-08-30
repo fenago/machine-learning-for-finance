@@ -1,0 +1,45 @@
+pip install xgboost plotly
+pip install shap
+pip install imbalanced-learn bcolz sense2vec
+
+pip install --upgrade scikit-learn==0.20.3
+pip install google-colab
+pip install ipykernel --upgrade
+pip install scikit-learn==0.22.1
+pip install imbalanced-learn==0.6.0
+pip install imbalanced-learn==0.5.0
+pip install marbles hyperopt hyperas
+pip install shap==0.19.5
+
+
+Chapter 4
+https://www.kaggle.com/szrlee/stock-time-series-20050101-to-20171231
+https://www.kaggle.com/uciml/electric-power-consumption-data-set
+
+Chapter 5
+https://www.kaggle.com/jannesklaas/analyzing-the-news
+https://www.kaggle.com/jannesklaas/topic-modeling-with-lda
+https://www.kaggle.com/aaron7sun/stocknews
+
+
+Chapter 6
+https://www.kaggle.com/jannesklaas/mnist-autoencoder-vae
+https://www.kaggle.com/mlg-ulb/creditcardfraud
+https://www.kaggle.com/szrlee/stock-time-series-20050101-to-20171231
+
+
+Chapter 9
+https://www.kaggle.com/jannesklaas/learning-how-to-be-fair
+https://www.kaggle.com/jannesklaas/explaining-income-classification-with-keras
+ 
+ 
+6.4 warning imblearn
+
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
+
+error
+7.1, 8.1, 8.2, 8.6 (fixed)
+
+PYMC3 (S&P.csv) missing 
