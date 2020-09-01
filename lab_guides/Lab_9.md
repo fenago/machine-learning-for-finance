@@ -1,12 +1,8 @@
 
 
-[]{#ch09}Chapter 9. Fighting Bias {#chapter-9.-fighting-bias .title}
+Chapter 9. Fighting Bias {#chapter-9.-fighting-bias .title}
 ---------------------------------
 
-</div>
-
-</div>
-:::
 
 We like to think that machines are more rational than us: heartless
 silicon applying cold logic. Thus, when computer science introduced
@@ -19,7 +15,7 @@ amplify human biases.
 
 In the financial industry, anti-discrimination is not only a matter of
 morality. Take, for instance, the [**Equal Credit Opportunity
-Act**]{.strong} ([**ECOA**]{.strong}), which came into force in 1974 in
+Act**] ([**ECOA**]), which came into force in 1974 in
 the United States. This law explicitly forbids creditors from
 discriminating applicants based on race, sex, marital status, and
 several other attributes. It also requires creditors to inform
@@ -35,22 +31,22 @@ people who are also from that country, it\'s usually not okay, and
 thanks to the ECOA, often illegal, to deny a loan to people from a
 certain country. Within the financial domain, there are much stricter
 rules for discrimination than those seen in book sales. This is because
-decisions[]{#id716 .indexterm} in the financial domain have a much more
+decisions in the financial domain have a much more
 severe impact on people\'s lives than those of book sales.
 
 Equally, discrimination in this context is [**feature
-specific**]{.strong}. For example, while it\'s okay to discriminate
+specific**]. For example, while it\'s okay to discriminate
 against loan applicants based on their history of repaying loans, it\'s
 not okay to do so based on their country of origin, unless there are
 sanctions against that country or similar overarching laws in place.
 
 Throughout this chapter, we\'ll discuss the following:
 
-::: {.itemizedlist}
+
 -   Where bias in machines comes from
 
--   The legal implications of biased [**machine learning**]{.strong}
-    ([**ML**]{.strong}) models
+-   The legal implications of biased [**machine learning**]
+    ([**ML**]) models
 
 -   How observed unfairness can be reduced
 
@@ -71,27 +67,22 @@ features is not enough when it comes to combating bias.
 
 
 
-[]{#ch09lvl1sec105}Sources of unfairness in machine learning {#sources-of-unfairness-in-machine-learning .title style="clear: both"}
+Sources of unfairness in machine learning {#sources-of-unfairness-in-machine-learning .title style="clear: both"}
 ------------------------------------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-As we have discussed many[]{#id717 .indexterm} times throughout this
+As we have discussed many times throughout this
 book, models are a function of the data that they are trained on.
 Generally speaking, more data will lead to smaller errors. So, by
-definition, there is less[]{#id718 .indexterm} data on minority groups,
+definition, there is less data on minority groups,
 simply because there are fewer people in those groups.
 
-This [**disparate sample size**]{.strong} can lead to worse model
+This [**disparate sample size**] can lead to worse model
 performance for the minority group. As a result, this increased error is
-often known as a [**systematic error**]{.strong}. The model might have
+often known as a [**systematic error**]. The model might have
 to overfit the majority group data so that the relationships it found do
-not[]{#id719 .indexterm} apply to the minority group data. Since there
+not apply to the minority group data. Since there
 is little minority group data, this is not punished as much.
 
 Imagine you are training a credit scoring model, and the clear majority
@@ -108,14 +99,14 @@ example, \"raw data\" does not exist. Data does not appear naturally,
 instead it\'s measured by humans using human-made measurement protocols,
 which in themselves can be biased in many different ways.
 
-Biases could include having [**sampling biases**]{.strong}, such as in
-the[]{#id720 .indexterm} Manhattan housing example, or having
-[**measurement biases**]{.strong}, which is when your sample might not
+Biases could include having [**sampling biases**], such as in
+the Manhattan housing example, or having
+[**measurement biases**], which is when your sample might not
 measure what it is intended to measure, or may even discriminate against
 one group.
 
 Another bias that\'s possible is [**pre-existing social
-biases**]{.strong}. These are []{#id721 .indexterm}visible in word
+biases**]. These are visible in word
 vectors, for instance, in Word2Vec, where the mapping from father to
 doctor in latent space maps from mother to nurse. Likewise, the vector
 from man to computer programmer maps from woman to homemaker. This is
@@ -127,35 +118,30 @@ and these biases get encoded into models.
 
 
 
-[]{#ch09lvl1sec106}Legal perspectives {#legal-perspectives .title style="clear: both"}
+Legal perspectives {#legal-perspectives .title style="clear: both"}
 -------------------------------------
 
-</div>
 
-</div>
-
-------------------------------------------------------------------------
-:::
 
 There are two doctrines in anti-discrimination law: [*disparate
-treatment*]{.emphasis}, and [*disparate impact*]{.emphasis}. Let\'s take
+treatment*], and [*disparate impact*]. Let\'s take
 a minute to look at each of these:
 
-::: {.itemizedlist}
--   [**Disparate treatment**]{.strong}: This is one kind of unlawful
+
+-   [**Disparate treatment**]: This is one kind of unlawful
     discrimination. Intentionally discriminating against ZIP codes with
     the hope of discriminating against race is not legal. Disparate
     treatment problems have less to do with the algorithm and more to do
     with the organization running it.
 
--   [**Disparate impact**]{.strong}: This can be a problem if an
-    algorithm is deployed that has a different impact []{#id722
-    .indexterm}on different groups, even without the organization
+-   [**Disparate impact**]: This can be a problem if an
+    algorithm is deployed that has a different impact 
+    on different groups, even without the organization
     knowing about it. Let\'s walk through a lending scenario in which
     disparate impact could be a problem. Firstly, the plaintiff must
     establish that there is a disparate impact. Assessing if there\'s a
-    disparate impact is[]{#id723 .indexterm} usually done with the
-    [**four-fifths rule**]{.strong}, which says that if the selection
+    disparate impact is usually done with the
+    [**four-fifths rule**], which says that if the selection
     rate of a group is less than 80% of the group, then it is regarded
     as evidence of adverse impact. If a lender has 150 loan applicants
     from group A, of which 100, or 67%, are accepted, and 50 applicants
@@ -169,10 +155,10 @@ a minute to look at each of these:
     procedure that shows a smaller disparity.
 :::
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#note46}Note {#note .title}
 
-[**Note**]{.strong}: For a more in-depth overview of these topics, see
+### Note {#note .title}
+
+[**Note**]: For a more in-depth overview of these topics, see
 Moritz Hardt\'s 2017 NeurIPS presentation on the topic at
 <http://mrtz.org/nips17/#/11>.
 :::
@@ -197,25 +183,20 @@ machine learning, we\'re going to dive into how we can define and
 quantify fairness, before using this insight to create fairer models.
 
 
-[]{#ch09lvl1sec107}Observational fairness {#observational-fairness .title style="clear: both"}
+Observational fairness {#observational-fairness .title style="clear: both"}
 -----------------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-Equality is often seen as[]{#id724 .indexterm} a purely qualitative
+Equality is often seen as a purely qualitative
 issue, and as such, it\'s often dismissed by quantitative-minded
 modelers. As this section will show, equality can be seen from a
-quantitative perspective, too. Consider a classifier, [*c,*]{.emphasis}
-with input [*X*]{.emphasis}, some sensitive input, [*A*]{.emphasis}, a
-target, [*Y*]{.emphasis} and output [*C*]{.emphasis}. Usually, we would
+quantitative perspective, too. Consider a classifier, [*c,*]
+with input [*X*], some sensitive input, [*A*], a
+target, [*Y*] and output [*C*]. Usually, we would
 denote the classifier output as
-[![](4_files/B10354_09_001.jpg)]{.inlinemediaobject}, but
-for readability, we follow CS 294 and name it [*C*]{.emphasis}.
+[![](./images/B10354_09_001.jpg)]{.inlinemediaobject}, but
+for readability, we follow CS 294 and name it [*C*].
 
 Let\'s say that our classifier is being used to decide who gets a loan.
 When would we consider this classifier to be fair and free of bias? To
@@ -223,19 +204,19 @@ answer this question, picture two demographics, group A and B, both loan
 applicants. Given a credit score, our classifier must find a cutoff
 point. Let\'s look at the distribution of applicants in this graph:
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#note47}Note {#note .title}
 
-[**Note**]{.strong}: The data for this example is synthetic; you can
+### Note {#note .title}
+
+[**Note**]: The data for this example is synthetic; you can
 find the Excel file used for these calculations in the GitHub repository
 of this book,
 <https://github.com/PacktPublishing/Machine-Learning-for-Finance/blob/master/9.1_parity.xlsx>.
 :::
 
-::: {.mediaobject}
-![](4_files/B10354_09_01.jpg)
 
-::: {.caption}
+![](./images/B10354_09_01.jpg)
+
+
 Max profits
 :::
 :::
@@ -246,47 +227,47 @@ cutoff point here has been chosen to maximize profits:
 
 So, what can we see? We can see the following:
 
-::: {.itemizedlist}
--   In orange are applicants who would not have[]{#id725 .indexterm}
+
+-   In orange are applicants who would not have
     repaid the loan and did not get accepted: [**true
-    negatives**]{.strong} ([**TNs**]{.strong}).
+    negatives**] ([**TNs**]).
 
--   In blue are applicants who would have repaid[]{#id726 .indexterm}
-    the loan but did not get accepted: [**false negatives**]{.strong}
-    ([**FNs**]{.strong}).
+-   In blue are applicants who would have repaid
+    the loan but did not get accepted: [**false negatives**]
+    ([**FNs**]).
 
--   In yellow are applicants who did get the[]{#id727 .indexterm} loan
-    but did not pay it back: [**false positives**]{.strong}
-    ([**FPs**]{.strong}).
+-   In yellow are applicants who did get the loan
+    but did not pay it back: [**false positives**]
+    ([**FPs**]).
 
--   In gray are applicants who did receive the loan[]{#id728 .indexterm}
-    and paid it back: [**true positives**]{.strong}
-    ([**TPs**]{.strong}).
+-   In gray are applicants who did receive the loan
+    and paid it back: [**true positives**]
+    ([**TPs**]).
 :::
 
-As you can see, there []{#id729 .indexterm}are several issues with this
-choice of cutoff point. [**Group B**]{.strong} applicants need to have a
-better score to get a loan than [**Group A**]{.strong} applicants,
+As you can see, there are several issues with this
+choice of cutoff point. [**Group B**] applicants need to have a
+better score to get a loan than [**Group A**] applicants,
 indicating disparate treatment. At the same time, only around 51% of
-[**Group A**]{.strong} applicants get a loan but only 37% of [**Group
-B**]{.strong} applicants do, indicating disparate impact.
+[**Group A**] applicants get a loan but only 37% of [**Group
+B**] applicants do, indicating disparate impact.
 
-A [*group unaware threshold*]{.emphasis}, which we can see below, would
+A [*group unaware threshold*], which we can see below, would
 give both groups the same minimum score:
 
-::: {.mediaobject}
-![](4_files/B10354_09_02.jpg)
 
-::: {.caption}
+![](./images/B10354_09_02.jpg)
+
+
 Equal cutoff
 :::
 :::
 
 In the preceding graph, while both groups have the same cutoff rate,
-[**Group A**]{.strong} has been given fewer loans. At the same time,
-predictions for [**Group A**]{.strong} have a lower accuracy than the
-predictions given for [**Group B**]{.strong}. It seems that although
-both groups face the same score threshold, [**Group A**]{.strong} is at
+[**Group A**] has been given fewer loans. At the same time,
+predictions for [**Group A**] have a lower accuracy than the
+predictions given for [**Group B**]. It seems that although
+both groups face the same score threshold, [**Group A**] is at
 a disadvantage.
 
 Demographic parity aims to achieve fairness by ensuring that both groups
@@ -295,30 +276,30 @@ the same selection rate for both groups, which is what impact disparity
 is measured by. Mathematically, this process can be expressed as
 follows:
 
-::: {.mediaobject}
-![](4_files/B10354_09_002.jpg)
+
+![](./images/B10354_09_002.jpg)
 :::
 
-If we apply this[]{#id730 .indexterm} rule to the same context as we
+If we apply this rule to the same context as we
 used previously, we\'ll arrive at the following cutoff points:
 
-::: {.mediaobject}
-![](4_files/B10354_09_03.jpg)
 
-::: {.caption}
+![](./images/B10354_09_03.jpg)
+
+
 Equal pick rate
 :::
 :::
 
 While this method cannot be blamed for statistical discrimination and
 disparate impact, it can be blamed for disparate treatment. In the equal
-pick rate graphic we can see how [**Group A**]{.strong} is given a lower
+pick rate graphic we can see how [**Group A**] is given a lower
 threshold score; meanwhile, there are more successful [**Group
-A**]{.strong} applicants who default on their loans. In fact, [**Group
-A**]{.strong} is not profitable and gets subsidized by [**Group
-B**]{.strong}. Accepting a worse economic outcome to favor a certain
+A**] applicants who default on their loans. In fact, [**Group
+A**] is not profitable and gets subsidized by [**Group
+B**]. Accepting a worse economic outcome to favor a certain
 group is also known as taste-based discrimination. It could be said that
-the higher thresholds for [**Group B**]{.strong} are unfair, as they
+the higher thresholds for [**Group B**] are unfair, as they
 have a lower FP rate.
 
 TP parity, which is also called equal opportunity, means that both
@@ -326,57 +307,57 @@ demographics have the same TP rate. For people who can pay back the
 loan, the same chance of getting a loan should exist. Mathematically,
 this can be expressed as follows:
 
-::: {.mediaobject}
-![](4_files/B10354_09_003.jpg)
+
+![](./images/B10354_09_003.jpg)
 :::
 
 Applied to our data, this policy looks similar to demographic parity,
 except that the group cutoff point is even lower:
 
-::: {.mediaobject}
-![](4_files/B10354_09_04.jpg)
 
-::: {.caption}
+![](./images/B10354_09_04.jpg)
+
+
 Equal opportunity
 :::
 :::
 
-Equal opportunity []{#id731 .indexterm}can address many of the problems
+Equal opportunity can address many of the problems
 of demographic parity, as most people believe that everyone should be
 given the same opportunities. Still, our classifier is less accurate for
-[**Group A**]{.strong}, and there is a form of disparate treatment in
+[**Group A**], and there is a form of disparate treatment in
 place.
 
 Accuracy parity tells us that the accuracy of predictions should be the
 same for both groups. Mathematically, this can be expressed as follows:
 
-::: {.mediaobject}
-![](4_files/B10354_09_004.jpg)
+
+![](./images/B10354_09_004.jpg)
 :::
 
 The probability that the classifier is correct should be the same for
-the two possible values of the sensitive variable [*A*]{.emphasis}. When
+the two possible values of the sensitive variable [*A*]. When
 we apply this criteria to our data, we arrive at the following output:
 
-::: {.mediaobject}
-![](4_files/B10354_09_05.jpg)
 
-::: {.caption}
+![](./images/B10354_09_05.jpg)
+
+
 Equal accuracy
 :::
 :::
 
 From the preceding diagram, the downside becomes apparent. In order to
-satisfy the accuracy constraint, members of [**Group B**]{.strong} are
+satisfy the accuracy constraint, members of [**Group B**] are
 given much easier access to loans.
 
-Therefore to solve this, trade-offs are[]{#id732 .indexterm} necessary
+Therefore to solve this, trade-offs are necessary
 because no classifier can have precision parity, TP parity, and FP
-parity unless the classifier is perfect. [*C = Y,*]{.emphasis} or both
+parity unless the classifier is perfect. [*C = Y,*] or both
 demographics have the same base rates:
 
-::: {.mediaobject}
-![](4_files/B10354_09_005.jpg)
+
+![](./images/B10354_09_005.jpg)
 :::
 
 There are many more ways to express fairness. The key takeaway, however,
@@ -391,10 +372,10 @@ that being said, even if the perfect mathematical expression of fairness
 was found, it would not immediately lead to perfectly fair systems.
 
 Any machine learning algorithm is part of a bigger system. Inputs
-[*X*]{.emphasis} are often not as clearly defined as a different
+[*X*] are often not as clearly defined as a different
 algorithm in the same system that might use different inputs.
-Demographic groups [*A*]{.emphasis} are often not clearly defined or
-inferred. Even the output, [*C,*]{.emphasis} of the classifier can often
+Demographic groups [*A*] are often not clearly defined or
+inferred. Even the output, [*C,*] of the classifier can often
 not be clearly distinguished, as many algorithms together might perform
 the classification task while each algorithm is predicting a different
 output, such as a credit score or a profitability estimate.
@@ -408,17 +389,12 @@ fairer, which is what the next section is about.
 
 
 
-[]{#ch09lvl1sec108}Training to be fair {#training-to-be-fair .title style="clear: both"}
+Training to be fair {#training-to-be-fair .title style="clear: both"}
 --------------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-There are multiple ways to[]{#id733 .indexterm} train models to be
+There are multiple ways to train models to be
 fairer. A simple approach could be using the different fairness measures
 that we have listed in the previous section as an additional loss.
 However, in practice, this approach has turned out to have several
@@ -427,7 +403,7 @@ task.
 
 An alternative approach is to use an adversarial network. Back in 2016,
 Louppe, Kagan, and Cranmer published the paper [*Learning to Pivot with
-Adversarial Networks*]{.emphasis}, available at
+Adversarial Networks*], available at
 <https://arxiv.org/abs/1611.01046>. This paper showed how to use an
 adversarial network to train a classifier to ignore a nuisance
 parameter, such as a sensitive feature.
@@ -439,14 +415,14 @@ focusing on features that we can discriminate on, including their
 occupation and the gains they make from their capital.
 
 To this end, we must train a classifier and an adversarial network. The
-[]{#id734 .indexterm}adversarial network aims to classify the sensitive
-attributes, [*a*]{.emphasis}, gender and race, from the predictions of
+adversarial network aims to classify the sensitive
+attributes, [*a*], gender and race, from the predictions of
 the classifier:
 
-::: {.mediaobject}
-![](5_files/B10354_09_06.jpg)
 
-::: {.caption}
+![](./images/B10354_09_06.jpg)
+
+
 Making an unbiased classifier to detect the income of an adult
 :::
 :::
@@ -455,22 +431,22 @@ The classifier aims to classify by income but also aims to fool the
 adversarial network. The classifier\'s minimization objective formula is
 as follows:
 
-::: {.mediaobject}
-![](5_files/B10354_09_006.jpg)
+
+![](./images/B10354_09_006.jpg)
 :::
 
 Within that formula,
-[![](5_files/B10354_09_007.jpg)]{.inlinemediaobject} is a binary
+[![](./images/B10354_09_007.jpg)]{.inlinemediaobject} is a binary
 cross-entropy loss of the classification, while
-[![](5_files/B10354_09_008.jpg)]{.inlinemediaobject} is the adversarial
-loss. [![](5_files/B10354_09_009.jpg)]{.inlinemediaobject} represents a
+[![](./images/B10354_09_008.jpg)]{.inlinemediaobject} is the adversarial
+loss. [![](./images/B10354_09_009.jpg)]{.inlinemediaobject} represents a
 hyperparameter that we can use to amplify or reduce the impact of the
 adversarial loss.
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#note48}Note {#note .title}
 
-[**Note**]{.strong}: This implementation of the adversarial fairness
+### Note {#note .title}
+
+[**Note**]: This implementation of the adversarial fairness
 method follows an implementation by Stijn Tonk and Henk Griffioen. You
 can find the code to this chapter on Kaggle at
 <https://www.kaggle.com/jannesklaas/learning-how-to-be-fair>.
@@ -479,26 +455,23 @@ Stijn\'s and Henk\'s original blogpost can be found here:
 <https://blog.godatadriven.com/fairness-in-ml>.
 :::
 
-To train this model fairly, we not only need data [*X*]{.emphasis} and
-targets [*y*]{.emphasis}, but also data about the sensitive attributes,
-[*A*]{.emphasis}. In the example we\'re going to work on, we\'ll be
+To train this model fairly, we not only need data [*X*] and
+targets [*y*], but also data about the sensitive attributes,
+[*A*]. In the example we\'re going to work on, we\'ll be
 taking data from the 1994 US census provided by the UCI repository:
 <https://archive.ics.uci.edu/ml/datasets/Adult>.
 
-To make[]{#id735 .indexterm} loading the data easier, it has been
+To make loading the data easier, it has been
 transformed into a CSV file with column headers. As a side note, please
 refer to the online version to see the data as viewing the data would be
 difficult in the format of the book.
 
 First, we load the data. The dataset contains data about people from a
 number of different races, but for the simplicity of this task, we will
-only be focusing on white and black people for the `race`{.literal}
+only be focusing on white and black people for the `race`
 attribute. To do this, we need to run the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 path = '../input/adult.csv'
@@ -508,16 +481,13 @@ input_data = input_data[input_data['race'].isin(['White', 'Black'])]
 :::
 
 Next, we select the sensitive attributes, in this case we\'re focusing
-on race and gender, into our sensitive dataset, `A`{.literal}. We
+on race and gender, into our sensitive dataset, `A`. We
 one-hot encode the data so that \"Male\" equals one for the
-`gender`{.literal} attribute and `White`{.literal} equals one for the
-`race`{.literal} attribute. We can achieve this by running the following
+`gender` attribute and `White` equals one for the
+`race` attribute. We can achieve this by running the following
 code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 sensitive_attribs = ['race', 'gender']
@@ -527,14 +497,11 @@ A.columns = sensitive_attribs
 ```
 :::
 
-Our target is the `income`{.literal} attribute. Therefore, we need to
-encode `>50K`{.literal} as 1 and everything else as zero, which is
+Our target is the `income` attribute. Therefore, we need to
+encode `>50K` as 1 and everything else as zero, which is
 achieved by writing this code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 y = (input_data['income'] == '>50K').astype(int)
@@ -545,10 +512,7 @@ To get our training data, we firstly remove the sensitive and target
 attributes. Then we fill all of the missing values and one-hot encode
 all of the data, as you can see in the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 X = input_data.drop(labels=['income', 'race', 'gender'],axis=1)
@@ -563,10 +527,7 @@ Finally, we split the data into train and test sets. As seen in the
 following code, we then stratify the data to ensure that the same number
 of high earners are in both the test and training data:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 X_train, X_test, y_train, y_test, A_train, A_test = \
@@ -576,12 +537,9 @@ train_test_split(X, y, A, test_size=0.5, stratify=y, random_state=7)
 
 To ensure the data works nicely with the neural network, we\'re now
 going to scale the data using scikit-learn\'s
-`StandardScaler`{.literal}:
+`StandardScaler`:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 scaler = StandardScaler().fit(X_train)
@@ -592,22 +550,19 @@ X_test = pd.DataFrame(scaler.transform(X_test), columns=X_test.columns, index=X_
 ```
 :::
 
-We need a metric of how[]{#id736 .indexterm} fair our model is. We are
-using the disparate impact selection rule. The `p_rule`{.literal} method
+We need a metric of how fair our model is. We are
+using the disparate impact selection rule. The `p_rule` method
 calculates the share of people classified to have over \$50,000 income
 from both groups and then returns the ratio of selections in the
 disadvantaged demographic over the ratio of selections in the advantaged
 group.
 
-The goal is for the `p_rule`{.literal} method to return at least 80% in
+The goal is for the `p_rule` method to return at least 80% in
 order to meet the four-fifths rule for both race and gender. The
 following code shows how this function is only used for monitoring, and
 not as a loss function:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 def p_rule(y_pred, a_values, threshold=0.5):
@@ -622,7 +577,7 @@ Let\'s explore this code in some more detail. As you can see from the
 preceding code block, it\'s created with two key features, which are as
 follows:
 
-::: {.orderedlist}
+
 1.  Firstly, we select who is given a selected threshold. Here, we
     classify everyone whom the model assigns a chance of over 50% of
     making \$50,000 or more as a high earner.
@@ -637,10 +592,7 @@ To make the model setup a bit easier, we need to define the number of
 input features and the number of sensitive features. This is something
 that is simply done by running these two lines:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 n_features=X_train.shape[1]
@@ -648,7 +600,7 @@ n_sensitive=A_train.shape[1]
 ```
 :::
 
-Now we set up our []{#id737 .indexterm}classifier. Note how this
+Now we set up our classifier. Note how this
 classifier is a standard classification neural network. It features
 three hidden layers, some dropout, and a final output layer with a
 sigmoid activation, which occurs since this is a binary classification
@@ -657,10 +609,7 @@ task. This classifier is written in the Keras functional API.
 To make sure you understand how the API works, go through the following
 code example and ensure you understand why the steps are taken:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 clf_inputs = Input(shape=(n_features,))
@@ -679,10 +628,7 @@ The adversarial network is a classifier with two heads: one to predict
 the applicant\'s race from the model output, and one to predict the
 applicant\'s gender:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 adv_inputs = Input(shape=(1,))
@@ -700,10 +646,7 @@ trainable and untrainable multiple times. To make this easier, the
 following function will create a function that makes a network and all
 its layers either trainable or untrainable:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 def make_trainable_fn(net):              #1
@@ -718,16 +661,16 @@ def make_trainable_fn(net):              #1
 From the preceding code, there are four key features that we should take
 a moment to explore:
 
-::: {.orderedlist}
+
 1.  The function accepts a Keras neural network, for which the train
     switch function will be created.
 
 2.  Inside the function, a second function is created. This second
     function accepts a Boolean flag
-    (`True`{.literal}/`False`{.literal}).
+    (`True`/`False`).
 
-3.  When[]{#id738 .indexterm} called, the second function sets the
-    network\'s trainability to the flag. If `False`{.literal} is passed,
+3.  When called, the second function sets the
+    network\'s trainability to the flag. If `False` is passed,
     the network is not trainable. Since the layers of the network can
     also be used in other networks, we ensure that each individual layer
     is not trainable, too.
@@ -740,10 +683,7 @@ first, but this allows us to create \"switches\" for the neural network
 easily. The following code snippet shows us how to create switch
 functions for the classifier and the adversarial network:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 trainable_clf_net = make_trainable_fn(clf_net)
@@ -752,12 +692,9 @@ trainable_adv_net = make_trainable_fn(adv_net)
 :::
 
 To make the classifier trainable, we can use the function with the
-`True`{.literal} flag:
+`True` flag:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 trainable_clf_net(True)
@@ -768,10 +705,7 @@ Now we can compile our classifier. As you will see later on in this
 chapter, it is useful to keep the classifier network as a separate
 variable from the compiled classifier with which we make predictions:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 clf = clf_net
@@ -790,10 +724,7 @@ adversary output to be a nested function of the adversarial network and
 the classifier network. This way, the predictions of the classifier get
 immediately passed on to the adversary:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 adv_out = adv_net(clf_net(clf_inputs))
@@ -803,10 +734,7 @@ adv_out = adv_net(clf_net(clf_inputs))
 We then define the classifier output to be the output of the classifier
 network, just as we would for classification:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 clf_out = clf_net(clf_inputs)
@@ -817,25 +745,19 @@ Then, we define the combined model to map from the classifier input,
 that is, the data about an applicant, to the classifier output and
 adversary output:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 clf_w_adv = Model(inputs=[clf_inputs], outputs=[clf_out]+adv_out)
 ```
 :::
 
-When training the []{#id739 .indexterm}combined model, we only want to
+When training the combined model, we only want to
 update the weights of the classifier, as we will train the adversary
 separately. We can use our switch functions to make the classifier
 network trainable and the adversarial network untrainable:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 trainable_clf_net(True)
@@ -844,17 +766,14 @@ trainable_adv_net(False)
 :::
 
 Remember the hyperparameter,
-[![](5_files/B10354_09_010.jpg)]{.inlinemediaobject}, from the preceding
+[![](./images/B10354_09_010.jpg)]{.inlinemediaobject}, from the preceding
 minimization objective. We need to set this parameter manually for both
 sensitive attributes. As it turns out, the networks train best if lambda
 for race is set much higher than lambda for gender.
 
 With the lambda values in hand, we can create the weighted loss:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 loss_weights = [1.]+[-lambda_param for lambda_param in lambdas]
@@ -866,15 +785,12 @@ means the classification error has a weight of 1, the race prediction
 error of the adversary has a weight of -130, and the gender prediction
 error of the adversary has a weight of -30. Since the losses of the
 adversarial\'s prediction have negative weights, gradient descent will
-optimize the parameters of the classifier to [*increase*]{.emphasis}
+optimize the parameters of the classifier to [*increase*]
 these losses.
 
 Finally, we can compile the combined network:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 clf_w_adv.compile(loss='binary_crossentropy'), loss_weights=loss_weights,optimizer='adam')
@@ -886,10 +802,7 @@ the only thing missing is a compiled adversarial model. To get this,
 we\'ll first define the adversarial model to map from the classifier
 inputs to the outputs of the nested adversarial-classifier model:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 adv = Model(inputs=[clf_inputs], outputs=adv_net(clf_net(clf_inputs)))
@@ -901,10 +814,7 @@ weights of the adversarial network and not of the classifier network, so
 we use our switch functions to make the adversarial trainable and the
 classifier not trainable:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 trainable_clf_net(False)
@@ -915,10 +825,7 @@ trainable_adv_net(True)
 Finally, we compile the adversarial model just like we would with a
 regular Keras model:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 adv.compile(loss='binary_crossentropy', optimizer='adam')
@@ -929,10 +836,7 @@ With all the pieces in hand, we can now pretrain the classifier. This
 means we train the classifier without any special fairness
 considerations:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 trainable_clf_net(True)
@@ -943,24 +847,18 @@ clf.fit(X_train.values, y_train.values, epochs=10)
 After we have trained the model, we can make predictions on the
 validation set to evaluate both the model\'s fairness and accuracy:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 y_pred = clf.predict(X_test)
 ```
 :::
 
-Now we\'ll []{#id740 .indexterm}calculate the model\'s accuracy and
-`p_rule`{.literal} for both gender and race. In all calculations, we\'re
+Now we\'ll calculate the model\'s accuracy and
+`p_rule` for both gender and race. In all calculations, we\'re
 going to use a cutoff point of 0.5:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 acc = accuracy_score(y_test,(y_pred>0.5))* 100
@@ -972,10 +870,7 @@ for sens in A_test.columns:
 ```
 :::
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 out:
@@ -993,10 +888,10 @@ Equally, it discriminates strongly on race. If we used this classifier
 to judge loan applications, for instance, we would be vulnerable to
 discrimination lawsuits.
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#note49}Note {#note-1 .title}
 
-[**Note**]{.strong}: Neither gender or race was included in the features
+### Note {#note-1 .title}
+
+[**Note**]: Neither gender or race was included in the features
 of the classifier. Yet, the classifier discriminates strongly on them.
 If the features can be inferred, dropping sensitive columns is not
 enough.
@@ -1007,10 +902,7 @@ training both networks to make fair predictions. Once again, we use our
 switch functions to make the classifier untrainable and the adversarial
 trainable:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 trainable_clf_net(False)
@@ -1021,10 +913,7 @@ trainable_adv_net(True)
 As the distributions for race and gender in the data might be skewed,
 we\'re going to use weighted classes to adjust for this:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 class_weight_adv = compute_class_weights(A_train)
@@ -1034,29 +923,23 @@ class_weight_adv = compute_class_weights(A_train)
 We then train the adversary to predict race and gender from the training
 data through the predictions of the classifier:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 adv.fit(X_train.values, np.hsplit(A_train.values, A_train.shape[1]), class_weight=class_weight_adv, epochs=10)
 ```
 :::
 
-NumPy\'s `hsplit`{.literal} function splits the 2D `A_train`{.literal}
+NumPy\'s `hsplit` function splits the 2D `A_train`
 matrix into two vectors that are then used to train the two model heads.
 
-With the classifier[]{#id741 .indexterm} and adversary pretrained, we
+With the classifier and adversary pretrained, we
 will now train the classifier to fool the adversary in order to get
 better at spotting the classifier\'s discrimination. Before we start, we
 need to do some setup. We want to train for 250 epochs, with a batch
 size of 128, with two sensitive attributes:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 n_iter=250
@@ -1070,10 +953,7 @@ class weights. The weights for the income predictions, less/more than
 \$50,000, are both one. For the adversarial heads of the combined model,
 we use the preceding computed adversarial class weights:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 class_weight_clf_w_adv = [{0:1., 1:1.}]+class_weight_adv
@@ -1082,13 +962,10 @@ class_weight_clf_w_adv = [{0:1., 1:1.}]+class_weight_adv
 
 To keep track of metrics, we set up one DataFrame for validation
 metrics, accuracy, and area under the curve, as well as for the fairness
-metrics. The fairness metrics are the `p_rule`{.literal} values for race
+metrics. The fairness metrics are the `p_rule` values for race
 and gender:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 val_metrics = pd.DataFrame()
@@ -1102,12 +979,9 @@ out validation metrics. For better explanations, all three are printed
 separately here.
 
 Within the code, you will find them in the same loop, where
-`idx`{.literal} is the current iteration:
+`idx` is the current iteration:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 for idx in range(n_iter):
@@ -1119,10 +993,7 @@ going to make the classifier untrainable, the adversarial network
 trainable, and then train the adversarial network just as we did before.
 To do this, we need to run the following code block:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 trainable_clf_net(False)
@@ -1135,10 +1006,7 @@ Training the classifier to be a good classifier but also to fool the
 adversary and be fair involves three steps. Firstly, we make the
 adversary untrainable and the classifier trainable:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 trainable_clf_net(True)
@@ -1146,13 +1014,10 @@ trainable_adv_net(False)
 ```
 :::
 
-Then we sample a batch from `X`{.literal}, `y`{.literal}, and
-`A`{.literal}:
+Then we sample a batch from `X`, `y`, and
+`A`:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 indices = np.random.permutation(len(X_train))[:batch_size]
@@ -1162,17 +1027,14 @@ A_batch = A_train.values[indices]
 ```
 :::
 
-Finally, we []{#id742 .indexterm}train the combined adversary and
+Finally, we train the combined adversary and
 classifier. Since the adversarial network is set to not be trainable,
 only the classifier network will be trained. However, the loss from the
 adversarial network\'s predictions of race and gender gets
 backpropagated through the entire network, so that the classifier learns
 to fool the adversarial network:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 clf_w_adv.train_on_batch(X_batch, [y_batch]+\np.hsplit(A_batch, n_sensitive),class_weight=class_weight_clf_w_adv)
@@ -1182,24 +1044,18 @@ clf_w_adv.train_on_batch(X_batch, [y_batch]+\np.hsplit(A_batch, n_sensitive),cla
 Finally, we want to keep track of progress by first making predictions
 on the test:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 y_pred = pd.Series(clf.predict(X_test).ravel(), index=y_test.index)
 ```
 :::
 
-We then calculate the area under the curve (`ROC AUC`{.literal}) and the
+We then calculate the area under the curve (`ROC AUC`) and the
 accuracy of the predictions, and save them in the
-`val_metrics`{.literal} DataFrame:
+`val_metrics` DataFrame:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 roc_auc = roc_auc_score(y_test, y_pred)
@@ -1210,13 +1066,10 @@ val_metrics.loc[idx, 'Accuracy'] = acc
 ```
 :::
 
-Next up, we calculate `p_rule`{.literal} for both race and gender and
+Next up, we calculate `p_rule` for both race and gender and
 save those values in the fairness metrics:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 for sensitive_attr :n A_test.columns:
@@ -1228,15 +1081,15 @@ for sensitive_attr :n A_test.columns:
 If we plot both the fairness and validation metrics, we\'ll arrive at
 the following plot:
 
-::: {.mediaobject}
-![](5_files/B10354_09_07.jpg)
 
-::: {.caption}
+![](./images/B10354_09_07.jpg)
+
+
 Pivot train progress
 :::
 :::
 
-As you can []{#id743 .indexterm}see, the fairness scores of the
+As you can see, the fairness scores of the
 classifier steadily increase with training. After about 150 epochs, the
 classifier satisfies the four-fifths rule. At the same time, the
 p-values are well over 90%. This increase in fairness comes at only a
@@ -1250,8 +1103,8 @@ Yet, it cannot rule out unfairness entirely. What if, for example, there
 was a group that the classifier discriminates against that we did not
 think of yet? What if it discriminates on treatment, instead of impact?
 To make sure our models are not biased, we need more technical and
-social tools, namely [*interpretability*]{.emphasis},
-[*causality*]{.emphasis}, and [*diverse development teams*]{.emphasis}.
+social tools, namely [*interpretability*],
+[*causality*], and [*diverse development teams*].
 
 In the next section, we\'ll discuss how to train machine learning models
 that learn causal relationships, instead of just statistical
@@ -1259,25 +1112,20 @@ associations.
 
 
 
-[]{#ch09lvl1sec109}Causal learning {#causal-learning .title style="clear: both"}
+Causal learning {#causal-learning .title style="clear: both"}
 ----------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-This book is by and large a book about []{#id744 .indexterm}statistical
-learning. Given data [*X*]{.emphasis} and targets [*Y*]{.emphasis}, we
-aim to estimate [![](6_files/B10354_09_011.jpg)]{.inlinemediaobject},
+This book is by and large a book about statistical
+learning. Given data [*X*] and targets [*Y*], we
+aim to estimate [![](./images/B10354_09_011.jpg)]{.inlinemediaobject},
 the distribution of target values given certain data points. Statistical
 learning allows us to create a number of great models with useful
-applications, but it doesn\'t allow us to claim that [*X*]{.emphasis}
-being [*x*]{.emphasis} caused [*Y*]{.emphasis} to be [*y*]{.emphasis}.
+applications, but it doesn\'t allow us to claim that [*X*]
+being [*x*] caused [*Y*] to be [*y*].
 
-This statement is critical if we intend to manipulate [*X*]{.emphasis}.
+This statement is critical if we intend to manipulate [*X*].
 For instance, if we want to know whether giving insurance to someone
 leads to them behaving recklessly, we are not going to be satisfied with
 the statistical relationship that people with insurance behave more
@@ -1287,23 +1135,23 @@ getting insurance, while those who are not marked as reckless don\'t.
 
 Judea Pearl, a famous computer scientist, invented a notation for causal
 models called do-calculus; we are interested in
-[![](6_files/B10354_09_012.jpg)]{.inlinemediaobject}, which is the
+[![](./images/B10354_09_012.jpg)]{.inlinemediaobject}, which is the
 probability of someone behaving recklessly after we manipulated
-[*P*]{.emphasis} to be [*p*]{.emphasis}. In a causal notation,
-[*X*]{.emphasis} usually stands for observed features, while
-[*P*]{.emphasis} stands for the policy features that we can manipulate.
-This notation can be a bit confusing, as [*p*]{.emphasis} now expresses
+[*P*] to be [*p*]. In a causal notation,
+[*X*] usually stands for observed features, while
+[*P*] stands for the policy features that we can manipulate.
+This notation can be a bit confusing, as [*p*] now expresses
 both a probability and a policy. Yet, it is important to distinguish
 between observed and influenced features. So, if you see
-[![](6_files/B10354_09_013.jpg)]{.inlinemediaobject}, [*p*]{.emphasis}
+[![](./images/B10354_09_013.jpg)]{.inlinemediaobject}, [*p*]
 is a feature that is influenced, and if you see
-[![](6_files/B10354_09_014.jpg)]{.inlinemediaobject}, [*p*]{.emphasis}
+[![](./images/B10354_09_014.jpg)]{.inlinemediaobject}, [*p*]
 is a probability function.
 
-So, the formula [![](6_files/B10354_09_015.jpg)]{.inlinemediaobject}
+So, the formula [![](./images/B10354_09_015.jpg)]{.inlinemediaobject}
 expresses the statistical relationship that insurance holders are more
 reckless on average. This is what supervised models learn.
-[![](6_files/B10354_09_016.jpg)]{.inlinemediaobject} expresses the
+[![](./images/B10354_09_016.jpg)]{.inlinemediaobject} expresses the
 causal relationship that people who get insurance become more reckless
 because they are insured.
 
@@ -1319,28 +1167,20 @@ workplace, cultural stereotypes, and so on.
 That does not mean we have to throw statistical models out of the
 window. They are great for the many cases where causality is not as much
 of an important factor and where we do not intend to set the values of
-[*X*]{.emphasis}. For instance, if we are creating a natural language
-model, then we are not interested in whether the[]{#id745 .indexterm}
+[*X*]. For instance, if we are creating a natural language
+model, then we are not interested in whether the
 occurrence of a word caused the sentence to be about a certain topic.
 Knowing that the topic and the word are related is enough to make
 predictions about the content of the text.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch09lvl2sec123}Obtaining causal models {#obtaining-causal-models .title}
+### Obtaining causal models {#obtaining-causal-models .title}
 
-</div>
 
-</div>
-:::
-
-The golden route to[]{#id746 .indexterm} obtaining information about
-[![](6_files/B10354_09_017.jpg)]{.inlinemediaobject} is to actually go
-and manipulate the policy, [*P,*]{.emphasis} in a randomized control
+The golden route to obtaining information about
+[![](./images/B10354_09_017.jpg)]{.inlinemediaobject} is to actually go
+and manipulate the policy, [*P,*] in a randomized control
 trial. Many websites, for instance, measure the impact of different ads
 by showing different ads to different customers, a process known as A/B
 testing. Equally, a trader might choose different routes to market to
@@ -1353,211 +1193,186 @@ Yet, often causal inference can be made without the need for an A/B
 test. Using do-calculus, we can infer the effect of our policy on our
 outcome. Take the example of us wondering whether giving people
 insurance makes them reckless; the applicant\'s moral hazard, if you
-will. Given features [*X*]{.emphasis} and a policy, [*P*]{.emphasis}, we
+will. Given features [*X*] and a policy, [*P*], we
 want to predict the outcome distribution,
-[![](6_files/B10354_09_018.jpg)]{.inlinemediaobject}.
+[![](./images/B10354_09_018.jpg)]{.inlinemediaobject}.
 
 In this case, given observed information about the applicant, such as
 their age or history of risky behavior, we want to predict the
 probability of the applicant behaving recklessly,
-[![](6_files/B10354_09_019.jpg)]{.inlinemediaobject}, given that we
-manipulate the policy, [*P,*]{.emphasis} of granting insurance. The
+[![](./images/B10354_09_019.jpg)]{.inlinemediaobject}, given that we
+manipulate the policy, [*P,*] of granting insurance. The
 observed features often end up influencing both the policy and the
 response. An applicant with a high-risk appetite might, for example, not
 be given insurance, but might also be more likely to behave recklessly.
 
 Additionally, we have to deal with unobserved, confounding variables,
-[*e,*]{.emphasis} which often influence both policy and response. A
+[*e,*] which often influence both policy and response. A
 prominent media article titled [*Freestyle skiing is safe, and you
-should not get insurance*]{.emphasis}, for example, would reduce the
+should not get insurance*], for example, would reduce the
 number of people taking insurance as well as the number of reckless
 skiers.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch09lvl2sec124}Instrument variables {#instrument-variables .title}
+### Instrument variables {#instrument-variables .title}
 
-</div>
 
-</div>
-:::
-
-To distinguish the influence on []{#id747 .indexterm}policy and
-response, we need access to an [**instrument, Z**]{.strong}. An
+To distinguish the influence on policy and
+response, we need access to an [**instrument, Z**]. An
 instrument is a variable that influences the policy, but nothing else.
 The reinsurance cost, for example, could prompt the insurance company to
 give out fewer insurance policies. This relationship can be seen in the
 flowchart below, where the relationship has been mapped:
 
-::: {.mediaobject}
-![](6_files/B10354_09_08.jpg)
 
-::: {.caption}
+![](./images/B10354_09_08.jpg)
+
+
 Causal flowchart
 :::
 :::
 
-The field of []{#id748 .indexterm}econometrics already has a built a
+The field of econometrics already has a built a
 method to work with these kinds of situations called [**instrumental
-variables two-stage least squares**]{.strong} ([**IV2SLS,**]{.strong} or
-just [**2SLS**]{.strong}). In a nutshell, 2SLS first fits a linear
-regression model between the instrument, [*z,*]{.emphasis} and the
-policy, [*p*]{.emphasis}, which in econometrics called the endogenous or
+variables two-stage least squares**] ([**IV2SLS,**] or
+just [**2SLS**]). In a nutshell, 2SLS first fits a linear
+regression model between the instrument, [*z,*] and the
+policy, [*p*], which in econometrics called the endogenous or
 treatment variable.
 
-From this linear[]{#id749 .indexterm} regression, it then estimates an
+From this linear regression, it then estimates an
 \"adjusted treatment variable,\" which is the treatment variable as it
 can be explained by the instrument. The idea is that this adjustment
 removes the influence of all other factors on the treatment. A second
 linear regression model then creates a linear model mapping from the
-features, [*x,*]{.emphasis} and the adjusted treatment variable,
-[![](6_files/B10354_09_020.jpg)]{.inlinemediaobject}, to the outcome,
-[*y*]{.emphasis}.
+features, [*x,*] and the adjusted treatment variable,
+[![](./images/B10354_09_020.jpg)]{.inlinemediaobject}, to the outcome,
+[*y*].
 
 In the following diagram, you can see an overview of how 2SLS works:
 
-::: {.mediaobject}
-![](6_files/B10354_09_09.jpg)
 
-::: {.caption}
+![](./images/B10354_09_09.jpg)
+
+
 IV2SLS
 :::
 :::
 
-2SLS is probably []{#id750 .indexterm}what the insurance company in our
+2SLS is probably what the insurance company in our
 case would use since it is an established method. We won\'t go into
 details here, beyond giving you a brief overview of how to use 2SLS in
-Python. The `linear model`{.literal} package in Python features an easy
+Python. The `linear model` package in Python features an easy
 way to run 2SLS.
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#note50}Note {#note .title}
 
-[**Note**]{.strong}: You can find the package on GitHub at
+### Note {#note .title}
+
+[**Note**]: You can find the package on GitHub at
 <https://github.com/bashtage/linearmodels>.
 :::
 
 You can install the package by running:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 pip install linearmodels
 ```
 :::
 
-If you have data `X`{.literal}, `y`{.literal}, `P`{.literal}, and
-`Z`{.literal}, you can run a 2SLS regression as follows:
+If you have data `X`, `y`, `P`, and
+`Z`, you can run a 2SLS regression as follows:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from linearmodels.iv import IV2SLS
 iv = IV2SLS(dependent=y,exog=X,endog=P],instruments=Z).fit(cov_type='unadjusted')
 ```
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+### Non-linear causal models {#non-linear-causal-models .title}
 
-### []{#ch09lvl2sec125}Non-linear causal models {#non-linear-causal-models .title}
 
-</div>
-
-</div>
-:::
-
-What if the relationships[]{#id751 .indexterm} between features, the
-treatment, and the outcome[]{#id752 .indexterm} are complex and
+What if the relationships between features, the
+treatment, and the outcome are complex and
 non-linear? In this case, we need to perform a process similar to 2SLS,
 but with a non-linear model, such as a neural network, instead of linear
 regression.
 
 Ignoring the confounding variables for a minute, function
-[*g*]{.emphasis} determines the recklessness of behavior
-[*y*]{.emphasis} given insurance policy
-[![](6_files/B10354_09_022.jpg)]{.inlinemediaobject} and a set of
-applicant\'s features, [*x*]{.emphasis}:
+[*g*] determines the recklessness of behavior
+[*y*] given insurance policy
+[![](./images/B10354_09_022.jpg)]{.inlinemediaobject} and a set of
+applicant\'s features, [*x*]:
 
-::: {.mediaobject}
-![](6_files/B10354_09_023.jpg)
+
+![](./images/B10354_09_023.jpg)
 :::
 
-Function [*f*]{.emphasis} determines policy
-[![](6_files/B10354_09_024.jpg)]{.inlinemediaobject} given the
-applicant\'s features, [*x,*]{.emphasis} as well as the instrument,
-[*z*]{.emphasis}:
+Function [*f*] determines policy
+[![](./images/B10354_09_024.jpg)]{.inlinemediaobject} given the
+applicant\'s features, [*x,*] as well as the instrument,
+[*z*]:
 
-::: {.mediaobject}
-![](6_files/B10354_09_025.jpg)
+
+![](./images/B10354_09_025.jpg)
 :::
 
 Given these two functions, the following identity holds, if the
 confounding variable has a mean of zero overall features:
 
-::: {.mediaobject}
-![](6_files/B10354_09_026.jpg)
+
+![](./images/B10354_09_026.jpg)
 :::
 
-This means that if we[]{#id753 .indexterm} can reliably estimate the
-function, [*g,*]{.emphasis} and distribution, [*F*]{.emphasis}, we can
+This means that if we can reliably estimate the
+function, [*g,*] and distribution, [*F*], we can
 make causal statements about the effects of policy
-[![](6_files/B10354_09_027.jpg)]{.inlinemediaobject}. If we have
-[]{#id754 .indexterm}data about the actual outcome, [*y*]{.emphasis},
-features [*x*]{.emphasis}, policy
-[![](6_files/B10354_09_028.jpg)]{.inlinemediaobject}, and instrument
-[*z*]{.emphasis}, we can optimize the following:
+[![](./images/B10354_09_027.jpg)]{.inlinemediaobject}. If we have
+data about the actual outcome, [*y*],
+features [*x*], policy
+[![](./images/B10354_09_028.jpg)]{.inlinemediaobject}, and instrument
+[*z*], we can optimize the following:
 
-::: {.mediaobject}
-![](6_files/B10354_09_029.jpg)
+
+![](./images/B10354_09_029.jpg)
 :::
 
 The preceding function is the squared error between the predicted
-outcome using the prediction function, [*g,*]{.emphasis} and the actual
-outcome, [*y*]{.emphasis}.
+outcome using the prediction function, [*g,*] and the actual
+outcome, [*y*].
 
-Notice the similarity to 2SLS. In 2SLS, we estimated [*F*]{.emphasis}
-and [*g*]{.emphasis} with two separate linear regressions. For[]{#id755
-.indexterm} the more complex functions, we can also estimate them with
+Notice the similarity to 2SLS. In 2SLS, we estimated [*F*]
+and [*g*] with two separate linear regressions. For
+ the more complex functions, we can also estimate them with
 two separate neural networks. Back in 2017, Jason Hartfort and others
 presented just such an approach with their paper, [*Deep IV: A Flexible
-Approach for Counterfactual Prediction*]{.emphasis}, - available at:
+Approach for Counterfactual Prediction*], - available at:
 <http://proceedings.mlr.press/v70/hartford17a/hartford17a.pdf> - the
 overview of which you can see in the following diagram:
 
-::: {.mediaobject}
-![](6_files/B10354_09_10.jpg)
 
-::: {.caption}
+![](./images/B10354_09_10.jpg)
+
+
 Deep IV
 :::
 :::
 
-The idea of Deep IV is[]{#id756 .indexterm} to first train a neural
-network to express a distribution, [*F(z,x),*]{.emphasis} which
+The idea of Deep IV is to first train a neural
+network to express a distribution, [*F(z,x),*] which
 describes the distribution of policies given certain features,
-[*x*]{.emphasis}, and instrument values, [*z*]{.emphasis}. A second
-neural network is predicting the response, [*y*]{.emphasis}, from the
+[*x*], and instrument values, [*z*]. A second
+neural network is predicting the response, [*y*], from the
 estimated policy distribution and features. Deep IV\'s advantage is that
 it can learn complex, non-linear relationships from complex data,
-such[]{#id757 .indexterm} as text.
+such as text.
 
-The authors of the [*Deep IV*]{.emphasis} paper have also published a
+The authors of the [*Deep IV*] paper have also published a
 custom Keras model which is used for handling sampling and learning from
 a distribution part, which you can find on GitHub:
 <https://github.com/jhartford/DeepIV>.
@@ -1573,7 +1388,7 @@ In our case, assuming that insurance influences behavior is justified
 because the insurance contract is signed before the behavior is
 observed. However, the direction of causality is not always as
 straightforward. There is no way to establish the direction of causality
-other than logical[]{#id758 .indexterm} reasoning or experiments. In the
+other than logical reasoning or experiments. In the
 absence of experiments, we have to assume and logically reason, for
 example, through the sequence of events. Another important assumption
 that we make is that the instrument is actually an independent
@@ -1589,7 +1404,7 @@ correlation in mind, as expressed by standard statistical models
 and causation, can help you avoid statistical biases and wrong
 associations.
 
-A final, more technical, method[]{#id759 .indexterm} to reduce
+A final, more technical, method to reduce
 unfairness is to peek inside the model to ensure it is fair. We already
 looked at interpretability in the last chapter, mostly to debug data and
 spot overfitting, but now, we will give it another look, this time to
@@ -1597,36 +1412,31 @@ justify the model\'s predictions.
 
 
 
-[]{#ch09lvl1sec110}Interpreting models to ensure fairness {#interpreting-models-to-ensure-fairness .title style="clear: both"}
+Interpreting models to ensure fairness {#interpreting-models-to-ensure-fairness .title style="clear: both"}
 ---------------------------------------------------------
 
-</div>
 
-</div>
-
-------------------------------------------------------------------------
-:::
 
 In [Chapter
 8](https://subscription.packtpub.com/book/data/9781789136364/8){.link},
-[*Privacy, Debugging, and Launching Your Products,*]{.emphasis} we
-discussed model interpretability as a debugging method. We []{#id760
-.indexterm}used LIME to spot the features that the model is overfitting
+[*Privacy, Debugging, and Launching Your Products,*] we
+discussed model interpretability as a debugging method. We 
+used LIME to spot the features that the model is overfitting
 to.
 
-In this section, we will use a slightly more[]{#id761 .indexterm}
-sophisticated method called [**SHAP**]{.strong} ([**SHapley Additive
-exPlanation**]{.strong}). SHAP combines several different explanation
+In this section, we will use a slightly more
+sophisticated method called [**SHAP**] ([**SHapley Additive
+exPlanation**]). SHAP combines several different explanation
 approaches into one neat method. This method lets us generate
 explanations for individual predictions as well as for entire datasets
 in order to understand the model better.
 
 You can find SHAP on GitHub at <https://github.com/slundberg/shap> and
-install it locally with `pip install shap`{.literal}. Kaggle kernels
+install it locally with `pip install shap`. Kaggle kernels
 have SHAP preinstalled.
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#tip05}Note {#note .title}
+
+### Note {#note .title}
 
 The example code given here is from the SHAP example notebooks. You can
 find a slightly extended version of the notebook on Kaggle:
@@ -1636,35 +1446,35 @@ find a slightly extended version of the notebook on Kaggle:
 
 SHAP combines seven model interpretation methods, those being LIME,
 Shapley sampling values, DeepLIFT, [**Quantitative Input
-Influence**]{.strong} ([**QII**]{.strong}), layer-wise relevance
+Influence**] ([**QII**]), layer-wise relevance
 propagation, Shapley regression values, and a tree interpreter that has
-two modules: a model-agnostic `KernelExplainer`{.literal} and a
-`TreeExplainer`{.literal} module specifically for tree-based methods
-such as `XGBoost`{.literal}.
+two modules: a model-agnostic `KernelExplainer` and a
+`TreeExplainer` module specifically for tree-based methods
+such as `XGBoost`.
 
 The mathematics of how and when the interpreters are used is not
-terribly relevant for using SHAP. In a[]{#id762 .indexterm} nutshell,
-given a function, [*f*]{.emphasis}, expressed through a neural network,
-for instance, and a data point, [*x*]{.emphasis}, SHAP compares
-[![](7_files/B10354_09_030.jpg)]{.inlinemediaobject} to
-[![](7_files/B10354_09_031.jpg)]{.inlinemediaobject} where
-[![](7_files/B10354_09_032.jpg)]{.inlinemediaobject} is the \"expected
+terribly relevant for using SHAP. In a nutshell,
+given a function, [*f*], expressed through a neural network,
+for instance, and a data point, [*x*], SHAP compares
+[![](./images/B10354_09_030.jpg)]{.inlinemediaobject} to
+[![](./images/B10354_09_031.jpg)]{.inlinemediaobject} where
+[![](./images/B10354_09_032.jpg)]{.inlinemediaobject} is the \"expected
 normal output\" generated for a larger sample. SHAP will then create
 smaller models, similar to LIME, to see which features explain the
-difference between [![](7_files/B10354_09_033.jpg)]{.inlinemediaobject}
-and [![](7_files/B10354_09_034.jpg)]{.inlinemediaobject}.
+difference between [![](./images/B10354_09_033.jpg)]{.inlinemediaobject}
+and [![](./images/B10354_09_034.jpg)]{.inlinemediaobject}.
 
 In our loan example, this corresponds to having an applicant,
-[*x,*]{.emphasis} and a distribution of many applicants,
-[*z*]{.emphasis}, and trying to explain why the chance of getting a loan
-for applicant [*x*]{.emphasis} is different from the expected chance for
-the other applicants, [*z*]{.emphasis}.
+[*x,*] and a distribution of many applicants,
+[*z*], and trying to explain why the chance of getting a loan
+for applicant [*x*] is different from the expected chance for
+the other applicants, [*z*].
 
 SHAP does not only compare
-[![](7_files/B10354_09_035.jpg)]{.inlinemediaobject} and
-[![](7_files/B10354_09_036.jpg)]{.inlinemediaobject}, but also compares
-[![](7_files/B10354_09_037.jpg)]{.inlinemediaobject} to
-[![](7_files/B10354_09_038.jpg)]{.inlinemediaobject}.
+[![](./images/B10354_09_035.jpg)]{.inlinemediaobject} and
+[![](./images/B10354_09_036.jpg)]{.inlinemediaobject}, but also compares
+[![](./images/B10354_09_037.jpg)]{.inlinemediaobject} to
+[![](./images/B10354_09_038.jpg)]{.inlinemediaobject}.
 
 This means it compares the importance of certain features that are held
 constant, which allows it to better estimate the interactions between
@@ -1680,15 +1490,12 @@ with the objective of explaining why our model made a single decision.
 This process works in three steps.
 
 Firstly, we need to define the explainer and provide it with a
-prediction method and values, [*z*]{.emphasis}, to estimate a \"normal
-outcome.\" Here we are using a wrapper, `f`{.literal}, for Keras\'
+prediction method and values, [*z*], to estimate a \"normal
+outcome.\" Here we are using a wrapper, `f`, for Keras\'
 prediction function, which makes working with SHAP much easier. We
-provide 100 rows of the dataset as values for `z`{.literal}:
+provide 100 rows of the dataset as values for `z`:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 explainer = shap.KernelExplainer(f, X.iloc[:100,:])
@@ -1697,13 +1504,10 @@ explainer = shap.KernelExplainer(f, X.iloc[:100,:])
 
 Next, we need to calculate the SHAP values indicating the importance of
 different features for a single example. We let SHAP create 500
-permutations of each sample from [*z*]{.emphasis} so that SHAP has a
+permutations of each sample from [*z*] so that SHAP has a
 total of 50,000 examples to compare the one example to:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 shap_values = explainer.shap_values(X.iloc[350,:], nsamples=500)
@@ -1711,15 +1515,12 @@ shap_values = explainer.shap_values(X.iloc[350,:], nsamples=500)
 :::
 
 Finally, we can plot the influence of the features with SHAP\'s own
-plotting tool. This time, we provide[]{#id763 .indexterm} a row from
-`X_display`{.literal}, not `X`{.literal}. `X_display`{.literal}, which
+plotting tool. This time, we provide a row from
+`X_display`, not `X`. `X_display`, which
 contains the unscaled values and is only used for annotation of the plot
 to make it easier to read:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 shap.force_plot(explainer.expected_value, shap_values)
@@ -1728,10 +1529,10 @@ shap.force_plot(explainer.expected_value, shap_values)
 
 We can see the output of the code in the following graph:
 
-::: {.mediaobject}
-![](7_files/B10354_09_11.jpg)
 
-::: {.caption}
+![](./images/B10354_09_11.jpg)
+
+
 The influence of features with the SHAP plotting tool
 :::
 :::
@@ -1749,10 +1550,7 @@ hours or the job title.
 Our model also has some problems that become clear once we calculate and
 plot the SHAP values of another applicant:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 shap_values = explainer.shap_values(X.iloc[167,:], nsamples=500)
@@ -1763,10 +1561,10 @@ shap.force_plot(explainer.expected_value, shap_values)
 The following outputted graph is then shown. This also shows some of the
 problems that we\'ve encountered:
 
-::: {.mediaobject}
-![](7_files/B10354_09_12.jpg)
 
-::: {.caption}
+![](./images/B10354_09_12.jpg)
+
+
 The SHAP values showing some of the problems we can encounter
 :::
 :::
@@ -1781,16 +1579,13 @@ lawsuit waiting to happen as per the ECOA act.
 The two individual cases that we just looked at might have been
 unfortunate glitches by the model. It might have overfitted to some
 strange combination that gave an undue importance to marriage. To
-investigate whether our[]{#id764 .indexterm} model is biased, we should
+investigate whether our model is biased, we should
 investigate a number of different predictions. Fortunately for us, the
 SHAP library has a number of tools that can do just that.
 
 We can use the SHAP value calculations for multiple rows:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 shap_values = explainer.shap_values(X.iloc[100:330,:], nsamples=500)
@@ -1799,10 +1594,7 @@ shap_values = explainer.shap_values(X.iloc[100:330,:], nsamples=500)
 
 Then, we can plot a forced plot for all of these values as well:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 shap.force_plot(explainer.expected_value, shap_values)
@@ -1812,10 +1604,10 @@ shap.force_plot(explainer.expected_value, shap_values)
 Again, this code produces a SHAP dataset graph, which we can see in the
 following graphic:
 
-::: {.mediaobject}
-![](7_files/B10354_09_13.jpg)
 
-::: {.caption}
+![](./images/B10354_09_13.jpg)
+
+
 SHAP dataset
 :::
 :::
@@ -1832,18 +1624,18 @@ cleaners. The big red block between 40 and 60 are mostly highly educated
 people who work a high number of hours.
 
 To further examine the impact of marital status, you can change what
-SHAP displays on the [*y*]{.emphasis}-axis. Let\'s look at the impact of
+SHAP displays on the [*y*]-axis. Let\'s look at the impact of
 marriage:
 
-::: {.mediaobject}
-![](7_files/B10354_09_14.jpg)
 
-::: {.caption}
+![](./images/B10354_09_14.jpg)
+
+
 SHAP marriage outcome
 :::
 :::
 
-As you can see[]{#id765 .indexterm} in this chart, marriage status
+As you can see in this chart, marriage status
 either strongly positively or negatively impacts people from different
 groups. If you move your mouse over the chart, you can see that the
 positive influences all stem from civic marriages.
@@ -1851,10 +1643,7 @@ positive influences all stem from civic marriages.
 Using a summary plot, we can see which features matter the most to our
 model:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 shap.summary_plot(shap_values, X.iloc[100:330,:])
@@ -1864,10 +1653,10 @@ shap.summary_plot(shap_values, X.iloc[100:330,:])
 This code then outputs the final summary plot graph, which we can see
 below:
 
-::: {.mediaobject}
-![](7_files/B10354_09_15.jpg)
 
-::: {.caption}
+![](./images/B10354_09_15.jpg)
+
+
 SHAP summary plot
 :::
 :::
@@ -1876,8 +1665,8 @@ As you can see, education is the most important influence on our model.
 It also has the widest spread of influence. Low education levels really
 drag predictions down, while strong education levels really boost
 predictions up. Marital status is the second most important predictor.
-Interestingly, though, capital losses are important to[]{#id766
-.indexterm} the model, but capital gains are not.
+Interestingly, though, capital losses are important to
+ the model, but capital gains are not.
 
 To dig deeper into the effects of marriage, we have one more tool at our
 disposal, a dependence plot, which can show the SHAP values of an
@@ -1885,10 +1674,7 @@ individual feature together with a feature for which SHAP suspects high
 interaction. With the following code snippet, we can inspect the effect
 of marriage on our model\'s predictions:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 shap.dependence_plot("marital-status", shap_values, X.iloc[100:330,:], display_features=X_display.iloc[100:330,:])
@@ -1898,17 +1684,17 @@ shap.dependence_plot("marital-status", shap_values, X.iloc[100:330,:], display_f
 As a result of running this code, we can now see a visualized
 representation of the effect of marriage in the following graph:
 
-::: {.mediaobject}
-![](7_files/B10354_09_16.jpg)
 
-::: {.caption}
+![](./images/B10354_09_16.jpg)
+
+
 SHAP marriage dependence
 :::
 :::
 
-As you can see, [**Married-civ-spouse**]{.strong}, the census code for a
-civilian marriage with no partner in the armed forces,[]{#id767
-.indexterm} stands out with a positive influence on model outcomes.
+As you can see, [**Married-civ-spouse**], the census code for a
+civilian marriage with no partner in the armed forces,
+ stands out with a positive influence on model outcomes.
 Meanwhile, every other type of arrangement has slightly negative scores,
 especially never married.
 
@@ -1917,58 +1703,45 @@ people are more likely to have never been married. Our model correctly
 correlated that marriage goes hand in hand with high income, but not
 because marriage causes high income. The model is correct in making the
 correlation, but it would be false to make decisions based on the model.
-By selecting, we effectively[]{#id768 .indexterm} manipulate the
+By selecting, we effectively manipulate the
 features on which we select. We are no longer interested in just
-[![](7_files/B10354_09_039.jpg)]{.inlinemediaobject}, but in
-[![](7_files/B10354_09_040.jpg)]{.inlinemediaobject}.
+[![](./images/B10354_09_039.jpg)]{.inlinemediaobject}, but in
+[![](./images/B10354_09_040.jpg)]{.inlinemediaobject}.
 
 
 
-[]{#ch09lvl1sec111}Unfairness as complex system failure {#unfairness-as-complex-system-failure .title style="clear: both"}
+Unfairness as complex system failure {#unfairness-as-complex-system-failure .title style="clear: both"}
 -------------------------------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-In this chapter, you []{#id769 .indexterm}have been equipped with an
+In this chapter, you have been equipped with an
 arsenal of technical tools to make machine learning models fairer.
 However, a model does not operate in a vacuum. Models are embedded in
 complex socio-technical systems. There are humans developing and
 monitoring the model, sourcing the data and creating the rules for what
-to do with the model output. There are also other []{#id770
-.indexterm}machines in place, producing data or using outputs from the
+to do with the model output. There are also other 
+machines in place, producing data or using outputs from the
 model. Different players might try to game the system in different ways.
 
 Unfairness is equally complex. We\'ve already discussed the two general
-definitions of unfairness, [*disparate impact*]{.emphasis} and
-[*disparate treatment*]{.emphasis}. Disparate treatment can occur
+definitions of unfairness, [*disparate impact*] and
+[*disparate treatment*]. Disparate treatment can occur
 against any combination of features (age, gender, race, nationality,
 income, and so on), often in complex and non-linear ways. This section
 examines Richard Cook\'s 1998 paper, [*How complex systems
-fail*]{.emphasis} - available at
+fail*] - available at
 <https://web.mit.edu/2.75/resources/random/How%20Complex%20Systems%20Fail.pdf>
 - which looks at how complex machine learning-driven systems fail to be
 fair. Cook lists 18 points, some of which will be discussed in the
 following sections.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch09lvl3sec30}Complex systems are intrinsically hazardous systems {#complex-systems-are-intrinsically-hazardous-systems .title}
+### Complex systems are intrinsically hazardous systems {#complex-systems-are-intrinsically-hazardous-systems .title}
 
-</div>
 
-</div>
-:::
-
-Systems are []{#id771 .indexterm}usually complex because they are
+Systems are usually complex because they are
 hazardous, and many safeguards have been created because of that fact.
 The financial system is a hazardous system; if it goes off the rails, it
 can break the economy or ruin people\'s lives. Thus, many regulations
@@ -1981,21 +1754,13 @@ safeguards in place to keep the system fair. Naturally, these safeguards
 can break, and they do so constantly in a number of small ways.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch09lvl3sec31}Catastrophes are caused by multiple failures {#catastrophes-are-caused-by-multiple-failures .title}
+### Catastrophes are caused by multiple failures {#catastrophes-are-caused-by-multiple-failures .title}
 
-</div>
-
-</div>
-:::
 
 In a complex system, no single point of failure can cause catastrophes
-since there are many safeguards in place. Failure[]{#id772 .indexterm}
+since there are many safeguards in place. Failure
 usually results from multiple points of failure. In the financial
 crises, banks created risky products, but regulators didn\'t stop them.
 
@@ -2007,46 +1772,30 @@ inside and outside the firm can also cause discrimination, even with a
 fair model.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch09lvl3sec32}Complex systems run in degraded mode {#complex-systems-run-in-degraded-mode .title}
+### Complex systems run in degraded mode {#complex-systems-run-in-degraded-mode .title}
 
-</div>
-
-</div>
-:::
 
 In most accident reports, there is a section that lists
 \"proto-accidents,\" which are instances in the past where the same
 accident nearly happened but did not happen. The model might have made
-erratic predictions before, but a[]{#id773 .indexterm} human operator
+erratic predictions before, but a human operator
 stepped in, for example.
 
 It is important to know that in a complex system, failures that nearly
 lead to catastrophe always occur. The complexity of the system makes it
 prone to error, but the heavy safeguards against catastrophe keep them
-from happening. However, once these[]{#id774 .indexterm} safeguards
+from happening. However, once these safeguards
 fail, catastrophe is right around the corner. Even if your system seems
 to run smoothly, check for proto-accidents and strange behavior before
 it is too late.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch09lvl3sec33}Human operators both cause and prevent accidents {#human-operators-both-cause-and-prevent-accidents .title}
+### Human operators both cause and prevent accidents {#human-operators-both-cause-and-prevent-accidents .title}
 
-</div>
-
-</div>
-:::
 
 Once things have gone wrong, blame is often put at the human operators
 who \"must have known\" that their behavior would \"inevitably\" lead to
@@ -2057,21 +1806,13 @@ behavior of many humans over many actions. For models to be fair, the
 entire team has to work to keep it fair.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch09lvl3sec34}Accident-free operation requires experience with failure {#accident-free-operation-requires-experience-with-failure .title}
+### Accident-free operation requires experience with failure {#accident-free-operation-requires-experience-with-failure .title}
 
-</div>
-
-</div>
-:::
 
 In fairness, the single biggest problem is often that the designers of a
-system do not experience the[]{#id775 .indexterm} system discriminating
+system do not experience the system discriminating
 against them. It is thus important to get the insights of a diverse
 group of people into the development process. Since your system
 constantly fails, you should capture the learning from these small
@@ -2079,34 +1820,21 @@ failures before bigger accidents happen.
 
 
 
-[]{#ch09lvl1sec112}A checklist for developing fair models {#a-checklist-for-developing-fair-models .title style="clear: both"}
+A checklist for developing fair models {#a-checklist-for-developing-fair-models .title style="clear: both"}
 ---------------------------------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-With the preceding[]{#id776 .indexterm} information, we can create a
+With the preceding information, we can create a
 short checklist that can be used when creating fair models. Each issue
 comes with several sub-issues.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch09lvl3sec35}What is the goal of the model developers? {#what-is-the-goal-of-the-model-developers .title}
+### What is the goal of the model developers? 
 
-</div>
 
-</div>
-:::
 
-::: {.itemizedlist}
 -   Is fairness an explicit goal?
 
 -   Is the model evaluation metric chosen to reflect the fairness of the
@@ -2121,23 +1849,12 @@ comes with several sub-issues.
 -   How diverse is the development team?
 
 -   Who is responsible when things go wrong?
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+### Is the data biased? {#is-the-data-biased .title}
 
-### []{#ch09lvl3sec36}Is the data biased? {#is-the-data-biased .title}
 
-</div>
 
-</div>
-:::
-
-::: {.itemizedlist}
 -   How was the data collected?
 
 -   Are there statistical misrepresentations in the sample?
@@ -2146,50 +1863,28 @@ comes with several sub-issues.
 
 -   Are sensitive variables included?
 
--   Can sensitive []{#id777 .indexterm}variables be inferred from the
+-   Can sensitive variables be inferred from the
     data?
 
 -   Are there interactions between features that might only affect
     subgroups?
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+### Are errors biased? {#are-errors-biased .title}
 
-### []{#ch09lvl3sec37}Are errors biased? {#are-errors-biased .title}
 
-</div>
 
-</div>
-:::
-
-::: {.itemizedlist}
 -   What are the error rates for different subgroups?
 
 -   What is the error rate of a simple, rule-based alternative?
 
 -   How do the errors in the model lead to different outcomes?
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+### How is feedback incorporated? {#how-is-feedback-incorporated .title}
 
-### []{#ch09lvl3sec38}How is feedback incorporated? {#how-is-feedback-incorporated .title}
 
-</div>
 
-</div>
-:::
-
-::: {.itemizedlist}
 -   Is there an appeals/reporting process?
 
 -   Can mistakes be attributed back to a model?
@@ -2203,46 +1898,24 @@ comes with several sub-issues.
 
 -   Do people know which features are used to make predictions about
     them?
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+### Can the model be interpreted? {#can-the-model-be-interpreted .title}
 
-### []{#ch09lvl3sec39}Can the model be interpreted? {#can-the-model-be-interpreted .title}
 
-</div>
 
-</div>
-:::
-
-::: {.itemizedlist}
 -   Is a model interpretation, for example, individual results, in
     place?
 
 -   Can the interpretation be understood by those it matters to?
 
 -   Can findings from the interpretation lead to changes in the model?
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+### What happens to models after deployment? 
 
-### []{#ch09lvl3sec40}What happens to models after deployment? {#what-happens-to-models-after-deployment .title}
 
-</div>
 
-</div>
-:::
-
-::: {.itemizedlist}
 -   Is there a central repository to keep track of all the models
     deployed?
 
@@ -2252,21 +1925,16 @@ comes with several sub-issues.
 
 
 
-[]{#ch09lvl1sec113}Exercises {#exercises .title style="clear: both"}
+Exercises {#exercises .title style="clear: both"}
 ----------------------------
 
-</div>
 
-</div>
-
-------------------------------------------------------------------------
-:::
 
 In this chapter, you have learned a lot about both the technical and
 non-technical considerations of fairness in machine learning. These
 exercises will help you think much more deeply about the topic:
 
-::: {.itemizedlist}
+
 -   Think about the organization you work for. How is fairness
     incorporated in your organization? What works well and what could be
     improved?
@@ -2279,15 +1947,10 @@ exercises will help you think much more deeply about the topic:
     tackled with the tools discussed in this chapter?
 
 
-[]{#ch09lvl1sec114}Summary {#summary .title style="clear: both"}
+Summary 
 --------------------------
 
-</div>
 
-</div>
-
-------------------------------------------------------------------------
-:::
 
 In this chapter, you have learned about fairness in machine learning in
 different aspects. First, we discussed legal definitions of fairness and

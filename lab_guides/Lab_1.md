@@ -1,13 +1,9 @@
 
-[]{#ch01}Chapter 1. Neural Networks and Gradient-Based Optimization {#chapter-1.-neural-networks-and-gradient-based-optimization .title}
+Chapter 1. Neural Networks and Gradient-Based Optimization {#chapter-1.-neural-networks-and-gradient-based-optimization .title}
 -------------------------------------------------------------------
 
-</div>
 
-</div>
-:::
-
-The financial services industry[]{#id0 .indexterm} is fundamentally an
+The financial services industry is fundamentally an
 information processing industry. An investment fund processes
 information in order to evaluate investments, an insurance company
 processes information to price their insurances, while a retail bank
@@ -17,7 +13,7 @@ industry was an early adopter of computers.
 
 The first stock ticker was the printing telegraph, which was invented
 back in 1867. The first mechanical adding machine, which was directly
-targeted at the finance industry, was[]{#id1 .indexterm} patented in
+targeted at the finance industry, was patented in
 1885. Then in 1971, the automatic teller banking machine, which allowed
 customers to withdraw cash using a plastic card, was patented. That same
 year, the first electronic stock exchange, the NASDAQ, opened its doors,
@@ -36,7 +32,7 @@ information advantages.
 
 As information advantages ceased to be a reliable source of above-market
 performance, clever financial modeling took its place. The term [*hedge
-fund*]{.emphasis} was coined back in 1949, the Harry Markowitz model was
+fund*] was coined back in 1949, the Harry Markowitz model was
 published in 1953, and in 1973, the Black-Scholes formula was first
 published. Since then, the field has made much progress and has
 developed a wide range of financial products. However, as knowledge of
@@ -58,8 +54,8 @@ computer would have to know which company an article is about, whether
 it is good news or bad news that\'s being reported, and whether we can
 learn something about the relationship between this company and another
 company mentioned in the article. Those are just a couple of examples of
-contextualizing the story. Firms that master[]{#id2 .indexterm} sourcing
-such [**alternative data,**]{.strong} as it is often called, will often
+contextualizing the story. Firms that master sourcing
+such [**alternative data,**] as it is often called, will often
 have an advantage.
 
 But it does not stop there. Financial professionals are expensive people
@@ -148,24 +144,19 @@ make use of the data that is around you.
 
 
 
-[]{#ch01lvl1sec10}What is machine learning? {#what-is-machine-learning .title style="clear: both"}
+What is machine learning? 
 -------------------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
 
-::: {.blockquote}
 > \"Machine learning is the subfield of computer science that gives
 > computers the ability to learn without being explicitly programmed.\"
 >
 > \- Arthur Samuel, 1959
 :::
 
-What do we mean by machine learning? Most computer[]{#id4 .indexterm}
+What do we mean by machine learning? Most computer
 programs today are handcrafted by humans. Software engineers carefully
 craft every rule that governs how software behaves and then translate it
 into computer code.
@@ -196,26 +187,21 @@ three different types of learning: supervised, unsupervised, and
 reinforcement learning.
 
 
-[]{#ch01lvl1sec11}Supervised learning {#supervised-learning .title style="clear: both"}
+Supervised learning {#supervised-learning .title style="clear: both"}
 -------------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-Let\'s go back to our dog []{#id5 .indexterm}classifier. There are in
+Let\'s go back to our dog classifier. There are in
 fact many such classifiers currently in use today. If you use Google
 images, for example, and search for \"dog,\" it will use an image
 classifier to show you pictures of dogs. These classifiers are trained
 under a paradigm known as supervised learning.
 
-::: {.mediaobject}
-![](4_files/B10354_01_01.jpg)
 
-::: {.caption}
+![](./images/B10354_01_01.jpg)
+
+
 Supervised learning
 :::
 :::
@@ -230,10 +216,10 @@ If we have a high number of these labeled training examples, we can
 train a classifier on detecting the subtle statistical patterns that
 differentiate dogs from all other animals.
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#tip02}Note {#note .title}
 
-[**Note**]{.strong}: The classifier does not know what a dog
+### Note {#note .title}
+
+[**Note**]: The classifier does not know what a dog
 fundamentally is. It only knows the statistical patterns that linked
 images to dogs in training.
 :::
@@ -244,25 +230,20 @@ just output nonsense.
 
 
 
-[]{#ch01lvl1sec12}Unsupervised learning {#unsupervised-learning .title style="clear: both"}
+Unsupervised learning {#unsupervised-learning .title style="clear: both"}
 ---------------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-While supervised learning has[]{#id6 .indexterm} made great advances
+While supervised learning has made great advances
 over the last few years, most of this book will focus on working with
 labeled examples. However, sometimes we may not have labels. In this
 case, we can still use machine learning to find hidden patterns in data.
 
-::: {.mediaobject}
-![](5_files/B10354_01_02.jpg)
 
-::: {.caption}
+![](./images/B10354_01_02.jpg)
+
+
 Clustering is a common form of unsupervised learning
 :::
 :::
@@ -283,27 +264,22 @@ learning, but it still holds great potential.
 
 
 
-[]{#ch01lvl1sec13}Reinforcement learning {#reinforcement-learning .title style="clear: both"}
+Reinforcement learning {#reinforcement-learning .title style="clear: both"}
 ----------------------------------------
 
-</div>
 
-</div>
-
-------------------------------------------------------------------------
-:::
 
 In reinforcement learning, we train agents who take actions in an
-environment, such as a self-driving car on the road. While []{#id7
-.indexterm}we do not have labels, that is, we cannot tell what the
-[*correct*]{.emphasis} action is in any situation, we can assign rewards
+environment, such as a self-driving car on the road. While 
+we do not have labels, that is, we cannot tell what the
+[*correct*] action is in any situation, we can assign rewards
 or punishments. For example, we could reward keeping a proper distance
 from the car in front.
 
-::: {.mediaobject}
-![](6_files/B10354_01_03.jpg)
 
-::: {.caption}
+![](./images/B10354_01_03.jpg)
+
+
 Reinforcement learning
 :::
 :::
@@ -318,21 +294,13 @@ past couple of years and is considered by many to be a promising avenue
 toward general artificial intelligence, that being computers that are as
 smart as humans.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch01lvl2sec06}The unreasonable effectiveness of data {#the-unreasonable-effectiveness-of-data .title}
+### The unreasonable effectiveness of data {#the-unreasonable-effectiveness-of-data .title}
 
-</div>
 
-</div>
-:::
-
-In 2009, three Google []{#id8 .indexterm}engineers published a landmark
-paper titled [*The unreasonable effectiveness of data*]{.emphasis}. In
+In 2009, three Google engineers published a landmark
+paper titled [*The unreasonable effectiveness of data*]. In
 the paper, they described how relatively simple machine learning systems
 that had been around for a long time had exhibited much better
 performance when fed with the enormous amounts of data Google had on its
@@ -343,7 +311,7 @@ before.
 From there, researchers quickly started revisiting old machine learning
 technologies and found that artificial neural networks did especially
 well when trained on massive datasets. This was around the same time
-that computing[]{#id9 .indexterm} power became cheap and plentiful
+that computing power became cheap and plentiful
 enough to train much bigger networks than before.
 
 These bigger artificial neural networks were so effective that they got
@@ -363,21 +331,13 @@ is, therefore, the ideal tool for combing through the huge amounts of
 data the financial industry is confronted with.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch01lvl2sec07}All models are wrong {#all-models-are-wrong .title}
+### All models are wrong {#all-models-are-wrong .title}
 
-</div>
-
-</div>
-:::
 
 There is a saying in statistics that [*all models are wrong, but some
-are useful*]{.emphasis}. Machine learning creates incredibly complex
+are useful*]. Machine learning creates incredibly complex
 statistical models that are often, for example, in deep learning, not
 interpretable to humans. They sure are useful and have great value, but
 they are still wrong. This is because they are complex black boxes, and
@@ -386,7 +346,7 @@ should question them precisely because they are black boxes.
 
 There will come a time when even the most sophisticated deep neural
 network will make a fundamentally wrong prediction, just as the advanced
-[**Collateralized Debt Obligation**]{.strong} ([**CDO**]{.strong})
+[**Collateralized Debt Obligation**] ([**CDO**])
 models did in the financial crises of 2008. Even worse, black box
 machine learning models, which will make millions of decisions on loan
 approval or insurance, impacting everyday people\'s lives, will
@@ -409,12 +369,12 @@ world that you see in movies.
 While this is not an ethics book, it makes sense for any practitioner of
 the field to get familiar with the ethical implications of his or her
 work. In addition to recommending that you read Cathy O\'Neil\'s
-[*Weapons of math destruction,*]{.emphasis} it\'s also worth asking you
-to swear [*The Modelers Hippocratic Oath*]{.emphasis}. The oath was
+[*Weapons of math destruction,*] it\'s also worth asking you
+to swear [*The Modelers Hippocratic Oath*]. The oath was
 developed by Emanuel Derman and Paul Wilmott, two quantitative finance
 researchers, in 2008 in the wake of the financial crisis:
 
-::: {.blockquote}
+
 > \"I will remember that I didn\'t make the world, and it doesn\'t
 > satisfy my equations. Though I will use models boldly to estimate
 > value, I will not be overly impressed by mathematics. I will never
@@ -425,17 +385,17 @@ researchers, in 2008 in the wake of the financial crisis:
 > society and the economy, many of them beyond my comprehension.\"
 :::
 
-In recent years, machine learning has[]{#id10 .indexterm} made a number
+In recent years, machine learning has made a number
 of great strides, with researchers mastering tasks that were previously
 seen as unsolvable. From identifying objects in images to transcribing
 voice and playing complex board games like Go, modern machine learning
 has matched, and continues to match and even beat, human performance at
 a dazzling range of tasks.
 
-Interestingly, [**deep learning**]{.strong} is the method behind all
+Interestingly, [**deep learning**] is the method behind all
 these advances. In fact, the bulk of advances come from a subfield of
-deep learning called [**deep neural networks**]{.strong}. While []{#id11
-.indexterm}many practitioners are familiar with standard econometric
+deep learning called [**deep neural networks**]. While 
+many practitioners are familiar with standard econometric
 models, such as regression, few are familiar with this new breed
 of modeling.
 
@@ -449,17 +409,12 @@ order to give you a fundamental understanding of the topic.
 
 
 
-[]{#ch01lvl1sec14}Setting up your workspace {#setting-up-your-workspace .title style="clear: both"}
+Setting up your workspace {#setting-up-your-workspace .title style="clear: both"}
 -------------------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-Before we can start, you will need to[]{#id12 .indexterm} set up your
+Before we can start, you will need to set up your
 workspace. The examples in this book are all meant to run in a Jupyter
 notebook. Jupyter notebooks are an interactive development environment
 mostly used for data-science applications and are considered the go-to
@@ -468,10 +423,10 @@ environment to build data-driven applications in.
 You can run Jupyter notebooks either on your local machine, on a server
 in the cloud, or on a website such as Kaggle.
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#note02}Note {#note .title}
 
-[**Note**]{.strong}: All code examples for this book can be found here:
+### Note {#note .title}
+
+[**Note**]: All code examples for this book can be found here:
 <https://github.com/PacktPublishing/Machine-Learning-for-Finance> and
 for chapter 1 refer the following link:
 <https://www.kaggle.com/jannesklaas/machine-learning-for-finance-chapter-1-code>.
@@ -479,8 +434,8 @@ for chapter 1 refer the following link:
 
 Deep learning is computer intensive, and the data used in the examples
 throughout this book are frequently over a gigabyte in size. It can be
-accelerated by the use of [**Graphics Processing Units**]{.strong}
-([**GPUs**]{.strong}), which were[]{#id13 .indexterm} invented for
+accelerated by the use of [**Graphics Processing Units**]
+([**GPUs**]), which were invented for
 rendering video and games. If you have a GPU enabled computer, you can
 run the examples locally. If you do not have such a machine, it is
 recommended to use a service such as Kaggle kernels.
@@ -496,25 +451,20 @@ GPU. There are countless tutorials for this online and a decent box can
 be assembled for as little as a few hundred dollars all the way to
 \$5,000.
 
-The examples in this book can all be run on[]{#id14 .indexterm} Kaggle
+The examples in this book can all be run on Kaggle
 for free, though. In fact, they have been developed using this site.
 
 
 
-[]{#ch01lvl1sec15}Using Kaggle kernels {#using-kaggle-kernels .title style="clear: both"}
+Using Kaggle kernels
 --------------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-Kaggle is a popular data-science []{#id15 .indexterm}website owned by
+Kaggle is a popular data-science website owned by
 Google. It started out with competitions in which participants had to
 build machine learning models in order to make predictions. However,
-over the years, it has []{#id16 .indexterm}also had a popular forum,
+over the years, it has also had a popular forum,
 an online learning system and, most importantly for us, a hosted Jupyter
 service.
 
@@ -522,29 +472,29 @@ To use Kaggle, you can visit their website at <https://www.kaggle.com/>.
 In order to use the site, you will be required to create an account.
 
 After you\'ve created your account, you can find the
-[**Kernels**]{.strong} page by clicking on [**Kernels**]{.strong}
+[**Kernels**] page by clicking on [**Kernels**]
 located in the main menu, as seen in the following screenshot:
 
-::: {.mediaobject}
-![](8_files/B10354_01_04.jpg)
 
-::: {.caption}
+![](./images/B10354_01_04.jpg)
+
+
 Public Kaggle kernels
 :::
 :::
 
-In the preceding screenshot, you can see a number of []{#id17
-.indexterm}kernels that other people have both written and published.
+In the preceding screenshot, you can see a number of 
+kernels that other people have both written and published.
 Kernels can be private, but publishing kernels is a good way to show
 skills and share knowledge.
 
-To start a new kernel, click [**New Kernel**]{.strong}. In the dialog
-that follows, you want to select [**Notebook**]{.strong}:
+To start a new kernel, click [**New Kernel**]. In the dialog
+that follows, you want to select [**Notebook**]:
 
-::: {.mediaobject}
-![](8_files/B10354_01_05.jpg)
 
-::: {.caption}
+![](./images/B10354_01_05.jpg)
+
+
 The kernel editor
 :::
 :::
@@ -557,7 +507,7 @@ few elements might be in different positions, but the basic
 functionality is the same. The most important piece of a notebook is the
 code cells. Here you can enter the code and run it by clicking the run
 button on the bottom left, or alternatively by pressing
-[*Shift*]{.emphasis} + [*Enter*]{.emphasis}.
+[*Shift*] + [*Enter*].
 
 The variables you define in one cell become environment variables, so
 you can access them in another cell. Markdown cells allow you to write
@@ -566,9 +516,9 @@ code. You can upload and download notebooks with the little cloud
 buttons featured in the top-right corner.
 
 To publish a notebook from the kernel editor, firstly you must click the
-[**Commit & Run**]{.strong} button and then set the notebook to
-[**Public**]{.strong} in the settings. To enable a GPU on your notebook,
-make sure to check the [**Enable GPU**]{.strong} button located in
+[**Commit & Run**] button and then set the notebook to
+[**Public**] in the settings. To enable a GPU on your notebook,
+make sure to check the [**Enable GPU**] button located in
 the bottom right. It\'s important to remember that this will restart
 your notebook, so your environment variables will be lost.
 
@@ -582,7 +532,7 @@ Kaggle, or alternatively you can just upload a new dataset on the fly.
 The notebooks belonging to this book already come with the data
 connection.
 
-Kaggle kernels come []{#id18 .indexterm}with the most frequently used
+Kaggle kernels come with the most frequently used
 packages preinstalled, so for most of the time you do not have to worry
 about installing packages.
 
@@ -594,25 +544,17 @@ provided when they are used in this book.
 Kaggle kernels are free to use and can save you a lot of time and money,
 so it\'s recommended to run the code samples on Kaggle. To copy a
 notebook, go to the link provided at the beginning of the code section
-of each chapter and then click [**Fork Notebook**]{.strong}. Note that
+of each chapter and then click [**Fork Notebook**]. Note that
 Kaggle kernels can run for up to six hours.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch01lvl2sec08}Running notebooks locally {#running-notebooks-locally .title}
+### Running notebooks locally {#running-notebooks-locally .title}
 
-</div>
 
-</div>
-:::
-
-If you have a machine []{#id19 .indexterm}powerful enough to run deep
+If you have a machine powerful enough to run deep
 learning operations, you can run the code samples locally. In that case,
-it\'s strongly recommended to install []{#id20 .indexterm}Jupyter
+it\'s strongly recommended to install Jupyter
 through Anaconda.
 
 To install Anaconda, simply visit <https://www.anaconda.com/download> to
@@ -625,10 +567,7 @@ this book.
 After installing Anaconda, you can start a Jupyter server locally by
 opening your machine\'s Terminal and typing in the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 $ jupyter notebook
@@ -638,7 +577,7 @@ $ jupyter notebook
 You can then visit the URL displayed in the Terminal. This will take you
 to your local notebook server.
 
-To start a new notebook, click on [**New**]{.strong} in the top-right
+To start a new notebook, click on [**New**] in the top-right
 corner.
 
 All code samples in this book use Python 3, so make sure you are using
@@ -646,27 +585,16 @@ Python 3 in your local notebooks. If you are running your notebooks
 locally, you will also need to install both TensorFlow and Keras, the
 two deep learning libraries used throughout this book.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-#### []{#ch01lvl3sec01}Installing TensorFlow {#installing-tensorflow .title}
+#### Installing TensorFlow {#installing-tensorflow .title}
 
-</div>
 
-</div>
-:::
-
-Before installing Keras, we need[]{#id21 .indexterm} to first install
+Before installing Keras, we need to first install
 TensorFlow. You can install TensorFlow by opening a Terminal window and
 entering the following command:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 $ sudo pip install TensorFlow
@@ -678,30 +606,19 @@ click on this link, where you will be provided with the instructions for
 doing so: <https://www.tensorflow.org/>.
 
 It\'s worth noting that you will need a CUDA-enabled GPU in order to run
-TensorFlow with CUDA. For instructions[]{#id22 .indexterm} on how to
+TensorFlow with CUDA. For instructions on how to
 install CUDA, visit <https://docs.nvidia.com/cuda/index.html>.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-#### []{#ch01lvl3sec02}Installing Keras {#installing-keras .title}
+#### Installing Keras {#installing-keras .title}
 
-</div>
 
-</div>
-:::
-
-After you have[]{#id23 .indexterm} installed TensorFlow, you can install
+After you have installed TensorFlow, you can install
 Keras in the same way, by running the following command:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 $ sudo pip install Keras
@@ -713,18 +630,10 @@ TensorFlow 1.7 will include Keras built in, which we\'ll cover this
 later on in this chapter.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-#### []{#ch01lvl3sec03}Using data locally {#using-data-locally .title}
+#### Using data locally
 
-</div>
-
-</div>
-:::
 
 To use the data of the book code samples locally, visit the notebooks on
 Kaggle and then download the connected datasets from there. Note that
@@ -739,85 +648,75 @@ achieve this.
 
 
 
-[]{#ch01lvl1sec16}Using the AWS deep learning AMI {#using-the-aws-deep-learning-ami .title style="clear: both"}
+Using the AWS deep learning AMI
 -------------------------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-[**Amazon Web Services**]{.strong} ([**AWS**]{.strong}) provides an
-[]{#id24 .indexterm}easy-to-use, preconfigured way to run deep learning
+[**Amazon Web Services**] ([**AWS**]) provides an
+easy-to-use, preconfigured way to run deep learning
 in the cloud.
 
 Visit <https://aws.amazon.com/machine-learning/amis/> for instructions
 on how to set up an [**Amazon Machine Image**
-]{.strong}([**AMI**]{.strong}). While AMIs are paid, they can run longer
+]([**AMI**]). While AMIs are paid, they can run longer
 than Kaggle kernels. So, for big projects, it might be worth using
-an[]{#id25 .indexterm} AMI instead of a kernel.
+an AMI instead of a kernel.
 
 To run the notebooks for this book on an AMI, first set up the AMI, then
 download the notebooks from GitHub, and then upload them to your AMI.
 You will have to download the data from Kaggle as well. See the [*Using
-data locally*]{.emphasis} section for instructions.
+data locally*] section for instructions.
 
 
 
-[]{#ch01lvl1sec17}Approximating functions {#approximating-functions .title style="clear: both"}
+Approximating functions {#approximating-functions .title style="clear: both"}
 -----------------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-There are many views on how best to think[]{#id26 .indexterm} about
-neural networks, but perhaps the[]{#id27 .indexterm} most useful is to
+There are many views on how best to think about
+neural networks, but perhaps the most useful is to
 see them as function approximators. Functions in math relate some input,
-[*x,*]{.emphasis} to some output, [*y*]{.emphasis}. We can write it as
+[*x,*] to some output, [*y*]. We can write it as
 the following formula:
 
-::: {.mediaobject}
-![](10_files/B10354_01_001.jpg)
+
+![](./images/B10354_01_001.jpg)
 :::
 
 A simple function could be like this:
 
-::: {.mediaobject}
-![](10_files/B10354_01_002.jpg)
+
+![](./images/B10354_01_002.jpg)
 :::
 
-In this case, we can give the function an input, [*x*]{.emphasis}, and
+In this case, we can give the function an input, [*x*], and
 it would quadruple it:
 
-::: {.mediaobject}
-![](10_files/B10354_01_003.jpg)
+
+![](./images/B10354_01_003.jpg)
 :::
 
 You might have seen functions like this in school, but functions can do
 more; as an example, they can map an element from a set (the collection
-of values the function accepts) to another element of []{#id28
-.indexterm}a set. These sets can be something other than simple numbers.
+of values the function accepts) to another element of 
+a set. These sets can be something other than simple numbers.
 
 A function could, for example, also map an image to an identification of
 what is in the image:
 
-::: {.mediaobject}
-![](10_files/B10354_01_004.jpg)
+
+![](./images/B10354_01_004.jpg)
 :::
 
 This function would map an image of a cat to the label \"cat,\" as we
 can see in the following diagram:
 
-::: {.mediaobject}
-![](10_files/B10354_01_06.jpg)
 
-::: {.caption}
+![](./images/B10354_01_06.jpg)
+
+
 Mapping images to labels
 :::
 :::
@@ -832,10 +731,10 @@ approximate every function. While we don\'t need to use an indefinitely
 large network, we are certainly using very large networks.
 
 Modern deep learning architectures can have tens or even hundreds of
-layers and millions of parameters,[]{#id29 .indexterm} so only storing
+layers and millions of parameters, so only storing
 the model already takes up a few gigabytes. This means that a neural
 network, if it\'s big enough, could also approximate our function,
-[*f*]{.emphasis}, for mapping images to their content.
+[*f*], for mapping images to their content.
 
 The condition that the neural network has to be \"big enough\" explains
 why deep (big) neural networks have taken off. The fact that \"big
@@ -844,17 +743,12 @@ are useful for a large number of tasks.
 
 
 
-[]{#ch01lvl1sec18}A forward pass {#a-forward-pass .title style="clear: both"}
+A forward pass {#a-forward-pass .title style="clear: both"}
 --------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-Over the course of this []{#id30 .indexterm}book, we will build powerful
+Over the course of this book, we will build powerful
 neural networks that are able to approximate extremely complex
 functions. We will be mapping text to named entities, images to their
 content, and even news articles to their summaries. But for now, we will
@@ -862,8 +756,8 @@ work with a simple problem that can be solved with logistic regression,
 a popular technique used in both economics and finance.
 
 We will be working with a simple problem. Given an input matrix,
-[*X*]{.emphasis}, we want to output the first column of the matrix,
-[*X~1~*]{.emphasis}. In this example, we will be approaching the problem
+[*X*], we want to output the first column of the matrix,
+[*X~1~*]. In this example, we will be approaching the problem
 from a mathematical perspective in order to gain some intuition for what
 is going on.
 
@@ -871,7 +765,7 @@ Later on in this chapter, we will implement what we have described in
 Python. We already know that we need data to train a neural network, and
 so the data, seen here, will be our dataset for the exercise:
 
-::: {.informaltable}
+
   X~1~   X~2~   X~3~   y
   ------ ------ ------ ---
   0      1      0      0
@@ -880,19 +774,19 @@ so the data, seen here, will be our dataset for the exercise:
   0      1      1      0
 :::
 
-In the dataset, each row contains an input vector, [*X*]{.emphasis}, and
-an output, [*y*]{.emphasis}.
+In the dataset, each row contains an input vector, [*X*], and
+an output, [*y*].
 
 The data follows the formula:
 
-::: {.mediaobject}
-![](11_files/B10354_01_005.jpg)
+
+![](./images/B10354_01_005.jpg)
 :::
 
 The function we want to approximate is as follows:
 
-::: {.mediaobject}
-![](11_files/B10354_01_006.jpg)
+
+![](./images/B10354_01_006.jpg)
 :::
 
 In this case, writing down the function is relatively straightforward.
@@ -906,17 +800,12 @@ regressors.
 
 
 
-[]{#ch01lvl1sec19}A logistic regressor {#a-logistic-regressor .title style="clear: both"}
+A logistic regressor {#a-logistic-regressor .title style="clear: both"}
 --------------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-As we just explained, the simplest neural network[]{#id31 .indexterm} is
+As we just explained, the simplest neural network is
 a logistic regressor. A logistic regression takes in values of any range
 but only outputs values between zero and one.
 
@@ -931,60 +820,49 @@ and so on, but the likelihood will always be a value between zero and
 one. Even the worst debtor ever cannot have a default likelihood above
 100%, and the best cannot go below 0%.
 
-The following diagram shows a logistic regressor. [*X*]{.emphasis} is
+The following diagram shows a logistic regressor. [*X*] is
 our input vector; here it\'s shown as three components,
-[*X~1~*]{.emphasis}, [*X~2~*]{.emphasis}, and [*X~3~*]{.emphasis}.
+[*X~1~*], [*X~2~*], and [*X~3~*].
 
-[*W*]{.emphasis} is a vector of three weights. You can imagine it as the
-thickness of each of the three lines. [*W*]{.emphasis} determines how
-much each of the values of [*X*]{.emphasis} goes into the next
-layer. [*b*]{.emphasis} is the bias, and it can move the output of the
+[*W*] is a vector of three weights. You can imagine it as the
+thickness of each of the three lines. [*W*] determines how
+much each of the values of [*X*] goes into the next
+layer. [*b*] is the bias, and it can move the output of the
 layer up or down:
 
-::: {.mediaobject}
-![](12_files/B10354_01_07.jpg)
 
-::: {.caption}
+![](./images/B10354_01_07.jpg)
+
+
 Logistic regressor
 :::
 :::
 
-To compute the[]{#id32 .indexterm} output of the regressor, we must
-first do a [**linear step**]{.strong}. We compute the []{#id33
-.indexterm}dot product of the input, [*X*]{.emphasis}, and the weights,
-[*W*]{.emphasis}. This is the same as multiplying each value of
-[*X*]{.emphasis} with its weight and then taking the sum. To this
-number, we then add the bias, [*b*]{.emphasis}. Afterward, we do a
-[**nonlinear step**]{.strong}.
+To compute the output of the regressor, we must
+first do a [**linear step**]. We compute the 
+dot product of the input, [*X*], and the weights,
+[*W*]. This is the same as multiplying each value of
+[*X*] with its weight and then taking the sum. To this
+number, we then add the bias, [*b*]. Afterward, we do a
+[**nonlinear step**].
 
-In the nonlinear step, we run the linear intermediate[]{#id34
-.indexterm} product, [*z*]{.emphasis}, through an [**activation
-function**]{.strong}; in this[]{#id35 .indexterm} case, the sigmoid
+In the nonlinear step, we run the linear intermediate
+ product, [*z*], through an [**activation
+function**]; in this case, the sigmoid
 function. The sigmoid function squishes the input values to outputs
 between zero and one:
 
-::: {.mediaobject}
-![](12_files/B10354_01_08.jpg)
 
-::: {.caption}
+![](./images/B10354_01_08.jpg)
+
+
 The Sigmoid function
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+### Python version of our logistic regressor {#python-version-of-our-logistic-regressor .title}
 
-### []{#ch01lvl2sec09}Python version of our logistic regressor {#python-version-of-our-logistic-regressor .title}
 
-</div>
-
-</div>
-:::
-
-If all the preceding math []{#id36 .indexterm}was a bit too theoretical
+If all the preceding math was a bit too theoretical
 for you, rejoice! We will now implement the same thing, but this time
 with Python. In our example, we will be using a library called NumPy,
 which enables easy and fast matrix operations within Python.
@@ -993,10 +871,7 @@ NumPy comes preinstalled with Anaconda and on Kaggle kernels. To ensure
 we get the same result in all of our experiments, we have to set a
 random seed. We can do this by running the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 import numpy as np
@@ -1007,10 +882,7 @@ np.random.seed(1)
 Since our dataset is quite small, we\'ll define it manually as NumPy
 matrices, as we can see here:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 X = np.array([[0,1,0],
@@ -1025,10 +897,7 @@ y = np.array([[0,1,1,0]]).T
 We can define the sigmoid, which squishes all the values into values
 between 0 and 1, through an activation function as a Python function:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 def sigmoid(x):
@@ -1036,15 +905,15 @@ def sigmoid(x):
 ```
 :::
 
-So far, so good. We now need to initialize [*W*]{.emphasis}. In this
-case, we actually know already what values [*W*]{.emphasis} should have.
+So far, so good. We now need to initialize [*W*]. In this
+case, we actually know already what values [*W*] should have.
 But we cannot know about other problems where we do not know the
 function yet. So, we need to assign weights randomly.
 
-The weights are usually assigned randomly with[]{#id37 .indexterm} a
+The weights are usually assigned randomly with a
 mean of zero, and the bias is usually set to zero by default. NumPy\'s
-`random`{.literal} function expects to receive the shape of the random
-matrix to be passed on as a tuple, so `random((3,1))`{.literal} creates
+`random` function expects to receive the shape of the random
+matrix to be passed on as a tuple, so `random((3,1))` creates
 a 3x1 matrix. By default, the random values generated are between 0 and
 1, with a mean of 0.5 and a standard deviation of 0.5.
 
@@ -1052,10 +921,7 @@ We want the random values to have a mean of 0 and a standard deviation
 of 1, so we first multiply the values generated by 2 and then subtract
 1. We can achieve this by running the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 W = 2*np.random.random((3,1)) - 1
@@ -1066,10 +932,7 @@ b = 0
 With that done, all the variables are set. We can now move on to do the
 linear step, which is achieved with the following:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 z = X.dot(W) + b
@@ -1078,32 +941,23 @@ z = X.dot(W) + b
 
 Now we can do the nonlinear step, which is run with the following:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 A = sigmoid(z)
 ```
 :::
 
-Now, if we print out `A`{.literal}, we\'ll get the following output:
+Now, if we print out `A`, we\'ll get the following output:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 print(A)
 ```
 :::
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 out:
@@ -1115,84 +969,79 @@ out:
 :::
 
 But wait! This output looks nothing like our desired output,
-[*y*]{.emphasis}, at all! Clearly, our regressor is representing
-[*some*]{.emphasis} function, but it\'s quite far away from the function
+[*y*], at all! Clearly, our regressor is representing
+[*some*] function, but it\'s quite far away from the function
 we want.
 
 To better approximate our desired function, we have to tweak the
-weights, [*W*]{.emphasis}, and the bias, [*b*]{.emphasis}. To this end,
+weights, [*W*], and the bias, [*b*]. To this end,
 in the next section, we will optimize the model parameters.
 
 
 
-[]{#ch01lvl1sec20}Optimizing model parameters {#optimizing-model-parameters .title style="clear: both"}
+Optimizing model parameters {#optimizing-model-parameters .title style="clear: both"}
 ---------------------------------------------
 
-</div>
 
-</div>
-
-------------------------------------------------------------------------
-:::
 
 We\'ve already seen that we need to tweak the weights and biases,
-collectively called the parameters, of our model in order to []{#id38
-.indexterm}arrive at a closer approximation of our desired function.
+collectively called the parameters, of our model in order to 
+arrive at a closer approximation of our desired function.
 
 In other words, we need to look through the space of possible functions
 that can be represented by our model in order to find a function,
-[![](13_files/B10354_01_007.jpg)]{.inlinemediaobject}, that matches our
-desired function, [*f*]{.emphasis}, as closely as possible.
+[![](./images/B10354_01_007.jpg)]{.inlinemediaobject}, that matches our
+desired function, [*f*], as closely as possible.
 
 But how would we know how close we are? In fact, since we don\'t know
-[*f*]{.emphasis}, we cannot directly know how close our hypothesis,
-[![](13_files/B10354_01_008.jpg)]{.inlinemediaobject}, is to
-[*f*]{.emphasis}. But what we can do is measure how well
-[![](13_files/B10354_01_009.jpg)]{.inlinemediaobject}\'s outputs match
-the output of [*f*]{.emphasis}. The expected outputs of [*f*]{.emphasis}
-given [*X*]{.emphasis} are the labels, [*y*]{.emphasis}. So, we can try
-to approximate [*f*]{.emphasis} by finding a function,
-[![](13_files/B10354_01_010.jpg)]{.inlinemediaobject}, whose outputs are
-also [*y*]{.emphasis} given [*X*]{.emphasis}.
+[*f*], we cannot directly know how close our hypothesis,
+[![](./images/B10354_01_008.jpg)]{.inlinemediaobject}, is to
+[*f*]. But what we can do is measure how well
+[![](./images/B10354_01_009.jpg)]{.inlinemediaobject}\'s outputs match
+the output of [*f*]. The expected outputs of [*f*]
+given [*X*] are the labels, [*y*]. So, we can try
+to approximate [*f*] by finding a function,
+[![](./images/B10354_01_010.jpg)]{.inlinemediaobject}, whose outputs are
+also [*y*] given [*X*].
 
 We know that the following is true:
 
-::: {.mediaobject}
-![](13_files/B10354_01_011.jpg)
+
+![](./images/B10354_01_011.jpg)
 :::
 
 We also know that:
 
-::: {.mediaobject}
-![](13_files/B10354_01_012.jpg)
+
+![](./images/B10354_01_012.jpg)
 :::
 
-We can try to find [*f*]{.emphasis} by optimizing using the following
+We can try to find [*f*] by optimizing using the following
 formula:
 
-::: {.mediaobject}
-![](13_files/B10354_01_013.jpg)
+
+![](./images/B10354_01_013.jpg)
 :::
 
 Within this formula,
-[![](13_files/B10354_01_029.jpg)]{.inlinemediaobject} is the space of
+[![](./images/B10354_01_029.jpg)]{.inlinemediaobject} is the space of
 functions that can be represented by our model, also called the
-hypothesis space, while [*D*]{.emphasis} is the[]{#id39 .indexterm}
+hypothesis space, while [*D*] is the
 distance function, which we use to evaluate how close
-[![](13_files/B10354_01_014.jpg)]{.inlinemediaobject} and
-[*y*]{.emphasis} are.
+[![](./images/B10354_01_014.jpg)]{.inlinemediaobject} and
+[*y*] are.
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#note03}Note {#note .title}
 
-[**Note**]{.strong}: This approach makes a crucial assumption that our
-data, [*X*]{.emphasis}, and labels, [*y*]{.emphasis}, represent our
-desired function, [*f*]{.emphasis}. This is not always the case.
+### Note {#note .title}
+
+[**Note**]: This approach makes a crucial assumption that our
+data, [*X*], and labels, [*y*], represent our
+desired function, [*f*]. This is not always the case.
 When our data contains systematic biases, we might gain a function
 that fits our data well but is different from the one we wanted.
 :::
 
-An example of optimizing model parameters comes []{#id40 .indexterm}from
+An example of optimizing model parameters comes from
 human resource management. Imagine you are trying to build a model that
 predicts the likelihood of a debtor defaulting on their loan, with the
 intention of using this to decide who should get a loan.
@@ -1214,18 +1063,13 @@ desired function or not.
 
 
 
-[]{#ch01lvl1sec21}Measuring model loss {#measuring-model-loss .title style="clear: both"}
+Measuring model loss {#measuring-model-loss .title style="clear: both"}
 --------------------------------------
 
-</div>
 
-</div>
-
-------------------------------------------------------------------------
-:::
 
 We saw earlier how we could optimize parameters by minimizing some
-distance function, [*D*]{.emphasis}. This distance function, also called
+distance function, [*D*]. This distance function, also called
 the loss function, is the performance measure by which we evaluate
 possible functions. In machine learning, a loss function measures how
 bad the model performs. A high loss function goes hand in hand with low
@@ -1235,38 +1079,35 @@ In this case, our issue is a binary classification problem. Because of
 that, we will be using the binary cross-entropy loss, as we can see in
 the following formula:
 
-::: {.mediaobject}
-![](14_files/B10354_01_015.jpg)
+
+![](./images/B10354_01_015.jpg)
 :::
 
 Let\'s go through this formula step by step:
 
-::: {.itemizedlist}
--   [*D~BCE~*]{.emphasis}: This is the distance function for binary
+
+-   [*D~BCE~*]: This is the distance function for binary
     cross entropy loss.
 
--   [![](14_files/B10354_01_016.jpg)]{.inlinemediaobject}: The loss over
-    a batch of [*N*]{.emphasis} examples is the average loss of all
+-   [![](./images/B10354_01_016.jpg)]{.inlinemediaobject}: The loss over
+    a batch of [*N*] examples is the average loss of all
     examples.
 
--   [![](14_files/B10354_01_017.jpg)]{.inlinemediaobject}: This
-    part[]{#id41 .indexterm} of the loss only comes into play if the
-    true value, [*y~i~*]{.emphasis} is 1. If [*y~i~*]{.emphasis} is 1,
-    we want [![](14_files/B10354_01_018.jpg)]{.inlinemediaobject} to be
+-   [![](./images/B10354_01_017.jpg)]{.inlinemediaobject}: This
+    part of the loss only comes into play if the
+    true value, [*y~i~*] is 1. If [*y~i~*] is 1,
+    we want [![](./images/B10354_01_018.jpg)]{.inlinemediaobject} to be
     as close to 1 as possible, so we can achieve a low loss.
 
--   [![](14_files/B10354_01_019.jpg)]{.inlinemediaobject}: This part of
-    the loss comes into play if [*y~i~*]{.emphasis}, is 0. If so, we
-    want [![](14_files/B10354_01_020.jpg)]{.inlinemediaobject} to be
+-   [![](./images/B10354_01_019.jpg)]{.inlinemediaobject}: This part of
+    the loss comes into play if [*y~i~*], is 0. If so, we
+    want [![](./images/B10354_01_020.jpg)]{.inlinemediaobject} to be
     close to 0 as well.
 :::
 
 In Python, this loss function is implemented as follows:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 def bce_loss(y,y_hat):
@@ -1276,14 +1117,11 @@ def bce_loss(y,y_hat):
 ```
 :::
 
-The output, `A,`{.literal} of our logistic regressor is equal to
-[![](14_files/B10354_01_021.jpg)]{.inlinemediaobject}, so we can
+The output, `A,` of our logistic regressor is equal to
+[![](./images/B10354_01_021.jpg)]{.inlinemediaobject}, so we can
 calculate the binary cross-entropy loss as follows:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 loss = bce_loss(y,A)
@@ -1291,10 +1129,7 @@ print(loss)
 ```
 :::
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 out: 
@@ -1302,7 +1137,7 @@ out:
 ```
 :::
 
-As we can see, this is quite a high loss, so[]{#id42 .indexterm} we
+As we can see, this is quite a high loss, so we
 should now look at seeing how we can improve our model. The goal here is
 to bring this loss to zero, or at least to get closer to zero.
 
@@ -1323,21 +1158,13 @@ face value, there are much better functions available. Keep this in mind
 as we now walk through gradient descent, a method for finding a minimum
 in our function space.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch01lvl2sec10}Gradient descent {#gradient-descent .title}
+### Gradient descent {#gradient-descent .title}
 
-</div>
 
-</div>
-:::
-
-Now that we know what we[]{#id43 .indexterm} judge our candidate models,
-[![](14_files/B10354_01_022.jpg)]{.inlinemediaobject}, by, how do we
+Now that we know what we judge our candidate models,
+[![](./images/B10354_01_022.jpg)]{.inlinemediaobject}, by, how do we
 tweak the parameters to obtain better models? The most popular
 optimization algorithm for neural networks is called gradient descent.
 Within this method, we slowly move along the slope, the derivative, of
@@ -1346,8 +1173,8 @@ the loss function.
 Imagine you are in a mountain forest on a hike, and you\'re at a point
 where you\'ve lost the track and are now in the woods trying to find the
 bottom of the valley. The problem here is that because there are so many
-trees, you cannot see the valley\'s bottom, only the ground[]{#id44
-.indexterm} under your feet.
+trees, you cannot see the valley\'s bottom, only the ground
+ under your feet.
 
 Now ask yourself this: how would you find your way down? One sensible
 approach would be to follow the slope, and where the slope goes
@@ -1362,17 +1189,17 @@ we walk down the mountain, we are updating our location coordinates.
 The algorithm updates the parameters of the neural network, as we are
 seeing in the following diagram:
 
-::: {.mediaobject}
-![](14_files/B10354_01_09.jpg)
 
-::: {.caption}
+![](./images/B10354_01_09.jpg)
+
+
 Gradient descent
 :::
 :::
 
 Gradient descent requires that the loss function has a derivative with
 respect to the parameters that we want to optimize. This will work well
-for most supervised learning problems, but things[]{#id45 .indexterm}
+for most supervised learning problems, but things
 become more difficult when we want to tackle problems for which there is
 no obvious derivative.
 
@@ -1382,26 +1209,18 @@ model has or which activation functions it should use, since there is no
 way to compute the gradient with respect to model topology.
 
 These settings, which cannot be optimized by gradient descent, are
-called [**hyperparameters**]{.strong} and are usually set by humans. You
-just saw how we gradually[]{#id46 .indexterm} scale down the loss
+called [**hyperparameters**] and are usually set by humans. You
+just saw how we gradually scale down the loss
 function, but how do we update the parameters? To this end, we\'re going
 to need another method called backpropagation.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch01lvl2sec11}Backpropagation {#backpropagation .title}
+### Backpropagation {#backpropagation .title}
 
-</div>
 
-</div>
-:::
-
-Backpropagation allows us to apply[]{#id47 .indexterm} gradient descent
+Backpropagation allows us to apply gradient descent
 updates to the parameters of a model. To update the parameters, we need
 to calculate the derivative of the loss function with respect to the
 weights and biases.
@@ -1414,31 +1233,31 @@ direction north to see whether you should go north or south.
 The following diagram shows the forward and backward pass through a
 logistic regressor:
 
-::: {.mediaobject}
-![](14_files/B10354_01_10.jpg)
 
-::: {.caption}
+![](./images/B10354_01_10.jpg)
+
+
 Forward and backward pass through a logistic regressor
 :::
 :::
 
-To keep things simple, we[]{#id48 .indexterm} refer to the derivative of
-the loss function to any variable as the [*d*]{.emphasis} variable. For
+To keep things simple, we refer to the derivative of
+the loss function to any variable as the [*d*] variable. For
 example, we\'ll write the derivative of the loss function with respect
-to the weights as [*dW*]{.emphasis}.
+to the weights as [*dW*].
 
 To calculate the gradient with respect to different parameters of our
 model, we can make use of the chain rule. You might remember the chain
 rule as the following:
 
-::: {.mediaobject}
-![](14_files/B10354_01_023.jpg)
+
+![](./images/B10354_01_023.jpg)
 :::
 
 This is also sometimes written as follows:
 
-::: {.mediaobject}
-![](14_files/B10354_01_024.jpg)
+
+![](./images/B10354_01_024.jpg)
 :::
 
 The chain rule basically says that if you want to take the derivative
@@ -1446,19 +1265,16 @@ through a number of nested functions, you multiply the derivative of the
 inner function with the derivative of the outer function.
 
 This is useful because neural networks, and our logistic regressor, are
-nested[]{#id49 .indexterm} functions. The input goes through the linear
+nested functions. The input goes through the linear
 step, a function of input, weights, and biases; and the output of the
-linear step, [*z*]{.emphasis}, goes through the activation function.
+linear step, [*z*], goes through the activation function.
 
 So, when we compute the loss derivative with respect to weights and
 biases, we\'ll first compute the loss derivative with respect to the
-output of the linear step, [*z*]{.emphasis}, and use it to compute
-[*dW*]{.emphasis}. Within the code, it looks like this:
+output of the linear step, [*z*], and use it to compute
+[*dW*]. Within the code, it looks like this:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 dz = (A - y)
@@ -1467,90 +1283,62 @@ dW = 1/N * np.dot(X.T,dz)
 
 db = 1/N * np.sum(dz,axis=0,keepdims=True)
 ```
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+### Parameter updates {#parameter-updates .title}
 
-### []{#ch01lvl2sec12}Parameter updates {#parameter-updates .title}
-
-</div>
-
-</div>
-:::
 
 Now we have the gradients, how do we improve our model? Going back to
 our mountain analogy, now that we know that the mountain goes up in the
 north and east directions, where do we go? To the south and west, of
 course!
 
-Mathematically speaking, we go[]{#id50 .indexterm} in the opposite
+Mathematically speaking, we go in the opposite
 direction to the gradient. If the gradient is positive with respect to a
 parameter, that is, the slope is upward, then we reduce the parameter.
 If it is negative, that is, downward sloping, we increase it. When our
 slope is steeper, we move our gradient more.
 
-The update rule for a parameter, [*p*]{.emphasis}, then goes like this:
+The update rule for a parameter, [*p*], then goes like this:
 
-::: {.mediaobject}
-![](14_files/B10354_01_025.jpg)
+
+![](./images/B10354_01_025.jpg)
 :::
 
-Here [*p*]{.emphasis} is a model parameter (either in weight or a bias),
-[*dp*]{.emphasis} is the loss derivative with respect to
-[*p*]{.emphasis}, and
-[![](14_files/B10354_01_026.jpg)]{.inlinemediaobject} is the learning
+Here [*p*] is a model parameter (either in weight or a bias),
+[*dp*] is the loss derivative with respect to
+[*p*], and
+[![](./images/B10354_01_026.jpg)]{.inlinemediaobject} is the learning
 rate.
 
-The[]{#id51 .indexterm} learning rate is something akin to the gas pedal
+The learning rate is something akin to the gas pedal
 within a car. It sets by how much we want to apply the gradient updates.
 It is one of those hyperparameters that we have to set manually, and
 something we will discuss in the next chapter.
 
 Within the code, our parameter updates look like this:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 alpha = 1
 W -= alpha * dW
 b -= alpha * db
 ```
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+### Putting it all together {#putting-it-all-together .title}
 
-### []{#ch01lvl2sec13}Putting it all together {#putting-it-all-together .title}
-
-</div>
-
-</div>
-:::
 
 Well done! We\'ve now looked at all the parts that are needed in order
 to train a neural network. Over the next few steps in this section, we
-will be training a one-layer neural network, which is also[]{#id52
-.indexterm} called a logistic regressor.
+will be training a one-layer neural network, which is also
+ called a logistic regressor.
 
 Firstly, we\'ll import numpy before we define the data. We can do this
 by running the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 import numpy as np
@@ -1568,10 +1356,7 @@ y = np.array([[0,1,1,0]]).T
 The next step is for us to define the sigmoid activation function and
 loss function, which we can do with the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 def sigmoid(x):
@@ -1587,10 +1372,7 @@ def bce_loss(y,y_hat):
 We\'ll then randomly initialize our model, which we can achieve with the
 following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 W = 2*np.random.random((3,1)) - 1
@@ -1599,7 +1381,7 @@ b = 0
 :::
 
 As part of this process, we also need to set some hyperparameters. The
-first one is alpha, which we will just set to `1`{.literal} here. Alpha
+first one is alpha, which we will just set to `1` here. Alpha
 is best understood as the step size. A large alpha means that while our
 model will train quickly, it might also overshoot the target. A small
 alpha, in comparison, allows gradient descent to tread more carefully
@@ -1609,10 +1391,7 @@ The second one is the number of times we want to run the training
 process, also called the number of epochs we want to run. We can set the
 parameters with the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 alpha = 1
@@ -1625,10 +1404,7 @@ number of samples in our data. We\'ll also define an empty array in
 order to keep track of the model\'s losses over time. To achieve this,
 we simply run the following:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 N = y.shape[0]
@@ -1638,10 +1414,7 @@ losses = []
 
 Now we come to the main training loop:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 for i in range(epochs):
@@ -1668,10 +1441,7 @@ for i in range(epochs):
 As a result of running the previous code, we would get the following
 output:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 out: 
@@ -1698,17 +1468,14 @@ Epoch: 19 Loss: 0.203407060401
 ```
 :::
 
-You can see that[]{#id53 .indexterm} over the course of the output, the
-loss steadily decreases, starting at `0.822322582088`{.literal} and
-ending at `0.203407060401`{.literal}.
+You can see that over the course of the output, the
+loss steadily decreases, starting at `0.822322582088` and
+ending at `0.203407060401`.
 
 We can plot the loss to a graph in order to give us a better look at it.
 To do this, we can simply run the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 import matplotlib.pyplot as plt
@@ -1721,25 +1488,20 @@ plt.show()
 
 This will then output the following chart:
 
-::: {.mediaobject}
-![](14_files/B10354_01_11.jpg)
 
-::: {.caption}
+![](./images/B10354_01_11.jpg)
+
+
 The output of the previous code, showing loss rate improving over time
 
 
 
-[]{#ch01lvl1sec22}A deeper network {#a-deeper-network .title style="clear: both"}
+A deeper network {#a-deeper-network .title style="clear: both"}
 ----------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-We established earlier in this chapter that in []{#id54 .indexterm}order
+We established earlier in this chapter that in order
 to approximate more complex functions, we need bigger and deeper
 networks. Creating a deeper network works by stacking layers on top of
 each other.
@@ -1747,28 +1509,25 @@ each other.
 In this section, we will build a two-layer neural network like the one
 seen in the following diagram:
 
-::: {.mediaobject}
-![](15_files/B10354_01_12.jpg)
 
-::: {.caption}
+![](./images/B10354_01_12.jpg)
+
+
 Sketch of a two-layer neural network
 :::
 :::
 
-The input gets multiplied []{#id55 .indexterm}with the first set of
-weights, [*W~1~*]{.emphasis}, producing an intermediate product,
-[*z~1~*]{.emphasis}. This is then run through an activation function,
-which will produce the first layer\'s activations, [*A~1~*]{.emphasis}.
+The input gets multiplied with the first set of
+weights, [*W~1~*], producing an intermediate product,
+[*z~1~*]. This is then run through an activation function,
+which will produce the first layer\'s activations, [*A~1~*].
 
 These activations then get multiplied with the second layer of weights,
-[*W~2~*]{.emphasis}, producing an intermediate product,
-[*z~2~*]{.emphasis}. This gets run through a second activation function,
-which produces the output, [*A~2~*]{.emphasis}, of our neural network:
+[*W~2~*], producing an intermediate product,
+[*z~2~*]. This gets run through a second activation function,
+which produces the output, [*A~2~*], of our neural network:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 z1 = X.dot(W1) + b1
@@ -1781,10 +1540,10 @@ a2 = sigmoid(z2)
 ```
 :::
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#note04}Note {#note .title}
 
-[**Note**]{.strong}: The full code for this example can be found in the
+### Note {#note .title}
+
+[**Note**]: The full code for this example can be found in the
 GitHub repository belonging to this book.
 :::
 
@@ -1793,33 +1552,30 @@ but is actually a tanh function. Tanh is a popular activation function
 for hidden layers and works a lot like sigmoid, except that it squishes
 values in the range between -1 and 1 rather than 0 and 1:
 
-::: {.mediaobject}
-![](15_files/B10354_01_13.jpg)
 
-::: {.caption}
+![](./images/B10354_01_13.jpg)
+
+
 The tanh function
 :::
 :::
 
-Backpropagation through []{#id56 .indexterm}our deeper network works by
+Backpropagation through our deeper network works by
 the chain rule, too. We go back through the network and multiply the
 derivatives:
 
-::: {.mediaobject}
-![](15_files/B10354_01_14.jpg)
 
-::: {.caption}
+![](./images/B10354_01_14.jpg)
+
+
 Forward and backward pass through a two-layer neural network
 :::
 :::
 
-The preceding equations []{#id57 .indexterm}can be expressed as the
+The preceding equations can be expressed as the
 following Python code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 # Calculate loss derivative with respect to the output
@@ -1851,16 +1607,16 @@ it may develop a complex function that fits the noise but not the true
 relationship in the data.
 
 Take a look at the following chart. What we see here is the two moons
-dataset that could be clearly separated, but right now there[]{#id58
-.indexterm} is a lot of noise, which makes the separation hard to see
+dataset that could be clearly separated, but right now there
+ is a lot of noise, which makes the separation hard to see
 even for humans. You can find the full code for the two-layer neural
 network as well as for the generation of these samples in the Chapter 1
 GitHub repo:
 
-::: {.mediaobject}
-![](15_files/B10354_01_15.jpg)
 
-::: {.caption}
+![](./images/B10354_01_15.jpg)
+
+
 The two moons dataset
 :::
 :::
@@ -1869,28 +1625,28 @@ The following diagram shows a visualization of the decision boundary,
 that is, the line at which the model separates the two classes, using a
 hidden layer size of 1:
 
-::: {.mediaobject}
-![](15_files/B10354_01_16.jpg)
 
-::: {.caption}
+![](./images/B10354_01_16.jpg)
+
+
 Decision boundary for hidden layer size 1
 :::
 :::
 
-As you can see, the network[]{#id59 .indexterm} does not capture the
+As you can see, the network does not capture the
 true relationship of the data. This is because it\'s too simplistic. In
 the following diagram, you will see the decision boundary for a network
 with a hidden layer size of 500:
 
-::: {.mediaobject}
-![](15_files/B10354_01_17.jpg)
 
-::: {.caption}
+![](./images/B10354_01_17.jpg)
+
+
 Decision boundary for hidden layer size 500
 :::
 :::
 
-This model clearly fits[]{#id60 .indexterm} the noise, but not the
+This model clearly fits the noise, but not the
 moons. In this case, the right hidden layer size is about 3.
 
 Finding the right size and the right number of hidden layers is a
@@ -1901,55 +1657,39 @@ called Keras.
 
 
 
-[]{#ch01lvl1sec23}A brief introduction to Keras {#a-brief-introduction-to-keras .title style="clear: both"}
+A brief introduction to Keras {#a-brief-introduction-to-keras .title style="clear: both"}
 -----------------------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-Keras is a high-level[]{#id61 .indexterm} neural network API that can
+Keras is a high-level neural network API that can
 run on top of TensorFlow, a library for dataflow programming. What this
 means is that it can run the operations needed for a neural network in a
 highly optimized way. Therefore, it\'s much faster and easier to use
 than TensorFlow. Because Keras acts as an interface to TensorFlow, it
 makes it easier to build even more complex neural networks. Throughout
 the rest of the book, we will be working with the Keras library in order
-to build our []{#id62 .indexterm}neural networks.
+to build our neural networks.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch01lvl2sec14}Importing Keras {#importing-keras .title}
+### Importing Keras {#importing-keras .title}
 
-</div>
 
-</div>
-:::
-
-When importing Keras, we usually[]{#id63 .indexterm} just import the
+When importing Keras, we usually just import the
 modules we will use. In this case, we need two types of layers:
 
-::: {.itemizedlist}
--   The `Dense`{.literal} layer is the plain layer that we have gotten
+
+-   The `Dense` layer is the plain layer that we have gotten
     to know in this chapter
 
--   The `Activation`{.literal} layer allows us to add an activation
+-   The `Activation` layer allows us to add an activation
     function
 :::
 
 We can import them simply by running the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from keras.layers import Dense, Activation
@@ -1964,86 +1704,55 @@ well.
 
 We can access the sequential API through this code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from keras.models import Sequential
 ```
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+### A two-layer model in Keras {#a-two-layer-model-in-keras .title}
 
-### []{#ch01lvl2sec15}A two-layer model in Keras {#a-two-layer-model-in-keras .title}
 
-</div>
-
-</div>
-:::
-
-Building a[]{#id64 .indexterm} neural network in the[]{#id65 .indexterm}
+Building a neural network in the
 sequential API works as follows.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-#### []{#ch01lvl3sec04}Stacking layers {#stacking-layers .title}
+#### Stacking layers {#stacking-layers .title}
 
-</div>
-
-</div>
-:::
 
 Firstly, we create an empty sequential model with no layers:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 model = Sequential()
 ```
 :::
 
-Then we can add layers[]{#id66 .indexterm} to this model, just like
-stacking a layer cake, with `model.add()`{.literal}.
+Then we can add layers to this model, just like
+stacking a layer cake, with `model.add()`.
 
 For the first layer, we have to specify the input dimensions of the
 layer. In our case, the data has two features, the coordinates of the
 point. We can add a hidden layer of size 3 with the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 model.add(Dense(3,input_dim=2))
 ```
 :::
 
-Note how we nest the functions inside `model.add()`{.literal}. We
-specify the `Dense`{.literal} layer, and the positional argument is the
-size of the layer. This `Dense`{.literal} layer now only does the linear
+Note how we nest the functions inside `model.add()`. We
+specify the `Dense` layer, and the positional argument is the
+size of the layer. This `Dense` layer now only does the linear
 step.
 
-To add a `tanh`{.literal} activation function, we call the following:
+To add a `tanh` activation function, we call the following:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 model.add(Activation('tanh'))
@@ -2053,10 +1762,7 @@ model.add(Activation('tanh'))
 Then, we add the linear step and the activation function of the output
 layer in the same way, by calling up:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 model.add(Dense(1))
@@ -2064,13 +1770,10 @@ model.add(Activation('sigmoid'))
 ```
 :::
 
-Then to get an overview []{#id67 .indexterm}of all the layers we now
+Then to get an overview of all the layers we now
 have in our model, we can use the following command:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 model.summary()
@@ -2079,10 +1782,7 @@ model.summary()
 
 This yields the following overview of the model:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 out: 
@@ -2103,7 +1803,7 @@ Non-trainable params: 0
 :::
 
 You can see the layers listed nicely, including their output shape and
-the number of parameters the layer has. `None`{.literal}, located within
+the number of parameters the layer has. `None`, located within
 the output shape, means that the layer has no fixed input size in that
 dimension and will accept whatever we feed it. In our case, it means the
 layer will accept any number of samples.
@@ -2113,68 +1813,43 @@ the first dimension is variable like this in order to accommodate the
 different amounts of samples.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-#### []{#ch01lvl3sec05}Compiling the model {#compiling-the-model .title}
+#### Compiling the model {#compiling-the-model .title}
 
-</div>
 
-</div>
-:::
-
-Before we can start training[]{#id68 .indexterm} the model, we have to
+Before we can start training the model, we have to
 specify how exactly we want to train the model; and, more importantly,
-we need to specify which optimizer and[]{#id69 .indexterm} which loss
+we need to specify which optimizer and which loss
 function we want to use.
 
 The simple optimizer we have used so far is called the [**Stochastic
-Gradient Descent**]{.strong}, or [**SGD**]{.strong}. To look at more
+Gradient Descent**], or [**SGD**]. To look at more
 optimizers, see [Chapter
 2](https://subscription.packtpub.com/book/data/9781789136364/2){.link},
-[*Applying Machine Learning to Structured Data*]{.emphasis}.
+[*Applying Machine Learning to Structured Data*].
 
 The loss function we use for this binary classification problem is
 called binary cross-entropy. We can also specify what metrics we want to
-track during training. In our case, accuracy, or just `acc`{.literal} to
+track during training. In our case, accuracy, or just `acc` to
 keep it short, would be interesting to track:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 model.compile(optimizer='sgd',
               loss='binary_crossentropy',
               metrics=['acc'])
 ```
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+#### Training the model {#training-the-model .title}
 
-#### []{#ch01lvl3sec06}Training the model {#training-the-model .title}
 
-</div>
-
-</div>
-:::
-
-Now we are ready to run the training[]{#id70 .indexterm} process, which
+Now we are ready to run the training process, which
 we can do with the following line:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 history = model.fit(X,y,epochs=900)
@@ -2184,10 +1859,7 @@ history = model.fit(X,y,epochs=900)
 This will train the model for 900 iterations, which are also referred to
 as epochs. The output should look similar to this:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 Epoch 1/900
@@ -2219,23 +1891,12 @@ TensorFlow? And why does deep learning work faster on a GPU?
 
 We will be answering these questions in the next, and final, section of
 this chapter.
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+### Keras and TensorFlow {#keras-and-tensorflow .title}
 
-### []{#ch01lvl2sec16}Keras and TensorFlow {#keras-and-tensorflow .title}
 
-</div>
-
-</div>
-:::
-
-Keras is a high-level[]{#id71 .indexterm} library and can be used as a
+Keras is a high-level library and can be used as a
 simplified interface to TensorFlow. That means Keras does not do any
 computations by itself; it is just a simple way to interact with
 TensorFlow, which is running in the background.
@@ -2246,17 +1907,14 @@ only through Keras, since that is easier than working with TensorFlow
 directly. However, sometimes we might want to write a bit of TensorFlow
 code in order to build more advanced models.
 
-The goal of []{#id72 .indexterm}TensorFlow is to run the computations
+The goal of TensorFlow is to run the computations
 needed for deep learning as quickly as possible. It does so, as the name
 gives away, by working with tensors in a data flow graph. Starting in
 version 1.7, Keras is now also a core part of TensorFlow.
 
 So, we could import the Keras layers by running the following:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from tensorflow.keras.layers import Dense, Activation
@@ -2265,21 +1923,16 @@ from tensorflow.keras.layers import Dense, Activation
 
 This book will treat Keras as a standalone library. However, you might
 want to use a different backend for Keras one day, as it keeps the code
-cleaner if we have shorter `import`{.literal} statements.
+cleaner if we have shorter `import` statements.
 
 
 
-[]{#ch01lvl1sec24}Tensors and the computational graph {#tensors-and-the-computational-graph .title style="clear: both"}
+Tensors and the computational graph {#tensors-and-the-computational-graph .title style="clear: both"}
 -----------------------------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-Tensors are arrays of numbers[]{#id73 .indexterm} that transform based
+Tensors are arrays of numbers that transform based
 on specific rules. The simplest kind of tensor is a single number. This
 is also called a scalar. Scalars are sometimes referred to as rank-zero
 tensors.
@@ -2289,7 +1942,7 @@ The next ones up the order are matrices, called rank-two tensors; cube
 matrices, called rank-three tensors; and so on. You can see the rankings
 in the following table:
 
-::: {.informaltable}
+
   Rank   Name                   Expresses
   ------ ---------------------- -------------------------
   0      Scalar                 Magnitude
@@ -2310,10 +1963,10 @@ different operations.
 A forward pass through our simple neural network has the following
 graph:
 
-::: {.mediaobject}
-![](17_files/B10354_01_18.jpg)
 
-::: {.caption}
+![](./images/B10354_01_18.jpg)
+
+
 A simple computational graph
 :::
 :::
@@ -2323,26 +1976,26 @@ easier to run nodes in parallel. Through parallel computation, we do not
 need one very fast machine; we can also achieve fast computation with
 many slow computers that split up the tasks.
 
-This is the reason why GPUs are so useful for deep[]{#id74 .indexterm}
+This is the reason why GPUs are so useful for deep
 learning. GPUs have many small cores, as opposed to CPUs, which only
 have a few fast cores. A modern CPU might only have four cores, whereas
 a modern GPU can have hundreds or even thousands of cores.
 
-The entire graph of just a very simple[]{#id75 .indexterm} model can
+The entire graph of just a very simple model can
 look quite complex, but you can see the components of the dense layer.
-There is a [**matrix multiplication**]{.strong} ([**matmul**]{.strong}),
+There is a [**matrix multiplication**] ([**matmul**]),
 adding bias and a ReLU activation function:
 
-::: {.mediaobject}
-![](17_files/B10354_01_19.jpg)
 
-::: {.caption}
+![](./images/B10354_01_19.jpg)
+
+
 The computational graph of a single layer in TensorFlow. Screenshot from
 TensorBoard.
 :::
 :::
 
-Another advantage of []{#id76 .indexterm}using computational graphs such
+Another advantage of using computational graphs such
 as this is that TensorFlow and other libraries can quickly and
 automatically calculate derivatives along this graph. As we have
 explored throughout this chapter, calculating derivatives is key for
@@ -2350,15 +2003,10 @@ training neural networks.
 
 
 
-[]{#ch01lvl1sec25}Exercises {#exercises .title style="clear: both"}
+Exercises {#exercises .title style="clear: both"}
 ---------------------------
 
-</div>
 
-</div>
-
-------------------------------------------------------------------------
-:::
 
 Now that we have finished the first chapter in this exciting journey,
 I\'ve got a challenge for you! You\'ll find some exercises that you can
@@ -2366,11 +2014,11 @@ do that are all themed around what we\'ve covered in this chapter!
 
 So, why not try to do the following:
 
-::: {.orderedlist}
+
 1.  Expand the two-layer neural network in Python to three layers.
 
 2.  Within the GitHub repository, you will find an Excel file called
-    `1 Excel Exercise`{.literal}. The goal is to classify three types of
+    `1 Excel Exercise`. The goal is to classify three types of
     wine by their cultivar data. Build a logistic regressor to this end
     in Excel.
 
@@ -2382,15 +2030,10 @@ So, why not try to do the following:
 
 
 
-[]{#ch01lvl1sec26}Summary {#summary .title style="clear: both"}
+Summary 
 -------------------------
 
-</div>
 
-</div>
-
-------------------------------------------------------------------------
-:::
 
 And that\'s it! We\'ve learned how neural networks work. Throughout the
 rest of this book, we\'ll look at how to build more complex neural
@@ -2400,11 +2043,11 @@ As it turns out, there are a few tweaks to make to the basic structure
 for it to work well on specific tasks, such as image recognition. The
 basic ideas introduced in this chapter, however, stay the same:
 
-::: {.itemizedlist}
+
 -   Neural networks function as approximators
 
 -   We gauge how well our approximated function,
-    [![](19_files/B10354_01_027.jpg)]{.inlinemediaobject}, performs
+    [![](./images/B10354_01_027.jpg)]{.inlinemediaobject}, performs
     through a loss function
 
 -   Parameters of the model are optimized by updating them in the
@@ -2416,11 +2059,11 @@ basic ideas introduced in this chapter, however, stay the same:
 :::
 
 The key takeaway from this chapter is that while we are looking for
-function [*f*]{.emphasis}, we can try and find it by optimizing a
-function to perform like [*f*]{.emphasis} on a dataset. A subtle but
+function [*f*], we can try and find it by optimizing a
+function to perform like [*f*] on a dataset. A subtle but
 important distinction is that we do not know whether
-[![](19_files/B10354_01_027.jpg)]{.inlinemediaobject} works like
-[*f*]{.emphasis} at all. An often-cited example is a military project
+[![](./images/B10354_01_027.jpg)]{.inlinemediaobject} works like
+[*f*] at all. An often-cited example is a military project
 that tried to use deep learning to spot tanks within images. The model
 trained well on the dataset, but once the Pentagon wanted to try out
 their new tank spotting device, it failed miserably.

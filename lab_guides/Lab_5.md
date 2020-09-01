@@ -1,12 +1,8 @@
 
 
-[]{#ch05}Chapter 5. Parsing Textual Data with Natural Language Processing {#chapter-5.-parsing-textual-data-with-natural-language-processing .title}
+Chapter 5. Parsing Textual Data with Natural Language Processing {#chapter-5.-parsing-textual-data-with-natural-language-processing .title}
 -------------------------------------------------------------------------
 
-</div>
-
-</div>
-:::
 
 It\'s no accident that Peter Brown, Co-CEO of Renaissance Technologies,
 one of the most successful quantitative hedge funds of all time, had
@@ -24,7 +20,7 @@ processing this information can increase the speed of trades occurring
 and widen the breadth of information considered for trades while at the
 same time reducing overall costs.
 
-[**Natural language processing**]{.strong} ([**NLP**]{.strong}) is
+[**Natural language processing**] ([**NLP**]) is
 making inroads into the finance sector. As an example, insurance
 companies are increasingly looking to process claims automatically,
 while retail banks try to streamline their customer service and offer
@@ -42,7 +38,7 @@ models with Keras, as well as how to use the spaCy NLP library.
 
 The focus of this chapter will be on the following:
 
-::: {.itemizedlist}
+
 -   Fine-tuning spaCy\'s models for your own custom applications
 
 -   Finding parts of speech and mapping the grammatical structure of
@@ -61,17 +57,12 @@ So, let\'s get started!
 
 
 
-[]{#ch05lvl1sec66}An introductory guide to spaCy {#an-introductory-guide-to-spacy .title style="clear: both"}
+An introductory guide to spaCy {#an-introductory-guide-to-spacy .title style="clear: both"}
 ------------------------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-spaCy is a library for[]{#id349 .indexterm} advanced NLP. The library,
+spaCy is a library for advanced NLP. The library,
 which is pretty fast to run, also comes with a range of useful tools and
 pretrained models that make NLP easier and more reliable. If you\'ve
 installed Kaggle, you won\'t need to download spaCy, as it comes
@@ -82,10 +73,7 @@ its pretrained models separately.
 
 To install the library, we simply need to run the following command:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 $ pip install -U spacy
@@ -93,21 +81,21 @@ $ python -m spacy download en
 ```
 :::
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#note18}Note {#note .title}
 
-[**Note**]{.strong}: This chapter makes use of the English language
+### Note {#note .title}
+
+[**Note**]: This chapter makes use of the English language
 models, but more are available. Most features are available in English,
 German, Spanish, Portuguese, French, Italian, and Dutch. Entity
 recognition is available for many more languages through the
 multi-language model.
 :::
 
-The core of spaCy is made up of the `Doc`{.literal} and
-`Vocab`{.literal} classes. A `Doc`{.literal} instance contains one
+The core of spaCy is made up of the `Doc` and
+`Vocab` classes. A `Doc` instance contains one
 document, including its text, tokenized version, and recognized
-[]{#id350 .indexterm}entities. The `Vocab`{.literal} class, meanwhile,
-[]{#id351 .indexterm}keeps track of all the common information found
+entities. The `Vocab` class, meanwhile,
+keeps track of all the common information found
 across documents.
 
 spaCy is useful for its pipeline features, which contain many of the
@@ -115,10 +103,10 @@ parts needed for NLP. If this all seems a bit abstract right now, don\'t
 worry, as this section will show you how to use spaCy for a wide range
 of practical tasks.
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#tip03}Note {#note-1 .title}
 
-You can find the data and []{#id352 .indexterm}code for this section on
+### Note {#note-1 .title}
+
+You can find the data and code for this section on
 Kaggle at <https://www.kaggle.com/jannesklaas/analyzing-the-news>.
 :::
 
@@ -130,10 +118,7 @@ order to save memory.
 
 To achieve this, we must run:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 a1 = pd.read_csv('../input/articles1.csv',index_col=0)
@@ -149,22 +134,19 @@ del a1, a2, a3
 As a result of running the preceding code, the data will end up looking
 like this:
 
-::: {.informaltable}
+
   id      title                        publication      author       date         year   month   url   content
   ------- ---------------------------- ---------------- ------------ ------------ ------ ------- ----- ----------------------------------------------
   17283   House Republicans Fret\...   New York Times   Carl Hulse   2016-12-31   0      0       NaN   WASHINGTON --- Congressional Republicans\...
 :::
 
 After getting our data to this state, we can then plot the
-distribution[]{#id353 .indexterm} of publishers to get an idea of what
+distribution of publishers to get an idea of what
 kind of news we are dealing with.
 
 To achieve this, we must run the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 import matplotlib.pyplot as plt
@@ -176,44 +158,36 @@ df.publication.value_counts().plot(kind='bar')
 After successfully running this code, we\'ll see this chart showing the
 distribution of news sources from our dataset:
 
-::: {.mediaobject}
-![](2_files/B10354_05_01.jpg)
 
-::: {.caption}
+![](./images/B10354_05_01.jpg)
+
+
 News page distribution
 :::
 :::
 
-As you can see in the []{#id354 .indexterm}preceding graph the dataset
+As you can see in the preceding graph the dataset
 that we extracted contains no articles from classical financial news
 media, instead it mostly contains articles from mainstream and
 politically oriented publications.
 
 
 
-[]{#ch05lvl1sec67}Named entity recognition {#named-entity-recognition .title style="clear: both"}
+Named entity recognition {#named-entity-recognition .title style="clear: both"}
 ------------------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-A common task in NLP is [**named entity recognition**]{.strong}
-([**NER**]{.strong}). NER is all about finding things that the text
-[]{#id355 .indexterm}explicitly refers to. Before discussing more about
+A common task in NLP is [**named entity recognition**]
+([**NER**]). NER is all about finding things that the text
+explicitly refers to. Before discussing more about
 what is going on, let\'s jump right in and do some hands-on NER on the
 first article in our dataset.
 
 The first thing we need to do is load spaCy, in addition to the model
 for English language processing:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 import spacy
@@ -223,10 +197,7 @@ nlp = spacy.load('en')
 
 Next, we must select the text of the article from our data:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 text = df.loc[0,'content']
@@ -234,14 +205,11 @@ text = df.loc[0,'content']
 :::
 
 Finally, we\'ll run this piece of text through the English language
-model pipeline. This will create a `Doc`{.literal} instance, something
+model pipeline. This will create a `Doc` instance, something
 we explained earlier on in this chapter. The file will hold a lot of
 information, including the named entities:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 doc = nlp(text)
@@ -249,14 +217,11 @@ doc = nlp(text)
 :::
 
 One of the best features of spaCy is that it comes with a handy
-visualizer called `displacy`{.literal}, which we can use to show the
+visualizer called `displacy`, which we can use to show the
 named entities in text. To get the visualizer to generate the display,
 based on the text from our article, we must run this code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from spacy import displacy
@@ -267,19 +232,19 @@ displacy.render(doc,              #1style='ent',      #2jupyter=True)     #3
 With that command now executed, we\'ve done three important things,
 which are:
 
-::: {.orderedlist}
+
 1.  We\'ve passed the document
 
 2.  We have specified that we would like to render entities
 
-3.  We let `displacy`{.literal} know that we are running this in a
+3.  We let `displacy` know that we are running this in a
     Jupyter notebook so that rendering works correctly
 :::
 
-::: {.mediaobject}
-![](3_files/B10354_05_02.jpg)
 
-::: {.caption}
+![](./images/B10354_05_02.jpg)
+
+
 The output of the previous NER using spaCy tags
 :::
 :::
@@ -289,7 +254,7 @@ being classified as organizations, and \"Obama\" being classified as a
 place.
 
 So, why has this happened? It\'s because the tagging has been done by a
-neural network and neural []{#id356 .indexterm}networks are strongly
+neural network and neural networks are strongly
 dependent on the data that they were trained on. So, because of these
 imperfections, we might find that we need to fine-tune the tagging model
 for our own purposes, and in a minute, we will see how that works.
@@ -306,10 +271,7 @@ NER.
 To find out the answer to this question, we must first run the following
 code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 nlp = spacy.load('en',disable=['parser','tagger','textcat'])
@@ -319,10 +281,7 @@ nlp = spacy.load('en',disable=['parser','tagger','textcat'])
 In the next step, we\'ll loop over the first 1,000 articles from our
 dataset, which can be done with the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from tqdm import tqdm_notebook
@@ -346,13 +305,13 @@ npf.columns = ['Text','Start','Stop','Type','id']          #9
 :::
 
 The code we\'ve just created has nine key points. Let\'s take a minute
-to break it down, so we are confident in[]{#id357 .indexterm}
+to break it down, so we are confident in
 understanding what we\'ve just written. Note that in the preceding code,
-the hashtag, `#`{.literal}, refers to the number it relates to in this
+the hashtag, `#`, refers to the number it relates to in this
 following list:
 
-::: {.orderedlist}
-1.  We get the content of the article at row `i`{.literal}.
+
+1.  We get the content of the article at row `i`.
 
 2.  We get the id of the article.
 
@@ -382,10 +341,7 @@ Now that we\'ve done that, the next step is to plot the distribution of
 the types of entities that we found. This code will produce a chart
 which can be created with the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 npf.Type.value_counts().plot(kind='bar')
@@ -394,62 +350,62 @@ npf.Type.value_counts().plot(kind='bar')
 
 The output of the code being this graph:
 
-::: {.mediaobject}
-![](3_files/B10354_05_03.jpg)
 
-::: {.caption}
+![](./images/B10354_05_03.jpg)
+
+
 spaCy tag distribution
 :::
 :::
 
-After seeing the preceding graph, it is a[]{#id358 .indexterm} fair
+After seeing the preceding graph, it is a fair
 question to ask which categories spaCy can identify and where they come
 from. The English language NER that comes with spaCy is a neural network
-trained on the [*OntoNotes 5.0 corpus*]{.emphasis}, meaning it can
+trained on the [*OntoNotes 5.0 corpus*], meaning it can
 recognize the following categories:
 
-::: {.itemizedlist}
--   [**PERSON**]{.strong}: People, including fictional characters
 
--   [**ORG**]{.strong}: Companies, agencies, institutions
+-   [**PERSON**]: People, including fictional characters
 
--   [**GPE**]{.strong}: Places including countries, cities, and states
+-   [**ORG**]: Companies, agencies, institutions
 
--   [**DATE**]{.strong}: Absolute (for example, January 2017) or
+-   [**GPE**]: Places including countries, cities, and states
+
+-   [**DATE**]: Absolute (for example, January 2017) or
     relative dates (for example, two weeks)
 
--   [**CARDINAL**]{.strong}: Numerals that are not covered by other
+-   [**CARDINAL**]: Numerals that are not covered by other
     types
 
--   [**NORP**]{.strong}: Nationalities or religious or political groups
+-   [**NORP**]: Nationalities or religious or political groups
 
--   [**ORDINAL**]{.strong}: \"first,\" \"second,\" and so on
+-   [**ORDINAL**]: \"first,\" \"second,\" and so on
 
--   [**TIME**]{.strong}: Times shorter than a day (for example, two
+-   [**TIME**]: Times shorter than a day (for example, two
     hours)
 
--   [**WORK\_OF\_ART**]{.strong}: Titles of books, songs, and so on
+-   [**WORK\_OF\_ART**]: Titles of books, songs, and so on
 
--   [**LOC**]{.strong}: Locations that are not `GPE`{.literal}s, for
+-   [**LOC**]: Locations that are not `GPE`s, for
     example, mountain ranges or streams
 
--   [**MONEY**]{.strong}: Monetary values
+-   [**MONEY**]: Monetary values
 
--   [**FAC**]{.strong}: Facilities such as[]{#id359 .indexterm}
+-   [**FAC**]: Facilities such as
     airports, highways or bridges
 
--   [**PERCENT**]{.strong}: Percentages
+-   [**PERCENT**]: Percentages
 
--   [**EVENT**]{.strong}: Named hurricanes, battles, sporting events,
+-   [**EVENT**]: Named hurricanes, battles, sporting events,
     and so on
 
--   [**QUANTITY**]{.strong}: Measurements such as weights or distance
+-   [**QUANTITY**]: Measurements such as weights or distance
 
--   [**LAW**]{.strong}: Named documents that are laws
+-   [**LAW**]: Named documents that are laws
 
--   [**PRODUCT**]{.strong}: Objects, vehicles, food, and so on
+-   [**PRODUCT**]: Objects, vehicles, food, and so on
 
--   [**LANGUAGE**]{.strong}: Any named language
+-   [**LANGUAGE**]: Any named language
 :::
 
 Using this list, we will now look at the 15 most frequently named
@@ -458,10 +414,7 @@ similar graph showing us that information.
 
 To get the graph, we must run the following:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 orgs = npf[npf.Type == 'ORG']
@@ -471,20 +424,20 @@ orgs.Text.value_counts()[:15].plot(kind='bar')
 
 The resulting code will give us the following graph:
 
-::: {.mediaobject}
-![](3_files/B10354_05_04.jpg)
 
-::: {.caption}
+![](./images/B10354_05_04.jpg)
+
+
 spaCy organization distance
 :::
 :::
 
-As you can see, political[]{#id360 .indexterm} institutions such as the
-[*senate*]{.emphasis} are most frequently named in our news dataset.
-Likewise, some companies, such as [*Volkswagen*]{.emphasis}, that were
+As you can see, political institutions such as the
+[*senate*] are most frequently named in our news dataset.
+Likewise, some companies, such as [*Volkswagen*], that were
 in the center of media attention can also be found in the chart. Take a
-minute to also notice how [**the White House**]{.strong} and [**White
-House**]{.strong} are listed as two separate organizations, despite us
+minute to also notice how [**the White House**] and [**White
+House**] are listed as two separate organizations, despite us
 knowing they are the same entity.
 
 Depending on your needs, you might want to do some post-processing, such
@@ -497,12 +450,12 @@ Should you want to look at it in more detail, you can get the
 documentation and example from the following link:
 <https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.str.replace.html>
 
-Also, note how [**Trump**]{.strong} is shown here as []{#id361
-.indexterm}an organization. However, if you look at the tagged text, you
+Also, note how [**Trump**] is shown here as 
+an organization. However, if you look at the tagged text, you
 will also see that \"Trump\" is tagged several times as an NORP,
 a political organization. This has happened because the NER infers the
 type of tag from the context. Since Trump is the U.S. president, his
-name []{#id362 .indexterm}often gets used in the same context as
+name often gets used in the same context as
 (political) organizations.
 
 This pretrained NER gives you a powerful tool that can solve many common
@@ -511,20 +464,12 @@ other investigations. For example, we could fork the notebook to see
 whether The New York Times is mentioned as different entities more often
 than the Washington Post or Breitbart.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch05lvl2sec57}Fine-tuning the NER {#fine-tuning-the-ner .title}
+### Fine-tuning the NER {#fine-tuning-the-ner .title}
 
-</div>
 
-</div>
-:::
-
-A common issue you may[]{#id363 .indexterm} find is that the pretrained
+A common issue you may find is that the pretrained
 NER does not perform well enough on the specific types of text that you
 want it to work with. To solve this problem, you will need to fine-tune
 the NER model by training it with custom data. Achieving this will be
@@ -532,10 +477,7 @@ the focus of this section.
 
 The training data you\'re using should be in a form like this:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 TRAIN_DATA = [
@@ -551,22 +493,19 @@ TRAIN_DATA = [
 
 As you can see, you provide a list of tuples of the string, together
 with the start and end points, as well as the types of entities you want
-to tag. Data such as this is[]{#id364 .indexterm} usually collected
+to tag. Data such as this is usually collected
 through manual tagging, often on platforms such as Amazon\'s[
-**Mechanical Turk**]{.strong} ([**MTurk**]{.strong}).
+**Mechanical Turk**] ([**MTurk**]).
 
 The company behind spaCy, Explosion AI, also make a (paid) data tagging
-system called [*Prodigy*]{.emphasis}, which enables efficient data
+system called [*Prodigy*], which enables efficient data
 collection. Once you have collected enough data, you can either
 fine-tune a pretrained model or initialize a completely new model.
 
-To load and fine-tune a model, we need to use the `load()`{.literal}
+To load and fine-tune a model, we need to use the `load()`
 function:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 nlp = spacy.load('en')
@@ -574,12 +513,9 @@ nlp = spacy.load('en')
 :::
 
 Alternatively, to create a new and empty model from scratch that is
-ready for the English language, use the `blank`{.literal} function:
+ready for the English language, use the `blank` function:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 nlp = spacy.blank('en')
@@ -590,13 +526,10 @@ Either way, we need to get access to the NER component. If you have
 created a blank model, you\'ll need to create an NER pipeline component
 and add it to the model.
 
-If you have loaded an existing[]{#id365 .indexterm} model, you can just
+If you have loaded an existing model, you can just
 access its existing NER by running the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 if 'ner' not in nlp.pipe_names:
@@ -609,16 +542,13 @@ else:
 
 The next step is to ensure that our NER can recognize the labels we
 have. Imagine our data contained a new type of named entity such as
-`ANIMAL`{.literal}. With the `add_label`{.literal} function, we can add
+`ANIMAL`. With the `add_label` function, we can add
 a label type to an NER.
 
 The code to achieve this can be seen below, but don\'t worry if it
 doesn\'t make sense right now, we\'ll break it down on the next page:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 for _, annotations in TRAIN_DATA:
@@ -649,7 +579,7 @@ with nlp.disable_pipes(*other_pipes):
 
 What we\'ve just written is made up of 10 key elements:
 
-::: {.orderedlist}
+
 1.  We disable all pipeline components that are not the NER by first
     getting a list of all the components that are not the NER and then
     disabling them for training.
@@ -661,13 +591,13 @@ What we\'ve just written is made up of 10 key elements:
 3.  We now train for a number of epochs, in this case, 5.
 
 4.  At the beginning of each epoch, we shuffle the training data using
-    Python\'s built-in `random`{.literal} module.
+    Python\'s built-in `random` module.
 
 5.  We create an empty dictionary to keep track of the losses.
 
 6.  We then loop over the text and annotations in the training data.
 
-7.  `nlp.update`{.literal} performs one forward and backward pass, and
+7.  `nlp.update` performs one forward and backward pass, and
     updates the neural network weights. We need to supply text and
     annotations, so that the function can figure out how to train a
     network from it.
@@ -675,7 +605,7 @@ What we\'ve just written is made up of 10 key elements:
 8.  We can manually specify the dropout rate we want to use while
     training.
 
-9.  We pass a[]{#id366 .indexterm} stochastic gradient descent optimizer
+9.  We pass a stochastic gradient descent optimizer
     that performs the model updates. Note that you cannot just pass a
     Keras or TensorFlow optimizer here, as spaCy has its own optimizers.
 
@@ -685,10 +615,7 @@ What we\'ve just written is made up of 10 key elements:
 
 Once you\'ve run the code, the output should look something like this:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 {'ner': 5.0091189558407585}
@@ -700,8 +627,8 @@ Copy
 :::
 
 What you are seeing is the loss value of a part of the spaCy pipeline,
-in this case, the [**named entity recognition**]{.strong}
-([**NER**]{.strong}) engine. Similar to the cross-entropy loss we
+in this case, the [**named entity recognition**]
+([**NER**]) engine. Similar to the cross-entropy loss we
 discussed in previous chapters, the actual value is hard to interpret
 and does not tell you very much. What matters here is that the loss is
 decreasing over time and that it reaches a value much lower than the
@@ -709,18 +636,13 @@ initial loss.
 
 
 
-[]{#ch05lvl1sec68}Part-of-speech (POS) tagging {#part-of-speech-pos-tagging .title style="clear: both"}
+Part-of-speech (POS) tagging {#part-of-speech-pos-tagging .title style="clear: both"}
 ----------------------------------------------
 
-</div>
 
-</div>
-
-------------------------------------------------------------------------
-:::
 
 On Tuesday, October 10, 2017, between 9:34 AM and 9:36 AM, the US Dow
-Jones newswire encountered a[]{#id367 .indexterm} technical error that
+Jones newswire encountered a technical error that
 resulted in it posting some strange headlines. One of them was, \"Google
 to buy Apple.\" These four words managed to send Apple stock up over two
 percent.
@@ -732,18 +654,15 @@ the move would likely not find regulatory approval.
 
 So, the question arises, why did the trading algorithms choose to buy
 stock based on these four words? The answer is through
-[**part-of-speech**]{.strong} ([**POS**]{.strong}) tagging. POS tagging
+[**part-of-speech**] ([**POS**]) tagging. POS tagging
 allows an understanding of which words take which function in a
-sentence[]{#id368 .indexterm} and how the words relate to each other.
+sentence and how the words relate to each other.
 
 spaCy comes with a handy, pretrained POS tagger. In this section we\'re
 going to apply this to the Google/Apple news story. To start the POS
 tagger, we need to run the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 import spacy
@@ -757,33 +676,30 @@ displacy.render(doc,style='dep',jupyter=True, options={'distance':120})
 :::
 
 Again, we will load the pretrained English model and run our sentence
-through it. Then we\'ll use `displacy`{.literal} just as we did for NER.
+through it. Then we\'ll use `displacy` just as we did for NER.
 
 To make the graphics fit better in this book, we will set the
-`distance`{.literal} option to something shorter than the default, in
+`distance` option to something shorter than the default, in
 this case, 1,120, so that words get displayed closer together, as we can
 see in the following diagram:
 
-::: {.mediaobject}
-![](4_files/B10354_05_05.jpg)
 
-::: {.caption}
+![](./images/B10354_05_05.jpg)
+
+
 spaCy POS tagger
 :::
 :::
 
-As you can see, the POS tagger identified [**buy**]{.strong} as a verb
-and [**Google**]{.strong} and [**Apple**]{.strong} as the nouns in the
-sentence. It also identified that [**Apple**]{.strong} is the object the
-action is applied to and that [**Google**]{.strong} is applying the
+As you can see, the POS tagger identified [**buy**] as a verb
+and [**Google**] and [**Apple**] as the nouns in the
+sentence. It also identified that [**Apple**] is the object the
+action is applied to and that [**Google**] is applying the
 action.
 
 We can access this information for nouns through this code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 nlp = spacy.load('en')
@@ -798,14 +714,14 @@ for chunk in doc.noun_chunks:
 After running the preceding code, we get the following table featured as
 the result:
 
-::: {.informaltable}
+
   Text     Root Text   Root dep   Root Head Text
   -------- ----------- ---------- ----------------
   Google   Google      ROOT       Google
   Apple    Apple       dobj       buy
 :::
 
-In our example, Google is the root of the[]{#id369 .indexterm} sentence,
+In our example, Google is the root of the sentence,
 while Apple is the object of the sentence. The verb applied to Apple is
 \"buy.\"
 
@@ -817,19 +733,14 @@ another story, however.
 
 
 
-[]{#ch05lvl1sec69}Rule-based matching {#rule-based-matching .title style="clear: both"}
+Rule-based matching {#rule-based-matching .title style="clear: both"}
 -------------------------------------
 
-</div>
 
-</div>
-
-------------------------------------------------------------------------
-:::
 
 Before deep learning and statistical modeling took over, NLP was all
-about rules. That\'s not to say that rule-based []{#id370
-.indexterm}systems are dead! They are often easy to set up and perform
+about rules. That\'s not to say that rule-based 
+systems are dead! They are often easy to set up and perform
 very well when it comes to doing simple tasks.
 
 Imagine you wanted to find all mentions of Google in a text. Would you
@@ -844,10 +755,7 @@ Before we start this section, we first must make sure that we reload the
 English language model and import the matcher. This is a very simple
 task that can be done by running the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 import spacy
@@ -864,10 +772,7 @@ for punctuation and numbers, where a single symbol can be a token.
 As a starting example, let\'s search for the phrase \"hello, world.\" To
 do this, we would define a pattern as follows:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 pattern = [{'LOWER': 'hello'}, {'IS_PUNCT': True}, {'LOWER': 'world'}]
@@ -875,43 +780,43 @@ pattern = [{'LOWER': 'hello'}, {'IS_PUNCT': True}, {'LOWER': 'world'}]
 :::
 
 This pattern is fulfilled if the lower case first token is
-`hello`{.literal}. The `LOWER`{.literal} attribute checks if both words
+`hello`. The `LOWER` attribute checks if both words
 would match if they were both converted to lowercase. That means if the
 actual token text is \"Hello\" or \"HELLO,\" then it would also fulfill
 the requirement. The second token has to be punctuation to pick up the
 comma, so the phrases \"hello. world\" or \"hello! world\" would both
 work, but not \"hello world.\"
 
-The[]{#id371 .indexterm} lower case of the third token has to be
+The lower case of the third token has to be
 \"world,\" so \"WoRlD\" would also be fine.
 
 The possible attributes for a token can be the following:
 
-::: {.itemizedlist}
--   `ORTH`{.literal}: The token text has to match exactly
 
--   `LOWER`{.literal}: The lower case of the token has to match
+-   `ORTH`: The token text has to match exactly
 
--   `LENGTH`{.literal}: The length of the token text has to match
+-   `LOWER`: The lower case of the token has to match
 
--   `IS_ALPHA`{.literal}, `IS_ASCII`{.literal}, `IS_DIGIT`{.literal}:
+-   `LENGTH`: The length of the token text has to match
+
+-   `IS_ALPHA`, `IS_ASCII`, `IS_DIGIT`:
     The token text has to consist of alphanumeric characters, ASCII
     symbols, or digits
 
--   `IS_LOWER`{.literal}, `IS_UPPER`{.literal}, `IS_TITLE`{.literal}:
+-   `IS_LOWER`, `IS_UPPER`, `IS_TITLE`:
     The token text has to be lower case, upper case, or title case
 
--   `IS_PUNCT`{.literal}, `IS_SPACE`{.literal}, `IS_STOP`{.literal}: The
+-   `IS_PUNCT`, `IS_SPACE`, `IS_STOP`: The
     token text has to be punctuation, white space, or a stop word
 
--   `LIKE_NUM`{.literal}, `LIKE_URL`{.literal}, `LIKE_EMAIL`{.literal}:
+-   `LIKE_NUM`, `LIKE_URL`, `LIKE_EMAIL`:
     The token has to resemble a number, URL, or email
 
--   `POS`{.literal}, `TAG`{.literal}, `DEP`{.literal},
-    `LEMMA`{.literal}, `SHAPE`{.literal}: The token\'s position, tag,
+-   `POS`, `TAG`, `DEP`,
+    `LEMMA`, `SHAPE`: The token\'s position, tag,
     dependency, lemma, or shape has to match
 
--   `ENT_TYPE`{.literal}: The token\'s entity type from NER has to match
+-   `ENT_TYPE`: The token\'s entity type from NER has to match
 :::
 
 spaCy\'s lemmatization is extremely useful. A lemma is the base version
@@ -924,10 +829,7 @@ To create a matcher, we have to pass on the vocabulary the matcher works
 on. In this case, we can just pass the vocabulary of our English
 language model by running the following:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 matcher = Matcher(nlp.vocab)
@@ -937,32 +839,26 @@ matcher = Matcher(nlp.vocab)
 In order to add the required attributes to our matcher, we must call the
 following:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 matcher.add('HelloWorld', None, pattern)
 ```
 :::
 
-The `add`{.literal} function expects three arguments. The first is a
-name of the pattern, in this case, `HelloWorld`{.literal}, so that we
+The `add` function expects three arguments. The first is a
+name of the pattern, in this case, `HelloWorld`, so that we
 can keep track of the patterns we added. The second is a function that
-can process matches once found. Here we pass `None`{.literal}, meaning
+can process matches once found. Here we pass `None`, meaning
 no function will be applied, though we will use this tool later.
 Finally, we need to pass the list of token attributes we want to search
 for.
 
-To use our matcher, we can simply call `matcher(doc)`{.literal}. This
+To use our matcher, we can simply call `matcher(doc)`. This
 will give us back all the matches that the matcher found. We can call
 this by running the following:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 doc = nlp(u'Hello, world! Hello world!')
@@ -972,10 +868,7 @@ matches = matcher(doc)
 
 If we print out the matches, we can see the structure:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 matches
@@ -990,20 +883,14 @@ here tokens 0 to 3.
 
 We can get the text back by indexing the original document:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 doc[0:3]
 ```
 :::
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 Hello, wor
@@ -1014,22 +901,14 @@ ld
 In the next section we will look at how we can add custom functions to
 matchers.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch05lvl2sec58}Adding custom functions to matchers {#adding-custom-functions-to-matchers .title}
+### Adding custom functions to matchers {#adding-custom-functions-to-matchers .title}
 
-</div>
-
-</div>
-:::
 
 Let\'s move on to a more complex case. We know that the iPhone is a
-product. However, the neural network-based matcher often []{#id372
-.indexterm}classifies it as an organization. This happens because the
+product. However, the neural network-based matcher often 
+classifies it as an organization. This happens because the
 word \"iPhone\" gets used a lot in a similar context as organizations,
 as in \"The iPhone offers\...\" or \"The iPhone sold\....\"
 
@@ -1044,37 +923,31 @@ to provide the hash for the entity name.
 We can get the name from the language model\'s vocabulary by running the
 following:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 PRODUCT = nlp.vocab.strings['PRODUCT']
 ```
 :::
 
-Next, we need to define an `on_match`{.literal} rule. This function will
-be called every time the matcher finds a match. `on_match`{.literal}
+Next, we need to define an `on_match` rule. This function will
+be called every time the matcher finds a match. `on_match`
 rules have four arguments:
 
-::: {.itemizedlist}
--   `matcher`{.literal}: The matcher that made the match.
 
--   `doc`{.literal}: The document the match was made in.
+-   `matcher`: The matcher that made the match.
 
--   `i`{.literal}: The index of a match. The first match in a document
+-   `doc`: The document the match was made in.
+
+-   `i`: The index of a match. The first match in a document
     would have index zero, the second would have index one, and so on.
 
--   `matches`{.literal}: A list of all matches made.
+-   `matches`: A list of all matches made.
 :::
 
-There are two things happening in our `on_match`{.literal} rule:
+There are two things happening in our `on_match` rule:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 def add_product_ent(matcher, doc, i, matches):
@@ -1085,32 +958,29 @@ def add_product_ent(matcher, doc, i, matches):
 
 Let\'s break down what they are:
 
-::: {.orderedlist}
-1.  We index all matches to find our match at index `i`{.literal}. One
-    match is a tuple of a `match_id`{.literal}, the start of the match,
+
+1.  We index all matches to find our match at index `i`. One
+    match is a tuple of a `match_id`, the start of the match,
     and the end of the match.
 
-2.  We add a new []{#id373 .indexterm}entity to the document\'s named
+2.  We add a new entity to the document\'s named
     entities. An entity is a tuple of the hash of the type of entity
-    (the hash of the word `PRODUCT`{.literal} here), the start of the
+    (the hash of the word `PRODUCT` here), the start of the
     entity, and the end of the entity. To append an entity, we have to
     nest it in another tuple. Tuples that only contain one value need to
     include a comma at the end. It is important not to overwrite
-    `doc.ents`{.literal}, as we otherwise would remove all the entities
+    `doc.ents`, as we otherwise would remove all the entities
     that we have already found.
 :::
 
-Now that we have an `on_match`{.literal} rule, we can define our
+Now that we have an `on_match` rule, we can define our
 matcher.
 
 We should note that matchers allow us to add multiple patterns, so we
 can add a matcher for just the word \"iPhone\" and another pattern for
 the word \"iPhone\" together with a version number, as in \"iPhone 5\":
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 pattern1 = [{'LOWER': 'iPhone'}]                           #1
@@ -1123,7 +993,7 @@ matcher.add('iPhone', add_product_ent,pattern1, pattern2)  #4
 
 So, what makes these commands work?
 
-::: {.orderedlist}
+
 1.  We define the first pattern.
 
 2.  We define the second pattern.
@@ -1131,16 +1001,13 @@ So, what makes these commands work?
 3.  We create a new empty matcher.
 
 4.  We add the patterns to the matcher. Both will fall under the rule
-    called `iPhone`{.literal}, and both will call our
-    `on_match`{.literal} rule called `add_product_ent`{.literal}.
+    called `iPhone`, and both will call our
+    `on_match` rule called `add_product_ent`.
 :::
 
 We will now pass one of the news articles through the matcher:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 doc = nlp(df.content.iloc[14])         #1
@@ -1150,13 +1017,13 @@ matches = matcher(doc)                 #2
 
 This code is relatively simple, with only two steps:
 
-::: {.orderedlist}
+
 1.  We run the text through the pipeline to create an annotated
     document.
 
 2.  We run the document through the matcher. This modifies the document
     created in the step before. We do not care as much about the matches
-    but more about how the `on_match`{.literal} method adds the matches
+    but more about how the `on_match` method adds the matches
     as entities to our documents.
 :::
 
@@ -1165,27 +1032,16 @@ that spaCy can use it automatically. This will be the focus in the next
 section.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch05lvl2sec59}Adding the matcher to the pipeline {#adding-the-matcher-to-the-pipeline .title}
+### Adding the matcher to the pipeline {#adding-the-matcher-to-the-pipeline .title}
 
-</div>
 
-</div>
-:::
-
-Calling the matcher[]{#id374 .indexterm} separately is somewhat
+Calling the matcher separately is somewhat
 cumbersome. To add it to the pipeline, we have to wrap it into a
 function, which we can achieve by running the following:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 def matcher_component(doc):
@@ -1201,10 +1057,7 @@ else could break the pipeline.
 We can then add the matcher to the main pipeline, as can be seen in the
 following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 nlp.add_pipe(matcher_component,last=True)
@@ -1216,13 +1069,10 @@ onward iPhones will now get tagged based on the matcher\'s rules.
 
 And boom! All mentions of the word \"iPhone\" (case independent) are now
 tagged as named entities of the product type. You can validate this by
-displaying the entities with `displacy`{.literal} as we have done in the
+displaying the entities with `displacy` as we have done in the
 following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 displacy.render(doc,style='ent',jupyter=True)
@@ -1231,31 +1081,20 @@ displacy.render(doc,style='ent',jupyter=True)
 
 The results of that code can be seen in the following screenshot:
 
-::: {.mediaobject}
-![](5_files/B10354_05_06.jpg)
 
-::: {.caption}
+![](./images/B10354_05_06.jpg)
+
+
 spaCy now finds the iPhone as a product
 :::
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+### Combining rule-based and learning-based systems {#combining-rule-based-and-learning-based-systems .title}
 
-### []{#ch05lvl2sec60}Combining rule-based and learning-based systems {#combining-rule-based-and-learning-based-systems .title}
-
-</div>
-
-</div>
-:::
 
 One especially interesting aspect of spaCy\'s pipeline system is that it
 is relatively easy to combine different aspects of it. We can,
-for[]{#id375 .indexterm} example, combine neural network-based named
+for example, combine neural network-based named
 entity recognition with a rule-based matcher in order to find something
 such as executive compensation information.
 
@@ -1263,10 +1102,7 @@ Executive compensation is often reported in the press but hard to find
 in aggregate. One possible rule-based matching pattern for executive
 compensation could look like this:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 pattern = [{'ENT_TYPE':'PERSON'},{'LEMMA':'receive'},{'ENT_TYPE':'MONEY'}]
@@ -1279,8 +1115,8 @@ the word receive, for example, received, receives, and so on; followed
 by an expression of money, for example, \$4 million.
 
 This matcher could be run over a large text corpus with the
-`on_match`{.literal} rule handily saving the found snippets into a
-database. The[]{#id376 .indexterm} machine learning approach for naming
+`on_match` rule handily saving the found snippets into a
+database. The machine learning approach for naming
 entities and the rule-based approach go hand in hand seamlessly.
 
 Since there is much more training data available with annotations for
@@ -1290,19 +1126,14 @@ training a new NER.
 
 
 
-[]{#ch05lvl1sec70}Regular expressions {#regular-expressions .title style="clear: both"}
+Regular expressions {#regular-expressions .title style="clear: both"}
 -------------------------------------
 
-</div>
 
-</div>
-
-------------------------------------------------------------------------
-:::
 
 Regular expressions, or regexes, are a powerful form of rule-based
 matching. Invented back in the 1950s, they were, for a very long time,
-the most []{#id377 .indexterm}useful way to find things in text and
+the most useful way to find things in text and
 proponents argue that they still are.
 
 No chapter on NLP would be complete without mentioning regexes. With
@@ -1342,43 +1173,29 @@ of companies in invoices. These follow a pretty strict pattern in most
 countries that can easily be encoded. VAT numbers in the Netherlands,
 for example, follow this regex pattern: \"NL\[0-9\]{9}B\[0-9\]{2}\".
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch05lvl2sec61}Using Python\'s regex module {#using-pythons-regex-module .title}
+### Using Python\'s regex module
 
-</div>
 
-</div>
-:::
-
-Python has a built-in tool for[]{#id378 .indexterm} regexes called
-`re`{.literal}. While it does not need to be installed because it is
+Python has a built-in tool for regexes called
+`re`. While it does not need to be installed because it is
 part of Python itself, we can import it with the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 import re
 ```
 :::
 
-Imagine we are working on []{#id379 .indexterm}an automatic invoice
+Imagine we are working on an automatic invoice
 processor, and we want to find the VAT number of the company that sent
 us the invoice. For simplicity\'s sake, we\'re going to only deal with
 Dutch VAT numbers (the Dutch for \"VAT\" is \"BTW\"). As mentioned
 before, we know the pattern for a Dutch VAT number is as follows:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 pattern = 'NL[0-9]{9}B[0-9]{2}'
@@ -1387,10 +1204,7 @@ pattern = 'NL[0-9]{9}B[0-9]{2}'
 
 A string for finding a BTW number might look like this:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 my_string = 'ING Bank N.V. BTW:NL003028112B01'
@@ -1398,38 +1212,29 @@ my_string = 'ING Bank N.V. BTW:NL003028112B01'
 :::
 
 So, to find all the occurrences of a BTW number in the string, we can
-call `re.findall`{.literal}, which will return a list of all strings
+call `re.findall`, which will return a list of all strings
 matching the pattern found. To call this, we simply run:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 re.findall(pattern,my_string)
 ```
 :::
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 ['NL003028112B01']
 ```
 :::
 
-`re`{.literal} also allows the passing of flags to make the development
+`re` also allows the passing of flags to make the development
 of regex patterns a bit easier. For example, to ignore the case of
 letters when matching a regular expression, we can add a
-`re.IGNORECASE`{.literal} flag, like we\'ve done here:
+`re.IGNORECASE` flag, like we\'ve done here:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 re.findall(pattern,my_string, flags=re.IGNORECASE)
@@ -1437,13 +1242,10 @@ re.findall(pattern,my_string, flags=re.IGNORECASE)
 :::
 
 Often, we are interested in a bit more information about our matches. To
-this end, there is a `match`{.literal} object. `re.search`{.literal}
-yields a `match`{.literal} object for the first match found:
+this end, there is a `match` object. `re.search`
+yields a `match` object for the first match found:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 match = re.search(pattern,my_string)
@@ -1453,10 +1255,7 @@ match = re.search(pattern,my_string)
 We can get more information out of this object, such as the location of
 our match, simply by running:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 match.span()
@@ -1468,28 +1267,17 @@ The span, the start and the end of our match, is the characters 18 to
 32.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch05lvl2sec62}Regex in pandas {#regex-in-pandas .title}
+### Regex in pandas {#regex-in-pandas .title}
 
-</div>
 
-</div>
-:::
-
-The data for NLP problems often[]{#id380 .indexterm} comes in pandas
+The data for NLP problems often comes in pandas
 DataFrames. Luckily for us, pandas natively supports regex. If, for
 example, we want to find out whether any of the articles in our news
 dataset contain a Dutch BTW number, then we can pass the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 df[df.content.str.contains(pattern)]
@@ -1500,20 +1288,12 @@ This would yield all the articles that include a Dutch BTW number, but
 unsurprisingly no articles in our dataset do.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch05lvl2sec63}When to use regexes and when not to {#when-to-use-regexes-and-when-not-to .title}
+### When to use regexes and when not to {#when-to-use-regexes-and-when-not-to .title}
 
-</div>
 
-</div>
-:::
-
-A regex is a powerful tool, and this []{#id381 .indexterm}very short
+A regex is a powerful tool, and this very short
 introduction does not do it justice. In fact, there are several books
 longer than this one written purely on the topic of regexes. However,
 for the purpose of this book, we\'re only going to briefly introduce
@@ -1534,17 +1314,12 @@ encoded, such as a VAT number, use regexes.
 
 
 
-[]{#ch05lvl1sec71}A text classification task {#a-text-classification-task .title style="clear: both"}
+A text classification task {#a-text-classification-task .title style="clear: both"}
 --------------------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-A common NLP task is to[]{#id382 .indexterm} classify text. The most
+A common NLP task is to classify text. The most
 common text classification is done in sentiment analysis, where texts
 are classified as positive or negative. In this section, we will
 consider a slightly harder problem, classifying whether a tweet is about
@@ -1567,45 +1342,32 @@ that we are using consists of hand-labeled tweets that were obtained by
 searching Twitter for words common to disaster tweets such as \"ablaze\"
 or \"fire.\"
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#note19}Note {#note .title}
 
-[**Note**]{.strong}: In preparation for this section, the code and data
+### Note {#note .title}
+
+[**Note**]: In preparation for this section, the code and data
 can be found on Kaggle at <https://www.kaggle.com/jannesklaas/nl>.
 
 
 
-[]{#ch05lvl1sec72}Preparing the data {#preparing-the-data .title style="clear: both"}
+Preparing the data {#preparing-the-data .title style="clear: both"}
 ------------------------------------
 
-</div>
 
-</div>
-
-------------------------------------------------------------------------
-:::
 
 Preparing the text is a task in its own right. This is because in the
 real world, text is often messy and cannot be fixed with a few simple
-scaling []{#id383 .indexterm}operations. For instance, people can often
+scaling operations. For instance, people can often
 make typos after adding unnecessary characters as they are adding text
 encodings that we cannot read. NLP involves its own set of data cleaning
 challenges and techniques.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch05lvl2sec64}Sanitizing characters {#sanitizing-characters .title}
+### Sanitizing characters {#sanitizing-characters .title}
 
-</div>
 
-</div>
-:::
-
-To store text, computers []{#id384 .indexterm}need to encode the
+To store text, computers need to encode the
 characters into bits. There are several different ways to do this, and
 not all of them can deal with all the characters out there.
 
@@ -1615,16 +1377,13 @@ also be corrupted, meaning that a few bits are off, therefore rendering
 some characters unreadable. Therefore, before we do anything else, we
 need to sanitize our inputs.
 
-Python offers a helpful `codecs`{.literal} library, which allows us to
+Python offers a helpful `codecs` library, which allows us to
 deal with different encodings. Our data is UTF-8 encoded, but there are
 a few special characters in there that cannot be read easily. Therefore,
 we have to sanitize our text of these special characters, which we can
 do by running the following:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 import codecs
@@ -1632,21 +1391,18 @@ input_file = codecs.open('../input/socialmedia-disaster-tweets-DFE.csv','r',',en
 ```
 :::
 
-In the preceding code, `codecs.open`{.literal} acts as a stand-in
+In the preceding code, `codecs.open` acts as a stand-in
 replacement for Python\'s standard file opening function. It returns a
 file object, which we can later read line by line. We specify the input
-path that we want to read the file (with `r`{.literal}), the expected
+path that we want to read the file (with `r`), the expected
 encoding, and what to do with errors. In this case, we are going to
 replace the errors with a special unreadable character marker.
 
 To write to the output file, we can just use Python\'s standard
-`open()`{.literal} function. This function will create a file at the
+`open()` function. This function will create a file at the
 specified file path we can write to:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 output_file = open('clean_socialmedia-disaster.csv', 'w')
@@ -1654,13 +1410,10 @@ output_file = open('clean_socialmedia-disaster.csv', 'w')
 :::
 
 Now that\'s done, all we have to do is loop over the lines in our input
-file that we read with our `codecs`{.literal} reader and save it as a
+file that we read with our `codecs` reader and save it as a
 regular CSV file again. We can achieve this by running the following:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 for line in input_file:
@@ -1672,10 +1425,7 @@ for line in input_file:
 Likewise, it\'s good practice to close the file objects afterward, which
 we can do by running:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 input_file.close()
@@ -1685,31 +1435,17 @@ output_file.close()
 
 Now we can read the sanitized CSV file with pandas:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 df = pd.read_csv('clean_socialmedia-disaster.csv')
 ```
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+### Lemmatization {#lemmatization .title}
 
-### []{#ch05lvl2sec65}Lemmatization {#lemmatization .title}
 
-</div>
-
-</div>
-:::
-
-Lemmas have already []{#id385 .indexterm}made several appearances
+Lemmas have already made several appearances
 throughout this chapter. A lemma in the field of linguistics, also
 called a headword, is the word under which the set of related words or
 forms appears in a dictionary. For example, \"was\" and \"is\" appear
@@ -1724,10 +1460,7 @@ into separate words, usually by spaces. These individual words, or
 tokens, can then be used to look up their lemma. In our case, it looks
 like this:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 import spacy
@@ -1736,17 +1469,14 @@ nlp = spacy.load('en',disable=['tagger','parser','ner'])
 :::
 
 Lemmatization can be slow, especially for big files, so it makes sense
-to track our progress. `tqdm`{.literal} allows us to show progress bars
-on the pandas `apply`{.literal} function. All we have to do is import
-`tqdm`{.literal} as well as the notebook component for pretty rendering
-in our work environment. We then have to tell `tqdm`{.literal} that we
+to track our progress. `tqdm` allows us to show progress bars
+on the pandas `apply` function. All we have to do is import
+`tqdm` as well as the notebook component for pretty rendering
+in our work environment. We then have to tell `tqdm` that we
 would like to use it with pandas. We can do this by running the
 following:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from tqdm import tqdm, tqdm_notebook
@@ -1754,61 +1484,41 @@ tqdm.pandas(tqdm_notebook)
 ```
 :::
 
-We can now run `progress_apply`{.literal} on a DataFrame just as we
-would use the standard `apply`{.literal} method, but here it has a
+We can now run `progress_apply` on a DataFrame just as we
+would use the standard `apply` method, but here it has a
 progress bar.
 
-For each row, we loop over the words in the `text`{.literal} column and
-save the lemma of the word in a new `lemmas`{.literal} column:
+For each row, we loop over the words in the `text` column and
+save the lemma of the word in a new `lemmas` column:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 df['lemmas'] = df["text"].progress_apply(lambda row: [w.lemma_ for w in nlp(row)])
 ```
 :::
 
-Our `lemmas`{.literal} column is now full of lists, so to turn the lists
+Our `lemmas` column is now full of lists, so to turn the lists
 back into text, we will join all of the elements of the lists with a
 space as a separator, as we can see in the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 df['joint_lemmas'] = df['lemmas'].progress_apply(lambda row: ' '.join(row))
 ```
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+### Preparing the target {#preparing-the-target .title}
 
-### []{#ch05lvl2sec66}Preparing the target {#preparing-the-target .title}
 
-</div>
-
-</div>
-:::
-
-There are several[]{#id386 .indexterm} possible prediction targets in
+There are several possible prediction targets in
 this dataset. In our case, humans were asked to rate a tweet, and, they
-were given three options, `Relevant`{.literal},
-`Not Relevant`{.literal}, and `Can't Decide`{.literal}, as the
+were given three options, `Relevant`,
+`Not Relevant`, and `Can't Decide`, as the
 lemmatized text shows:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 df.choose_one.unique()
@@ -1818,13 +1528,10 @@ array(['Relevant', 'Not Relevant', "Can't Decide"], dtype=object)
 
 The tweets where humans cannot decide whether it is about a real
 disaster are not interesting to us. Therefore, we will just remove the
-category, [*Can\'t Decide*]{.emphasis}, which we can do in the following
+category, [*Can\'t Decide*], which we can do in the following
 code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 df = df[df.choose_one != "Can't Decide"]
@@ -1832,13 +1539,10 @@ df = df[df.choose_one != "Can't Decide"]
 :::
 
 We are also only interested in mapping text to relevance, therefore we
-can drop all the other metadata and just keep[]{#id387 .indexterm} these
+can drop all the other metadata and just keep these
 two columns, which we do here:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 df = df[['text','choose_one']]
@@ -1847,42 +1551,25 @@ df = df[['text','choose_one']]
 
 Finally, we\'re going to convert the target into numbers. This is a
 binary classification task, as there are only two categories. So, we map
-`Relevant`{.literal} to `1`{.literal} and `Not Relevant`{.literal} to
-`0`{.literal}:
+`Relevant` to `1` and `Not Relevant` to
+`0`:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 f['relevant'] = df.choose_one.map({'Relevant':1,'Not Relevant':0})
 ```
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+### Preparing the training and test sets {#preparing-the-training-and-test-sets .title}
 
-### []{#ch05lvl2sec67}Preparing the training and test sets {#preparing-the-training-and-test-sets .title}
 
-</div>
-
-</div>
-:::
-
-Before we start []{#id388 .indexterm}building models, we\'re going to
-split our data into two sets, the training []{#id389 .indexterm}dataset
+Before we start building models, we\'re going to
+split our data into two sets, the training dataset
 and the test dataset. To do this we simply need to run the following
 code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from sklearn.model_selection import train_test_split
@@ -1893,32 +1580,27 @@ X_train, X_test, y_train, y_test = train_test_split(df['joint_lemmas'],
 ```
 
 
-[]{#ch05lvl1sec73}Bag-of-words {#bag-of-words .title style="clear: both"}
+Bag-of-words {#bag-of-words .title style="clear: both"}
 ------------------------------
 
-</div>
 
-</div>
-
-------------------------------------------------------------------------
-:::
 
 A simple yet effective way of classifying text is to see the text as a
 bag-of-words. This means that we do not care for the order in which
 words appear in the text, instead we only care about which words appear
 in the text.
 
-One of the ways []{#id390 .indexterm}of doing a bag-of-words
+One of the ways of doing a bag-of-words
 classification is by simply counting the occurrences of different words
 from within a text. This is done with a so-called [**count
-vector**]{.strong}. Each word[]{#id391 .indexterm} has an index, and for
+vector**]. Each word has an index, and for
 each text, the value of the count vector at that index is the number of
 occurrences of the word that belong to the index.
 
 Picture this as an example: the count vector for the text \"I see cats
 and dogs and elephants\" could look like this:
 
-::: {.informaltable}
+
   i   see   cats   and   dogs   elephants
   --- ----- ------ ----- ------ -----------
   1   1     1      2     1      1
@@ -1931,15 +1613,12 @@ excluding words that are often just gibberish or typos with no meaning.
 As a side note, if we kept all the rare words, this could be a source of
 overfitting.
 
-We are using `sklearn`{.literal}\'s built-in count vectorizer. By
-setting `max_features`{.literal}, we can control how many words we want
+We are using `sklearn`\'s built-in count vectorizer. By
+setting `max_features`, we can control how many words we want
 to consider in our count vector. In this case, we will only consider
 the 10,000 most frequent words:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from sklearn.feature_extraction.text import CountVectorizer
@@ -1950,10 +1629,7 @@ count_vectorizer = CountVectorizer(max_features=10000)
 Our count vectorizer can now transform texts into count vectors. Each
 count vector will have 10,000 dimensions:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 X_train_counts = count_vectorizer.fit_transform(X_train)
@@ -1961,16 +1637,13 @@ X_test_counts = count_vectorizer.transform(X_test)
 ```
 :::
 
-Once we have obtained our count []{#id392 .indexterm}vectors, we can
+Once we have obtained our count vectors, we can
 then perform a simple logistic regression on them. While we could use
 Keras for logistic regression, as we did in the first chapter of this
 book, it is often easier to just use the logistic regression class from
 scikit-learn:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from sklearn.linear_model import LogisticRegression
@@ -1983,12 +1656,9 @@ y_predicted = clf.predict(X_test_counts)
 :::
 
 Now that we have predictions from our logistic regressor, we can measure
-the accuracy of it with `sklearn`{.literal}:
+the accuracy of it with `sklearn`:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from sklearn.metrics import accuracy_score
@@ -1996,10 +1666,7 @@ accuracy_score(y_test, y_predicted)
 ```
 :::
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 0.8011049723756906
@@ -2010,23 +1677,15 @@ As you can see, we\'ve got 80% accuracy, which is pretty decent for such
 a simple method. A simple count vector-based classification is useful as
 a baseline for more advanced methods, which we will be discussing later.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch05lvl2sec68}TF-IDF {#tf-idf .title}
+### TF-IDF {#tf-idf .title}
 
-</div>
 
-</div>
-:::
-
-[**TF-IDF**]{.strong} stands for [**Term Frequency, Inverse Document
-Frequency**]{.strong}. It aims to address a problem of simple[]{#id393
-.indexterm} word counting, that being words that frequently appear in a
-text are important, while words that appear in [*all*]{.emphasis} texts
+[**TF-IDF**] stands for [**Term Frequency, Inverse Document
+Frequency**]. It aims to address a problem of simple
+ word counting, that being words that frequently appear in a
+text are important, while words that appear in [*all*] texts
 are not important.
 
 The TF component is just like a count vector, except that TF divides the
@@ -2039,12 +1698,9 @@ count vectors, except they contain the TF-IDF scores instead of the
 counts. Rare words will gain a high score in the TF-IDF vector.
 
 We create TF-IDF vectors just as we created count vectors with
-`sklearn`{.literal}:
+`sklearn`:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -2058,10 +1714,7 @@ X_test_tfidf = tfidf_vectorizer.transform(X_test)
 Once we have the TF-IDF vectors, we can train a logistic regressor on
 them just like we did for count vectors:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 clf_tfidf = LogisticRegression()
@@ -2075,20 +1728,14 @@ In this case, TF-IDF does slightly worse than count vectors. However,
 because the performance difference is very small, this poorer
 performance might be attributable to chance in this case:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 accuracy_score(y_pred=y_predicted, y_true=y_test)
 ```
 :::
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 0.79788213627992
@@ -2097,25 +1744,20 @@ Copy
 
 
 
-[]{#ch05lvl1sec74}Topic modeling {#topic-modeling .title style="clear: both"}
+Topic modeling {#topic-modeling .title style="clear: both"}
 --------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-A final, very useful []{#id394 .indexterm}application of word counting
+A final, very useful application of word counting
 is topic modeling. Given a set of texts, are we able to find clusters of
-topics? The method to []{#id395 .indexterm}do this is called
-[**Latent Dirichlet Allocation**]{.strong} ([**LDA**]{.strong}).
+topics? The method to do this is called
+[**Latent Dirichlet Allocation**] ([**LDA**]).
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#note20}Note {#note .title}
 
-[**Note**]{.strong}: The code and data for this section can be found on
+### Note {#note .title}
+
+[**Note**]: The code and data for this section can be found on
 Kaggle at <https://www.kaggle.com/jannesklaas/topic-modeling-with-lda>.
 :::
 
@@ -2123,7 +1765,7 @@ While the name is quite a mouth full, the algorithm is a very useful
 one, so we will look at it step by step. LDA makes the following
 assumption about how texts are written:
 
-::: {.orderedlist}
+
 1.  First, a topic distribution is chosen, say 70% machine learning and
     30% finance.
 
@@ -2131,7 +1773,7 @@ assumption about how texts are written:
     example, the topic \"machine learning\" might be made up of 20% the
     word \"tensor,\" 10% the word \"gradient,\" and so on. This means
     that our topic distribution is a [*distribution of
-    distributions*]{.emphasis}, also called a Dirichlet distribution.
+    distributions*], also called a Dirichlet distribution.
 
 3.  Once the text gets written, two probabilistic decisions are made for
     each word: first, a topic is chosen from the distribution of topics
@@ -2139,30 +1781,30 @@ assumption about how texts are written:
     words in that document.
 :::
 
-Note that not all documents in a[]{#id396 .indexterm} corpus have the
+Note that not all documents in a corpus have the
 same distribution of topics. We need to specify a fixed number of
 topics. In the learning process, we start out by assigning each word in
 the corpus randomly to one topic. For each document, we then calculate
 the following:
 
-::: {.mediaobject}
-![](10_files/B10354_05_001.jpg)
+
+![](./images/B10354_05_001.jpg)
 :::
 
 The preceding formula is the probability of each topic,
-[*t,*]{.emphasis} to be included in document [*d*]{.emphasis}. For each
+[*t,*] to be included in document [*d*]. For each
 word, we then calculate:
 
-::: {.mediaobject}
-![](10_files/B10354_05_002.jpg)
+
+![](./images/B10354_05_002.jpg)
 :::
 
-That is the probability of a word, [*w,*]{.emphasis} to belong to a
-topic, [*t*]{.emphasis}. We then assign the word to a new topic,
-[*t,*]{.emphasis} with the following probability:
+That is the probability of a word, [*w,*] to belong to a
+topic, [*t*]. We then assign the word to a new topic,
+[*t,*] with the following probability:
 
-::: {.mediaobject}
-![](10_files/B10354_05_003.jpg)
+
+![](./images/B10354_05_003.jpg)
 :::
 
 In other words, we assume that all of the words are already correctly
@@ -2177,10 +1819,7 @@ the number of topics, called components that we expect.
 
 This can be done by simply running the following:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from sklearn.decomposition import LatentDirichletAllocation
@@ -2191,14 +1830,11 @@ lda = LatentDirichletAllocation(n_components=2)
 We then create count vectors, just as we did for the bag-of-words
 analysis. For LDA, it is important to remove frequent words that don\'t
 mean anything, such as \"an\" or \"the,\" so-called stop words.
-`CountVectorizer`{.literal} comes with a built-in stopword dictionary
+`CountVectorizer` comes with a built-in stopword dictionary
 that removes these words automatically. To use this, we\'ll need to run
 the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
@@ -2209,10 +1845,7 @@ tf = vectorizer.fit_transform(df['joint_lemmas'])
 
 Next, we fit the LDA to the count vectors:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 lda.fit(tf)
@@ -2220,14 +1853,11 @@ lda.fit(tf)
 :::
 
 To inspect our results, we can print out the most frequent words for
-each topic. To this end, we first need to specify[]{#id397 .indexterm}
+each topic. To this end, we first need to specify
 the number of words per topic we want to print, in this case 5. We also
 need to extract the mapping word count vector indices to words:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 n_top_words = 5
@@ -2238,10 +1868,7 @@ tf_feature_names = vectorizer.get_feature_names()
 Now we can loop over the topics of the LDA, in order to print the most
 frequent words:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 for topic_idx, topic in enumerate(lda.components_):
@@ -2266,17 +1893,12 @@ clustered this way.
 
 
 
-[]{#ch05lvl1sec75}Word embeddings {#word-embeddings .title style="clear: both"}
+Word embeddings {#word-embeddings .title style="clear: both"}
 ---------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-The order of words[]{#id398 .indexterm} in a text matters. Therefore, we
+The order of words in a text matters. Therefore, we
 can expect higher performance if we do not just look at texts in
 aggregate but see them as a sequence. This section makes use of a lot of
 the techniques discussed in the previous chapter; however, here we\'re
@@ -2295,46 +1917,35 @@ returns the vector for that token and passes it through the neural
 network. As the network trains, the embeddings get optimized as well.
 
 Remember that neural networks work by calculating the derivative of the
-loss function with[]{#id399 .indexterm} respect to the parameters
+loss function with respect to the parameters
 (weights) of the model. Through backpropagation, we can also calculate
 the derivative of the loss function with respect to the input of the
 model. Thus we can optimize the embeddings to deliver ideal inputs that
 help our model.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch05lvl2sec69}Preprocessing for training with word vectors {#preprocessing-for-training-with-word-vectors .title}
+### Preprocessing for training with word vectors {#preprocessing-for-training-with-word-vectors .title}
 
-</div>
 
-</div>
-:::
-
-Before we start with training word []{#id400 .indexterm}embeddings, we
+Before we start with training word embeddings, we
 need to do some preprocessing steps. Namely, we need to assign each word
 token a number and create a NumPy array full of sequences.
 
 Assigning numbers to tokens makes the training process smoother and
 decouples the tokenization process from the word vectors. Keras has a
-`Tokenizer`{.literal} class, which can create numeric tokens for words.
+`Tokenizer` class, which can create numeric tokens for words.
 By default, this tokenizer splits text by spaces. While this works
 mostly fine in English, it can be problematic and cause issues in other
 languages. A key learning point to take away is that it\'s better to
 tokenize the text with spaCy first, as we already did for our two
 previous methods, and then assign numeric tokens with Keras.
 
-The `Tokenizer`{.literal} class also allows us to specify how many words
+The `Tokenizer` class also allows us to specify how many words
 we want to consider, so once again we will only use the 10,000 most used
 words, which we can specify by running:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from keras.preprocessing.text import Tokenizer
@@ -2344,15 +1955,12 @@ max_words = 10000
 ```
 :::
 
-The tokenizer works a lot like `CountVectorizer`{.literal} from
-`sklearn`{.literal}. First, we create a new `tokenizer`{.literal}
+The tokenizer works a lot like `CountVectorizer` from
+`sklearn`. First, we create a new `tokenizer`
 object. Then we fit the tokenizer, and finally, we can transform the
 text into tokenized sequences:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 tokenizer = Tokenizer(num_words=max_words)
@@ -2361,14 +1969,11 @@ sequences = tokenizer.texts_to_sequences(df['joint_lemmas'])
 ```
 :::
 
-The `sequences`{.literal} variable now holds all of our texts as numeric
+The `sequences` variable now holds all of our texts as numeric
 tokens. We can look up the mapping of words to numbers from the
 tokenizer\'s word index with the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 word_index = tokenizer.word_index
@@ -2381,26 +1986,23 @@ Token for "Movie" 333
 
 As you can see, frequently used words such as \"the\" have lower token
 numbers than less frequent words such as \"movie.\" You can also see
-that `word_index`{.literal} is a dictionary. If you are using your model
+that `word_index` is a dictionary. If you are using your model
 in production, you can save this dictionary to disk in order to convert
 words into tokens at a later time.
 
 Finally, we need to turn our sequences into sequences of equal length.
-This is not always necessary, as some model[]{#id401 .indexterm} types
+This is not always necessary, as some model types
 can deal with sequences of different lengths, but it usually makes sense
 and is often required. We will examine which models need equal length
 sequences in the next section on building custom NLP models.
 
-Keras\' `pad_sequences`{.literal} function allows us to easily bring all
+Keras\' `pad_sequences` function allows us to easily bring all
 of the sequences to the same length by either cutting off sequences or
 adding zeros at the end. We will bring all the tweets to a length of 140
 characters, which for a long time was the maximum length tweets could
 have:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from keras.preprocessing.sequence import pad_sequences
@@ -2413,10 +2015,7 @@ data = pad_sequences(sequences, maxlen=maxlen)
 
 Finally, we split our data into a training and validation set:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from sklearn.model_selection import train_test_split
@@ -2434,10 +2033,7 @@ how many words we want embeddings for and how long our sequences
 are. Our model is now a simple logistic regressor that trains its own
 embeddings:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from keras.models import Sequential
@@ -2453,28 +2049,22 @@ model.add(Dense(1, activation='sigmoid'))
 :::
 
 Notice how we do not have to specify an input shape. Even specifying the
-input length is only[]{#id402 .indexterm} necessary if the following
-layers require knowledge of the input length. `Dense`{.literal} layers
+input length is only necessary if the following
+layers require knowledge of the input length. `Dense` layers
 require knowledge about the input size, but since we are using dense
 layers directly, we need to specify the input length here.
 
-Word embeddings have [*many*]{.emphasis} parameters. This is something
+Word embeddings have [*many*] parameters. This is something
 you can see if you are printing out the models summary:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 model.summary()
 ```
 :::
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 _________________________________________________________________Layer (type)                 Output Shape              Param #   =================================================================embedding_2 (Embedding)      (None, 140, 50)           500000    _________________________________________________________________flatten_2 (Flatten)          (None, 7000)              0         _________________________________________________________________dense_3 (Dense)              (None, 1)                 7001      =================================================================Total params: 507,001Trainable params: 507,001Non-trainable params: 0
@@ -2488,10 +2078,7 @@ increase the chance of overfitting.
 
 The next step is for us to compile and train our model as usual:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 model.compile(optimizer='adam',loss='binary_crossentropy',metrics=['acc'])
@@ -2507,28 +2094,20 @@ and reduce training time, it\'s often better to use pretrained word
 embeddings.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch05lvl2sec70}Loading pretrained word vectors {#loading-pretrained-word-vectors .title}
+### Loading pretrained word vectors {#loading-pretrained-word-vectors .title}
 
-</div>
-
-</div>
-:::
 
 Like in computer vision, NLP models can benefit from using pretrained
 pieces of other models. In this case, we will use the pretrained GloVe
-vectors. [**GloVe**]{.strong} stands for [**Global Vectors**]{.strong}
-for Word 8 and is a[]{#id403 .indexterm} project of the Stanford NLP
+vectors. [**GloVe**] stands for [**Global Vectors**]
+for Word 8 and is a project of the Stanford NLP
 group. GloVe provides different sets of vectors trained in different
 texts.
 
 In this section, we will be using word embeddings trained on
-Wikipedia[]{#id404 .indexterm} texts as well as the Gigaword dataset. In
+Wikipedia texts as well as the Gigaword dataset. In
 total, the vectors were trained on a text of 6 billion tokens.
 
 With all that being said, there are alternatives to GloVe, such as
@@ -2555,10 +2134,7 @@ The actual GloVe vectors are in a text file. We will use the
 50-dimensional embeddings trained on 6 billion tokens. To do this, we
 need to open the file:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 import os
@@ -2570,10 +2146,7 @@ f = open(os.path.join(glove_dir, 'glove.6B.50d.txt'))
 Then we create an empty dictionary that will later map words to
 embeddings:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 embeddings_index = {}
@@ -2584,10 +2157,7 @@ In the dataset, each line represents a new word embedding. The line
 starts with the word, and the embedding values follow. We can read out
 the embeddings like this:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 for line in f:                                            #1
@@ -2602,7 +2172,7 @@ f.close()                                                 #6
 But what does that mean? Let\'s take a minute to break down the meaning
 behind the code, which has six key elements:
 
-::: {.orderedlist}
+
 1.  We loop over all lines in the file. Each line contains a word and
     embedding.
 
@@ -2619,23 +2189,17 @@ behind the code, which has six key elements:
 6.  Once we are done with it, we close the file.
 :::
 
-As a result of running this code, we now have a[]{#id405 .indexterm}
+As a result of running this code, we now have a
 dictionary mapping words to their embeddings:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 print('Found %s word vectors.' % len(embeddings_index))
 ```
 :::
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 Found 400000-word vectors.
@@ -2652,10 +2216,7 @@ deviation for the random vectors as from the trained vectors.
 To this end, we need to calculate the mean and standard deviation for
 the GloVe vectors:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 all_embs = np.stack(embeddings_index.values())
@@ -2669,10 +2230,7 @@ column for each element of the embedding. Therefore, we need to specify
 how many dimensions one embedding has. The version of GloVe we loaded
 earlier has 50-dimensional vectors:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 embedding_dim = 50
@@ -2684,10 +2242,7 @@ have set the maximum to 10,000, there might be fewer words in our
 corpus. At this point, we also retrieve the word index from the
 tokenizer, which we will use later:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 word_index = tokenizer.word_index
@@ -2696,12 +2251,9 @@ nb_words = min(max_words, len(word_index))
 :::
 
 To create our embedding matrix, we first create a random matrix with the
-same `mean`{.literal} and `std`{.literal} as the embeddings:
+same `mean` and `std` as the embeddings:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 embedding_matrix = np.random.normal(emb_mean, emb_std, (nb_words, embedding_dim))
@@ -2713,10 +2265,7 @@ A word with token 1 needs to be in row 1 (rows start with zero), and so
 on. We can now replace the random embeddings for the words for which we
 have trained embeddings:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 for word, i in word_index.items():                    #1
@@ -2728,10 +2277,10 @@ for word, i in word_index.items():                    #1
 ```
 :::
 
-This command has four []{#id406 .indexterm}key elements that we should
+This command has four key elements that we should
 explore in more detail before we move on:
 
-::: {.orderedlist}
+
 1.  We loop over all the words in the word index.
 
 2.  If we are above the number of words we want to use, we do nothing.
@@ -2748,10 +2297,7 @@ sure the carefully created weights are not destroyed, we are going to
 set the layer to be non-trainable, which we can achieve by running the
 following:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 model = Sequential()
@@ -2773,40 +2319,29 @@ can, for example, be used to measure how similar two texts are on a
 semantical level, even if they include different words.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch05lvl2sec71}Time series models with word vectors {#time-series-models-with-word-vectors .title}
+### Time series models with word vectors {#time-series-models-with-word-vectors .title}
 
-</div>
 
-</div>
-:::
-
-Text is a time series. Different []{#id407 .indexterm}words follow each
+Text is a time series. Different words follow each
 other and the order in which they do matters. Therefore, every neural
 network-based technique from the previous chapter can also be used for
 NLP. In addition, there are some building blocks that were not
 introduced in [Chapter
 4](https://subscription.packtpub.com/book/data/9781789136364/4){.link},
-[*Understanding Time Series*]{.emphasis} that are useful for NLP.
+[*Understanding Time Series*] that are useful for NLP.
 
 Let\'s start with an LSTM, otherwise known as long short-term memory.
 All you have to change from the implementation in the last chapter is
 that the first layer of the network should be an embedding layer. This
-example below uses a `CuDNNLSTM`{.literal} layer,[]{#id408 .indexterm}
-which trains much faster than a regular `LSTM`{.literal} layer.
+example below uses a `CuDNNLSTM` layer,
+which trains much faster than a regular `LSTM` layer.
 
 Other than this, the layer remains the same. If you do not have a GPU,
-replace `CuDNNLSTM`{.literal} with `LSTM`{.literal}:
+replace `CuDNNLSTM` with `LSTM`:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from keras.layers import CuDNNLSTM
@@ -2818,27 +2353,24 @@ model.add(Dense(1, activation='sigmoid'))
 :::
 
 One technique used frequently in NLP but less frequently in time series
-forecasting is a bidirectional [**recurrent neural network**]{.strong}
-([**RNN**]{.strong}). A bidirectional RNN is effectively just two RNNs
+forecasting is a bidirectional [**recurrent neural network**]
+([**RNN**]). A bidirectional RNN is effectively just two RNNs
 where one gets fed the sequence forward, while the other one gets fed
 the sequence backward:
 
-::: {.mediaobject}
-![](11_files/B10354_05_07.jpg)
 
-::: {.caption}
+![](./images/B10354_05_07.jpg)
+
+
 A bidirectional RNN
 :::
 :::
 
-In Keras, there is a `Bidirectional`{.literal} layer that we can wrap
-any RNN layer around, such []{#id409 .indexterm}as an `LSTM`{.literal}.
+In Keras, there is a `Bidirectional` layer that we can wrap
+any RNN layer around, such as an `LSTM`.
 We achieve this in the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from keras.layers import Bidirectional
@@ -2857,17 +2389,12 @@ we can perform vector math on them! This is useful if we want to measure
 the similarity between two texts, for instance.
 
 
-[]{#ch05lvl1sec76}Document similarity with word embeddings {#document-similarity-with-word-embeddings .title style="clear: both"}
+Document similarity with word embeddings {#document-similarity-with-word-embeddings .title style="clear: both"}
 ----------------------------------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-The practical use case of word vectors[]{#id410 .indexterm} is to
+The practical use case of word vectors is to
 compare the semantic similarity between documents. If you are a retail
 bank, insurance company, or any other company that sells to end users,
 you will have to deal with support requests. You\'ll often find that
@@ -2875,7 +2402,7 @@ many customers have similar requests, so by finding out how similar
 texts are semantically, previous answers to similar requests can be
 reused, and your organization\'s overall service can be improved.
 
-spaCy has a built-in function to[]{#id411 .indexterm} measure the
+spaCy has a built-in function to measure the
 similarity between two sentences. It also comes with pretrained vectors
 from the Word2Vec model, which is similar to GloVe. This method works by
 averaging the embedding vectors of all the words in a text and then
@@ -2884,10 +2411,10 @@ vectors pointing in roughly the same direction will have a high
 similarity score, whereas vectors pointing in different directions will
 have a low similarity score. This is visualized in the following graph:
 
-::: {.mediaobject}
-![](12_files/B10354_05_08.jpg)
 
-::: {.caption}
+![](./images/B10354_05_08.jpg)
+
+
 Similarity vectors
 :::
 :::
@@ -2895,10 +2422,7 @@ Similarity vectors
 We can see the similarity between two phrases by running the following
 command:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 sup1 = nlp('I would like to open a new checking account')
@@ -2909,58 +2433,47 @@ sup2 = nlp('How do I open a checking account?')
 As you can see, these requests are pretty similar, achieving a rate of
 70%:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 sup1.similarity(sup2)
 ```
 :::
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 0.7079433112862716
 ```
 :::
 
-As you can see, their[]{#id412 .indexterm} similarity score is quite
+As you can see, their similarity score is quite
 high. This simple averaging method works pretty decently. It is not,
 however, able to capture things such as negations or a single deviating
 vector, which might not influence the average too much.
 
 For example, \"I would like to close a checking account\" has a
 semantically different meaning than, \"I would like to open a checking
-account.\" However, the model sees them as[]{#id413 .indexterm} being
+account.\" However, the model sees them as being
 pretty similar. Yet, this approach is still useful and a good
 illustration of the advantages of representing semantics as vectors.
 
 
-[]{#ch05lvl1sec77}A quick tour of the Keras functional API {#a-quick-tour-of-the-keras-functional-api .title style="clear: both"}
+A quick tour of the Keras functional API {#a-quick-tour-of-the-keras-functional-api .title style="clear: both"}
 ----------------------------------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-So far, we\'ve used sequential[]{#id414 .indexterm} models. In the
+So far, we\'ve used sequential models. In the
 sequential model, layers get stacked on top of each other when we call
-`model.add()`{.literal}. The advantage of the functional API is that it
+`model.add()`. The advantage of the functional API is that it
 is simple and prevents errors. The disadvantage is that it only allows
 us to stack layers linearly:
 
-::: {.mediaobject}
-![](13_files/B10354_05_09.jpg)
 
-::: {.caption}
+![](./images/B10354_05_09.jpg)
+
+
 GoogLeNet Architecture from Szegedy and others\' \"Going Deeper with
 Convolutions\"
 :::
@@ -2987,10 +2500,7 @@ API, as we will be going into much more depth in later chapters.
 Firstly, let\'s look at a simple two-layer network in both the
 sequential and functional way:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from keras.models import Sequential
@@ -3005,10 +2515,7 @@ model.summary()
 ```
 :::
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 Layer (type)                 Output Shape              Param #   =================================================================dense_1 (Dense)              (None, 64)                4160      _________________________________________________________________activation_1 (Activation)    (None, 64)                0         _________________________________________________________________dense_2 (Dense)              (None, 4)                 260       _________________________________________________________________activation_2 (Activation)    (None, 4)                 0         =================================================================Total params: 4,420Trainable params: 4,420Non-trainable params: 0
@@ -3016,15 +2523,12 @@ _________________________________________________________________
 ```
 :::
 
-The preceding model[]{#id415 .indexterm} is a simple model implemented
+The preceding model is a simple model implemented
 in the sequential API. Take note that this is how we have done it
 throughout this book so far. We will now implement the same model in the
 functional API:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from keras.models import Model                        #1
@@ -3043,38 +2547,35 @@ model.summary()
 
 Notice the differences to the sequential API:
 
-::: {.orderedlist}
+
 1.  Instead of defining the model first with
-    `model = Sequential()`{.literal}, you now define the computational
+    `model = Sequential()`, you now define the computational
     graph first and then turn it into a model using the
-    `Model`{.literal} class.
+    `Model` class.
 
 2.  Inputs are now their own layer.
 
-3.  Instead of using `model.add()`{.literal}, you define the layer and
+3.  Instead of using `model.add()`, you define the layer and
     then pass on an input layer or the output tensor of the previous
     layer.
 
 4.  You create models by stringing layers on a chain.
-    `Dense(64)(model_input)`{.literal}, for instance, returns a tensor.
+    `Dense(64)(model_input)`, for instance, returns a tensor.
     You pass on this tensor to the next layer, like in
-    `Activation('relu')(x)`{.literal}. This function will return a new
+    `Activation('relu')(x)`. This function will return a new
     output tensor, which you can pass to the next layer, and so on. This
     way, you create a computational graph like a chain.
 
 5.  To create a model, you pass the model input layer as well as the
-    final output tensor of your graph into the `Model`{.literal} class.
+    final output tensor of your graph into the `Model` class.
 :::
 
 Functional API models can be used just like sequential API models. In
-fact, from the output of this model\'s[]{#id416 .indexterm} summary, you
+fact, from the output of this model\'s summary, you
 can see it is pretty much the same as the model we just created with the
 sequential API:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 Layer (type)                 Output Shape              Param #   =================================================================input_2 (InputLayer)         (None, 64)                0         _________________________________________________________________dense_3 (Dense)              (None, 64)                4160      _________________________________________________________________activation_3 (Activation)    (None, 64)                0         _________________________________________________________________dense_4 (Dense)              (None, 4)                 260       _________________________________________________________________activation_4 (Activation)    (None, 4)                 0         =================================================================Total params: 4,420Trainable params: 4,420Non-trainable params: 0
@@ -3091,10 +2592,7 @@ The following code segment will create the exact same model as the
 preceding segment, but with separate layer creation and connection
 steps:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 model_input = Input(shape=(64,))
@@ -3122,16 +2620,13 @@ computational graph and then use them for another, as we will do in the
 section on seq2seq models later in the chapter.
 
 One more caveat before we move on to use the functional API to build
-advanced models. We should note that the activation function of[]{#id417
-.indexterm} any layer can also be specified directly in the layer. So
+advanced models. We should note that the activation function of
+ any layer can also be specified directly in the layer. So
 far, we have used a separate activation layer, which increases clarity
-but is not strictly required. A `Dense`{.literal} layer with a
-`relu`{.literal} activation function can also be specified as:
+but is not strictly required. A `Dense` layer with a
+`relu` activation function can also be specified as:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 Dense(24, activation='relu')
@@ -3142,38 +2637,30 @@ When using the functional API, this can be easier than adding an
 activation function.
 
 
-[]{#ch05lvl1sec78}Attention {#attention .title style="clear: both"}
+Attention {#attention .title style="clear: both"}
 ---------------------------
 
-</div>
 
-</div>
-
-------------------------------------------------------------------------
-:::
 
 Are you paying attention? If so, certainly not to everyone equally. In
-any text, some words matter more than others. An []{#id418
-.indexterm}attention mechanism is a way for a neural network to
-[*focus*]{.emphasis} on a certain element in a sequence. Focusing, for
+any text, some words matter more than others. An 
+attention mechanism is a way for a neural network to
+[*focus*] on a certain element in a sequence. Focusing, for
 neural networks, means amplifying what is important:
 
-::: {.mediaobject}
-![](14_files/B10354_05_10.jpg)
 
-::: {.caption}
+![](./images/B10354_05_10.jpg)
+
+
 An example of an attention mechanism
 :::
 :::
 
 Attention layers are fully connected layers that take in a sequence and
-output the weighting for a sequence. The []{#id419 .indexterm}sequence
+output the weighting for a sequence. The sequence
 is then multiplied with the weightings:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 def attention_3d_block(inputs,time_steps,single_attention_vector = False):
@@ -3193,50 +2680,50 @@ def attention_3d_block(inputs,time_steps,single_attention_vector = False):
 Let\'s break down the sequence we\'ve just created. As you can see,
 it\'s made up of nine key elements:
 
-::: {.orderedlist}
+
 1.  Our input has the shape
-    `(batch_size, time_steps, input_dim)`{.literal}, where
-    `time_steps`{.literal} is the length of the sequence, and
-    `input_dim`{.literal} is the dimensionality of the input. If we
+    `(batch_size, time_steps, input_dim)`, where
+    `time_steps` is the length of the sequence, and
+    `input_dim` is the dimensionality of the input. If we
     applied this directly to a text series with the embeddings used,
-    `input_dim`{.literal} would be 50, the same as the embedding
+    `input_dim` would be 50, the same as the embedding
     dimensionality.
 
-2.  We then swap (permute) the axis for `time_steps`{.literal} and
-    `input_dim`{.literal} so that the tensor has a shape of
-    `(batch_size, input_dim, time_steps)`{.literal}.
+2.  We then swap (permute) the axis for `time_steps` and
+    `input_dim` so that the tensor has a shape of
+    `(batch_size, input_dim, time_steps)`.
 
 3.  If everything went fine, our tensor is already in the shape that we
     want it to be in. Here we are adding a reshaping operation just to
     be sure.
 
-4.  Now comes the trick. We run our input through a `dense`{.literal}
-    layer with a `softmax`{.literal} activation. This will generate a
+4.  Now comes the trick. We run our input through a `dense`
+    layer with a `softmax` activation. This will generate a
     weighting for each element in the series, just as shown previously.
-    This `dense`{.literal} layer is what is trained inside the
-    `attention`{.literal} block.
+    This `dense` layer is what is trained inside the
+    `attention` block.
 
-5.  By default, the `dense`{.literal} layer computes attention for each
+5.  By default, the `dense` layer computes attention for each
     input dimension individually. That is, for our word vectors, it
     would compute 50 different weightings. That can be useful if we are
     working with time series models where the input dimensions actually
     represent different things. In this case, we want to weight words as
     a whole.
 
-6.  To create one []{#id420 .indexterm}attention value per word, we
+6.  To create one attention value per word, we
     average the attention layer across the input dimensions. Our new
-    tensor has the shape `(batch_size, 1, time_steps)`{.literal}.
+    tensor has the shape `(batch_size, 1, time_steps)`.
 
 7.  In order to multiply the attention vector with the input, we need to
     repeat the weightings across the input dimension. After repetition,
     the tensor has the shape
-    `(batch_size, input_dim, time_steps)`{.literal} again, but with the
-    same weights across the `input_dim`{.literal} dimension.
+    `(batch_size, input_dim, time_steps)` again, but with the
+    same weights across the `input_dim` dimension.
 
 8.  To match the shape of the input, we permute the axis for
-    `time_steps`{.literal} and `input_dim`{.literal} back, so that the
+    `time_steps` and `input_dim` back, so that the
     attention vector once again has a shape of
-    `(batch_size, time_steps, input_dim)`{.literal}.
+    `(batch_size, time_steps, input_dim)`.
 
 9.  Finally, we apply the attention to the input by element-wise
     multiplying the attention vector with the input. We return the
@@ -3245,10 +2732,10 @@ it\'s made up of nine key elements:
 
 The following flowchart gives an overview of the process:
 
-::: {.mediaobject}
-![](14_files/B10354_05_11.jpg)
 
-::: {.caption}
+![](./images/B10354_05_11.jpg)
+
+
 Attention block
 :::
 :::
@@ -3257,10 +2744,7 @@ Notice how the preceding function defines takes a tensor as an input,
 defines a graph, and returns a tensor. We can now call this function as
 part of our model building process:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 input_tokens = Input(shape=(maxlen,),name='input')
@@ -3280,8 +2764,8 @@ model = Model(input_tokens, output)
 :::
 
 In this case, we are using the attention block right after the
-embeddings. This means that we can amplify or suppress certain[]{#id421
-.indexterm} word embeddings. Equally, we could use the attention block
+embeddings. This means that we can amplify or suppress certain
+ word embeddings. Equally, we could use the attention block
 after the LSTM. In many cases, you will find attention blocks to be
 powerful tools in your arsenal when it comes to building models that
 deal with any kind of sequence, especially in NLP.
@@ -3290,20 +2774,14 @@ To become more comfortable with how the functional API strings up layers
 and how the attention block reshapes tensors, take a look at this model
 summary:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 model.summary()
 ```
 :::
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 __________________________________________________________________________________________________Layer (type)                    Output Shape         Param #     Connected to                     ==================================================================================================input (InputLayer)              (None, 140)          0                                            __________________________________________________________________________________________________embedding (Embedding)           (None, 140, 50)      500000      input[0][0]                      __________________________________________________________________________________________________Attent_Permute (Permute)        (None, 50, 140)      0           embedding[0][0]                  __________________________________________________________________________________________________Reshape (Reshape)               (None, 50, 140)      0           Attent_Permute[0][0]             __________________________________________________________________________________________________Attent_Dense (Dense)            (None, 50, 140)      19740       Reshape[0][0]                    __________________________________________________________________________________________________Dim_reduction (Lambda)          (None, 140)          0           Attent_Dense[0][0]               __________________________________________________________________________________________________Repeat (RepeatVector)           (None, 50, 140)      0           Dim_reduction[0][0]              __________________________________________________________________________________________________Attention_vec (Permute)         (None, 140, 50)      0           Repeat[0][0]                     __________________________________________________________________________________________________Attention_mul (Multiply)        (None, 140, 50)      0           embedding[0][0]                  Attention_vec[0][0]              __________________________________________________________________________________________________flatten (Flatten)               (None, 7000)         0           Attention_mul[0][0]              __________________________________________________________________________________________________output (Dense)                  (None, 1)            7001        flatten[0][0]                    ==================================================================================================Total params: 526,741Trainable params: 26,741Non-trainable params: 500,000
@@ -3311,21 +2789,16 @@ ________________________________________________________________________________
 ```
 :::
 
-This model can be trained,[]{#id422 .indexterm} just as any Keras model
+This model can be trained, just as any Keras model
 can be, and achieves around 80% accuracy on the validation set.
 
 
-[]{#ch05lvl1sec79}Seq2seq models {#seq2seq-models .title style="clear: both"}
+Seq2seq models {#seq2seq-models .title style="clear: both"}
 --------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-In 2016, Google announced []{#id423 .indexterm}that it had replaced the
+In 2016, Google announced that it had replaced the
 entire Google Translate algorithm with a single neural network. The
 special thing about the Google Neural Machine Translation system is that
 it translates mutliple languages \"end-to-end\" using only a single
@@ -3342,24 +2815,16 @@ we don\'t quite yet know how to interpret these vectors, there are a lot
 of useful applications for them. Translating from one language to
 another is one such popular method, but we could use a similar approach
 to \"translate\" a report into a summary. Text summarization has
-made[]{#id424 .indexterm} great strides, but the downside is that it
+made great strides, but the downside is that it
 requires a lot of computing power to deliver meaningful results, so we
 will be focusing on language translation.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch05lvl2sec72}Seq2seq architecture overview {#seq2seq-architecture-overview .title}
+### Seq2seq architecture overview {#seq2seq-architecture-overview .title}
 
-</div>
 
-</div>
-:::
-
-If all phrases had the exact[]{#id425 .indexterm} same length, we could
+If all phrases had the exact same length, we could
 simply use an LSTM (or multiple LSTMs). Remember that an LSTM can also
 return a full sequence of the same length as the input sequence.
 However, in many cases, sequences will not have the same length.
@@ -3367,62 +2832,48 @@ However, in many cases, sequences will not have the same length.
 To deal with different lengths of phrases, we\'ll need to create an
 encoder that aims to capture the sentence\'s semantic meaning. We then
 create a decoder that has two inputs: the [*encoded
-semantics*]{.emphasis} and the [*sequence*]{.emphasis} that was already
+semantics*] and the [*sequence*] that was already
 produced. The decoder then predicts the next item in the sequence. For
 our character-level translator, it looks like this:
 
-::: {.mediaobject}
-![](15_files/B10354_05_12.jpg)
 
-::: {.caption}
+![](./images/B10354_05_12.jpg)
+
+
 Seq2seq architecture overview
 :::
 :::
 
 Note how the output of the decoder is used as the input of the decoder
-again. This process is only stopped once the decoder []{#id426
-.indexterm}produces a `<STOP>`{.literal} tag, which indicates that the
+again. This process is only stopped once the decoder 
+produces a `<STOP>` tag, which indicates that the
 sequence is over.
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#note21}Note {#note .title}
 
-[**Note**]{.strong}: The data and code for this section can be found on
+### Note {#note .title}
+
+[**Note**]: The data and code for this section can be found on
 Kaggle at
 <https://www.kaggle.com/jannesklaas/a-simple-seq2seq-translat>.
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+### The data {#the-data .title}
 
-### []{#ch05lvl2sec73}The data {#the-data .title}
 
-</div>
-
-</div>
-:::
-
-We use a dataset of English phrases[]{#id427 .indexterm} and their
-translation. This dataset was obtained from the [**Tabotea**]{.strong}
-project, a[]{#id428 .indexterm} translation database, and you can find
+We use a dataset of English phrases and their
+translation. This dataset was obtained from the [**Tabotea**]
+project, a translation database, and you can find
 the file attached to the code on Kaggle. We implement this model on a
 character level, which means that unlike previous models, we won\'t
 tokenize words, but characters. This makes the task harder for our
 network because it now has to also learn how to spell words! However, on
 the other hand, there are a lot fewer characters than words, therefore
-we can just []{#id429 .indexterm}one-hot encode characters instead of
+we can just one-hot encode characters instead of
 having to work with embeddings. This makes our model a bit simpler.
 
 To get started, we have to set a few parameters:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 batch_size = 64                #1
@@ -3435,7 +2886,7 @@ data_path = 'fra-eng/fra.txt'  #5
 
 But what are the parameters that we\'ve set up?
 
-::: {.orderedlist}
+
 1.  Batch size for training.
 
 2.  The number of epochs to train for.
@@ -3447,12 +2898,12 @@ But what are the parameters that we\'ve set up?
     samples. However, we will train on fewer for memory and time
     reasons.
 
-5.  The path to the data `.txt`{.literal} file on disk.
+5.  The path to the data `.txt` file on disk.
 :::
 
 Input (English) and target (French) is tab delimited in the data file.
 Each row represents a new phrase. The translations are separated by a
-tab (escaped character: `\t`{.literal}). So, we loop over the lines and
+tab (escaped character: `\t`). So, we loop over the lines and
 read out inputs and targets by splitting the lines at the tab symbol.
 
 To build up our tokenizer, we also need to know which characters are
@@ -3463,10 +2914,7 @@ them to it.
 To do this, we must first set up the holding variables for texts and
 characters:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 input_texts = []
@@ -3479,10 +2927,7 @@ target_characters = set()
 Then we loop over as many lines as we want samples and extract the texts
 and characters:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 lines = open(data_path).read().split('\n')
@@ -3506,13 +2951,13 @@ for line in lines[: min(num_samples, len(lines) - 1)]:
 
 Let\'s break this code down so that we can understand it in more detail:
 
-::: {.orderedlist}
+
 1.  Input and target are split by tabs, English TAB French, so we split
-    the lines by tabs to obtain input and[]{#id430 .indexterm} target
+    the lines by tabs to obtain input and target
     texts.
 
-2.  We use `\t`{.literal} as the \"start sequence\" character for the
-    targets, and `\n`{.literal} as \"end sequence\" character. This way,
+2.  We use `\t` as the \"start sequence\" character for the
+    targets, and `\n` as \"end sequence\" character. This way,
     we know when to stop decoding.
 
 3.  We loop over the characters in the input text, adding all characters
@@ -3521,29 +2966,15 @@ Let\'s break this code down so that we can understand it in more detail:
 4.  We loop over the characters in the output text, adding all
     characters that we have not seen yet to our set of output
     characters.
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+### Encoding characters {#encoding-characters .title}
 
-### []{#ch05lvl2sec74}Encoding characters {#encoding-characters .title}
 
-</div>
-
-</div>
-:::
-
-We now need to create lists of[]{#id431 .indexterm} alphabetically
+We now need to create lists of alphabetically
 sorted input and output characters, which we can do by running:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 input_characters = sorted(list(input_characters))
@@ -3555,10 +2986,7 @@ We\'re also going to count how many input and output characters we have.
 This is important since we need to know how many dimensions our one-hot
 encodings should have. We can find this by writing the following:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 num_encoder_tokens = len(input_characters)
@@ -3570,10 +2998,7 @@ Instead of using the Keras tokenizer, we will build our own dictionary
 mapping characters to token numbers. We can do this by running the
 following:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 input_token_index = {char: i for i, char in enumerate(input_characters)}
@@ -3584,10 +3009,7 @@ target_token_index = {char: i for i, char in enumerate(target_characters)}
 We can see how this works by printing the token numbers for all
 characters in a short sentence:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 for c in 'the cat sits on the mat':
@@ -3595,10 +3017,7 @@ for c in 'the cat sits on the mat':
 ```
 :::
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 63 51 48 0 46 44 63 0 62 52 63 62 0 58 57 0 63 51 48 0 56 44 63
@@ -3606,14 +3025,11 @@ Copy
 :::
 
 Next, we build up our model training data. Remember that our model has
-two inputs but only one output. While our model[]{#id432 .indexterm} can
+two inputs but only one output. While our model can
 handle sequences of any length, it is handy to prepare the data in NumPy
 and thus to know how long our longest sequence is:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 max_encoder_seq_length = max([len(txt) for txt in input_texts])
@@ -3624,10 +3040,7 @@ print('Max sequence length for outputs:', max_decoder_seq_length)
 ```
 :::
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 Max sequence length for inputs: 16
@@ -3636,43 +3049,34 @@ Max sequence length for outputs: 59
 :::
 
 Now we prepare input and output data for our model.
-`encoder_input_data`{.literal} is a 3D array of shape
-`(num_pairs, max_english_sentence_length, num_english_characters)`{.literal}
+`encoder_input_data` is a 3D array of shape
+`(num_pairs, max_english_sentence_length, num_english_characters)`
 containing a one-hot vectorization of the English sentences:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 encoder_input_data = np.zeros((len(input_texts), max_encoder_seq_length, num_encoder_tokens),dtype='float32')
 ```
 :::
 
-`decoder_input_data`{.literal} is a 3D array of shape
-`(num_pairs, max_french_sentence_length, num_french_characters)`{.literal}
+`decoder_input_data` is a 3D array of shape
+`(num_pairs, max_french_sentence_length, num_french_characters)`
 containing a one-hot vectorization of the French sentences:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 decoder_input_data = np.zeros((len(input_texts), max_decoder_seq_length, num_decoder_tokens),dtype='float32')
 ```
 :::
 
-`decoder_target_data`{.literal} is the same as
-`decoder_input_data`{.literal} but offset by one timestep.
-`decoder_target_data[:, t, :]`{.literal} will be the same as
-`decoder_input_data[:, t + 1, :]`{.literal}.
+`decoder_target_data` is the same as
+`decoder_input_data` but offset by one timestep.
+`decoder_target_data[:, t, :]` will be the same as
+`decoder_input_data[:, t + 1, :]`.
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 decoder_target_data = np.zeros((len(input_texts), max_decoder_seq_length, num_decoder_tokens),dtype='float32')
@@ -3680,30 +3084,27 @@ decoder_target_data = np.zeros((len(input_texts), max_decoder_seq_length, num_de
 :::
 
 You can see that the input and output of the decoder are the same except
-that the output is one timestep ahead. This []{#id433 .indexterm}makes
+that the output is one timestep ahead. This makes
 sense when you consider that we feed an unfinished sequence into the
 decoder and want it to predict the next character. We will use the
 functional API to create a model with two inputs.
 
 You can see that the decoder also has two inputs: the [*decoder
-inputs*]{.emphasis} and the [*encoded semantics*]{.emphasis}. The
+inputs*] and the [*encoded semantics*]. The
 encoded semantics, however, are not directly the outputs of the encoder
-LSTM but its [*states*]{.emphasis}. In an LSTM, states are the hidden
+LSTM but its [*states*]. In an LSTM, states are the hidden
 memory of the cells. What happens is that the first \"memory\" of our
 decoder is the encoded semantics. To give the decoder this first memory,
 we can initialize its states with the states of the decoder LSTM.
 
-To return states, we have to set the `return_state`{.literal} argument,
+To return states, we have to set the `return_state` argument,
 configuring an RNN layer to return a list where the first entry is the
 outputs and the next entries are the internal RNN states. Once again, we
-are using `CuDNNLSTM`{.literal}. If you do not have a GPU, replace it
-with `LSTM`{.literal}, but note that training this model without
+are using `CuDNNLSTM`. If you do not have a GPU, replace it
+with `LSTM`, but note that training this model without
 a GPU can take a very long time to complete:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 encoder_inputs = Input(shape=(None, num_encoder_tokens), name = 'encoder_inputs')               #1
@@ -3716,7 +3117,7 @@ encoder_states = [state_h, state_c]                           #4
 
 Let\'s look at the four key elements of the code:
 
-::: {.orderedlist}
+
 1.  We create an input layer for our encoder
 
 2.  We create the LSTM encoder
@@ -3724,7 +3125,7 @@ Let\'s look at the four key elements of the code:
 3.  We link the LSTM encoder to the input layer and get back the outputs
     and states
 
-4.  We discard `encoder_outputs`{.literal} and only keep the states
+4.  We discard `encoder_outputs` and only keep the states
 :::
 
 Now we define the decoder. The decoder uses the states of the encoder as
@@ -3736,7 +3137,7 @@ to the English speaker and form ideas about what the speaker wants to
 say in your head. You would then use these ideas to form a French
 sentence expressing the same idea.
 
-It is important to []{#id434 .indexterm}understand that we are not just
+It is important to understand that we are not just
 passing a variable, but a piece of the computational graph. This means
 that we can later backpropagate from the decoder to the encoder. In the
 case of our previous analogy, you might think that your
@@ -3744,10 +3145,7 @@ French translation suffered from a poor understanding of the English
 sentence, so you might start changing your English comprehension based
 on the outcomes of your French translation, for example:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 decoder_inputs = Input(shape=(None, num_decoder_tokens), name = 'decoder_inputs')                    #1
@@ -3762,7 +3160,7 @@ decoder_outputs = decoder_dense(decoder_outputs)                   #4
 
 The preceding code is made up of four key elements:
 
-::: {.orderedlist}
+
 1.  Set up the decoder inputs.
 
 2.  We set up our decoder to return full output sequences, and to return
@@ -3775,31 +3173,25 @@ The preceding code is made up of four key elements:
 
 4.  Finally, we need to decide which character we want to use as the
     next character. This is a classification task, so we will use a
-    simple `Dense`{.literal} layer with a `softmax`{.literal} activation
+    simple `Dense` layer with a `softmax` activation
     function.
 :::
 
 We now have the pieces we need to define our model with two inputs and
 one output:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 model = Model([encoder_inputs, decoder_inputs], decoder_outputs)
 ```
 :::
 
-If you have the `graphviz`{.literal} library installed, you can[]{#id435
-.indexterm} visualize the model very nicely using the following code
+If you have the `graphviz` library installed, you can
+ visualize the model very nicely using the following code
 lines. Unfortunately, however, this code snippet won\'t work on Kaggle:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from IPython.display import SVG
@@ -3812,10 +3204,10 @@ SVG(model_to_dot(model).create(prog='dot', format='svg'))
 As you can see, this visualization is represented in the following
 diagram:
 
-::: {.mediaobject}
-![](15_files/B10354_05_13.jpg)
 
-::: {.caption}
+![](./images/B10354_05_13.jpg)
+
+
 Seq2seq visual
 :::
 :::
@@ -3825,10 +3217,7 @@ a number of possible characters to output next, this is basically a
 multi-class classification task. Therefore, we\'ll use a categorical
 cross-entropy loss:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 model.compile(optimizer='rmsprop', loss='categorical_crossentropy')
@@ -3836,14 +3225,14 @@ history = model.fit([encoder_input_data, decoder_input_data], decoder_target_dat
 ```
 :::
 
-The training process[]{#id436 .indexterm} takes about 7 minutes on a
+The training process takes about 7 minutes on a
 GPU. However, if we were to plot the model\'s progress, you can see that
 it\'s overfitting:
 
-::: {.mediaobject}
-![](15_files/B10354_05_14.jpg)
 
-::: {.caption}
+![](./images/B10354_05_14.jpg)
+
+
 Seq2seq overfitting
 :::
 :::
@@ -3856,20 +3245,12 @@ without owning a massive datacenter, we are just using a smaller model
 to give an example of what a seq2seq architecture can do.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch05lvl2sec75}Creating inference models {#creating-inference-models .title}
+### Creating inference models {#creating-inference-models .title}
 
-</div>
 
-</div>
-:::
-
-Overfitting or not, we would like to []{#id437 .indexterm}use our model
+Overfitting or not, we would like to use our model
 now. Using a seq2seq model for inference, in this case for doing
 translations, requires us to build a separate inference model that uses
 the weights trained in the training model, but does the routing a bit
@@ -3879,10 +3260,7 @@ for decoding instead of creating it again and again.
 
 The encoder model maps from the encoder inputs to the encoder states:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 encoder_model = Model(encoder_inputs, encoder_states)
@@ -3893,10 +3271,7 @@ The decoder model then takes in the encoder memory plus its own memory
 from the last character as an input. It then spits out a prediction plus
 its own memory to be used for the next character:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 #Inputs from the encoder
@@ -3920,7 +3295,7 @@ decoder_model = Model([decoder_inputs] + decoder_states_inputs,[decoder_outputs]
 
 Let\'s look at the six elements of this code:
 
-::: {.orderedlist}
+
 1.  The encoder memory consists of two states. We need to create two
     inputs for both of them.
 
@@ -3935,32 +3310,18 @@ Let\'s look at the six elements of this code:
 5.  We reuse the dense layer of the decoder to predict the next
     character.
 
-6.  Finally, we set up[]{#id438 .indexterm} the decoder model to take in
+6.  Finally, we set up the decoder model to take in
     the character input as well as the state input and map it to the
     character output as well as the state output.
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+### Making translations {#making-translations .title}
 
-### []{#ch05lvl2sec76}Making translations {#making-translations .title}
 
-</div>
-
-</div>
-:::
-
-We can now start to use our []{#id439 .indexterm}model. To do this, we
+We can now start to use our model. To do this, we
 must first create an index that maps tokens to characters again:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 reverse_input_char_index = {i: char for char, i in input_token_index.items()}
@@ -3972,13 +3333,10 @@ When we translate a phrase, we must first encode the input. We\'ll then
 loop, feeding the decoder states back into the decoder until we receive
 a STOP; in our case, we use the tab character to signal STOP.
 
-`target_seq`{.literal} is a NumPy array representing the last character
+`target_seq` is a NumPy array representing the last character
 predicted by the decoder:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 def decode_sequence(input_seq):
@@ -4019,12 +3377,12 @@ def decode_sequence(input_seq):
 
 For the final time in this chapter, let\'s break down the code:
 
-::: {.orderedlist}
+
 1.  Encode the input as state vectors
 
 2.  Generate an empty target sequence of length one
 
-3.  Populate the first []{#id440 .indexterm}character of the target
+3.  Populate the first character of the target
     sequence with the start character
 
 4.  There was no stop sign, and the decoded sequence is empty so far
@@ -4052,13 +3410,10 @@ about French words or grammar, this is quite impressive. Translation
 systems such as Google Translate, of course, use much bigger datasets
 and models, but the underlying principles are the same.
 
-To translate a text, we first []{#id441 .indexterm}create a placeholder
+To translate a text, we first create a placeholder
 array full of zeros:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 my_text = 'Thanks!'
@@ -4067,12 +3422,9 @@ placeholder = np.zeros((1,len(my_text)+10,num_encoder_tokens))
 :::
 
 We then one-hot encode all characters in the text by setting the element
-at the index of the characters\' token numbers to `1`{.literal}:
+at the index of the characters\' token numbers to `1`:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 for i, char in enumerate(my_text):
@@ -4084,10 +3436,7 @@ for i, char in enumerate(my_text):
 This will print out the characters\' token numbers alongside the
 character and its position in the text:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 0 T 38
@@ -4102,10 +3451,7 @@ Copy
 
 Now we can feed this placeholder into our decoder:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 decode_sequence(placeholder)
@@ -4114,10 +3460,7 @@ decode_sequence(placeholder)
 
 And we get the translation back:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 'Merci !\n'
@@ -4136,34 +3479,29 @@ would minimize the impact of a large order.
 
 
 
-[]{#ch05lvl1sec80}Exercises {#exercises .title style="clear: both"}
+Exercises {#exercises .title style="clear: both"}
 ---------------------------
 
-</div>
 
-</div>
-
-------------------------------------------------------------------------
-:::
 
 Now that we\'re at the end of the chapter, let\'s see what we\'ve
 learned. To finish this chapter, I\'ve included three exercises that
 will challenge you based on what we\'ve covered in this chapter:
 
-::: {.orderedlist}
+
 1.  Add an extra layer to the encoder of the translation model. The
     translation model might work better if it had a bit more capacity to
     learn the structure of French sentences. Adding one more LSTM layer
     will be a good exercise to learn about the functional API.
 
 2.  Add attention to the encoder of the translation model. Attention
-    will allow the model to focus on[]{#id442 .indexterm} the (English)
+    will allow the model to focus on the (English)
     words that really matter for translation. It is best to use
     attention as the last layer. This task is a bit harder than the
     previous one, but you will understand the inner workings of
     attention much better.
 
-3.  Visit [*Daily News for Stock Market Prediction*]{.emphasis} at
+3.  Visit [*Daily News for Stock Market Prediction*] at
     <https://www.kaggle.com/aaron7sun/stocknews>. The task is to use the
     daily news as an input to predict stock prices. There are a number
     of kernels already that can help you with this. Use what you have
@@ -4171,22 +3509,17 @@ will challenge you based on what we\'ve covered in this chapter:
 
 
 
-[]{#ch05lvl1sec81}Summary {#summary .title style="clear: both"}
+Summary 
 -------------------------
 
-</div>
 
-</div>
-
-------------------------------------------------------------------------
-:::
 
 In this chapter, you have learned the most important NLP techniques.
 There was a lot that we\'ve learned, and here\'s a big list of things we
 covered in this chapter and everything you should now feel confident
 about understanding:
 
-::: {.itemizedlist}
+
 -   Finding named entities
 
 -   Fine-tuning spaCy\'s models for your own custom applications

@@ -1,12 +1,8 @@
 
 
-[]{#ch03}Chapter 3. Utilizing Computer Vision {#chapter-3.-utilizing-computer-vision .title}
+Chapter 3. Utilizing Computer Vision {#chapter-3.-utilizing-computer-vision .title}
 ---------------------------------------------
 
-</div>
-
-</div>
-:::
 
 When Snapchat first introduced a filter featuring a breakdancing hotdog,
 the stock price of the company surged. However, investors were less
@@ -24,7 +20,7 @@ While the dancing hotdog may be one of the sillier applications of
 computer vision, it successfully showed the world the potential of the
 technology. In a world full of cameras, from the billions of
 smartphones, security cameras, and satellites in use every day, to
-[**Internet of Things**]{.strong} ([**IoT**]{.strong}) devices, being
+[**Internet of Things**] ([**IoT**]) devices, being
 able to interpret images yields great benefits for both consumers and
 producers.
 
@@ -45,7 +41,7 @@ expensive problem. This could extend to them using computer vision to
 inspect factories and equipment they insure.
 
 Looking at another case in the finance sector, banks needing to comply
-with [**Know-Your-Customer**]{.strong} ([**KYC**]{.strong}) rules are
+with [**Know-Your-Customer**] ([**KYC**]) rules are
 automating back-office processes and identity verification. In financial
 trading, computer vision can be applied to candlestick charts in order
 to find new patterns for technical analysis. We could dedicate a whole
@@ -54,7 +50,7 @@ book to the practical applications of computer vision.
 In this chapter, we will be covering the building blocks of computer
 vision models. This will include a focus on the following topics:
 
-::: {.itemizedlist}
+
 -   Convolutional layers.
 
 -   Padding.
@@ -75,68 +71,63 @@ vision models. This will include a focus on the following topics:
 Before we start, let\'s have a look at all the different libraries we
 will be using in this chapter:
 
-::: {.itemizedlist}
--   [**Keras**]{.strong}: A high-level neural []{#id164
-    .indexterm}network library and an interface to TensorFlow.
 
--   [**TensorFlow**]{.strong}: A dataflow programming[]{#id165
-    .indexterm} and machine learning library that we use for
+-   [**Keras**]: A high-level neural 
+    network library and an interface to TensorFlow.
+
+-   [**TensorFlow**]: A dataflow programming
+     and machine learning library that we use for
     GPU-accelerated computation.
 
--   [**Scikit-learn**]{.strong}: A popular []{#id166 .indexterm}machine
+-   [**Scikit-learn**]: A popular machine
     learning library with implementation of many classic algorithms as
     well as evaluation tools.
 
--   [**OpenCV**]{.strong}: An image []{#id167 .indexterm}processing
+-   [**OpenCV**]: An image processing
     library that can be used for rule-based augmentation
 
--   [**NumPy**]{.strong}: A library for[]{#id168 .indexterm} handling
+-   [**NumPy**]: A library for handling
     matrices in Python.
 
--   [**Seaborn**]{.strong}: A plotting[]{#id169 .indexterm} library.
+-   [**Seaborn**]: A plotting library.
 
--   [**tqdm**]{.strong}: A tool to[]{#id170 .indexterm} monitor the
+-   [**tqdm**]: A tool to monitor the
     progress of Python programs.
 :::
 
 It\'s worth taking a minute to note that all of these libraries, except
-for OpenCV, can be installed via `pip`{.literal}; for example,
-`pip install keras`{.literal}.
+for OpenCV, can be installed via `pip`; for example,
+`pip install keras`.
 
 OpenCV, however, will require a slightly more complex installation
 procedure. This is beyond the scope of this book, but the information is
-well documented online []{#id171 .indexterm}via OpenCV documentation,
+well documented online via OpenCV documentation,
 which you can view at the following URL:
 <https://docs.opencv.org/trunk/df/d65/tutorial_table_of_content_introduction.html>.
 
 Alternately, it\'s worth noting that both Kaggle and Google Colab come
 with OpenCV preinstalled. To run the examples in this chapter, make sure
-you have OpenCV installed and can import with `import cv2`{.literal}.
+you have OpenCV installed and can import with `import cv2`.
 
 
 
-[]{#ch03lvl1sec38}Convolutional Neural Networks {#convolutional-neural-networks .title style="clear: both"}
+Convolutional Neural Networks {#convolutional-neural-networks .title style="clear: both"}
 -----------------------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-[**Convolutional Neural Networks**]{.strong}, [**ConvNets**]{.strong},
-or [**CNNs**]{.strong} for short, are the driving engine behind computer
+[**Convolutional Neural Networks**], [**ConvNets**],
+or [**CNNs**] for short, are the driving engine behind computer
 vision. ConvNets allow us to work with larger images while still keeping
 the network at a reasonable size.
 
-The name []{#id172 .indexterm}Convolutional Neural Network comes from
+The name Convolutional Neural Network comes from
 the mathematical operation that differentiates them from regular neural
 networks. Convolution is the mathematically correct term for sliding one
 matrix over another matrix. We\'ll explore in the next section,
-[*Filters on MNIST*]{.emphasis}, why this is important for ConvNets,
+[*Filters on MNIST*], why this is important for ConvNets,
 but also why this is not the best name in the world for them, and why
-ConvNets should, in reality, be called [**filter nets**]{.strong}.
+ConvNets should, in reality, be called [**filter nets**].
 
 You may be asking, \"but why filter nets?\" The answer is simply because
 what makes them work is the fact that they use filters.
@@ -145,36 +136,28 @@ In the next section, we will be working with the MNIST dataset, which is
 a collection of handwritten digits that has become a standard \"Hello,
 World!\" application for computer vision.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec33}Filters on MNIST {#filters-on-mnist .title}
+### Filters on MNIST {#filters-on-mnist .title}
 
-</div>
 
-</div>
-:::
-
-What does a computer actually []{#id173 .indexterm}see when it sees an
-image? Well, the values of the pixels are stored []{#id174 .indexterm}as
-numbers in the computer. So, when the computer [*sees*]{.emphasis} a
+What does a computer actually see when it sees an
+image? Well, the values of the pixels are stored as
+numbers in the computer. So, when the computer [*sees*] a
 black-and-white image of a seven, it actually sees something similar to
 the following:
 
-::: {.mediaobject}
-![](2_files/B10354_03_01.jpg)
 
-::: {.caption}
+![](./images/B10354_03_01.jpg)
+
+
 The number 7 from the MNIST dataset
 :::
 :::
 
 The preceding is an example from the MNIST dataset. The handwritten
 number in the image has been highlighted to make the figure seven
-visible for humans, but for the []{#id175 .indexterm}computer, the image
+visible for humans, but for the computer, the image
 is really just a collection of numbers. This means we can perform all
 kinds of mathematical operations on the image.
 
@@ -187,17 +170,17 @@ straight, vertical line.
 
 We\'re now able to present the central idea behind ConvNets. We can use
 small filters that can detect a certain kind of low-level feature, such
-as a vertical line, and then slide it over the entire[]{#id176
-.indexterm} image to detect all the vertical lines in the image.
+as a vertical line, and then slide it over the entire
+ image to detect all the vertical lines in the image.
 
 The following screenshot shows a vertical line filter. To detect
 vertical lines in our image, we need to slide this 3x3 matrix filter
 over the image.
 
-::: {.mediaobject}
-![](2_files/B10354_03_02.jpg)
 
-::: {.caption}
+![](./images/B10354_03_02.jpg)
+
+
 A vertical line filter
 :::
 :::
@@ -212,45 +195,37 @@ products then get summed up, and bias is added. This value then forms
 the output of the filter and gets passed on as a new pixel to the next
 layer:
 
-::: {.mediaobject}
-![](2_files/B10354_03_001.jpg)
+
+![](./images/B10354_03_001.jpg)
 :::
 
 As a result, the output of our vertical line filter will look like this:
 
-::: {.mediaobject}
-![](2_files/B10354_03_03.jpg)
 
-::: {.caption}
+![](./images/B10354_03_03.jpg)
+
+
 The output of a vertical line filter
 :::
 :::
 
-Take a[]{#id177 .indexterm} minute to notice that the vertical lines are
-visible while the horizontal[]{#id178 .indexterm} lines are gone. Only a
+Take a minute to notice that the vertical lines are
+visible while the horizontal lines are gone. Only a
 few artifacts remain. Also, notice how the filter captures the vertical
 line from one side.
 
 Since it responds to high pixel values on the left and low pixel values
 on the right, only the right side of the output shows strong positive
-values. Meanwhile, the left side of the line[]{#id179 .indexterm}
+values. Meanwhile, the left side of the line
 actually shows negative values. This is not a big problem in practice as
 there are usually different filters for different kinds of lines and
 directions.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec34}Adding a second filter {#adding-a-second-filter .title}
+### Adding a second filter {#adding-a-second-filter .title}
 
-</div>
-
-</div>
-:::
 
 Our vertical filter is working, but we\'ve already noticed that we also
 need to filter our image for horizontal lines in order to detect a
@@ -258,10 +233,10 @@ seven.
 
 Our horizontal line filter might look like this:
 
-::: {.mediaobject}
-![](2_files/B10354_03_04.jpg)
 
-::: {.caption}
+![](./images/B10354_03_04.jpg)
+
+
 A horizontal line filter
 :::
 :::
@@ -270,49 +245,44 @@ Using that example, we can now slide this filter over our image in the
 exact same way we did with the vertical filter, resulting in the
 following output:
 
-::: {.mediaobject}
-![](2_files/B10354_03_05.jpg)
 
-::: {.caption}
+![](./images/B10354_03_05.jpg)
+
+
 The output of the vertical line filter
 :::
 :::
 
-See how this filter[]{#id180 .indexterm} removes the vertical lines and
+See how this filter removes the vertical lines and
 pretty much only leaves the horizontal lines? The question now is what
 do we now pass onto the next layer? Well, we stack the outputs of both
 filters on top of each other, creating a three-dimensional cube:
 
-::: {.mediaobject}
-![](2_files/B10354_03_06.jpg)
 
-::: {.caption}
+![](./images/B10354_03_06.jpg)
+
+
 The MNIST convolution
 :::
 :::
 
-By adding multiple []{#id181 .indexterm}convolutional layers, our
+By adding multiple convolutional layers, our
 ConvNet is able to extract ever more complex and semantic features.
 
 
 
-[]{#ch03lvl1sec39}Filters on color images {#filters-on-color-images .title style="clear: both"}
+Filters on color images {#filters-on-color-images .title style="clear: both"}
 -----------------------------------------
 
-</div>
 
-</div>
-
-------------------------------------------------------------------------
-:::
 
 Of course, our filter technique is not only limited to black-and-white
 images. In this section we\'re going to have a look at color images.
 
 The majority of color images consist of three layers or channels, and
 this is commonly referred to as RGB, the initialism for the three
-layers. They are made up of one red channel, one []{#id182
-.indexterm}blue channel, and one green channel. When these three
+layers. They are made up of one red channel, one 
+blue channel, and one green channel. When these three
 channels are laid on top of each other, they add up to create the
 traditional color image that we know.
 
@@ -325,15 +295,15 @@ multiplication between two three-dimensional cubes.
 Our 3x3 filter now has a depth of three and thus nine parameters,
 plus the bias:
 
-::: {.mediaobject}
-![](3_files/B10354_03_07.jpg)
 
-::: {.caption}
+![](./images/B10354_03_07.jpg)
+
+
 An example of a filter cube or convolutional kernel
 :::
 :::
 
-This cube,[]{#id183 .indexterm} which is referred to as a convolutional
+This cube, which is referred to as a convolutional
 kernel, gets slid over the image just like the two-dimensional matrix
 did before. The element-wise products then again get summed up, the bias
 is added, and the outcome represents a pixel in the next layer.
@@ -347,28 +317,20 @@ channels.
 
 
 
-[]{#ch03lvl1sec40}The building blocks of ConvNets in Keras {#the-building-blocks-of-convnets-in-keras .title style="clear: both"}
+The building blocks of ConvNets in Keras {#the-building-blocks-of-convnets-in-keras .title style="clear: both"}
 ----------------------------------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-In this section, we will be building a simple[]{#id184 .indexterm}
-ConvNet that can be used for classifying the MNIST[]{#id185 .indexterm}
+In this section, we will be building a simple
+ConvNet that can be used for classifying the MNIST
 characters, while at the same time, learning about the different pieces
 that make up modern ConvNets.
 
 We can directly import the MNIST dataset from Keras by running the
 following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from keras.datasets import mnist
@@ -379,35 +341,26 @@ from keras.datasets import mnist
 Our dataset contains 60,000 28x28-pixel images. MNIST characters are
 black and white, so the data shape usually does not include channels:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 x_train.shape
 ```
 :::
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 out: (60000, 28, 28)
 ```
 :::
 
-We will take a closer[]{#id186 .indexterm} look at color channels later,
-but for now, let\'s expand our data dimensions to show that we[]{#id187
-.indexterm} only have a one-color channel. We can achieve this by
+We will take a closer look at color channels later,
+but for now, let\'s expand our data dimensions to show that we
+ only have a one-color channel. We can achieve this by
 running the following:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 import numpy as np
@@ -417,10 +370,7 @@ x_train.shape
 ```
 :::
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 out: (60000, 28, 28, 1)
@@ -430,28 +380,17 @@ out: (60000, 28, 28, 1)
 With the code being run, you can see that we now have a single color
 channel added.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec35}Conv2D {#conv2d .title}
+### Conv2D {#conv2d .title}
 
-</div>
 
-</div>
-:::
-
-Now we come to the meat []{#id188 .indexterm}and potatoes of ConvNets:
-using a[]{#id189 .indexterm} convolutional layer in Keras. Conv2D is the
+Now we come to the meat and potatoes of ConvNets:
+using a convolutional layer in Keras. Conv2D is the
 actual convolutional layer, with one Conv2D layer housing several
 filters, as can be seen in the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from keras.layers import Conv2D
@@ -472,79 +411,55 @@ model.add(Conv2D(filters=6,
 When creating a new Conv2D layer, we must specify the number of filters
 we want to use, and the size of each filter.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-#### []{#ch03lvl3sec12}Kernel size {#kernel-size .title}
+#### Kernel size {#kernel-size .title}
 
-</div>
 
-</div>
-:::
-
-The size of the filter is also []{#id190 .indexterm}called
-`kernel_size`{.literal}, as the individual filters are sometimes called
+The size of the filter is also called
+`kernel_size`, as the individual filters are sometimes called
 kernels. If we only specify a single number as the kernel size,
 Keras will assume that our filters are squares. In this case, for
 example, our filter would be 3x3 pixels.
 
 It is possible, however, to specify non-square kernel sizes by passing a
-tuple to the `kernel_size`{.literal} parameter. For example, we could
+tuple to the `kernel_size` parameter. For example, we could
 choose to have a 3x4-pixel filter through
-`kernel_size = (3,4)`{.literal}. However, this is very rare, and in the
+`kernel_size = (3,4)`. However, this is very rare, and in the
 majority of cases, filters have a size of either 3x3 or 5x5.
 Empirically, researchers have found that this is a size that yields good
 results.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-#### []{#ch03lvl3sec13}Stride size {#stride-size .title}
+#### Stride size {#stride-size .title}
 
-</div>
 
-</div>
-:::
-
-The `strides`{.literal} parameter specifies the step size, also called
+The `strides` parameter specifies the step size, also called
 the stride size, with which the convolutional filter slides over the
 image, usually referred to as the feature map. In the vast majority of
-cases, filters move pixel by pixel, so their []{#id191 .indexterm}stride
+cases, filters move pixel by pixel, so their stride
 size is set to 1. However, there are researchers that make more
 extensive use of larger stride sizes in order to reduce the spatial size
 of the feature map.
 
-Like with `kernel_size`{.literal}, Keras assumes that we use the same
+Like with `kernel_size`, Keras assumes that we use the same
 stride size horizontally and vertically if we specify only one value,
 and in the vast majority of cases that is correct. However, if we want
 to use a stride size of one horizontally, but two vertically, we can
-pass a tuple to the parameter as follows: `strides=(1,2)`{.literal}. As
+pass a tuple to the parameter as follows: `strides=(1,2)`. As
 in the case of the filter size, this is rarely done.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-#### []{#ch03lvl3sec14}Padding {#padding .title}
+#### Padding {#padding .title}
 
-</div>
 
-</div>
-:::
-
-Finally, we have[]{#id192 .indexterm} to add `padding`{.literal} to our
+Finally, we have to add `padding` to our
 convolutional layer. Padding adds zeros around our image. This can be
-done if we want to[]{#id193 .indexterm} prevent our feature map from
+done if we want to prevent our feature map from
 shrinking.
 
 Let\'s consider a 5x5-pixel feature map and a 3x3 filter. The filter
@@ -559,108 +474,78 @@ padding, \"Same\" padding and \"Valid\" padding.
 
 Let\'s have a look at each of the three paddings. First, No Padding:
 
-::: {.mediaobject}
-![](4_files/B10354_03_08.jpg)
 
-::: {.caption}
+![](./images/B10354_03_08.jpg)
+
+
 Option 1: No padding
 :::
 :::
 
 Then we have Same Padding:
 
-::: {.mediaobject}
-![](4_files/B10354_03_09.jpg)
 
-::: {.caption}
+![](./images/B10354_03_09.jpg)
+
+
 Option 2: Same padding
 :::
 :::
 
-To ensure the output []{#id194 .indexterm}has the same size as the
-input, we can use `same`{.literal} padding. Keras will then add enough
-zeros around the input feature map so that we can []{#id195
-.indexterm}preserve the size. The default padding setting, however, is
-`valid`{.literal}. This padding does not preserve the feature map size,
+To ensure the output has the same size as the
+input, we can use `same` padding. Keras will then add enough
+zeros around the input feature map so that we can 
+preserve the size. The default padding setting, however, is
+`valid`. This padding does not preserve the feature map size,
 but only makes sure that the filter and stride size actually fit on the
 input feature map:
 
-::: {.mediaobject}
-![](4_files/B10354_03_10.jpg)
 
-::: {.caption}
+![](./images/B10354_03_10.jpg)
+
+
 Option 3: Valid padding
 :::
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+#### Input shape {#input-shape .title}
 
-#### []{#ch03lvl3sec15}Input shape {#input-shape .title}
 
-</div>
-
-</div>
-:::
-
-Keras requires us to specify the input []{#id196 .indexterm}shape.
-However, this is only required for the first[]{#id197 .indexterm} layer.
+Keras requires us to specify the input shape.
+However, this is only required for the first layer.
 For all the following layers, Keras will infer the input shape from the
 previous layer\'s output shape.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-#### []{#ch03lvl3sec16}Simplified Conv2D notation {#simplified-conv2d-notation .title}
+#### Simplified Conv2D notation {#simplified-conv2d-notation .title}
 
-</div>
-
-</div>
-:::
 
 The preceding layer takes a 28x28x1 input and slides six filters with a
 2x2 filter size over it, going pixel by pixel. A more common way to
 specify the same layer would be by using the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 model.add(Conv2D(6,3,input_shape=img_shape))
 ```
 :::
 
-The number of filters (here `6`{.literal}) and the filter size (here
-`3`{.literal}) are set as positional arguments, while
-`strides`{.literal} and `padding`{.literal} default to `1`{.literal} and
-`valid`{.literal} respectively. If this was a layer deeper in the
+The number of filters (here `6`) and the filter size (here
+`3`) are set as positional arguments, while
+`strides` and `padding` default to `1` and
+`valid` respectively. If this was a layer deeper in the
 network, we wouldn\'t even have to specify the input shape.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-#### []{#ch03lvl3sec17}ReLU activation {#relu-activation .title}
+#### ReLU activation {#relu-activation .title}
 
-</div>
 
-</div>
-:::
-
-Convolutional layers only []{#id198 .indexterm}perform a linear step.
+Convolutional layers only perform a linear step.
 The numbers that make up the image get multiplied with the filter, which
 is a linear operation.
 
@@ -669,10 +554,10 @@ non-linearity with an activation function. The most common activation
 function for computer vision is the Rectified Linear Units, or ReLU
 function, which we can see here:
 
-::: {.mediaobject}
-![](4_files/B10354_03_11.jpg)
 
-::: {.caption}
+![](./images/B10354_03_11.jpg)
+
+
 The ReLU activation function
 :::
 :::
@@ -680,7 +565,7 @@ The ReLU activation function
 The ReLU formula, which was used to produce the above chart, can be seen
 below:
 
-[*ReLU(x) = max(x, 0)*]{.emphasis}
+[*ReLU(x) = max(x, 0)*]
 
 In other words, the ReLU function returns the input if the input is
 positive. If it\'s not, then it returns zero. This very simple function
@@ -693,7 +578,7 @@ derivative for some extreme values does, for example, with sigmoid or
 tanh.
 
 ReLU is also less computationally expensive than both sigmoid and tanh.
-It []{#id199 .indexterm}does not require any computationally expensive
+It does not require any computationally expensive
 calculations, input values below zero are just set to zero, and the rest
 is outputted. Unfortunately, though, ReLU activations are a bit fragile
 and can \"die.\"
@@ -709,59 +594,42 @@ default activation function for many practitioners. To use the ReLU
 function in Keras, we can just name it as the desired activation
 function in the activation layer, by running this code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from keras.layers import Activation
 model.add(Activation('relu'))
 ```
 :::
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+### MaxPooling2D {#maxpooling2d .title}
 
-### []{#ch03lvl2sec36}MaxPooling2D {#maxpooling2d .title}
 
-</div>
-
-</div>
-:::
-
-It\'s common practice to use a pooling[]{#id200 .indexterm} layer after
+It\'s common practice to use a pooling layer after
 a number of convolutional layers. Pooling decreases the spatial size of
 the feature map, which in turn reduces the number of parameters needed
 in a neural network and thus reduces overfitting.
 
 Below, we can see an example of Max Pooling:
 
-::: {.mediaobject}
-![](4_files/B10354_03_12.jpg)
 
-::: {.caption}
+![](./images/B10354_03_12.jpg)
+
+
 Max pooling
 :::
 :::
 
-Max pooling[]{#id201 .indexterm} returns the maximum element out of a
+Max pooling returns the maximum element out of a
 pool. This is in contrast to the example average of
-`AveragePooling2D`{.literal}, which returns the average of a pool. Max
+`AveragePooling2D`, which returns the average of a pool. Max
 pooling often delivers superior results to average pooling, so it is the
 standard most practitioners use.
 
 Max pooling can be achieved by running the following:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from keras.layers import MaxPool2D
@@ -774,113 +642,85 @@ model.add(MaxPool2D(pool_size=2,
 
 When using a max pooling layer in Keras, we have to specify the desired
 pool size. The most common value is a 2x2 pool. Just as with the
-`Conv2D`{.literal} layer, we can also specify a stride size.
+`Conv2D` layer, we can also specify a stride size.
 
-For pooling layers, the default stride size is `None`{.literal}, in
+For pooling layers, the default stride size is `None`, in
 which case Keras sets the stride size to be the same as the pool size.
 In other words, pools are next to each other and don\'t overlap.
 
-We can also specify padding, with `valid`{.literal} being the default
-choice. However, specifying `same`{.literal} padding for []{#id202
-.indexterm}pooling layers is extremely rare since the point of a pooling
+We can also specify padding, with `valid` being the default
+choice. However, specifying `same` padding for 
+pooling layers is extremely rare since the point of a pooling
 layer is to reduce the spatial size of the feature map.
 
-Our `MaxPooling2D`{.literal} layer here takes 2x2-pixel pools next to
+Our `MaxPooling2D` layer here takes 2x2-pixel pools next to
 each other with no overlap and returns the maximum element. A more
 common way of specifying the same layer is through the execution of the
 following:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 model.add(MaxPool2D(2))
 ```
 :::
 
-In this case, both `strides`{.literal} and `padding`{.literal} are set
-to their defaults, `None`{.literal} and `valid`{.literal} respectively.
+In this case, both `strides` and `padding` are set
+to their defaults, `None` and `valid` respectively.
 There is usually no activation after a pooling layer since the pooling
 layer does not perform a linear step.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec37}Flatten {#flatten .title}
+### Flatten {#flatten .title}
 
-</div>
 
-</div>
-:::
-
-You might have noticed[]{#id203 .indexterm} that our feature maps are
+You might have noticed that our feature maps are
 three dimensional while our desired output is a one-dimensional vector,
 containing the probability of each of the 10 classes. So, how do we get
-from 3D to 1D? Well, we `Flatten`{.literal} our feature maps.
+from 3D to 1D? Well, we `Flatten` our feature maps.
 
-The `Flatten`{.literal} operation works similar to NumPy\'s
-`flatten`{.literal} operation. It takes in a batch of feature maps with
-dimensions `(batch_size, height, width, channels)`{.literal} and returns
+The `Flatten` operation works similar to NumPy\'s
+`flatten` operation. It takes in a batch of feature maps with
+dimensions `(batch_size, height, width, channels)` and returns
 a set of vectors with dimensions
-`(batch_size, height * width * channels)`{.literal}.
+`(batch_size, height * width * channels)`.
 
 It performs no computation and only reshapes the matrix. There are no
 hyperparameters to be set for this operation, as you can see in the
 following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from keras.layers import Flatten
 
 model.add(Flatten())
 ```
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+### Dense {#dense .title}
 
-### []{#ch03lvl2sec38}Dense {#dense .title}
 
-</div>
-
-</div>
-:::
-
-ConvNets usually consist of []{#id204 .indexterm}a feature extraction
+ConvNets usually consist of a feature extraction
 part, the convolutional layers, as well as a classification part. The
 classification part is made up out of the simple fully connected layers
 that we've already explored in [Chapter
 1](https://subscription.packtpub.com/book/data/9781789136364/1){.link},
-[*Neural Networks and Gradient-Based Optimization*]{.emphasis}, and
+[*Neural Networks and Gradient-Based Optimization*], and
 [Chapter
 2](https://subscription.packtpub.com/book/data/9781789136364/2){.link},
-[*Applying Machine Learning to Structured Data*]{.emphasis}.
+[*Applying Machine Learning to Structured Data*].
 
 To distinguish the plain layers from all other types of layers, we refer
-to them as `Dense`{.literal} layers. In a dense layer, each input neuron
+to them as `Dense` layers. In a dense layer, each input neuron
 is connected to an output neuron. We only have to specify the number of
 output neurons we would like, in this case, 10.
 
 This can be done by running the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from keras.layers import Dense
@@ -889,56 +729,31 @@ model.add(Dense(10))
 :::
 
 After the linear step of the dense layer, we can add a
-`softmax`{.literal} activation for multi-class regression, just as we
+`softmax` activation for multi-class regression, just as we
 did in the first two chapters, by running the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 model.add(Activation('softmax'))
 ```
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+### Training MNIST {#training-mnist .title}
 
-### []{#ch03lvl2sec39}Training MNIST {#training-mnist .title}
-
-</div>
-
-</div>
-:::
 
 Let\'s now put all of these elements together so we can train a ConvNet
-on[]{#id205 .indexterm} the MNIST dataset.
+on the MNIST dataset.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-#### []{#ch03lvl3sec18}The model {#the-model .title}
+#### The model {#the-model .title}
 
-</div>
 
-</div>
-:::
-
-First, we must specify the []{#id206 .indexterm}model, which we can do
+First, we must specify the model, which we can do
 with the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from keras.layers import Conv2D, Activation, MaxPool2D, Flatten, Dense
@@ -971,10 +786,7 @@ model.add(Activation('softmax'))
 In the following code, you can see the general structure of a typical
 ConvNet:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 Conv2D
@@ -990,15 +802,12 @@ Dense
 :::
 
 The convolution and pooling layers are often used together in these
-blocks; you can find neural networks that[]{#id207 .indexterm} repeat
-the `Conv2D`{.literal}, `MaxPool2D`{.literal} combination tens of times.
+blocks; you can find neural networks that repeat
+the `Conv2D`, `MaxPool2D` combination tens of times.
 
 We can get an overview of our model with the following command:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 model.summary()
@@ -1007,10 +816,7 @@ model.summary()
 
 Which will give us the following output:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 Layer (type)                 Output Shape              Param #   
@@ -1043,46 +849,35 @@ _________________________________________________________________
 In this summary, you can clearly see how the pooling layers reduce the
 size of the feature map. It\'s a little bit less obvious from the
 summary alone, but you can see how the output of the first
-`Conv2D`{.literal} layer is 26x26 pixels, while the input images are
+`Conv2D` layer is 26x26 pixels, while the input images are
 28x28 pixels.
 
-By using `valid`{.literal} padding, `Conv2D`{.literal} also reduces the
+By using `valid` padding, `Conv2D` also reduces the
 size of the feature map, although only by a small amount. The same
-happens for the second `Conv2D`{.literal} layer, which shrinks the
+happens for the second `Conv2D` layer, which shrinks the
 feature map from 13x13 pixels to 11x11 pixels.
 
 You can also see how the first convolutional layer only has 60
-parameters, while the `Dense`{.literal} layer has 3,010, over 50 times
+parameters, while the `Dense` layer has 3,010, over 50 times
 as many parameters. Convolutional layers usually achieve surprising
 feats with very few parameters, which is why they are so popular. The
 total number of parameters in a network can often be significantly
 reduced by convolutional and pooling layers.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-#### []{#ch03lvl3sec19}Loading the data {#loading-the-data .title}
+#### Loading the data {#loading-the-data .title}
 
-</div>
 
-</div>
-:::
-
-The MNIST dataset we are using comes []{#id208 .indexterm}preinstalled
+The MNIST dataset we are using comes preinstalled
 with Keras. When loading the data, make sure you have an internet
 connection if you want to use the dataset directly via Keras, as Keras
 has to download it first.
 
 You can import the dataset with the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from keras.datasets import mnist
@@ -1095,20 +890,14 @@ dataset so that it can have a channel dimension as well. The dataset as
 it comes does not have a channel dimension yet, but this is something we
 can do:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 x_train.shape
 ```
 :::
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 out:
@@ -1118,10 +907,7 @@ out:
 
 So, we add a channel dimension with NumPy, with the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 import numpy as np
@@ -1134,62 +920,39 @@ x_test = np.expand_dims(x_test,-1)
 
 Now there is a channel dimension, as we can see here:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 x_train.shape
 ```
 :::
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 out:
 (60000, 28, 28,1)
 ```
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+#### Compiling and training {#compiling-and-training .title}
 
-#### []{#ch03lvl3sec20}Compiling and training {#compiling-and-training .title}
 
-</div>
-
-</div>
-:::
-
-In the previous chapters, we have[]{#id209 .indexterm} used one-hot
-encoded targets for multiclass regression. While []{#id210 .indexterm}we
+In the previous chapters, we have used one-hot
+encoded targets for multiclass regression. While we
 have reshaped the data, the targets are still in their original form.
 They are a flat vector containing the numerical data representation for
 each handwritten figure. Remember that we have 60,000 of these in the
 MNIST dataset:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 y_train.shape
 ```
 :::
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 out:
@@ -1200,7 +963,7 @@ out:
 Transforming targets through one-hot encoding is a frequent and annoying
 task, so Keras allows us to just specify a loss function that converts
 targets to one-hot on the fly. This loss function is called
-`sparse_categorical_crossentropy`{.literal}.
+`sparse_categorical_crossentropy`.
 
 It\'s the same as the categorical cross-entropy loss used in earlier
 chapters, the only difference is that this uses sparse, that is, not
@@ -1212,10 +975,7 @@ as many dimensions as there are classes.
 We\'re now at a point where we can compile the model, which we can do
 with the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 model.compile(loss='sparse_categorical_crossentropy',optimizer='adam',metrics=['acc'])
@@ -1224,17 +984,14 @@ model.compile(loss='sparse_categorical_crossentropy',optimizer='adam',metrics=['
 
 As you can see, we are using an Adam optimizer. The exact workings of
 Adam are explained in the next section, [*More bells and whistles for
-our neural network*]{.emphasis}, but for now, you can just think of it
-[]{#id211 .indexterm}as a more sophisticated version of stochastic
+our neural network*], but for now, you can just think of it
+as a more sophisticated version of stochastic
 gradient descent.
 
-When training, we can directly[]{#id212 .indexterm} specify a validation
+When training, we can directly specify a validation
 set in Keras by running the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 history = model.fit(x_train,y_train,batch_size=32,epochs=5,validation_data=(x_test,y_test))
@@ -1244,10 +1001,7 @@ history = model.fit(x_train,y_train,batch_size=32,epochs=5,validation_data=(x_te
 Once we have successfully run that code, we\'ll get the following
 output:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 Train on 60000 samples, validate on 10000 samples
@@ -1261,13 +1015,10 @@ Epoch 10/10
 ```
 :::
 
-To better see what is []{#id213 .indexterm}going on, we can plot the
-[]{#id214 .indexterm}progress of training with the following code:
+To better see what is going on, we can plot the
+progress of training with the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 import matplotlib.pyplot as plt
@@ -1284,10 +1035,10 @@ plt.show()
 
 This will give us the following chart:
 
-::: {.mediaobject}
-![](4_files/B10354_03_13.jpg)
 
-::: {.caption}
+![](./images/B10354_03_13.jpg)
+
+
 The visualized output of validation and training accuracy
 :::
 :::
@@ -1297,34 +1048,21 @@ validation accuracy, which is pretty nice!
 
 
 
-[]{#ch03lvl1sec41}More bells and whistles for our neural network {#more-bells-and-whistles-for-our-neural-network .title style="clear: both"}
+More bells and whistles for our neural network {#more-bells-and-whistles-for-our-neural-network .title style="clear: both"}
 ----------------------------------------------------------------
 
-</div>
 
-</div>
-
-------------------------------------------------------------------------
-:::
 
 Let\'s take a minute to look at some of the other elements of our neural
 network.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec40}Momentum {#momentum .title}
+### Momentum {#momentum .title}
 
-</div>
-
-</div>
-:::
 
 In previous chapters we\'ve explained gradient descent in terms of
-[]{#id215 .indexterm}someone trying to find the way down a mountain by
+someone trying to find the way down a mountain by
 just following the slope of the floor. Momentum can be explained with
 an analogy to physics, where a ball is rolling down the same hill. A
 small bump in the hill would not make the ball roll in a completely
@@ -1337,30 +1075,30 @@ our parameter with an outlier gradient, then we take the moving average,
 which will smoothen out outliers and capture the general direction of
 the gradient, as we can see in the following diagram:
 
-::: {.mediaobject}
-![](5_files/B10354_03_14.jpg)
 
-::: {.caption}
+![](./images/B10354_03_14.jpg)
+
+
 How momentum smoothens gradient updates
 :::
 :::
 
 The exponentially weighted moving average is a clever mathematical trick
-used to compute a moving average without[]{#id216 .indexterm} having to
+used to compute a moving average without having to
 memorize a set of previous values. The exponentially weighted average,
-[*V*]{.emphasis}, of some value,
-[![](5_files/B10354_03_002.jpg)]{.inlinemediaobject}, would be as
+[*V*], of some value,
+[![](./images/B10354_03_002.jpg)]{.inlinemediaobject}, would be as
 follows:
 
-::: {.mediaobject}
-![](5_files/B10354_03_003.jpg)
+
+![](./images/B10354_03_003.jpg)
 :::
 
 A beta value of 0.9 would mean that 90% of the mean would come from the
 previous moving average,
-[![](5_files/B10354_03_004.jpg)]{.inlinemediaobject}, and 10% would come
+[![](./images/B10354_03_004.jpg)]{.inlinemediaobject}, and 10% would come
 from the new value,
-[![](5_files/B10354_03_005.jpg)]{.inlinemediaobject}.
+[![](./images/B10354_03_005.jpg)]{.inlinemediaobject}.
 
 Using momentum makes learning more robust against gradient descent
 pitfalls such as outlier gradients, local minima, and saddle points.
@@ -1369,10 +1107,7 @@ We can augment the standard stochastic gradient descent optimizer in
 Keras with momentum by setting a value for beta, which we do in the
 following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from keras.optimizers import SGD
@@ -1384,35 +1119,21 @@ This little code snippet creates a stochastic gradient descent optimizer
 with a learning rate of 0.01 and a beta value of 0.9. We can use it when
 we compile our model, as we\'ll now do with this:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 model.compile(optimizer=momentum_optimizer,loss='sparse_categorical_crossentropy',metrics=['acc'])
 ```
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+### The Adam optimizer {#the-adam-optimizer .title}
 
-### []{#ch03lvl2sec41}The Adam optimizer {#the-adam-optimizer .title}
-
-</div>
-
-</div>
-:::
 
 Back in 2015, Diederik P. Kingma and Jimmy Ba created the
-[**Adam**]{.strong} ([**Adaptive Momentum Estimation**]{.strong})
-optimizer. This is another way to make gradient descent []{#id217
-.indexterm}work more efficiently. Over the past few years, this method
-has shown very good[]{#id218 .indexterm} results and has, therefore,
+[**Adam**] ([**Adaptive Momentum Estimation**])
+optimizer. This is another way to make gradient descent 
+work more efficiently. Over the past few years, this method
+has shown very good results and has, therefore,
 become a standard choice for many practitioners. For example, we\'ve
 used it with the MNIST dataset.
 
@@ -1420,50 +1141,47 @@ First, the Adam optimizer computes the exponentially weighted average of
 the gradients, just like a momentum optimizer does. It achieves this
 with the following formula:
 
-::: {.mediaobject}
-![](5_files/B10354_03_006.jpg)
+
+![](./images/B10354_03_006.jpg)
 :::
 
 It then also computes the exponentially weighted average of the squared
 gradients:
 
-::: {.mediaobject}
-![](5_files/B10354_03_007.jpg)
+
+![](./images/B10354_03_007.jpg)
 :::
 
 It then updates the model parameters like this:
 
-::: {.mediaobject}
-![](5_files/B10354_03_008.jpg)
+
+![](./images/B10354_03_008.jpg)
 :::
 
-Here [![](5_files/B10354_03_009.jpg)]{.inlinemediaobject} is a very
+Here [![](./images/B10354_03_009.jpg)]{.inlinemediaobject} is a very
 small number to avoid division by zero.
 
 This division by the root of squared gradients reduces the update speed
-when gradients are very large. It also stabilizes[]{#id219 .indexterm}
+when gradients are very large. It also stabilizes
 learning as the learning algorithm does not get thrown off track by
 outliers as much.
 
 Using Adam, we have a new hyperparameter. Instead of having just one
-momentum factor, [![](5_files/B10354_03_010.jpg)]{.inlinemediaobject},
-we now have two, [![](5_files/B10354_03_011.jpg)]{.inlinemediaobject}
-and [![](5_files/B10354_03_012.jpg)]{.inlinemediaobject}. The
+momentum factor, [![](./images/B10354_03_010.jpg)]{.inlinemediaobject},
+we now have two, [![](./images/B10354_03_011.jpg)]{.inlinemediaobject}
+and [![](./images/B10354_03_012.jpg)]{.inlinemediaobject}. The
 recommended values for
 
-::: {.mediaobject}
-![](5_files/B10354_03_013.jpg)
+
+![](./images/B10354_03_013.jpg)
 :::
 
-and [![](5_files/B10354_03_014.jpg)]{.inlinemediaobject} are 0.9 and
+and [![](./images/B10354_03_014.jpg)]{.inlinemediaobject} are 0.9 and
 0.999 respectively.
 
 We can use Adam in Keras like this:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from keras.optimizers import adam
@@ -1475,25 +1193,17 @@ model.compile(optimizer=adam_optimizer,loss='sparse_categorical_crossentropy',me
 :::
 
 As you have seen earlier in this chapter, we can also compile the model
-just by passing the `adam`{.literal} string as an optimizer. In this
+just by passing the `adam` string as an optimizer. In this
 case, Keras will create an Adam optimizer for us and choose the
 recommended values.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec42}Regularization {#regularization .title}
+### Regularization {#regularization .title}
 
-</div>
 
-</div>
-:::
-
-Regularization is a[]{#id220 .indexterm} technique used to avoid
+Regularization is a technique used to avoid
 overfitting. Overfitting is when the model fits the training data too
 well, and as a result, it does not generalize well to either development
 or test data. You may see that overfitting is sometimes also referred to
@@ -1520,29 +1230,21 @@ predictions. However, so far these efforts have only yielded small
 rewards, as low-bias and low-variance models require large amounts of
 training data.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-#### []{#ch03lvl3sec21}L2 regularization {#l2-regularization .title}
+#### L2 regularization {#l2-regularization .title}
 
-</div>
-
-</div>
-:::
 
 One popular technique to counter overfitting is L2 regularization. L2
-regularization adds the sum of squared[]{#id221 .indexterm} weights to
+regularization adds the sum of squared weights to
 the loss function. We can see an example of this in the formula below:
 
-::: {.mediaobject}
-![](5_files/B10354_03_015.jpg)
+
+![](./images/B10354_03_015.jpg)
 :::
 
-Here [*N*]{.emphasis} is the number of training examples and
-[![](5_files/B10354_03_016.jpg)]{.inlinemediaobject} is the
+Here [*N*] is the number of training examples and
+[![](./images/B10354_03_016.jpg)]{.inlinemediaobject} is the
 regularization hyperparameter, which determines how much we want to
 regularize, with a common value being around 0.01.
 
@@ -1557,59 +1259,40 @@ holistic view, taking into account many features and activations. This
 will prevent the algorithm from overfitting.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-#### []{#ch03lvl3sec22}L1 regularization {#l1-regularization .title}
+#### L1 regularization {#l1-regularization .title}
 
-</div>
 
-</div>
-:::
-
-L1 regularization is very[]{#id222 .indexterm} similar to L2
+L1 regularization is very similar to L2
 regularization, but instead of adding the sum of squares, it adds the
 sum of absolute values, as we can see in this formula:
 
-::: {.mediaobject}
-![](5_files/B10354_03_018.jpg)
+
+![](./images/B10354_03_018.jpg)
 :::
 
 In practice, it is often a bit uncertain as to which of the two will
 work best, but the difference between the two is not very large.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-#### []{#ch03lvl3sec23}Regularization in Keras {#regularization-in-keras .title}
+#### Regularization in Keras {#regularization-in-keras .title}
 
-</div>
 
-</div>
-:::
-
-In Keras, regularizers that[]{#id223 .indexterm} are applied to[]{#id224
-.indexterm} the weights are called [**kernel\_regularizer**]{.strong},
-and regularizers that are []{#id225 .indexterm}applied to the bias are
-called [**bias\_regularizer**]{.strong}. You can also apply
+In Keras, regularizers that are applied to
+ the weights are called [**kernel\_regularizer**],
+and regularizers that are applied to the bias are
+called [**bias\_regularizer**]. You can also apply
 regularization directly to the activation of the nodes to prevent them
-from being activated []{#id226 .indexterm}very strongly with
-[**activity\_regularizer**]{.strong}.
+from being activated very strongly with
+[**activity\_regularizer**].
 
 For now, let\'s add some L2 regularization to our network. To do this,
 we need to run the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from keras.regularizers import l2
@@ -1637,25 +1320,22 @@ model.add(Activation('softmax'))
 ```
 :::
 
-Setting `kernel_regularizer`{.literal} as done in the first
+Setting `kernel_regularizer` as done in the first
 convolutional layer in Keras means regularizing weights. Setting
-`bias_regularizer`{.literal} regularizes the bias, and setting
-`activity_regularizer`{.literal} regularizes the output activations of a
+`bias_regularizer` regularizes the bias, and setting
+`activity_regularizer` regularizes the output activations of a
 layer.
 
 In this following example, the regularizers are set to be shown off, but
 here they actually harm the performance to our network. As you can see
-from[]{#id227 .indexterm} the preceding training results, our network is
+from the preceding training results, our network is
 not actually overfitting, so setting regularizers harms performance
 here, and as a result, the model underfits.
 
 As we can see in the following output, in this case, the model reaches
 about 87% validation accuracy:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 model.compile(loss='sparse_categorical_crossentropy',optimizer = 'adam',metrics=['acc'])
@@ -1673,34 +1353,23 @@ Epoch 10/10
 ```
 :::
 
-You\'ll notice that the model[]{#id228 .indexterm} achieves a higher
+You\'ll notice that the model achieves a higher
 accuracy on the validation than on the training set; this is a clear
 sign of underfitting.
-:::
-:::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
+### Dropout {#dropout .title}
 
-### []{#ch03lvl2sec43}Dropout {#dropout .title}
-
-</div>
-
-</div>
-:::
 
 As the title of the 2014 paper by Srivastava et al gives away, [*Dropout
 is A Simple Way to Prevent Neural Networks from
-Overfitting*]{.emphasis}. It achieves this by[]{#id229 .indexterm}
+Overfitting*]. It achieves this by
 randomly removing nodes from the neural network:
 
-::: {.mediaobject}
-![](5_files/B10354_03_15.jpg)
 
-::: {.caption}
+![](./images/B10354_03_15.jpg)
+
+
 Schematic of the dropout method. From Srivastava et al, \"Dropout: A
 Simple Way to Prevent Neural Networks from Overfitting,\" 2014
 :::
@@ -1716,10 +1385,7 @@ activations you want to apply dropout to. It passes on activations, but
 sometimes it sets them to zero, achieving the same effect as a dropout
 in the cells directly. We can see this in the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from keras.layers import Dropout
@@ -1745,7 +1411,7 @@ model.add(Activation('softmax'))
 ```
 :::
 
-A dropout value of 0.5 is[]{#id230 .indexterm} considered a good choice
+A dropout value of 0.5 is considered a good choice
 if overfitting is a serious problem, while values that are over 0.5 are
 not very helpful, as the network would have too few values to work with.
 In this case, we chose a dropout value of 0.2, meaning that each cell
@@ -1753,10 +1419,7 @@ has a 20% chance of being set to zero.
 
 Note that dropout is used after pooling:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 model.compile(loss='sparse_categorical_crossentropy',optimizer = 'adam',metrics=['acc'])
@@ -1765,10 +1428,7 @@ history = model.fit(x_train,y_train,batch_size=32,epochs=10,validation_data=(x_t
 ```
 :::
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 Train on 60000 samples, validate on 10000 samples
@@ -1782,28 +1442,20 @@ Epoch 10/10
 ```
 :::
 
-The low dropout value []{#id231 .indexterm}creates nice results for us,
+The low dropout value creates nice results for us,
 but again, the network does better on the validation set rather than the
 training set, a clear sign of underfitting taking place. Note that
 dropout is only applied at training time. When the model is used
 for predictions, dropout doesn\'t do anything.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec44}Batchnorm {#batchnorm .title}
+### Batchnorm {#batchnorm .title}
 
-</div>
 
-</div>
-:::
-
-[**Batchnorm**]{.strong}, short for [**batch**]{.strong} []{#id232
-.indexterm} [**normalization**]{.strong}, is a technique for
+[**Batchnorm**], short for [**batch**] 
+ [**normalization**], is a technique for
 \"normalizing\" input data to a layer batch-wise. Each batchnorm
 computes the mean and standard deviation of the data and applies a
 transformation so that the mean is zero and the standard deviation is
@@ -1814,13 +1466,10 @@ This makes training easier because the loss surface becomes more
 dimensions would mean that the network would have to learn a more
 complicated function.
 
-In Keras, batchnorm is a new[]{#id233 .indexterm} layer as well, as you
+In Keras, batchnorm is a new layer as well, as you
 can see in the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from keras.layers import BatchNormalization
@@ -1850,10 +1499,7 @@ history = model.fit(x_train,y_train,batch_size=32,epochs=10,validation_data=(x_t
 ```
 :::
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 Train on 60000 samples, validate on 10000 samples
@@ -1867,39 +1513,34 @@ Epoch 10/10
 ```
 :::
 
-Batchnorm often accelerates[]{#id234 .indexterm} training by making it
+Batchnorm often accelerates training by making it
 easier. You can see how the accuracy rate jumps up in the first epoch
 here:
 
-::: {.mediaobject}
-![](5_files/B10354_03_17.jpg)
 
-::: {.caption}
+![](./images/B10354_03_17.jpg)
+
+
 Training and validation accuracy of our MNIST classifier with batchnorm
 :::
 :::
 
 Batchnorm also has a mildly regularizing effect. Extreme values are
-often overfitted to, and batchnorm reduces extreme[]{#id235 .indexterm}
+often overfitted to, and batchnorm reduces extreme
 values, similar to activity regularization. All this makes batchnorm an
 extremely popular tool in computer vision.
 
 
 
-[]{#ch03lvl1sec42}Working with big image datasets {#working-with-big-image-datasets .title style="clear: both"}
+Working with big image datasets {#working-with-big-image-datasets .title style="clear: both"}
 -------------------------------------------------
 
-</div>
 
-</div>
-
-------------------------------------------------------------------------
-:::
 
 Images tend to be big files. In fact, it\'s likely that you will not be
 able to fit your entire image dataset into your machine\'s RAM.
 
-Therefore, we need[]{#id236 .indexterm} to load the images from disk
+Therefore, we need to load the images from disk
 \"just in time\" rather than loading them all in advance. In this
 section, we will be setting up an image data generator that loads images
 on the fly.
@@ -1907,7 +1548,7 @@ on the fly.
 We\'ll be using a dataset of plant seedlings in this case. This was
 provided by Thomas Giselsson and others, 2017, via their publication,
 [*A Public Image Database for Benchmark of Plant Seedling Classification
-Algorithms*]{.emphasis}.
+Algorithms*].
 
 This dataset is available from the following link:
 <https://arxiv.org/abs/1711.05458>.
@@ -1920,25 +1561,22 @@ under an open domain license; it\'s therefore a great training dataset
 for us to use.
 
 Readers who wish to test their knowledge on a more relevant dataset
-should take a look at the [*State Farm Distracted Driver*]{.emphasis}
+should take a look at the [*State Farm Distracted Driver*]
 dataset as well as the [*Planet: Understanding the Amazon from
-Space*]{.emphasis} dataset.
+Space*] dataset.
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#note11}Note {#note .title}
+
+### Note {#note .title}
 
 The code and data for this section and the section on stacking
 pretrained models can be found and run here:
 <https://www.kaggle.com/jannesklaas/stacking-vgg>.
 :::
 
-Keras comes with an image[]{#id237 .indexterm} data generator that can
+Keras comes with an image data generator that can
 load files from disk out of the box. To do this, you simply need to run:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from keras.preprocessing.image import ImageDataGenerator
@@ -1946,7 +1584,7 @@ from keras.preprocessing.image import ImageDataGenerator
 :::
 
 To obtain a generator reading from the files, we first have to specify
-the generator. In Keras, `ImageDataGenerator`{.literal} offers a range
+the generator. In Keras, `ImageDataGenerator` offers a range
 of image augmentation tools, but in our example, we will only be making
 use of the rescaling function.
 
@@ -1954,10 +1592,7 @@ Rescaling multiplies all values in an image with a constant. For most
 common image formats, the color values range from 0 to 255, so we want
 to rescale by 1/255. We can achieve this by running the following:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 imgen = ImageDataGenerator(rescale=1/255)
@@ -1965,21 +1600,18 @@ imgen = ImageDataGenerator(rescale=1/255)
 :::
 
 This, however, is not yet the generator that loads the images for us.
-The `ImageDataGenerator`{.literal} class offers a range of generators
+The `ImageDataGenerator` class offers a range of generators
 that can be created by calling functions on it.
 
 To obtain a generator loading file, we have to call
-`flow_from_directory`{.literal}.
+`flow_from_directory`.
 
 We then have to specify the directory Keras should use, the batch size
-we would like, in this case `32`{.literal}, as well as the target size
+we would like, in this case `32`, as well as the target size
 the images should be resized to, in this case 150x150 pixels. To do
 this, we can simply run the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 train_generator = imgen.flow_from_directory('train',batch_size=32, target_size=(150,150))
@@ -1987,34 +1619,34 @@ validation_generator = imgen.flow_from_directory('validation',batch_size=32, tar
 ```
 :::
 
-How did Keras find the[]{#id238 .indexterm} images and how does it know
+How did Keras find the images and how does it know
 which classes the images belong to? The Keras generator expects the
 following folder structure:
 
-::: {.itemizedlist}
+
 -   Root:
 
-    ::: {.itemizedlist}
+    
     -   Class 0
-        ::: {.itemizedlist}
+        
         -   img
         -   img
         -   ...
         :::
     :::
 
-    ::: {.itemizedlist}
+    
     -   Class 1
-        ::: {.itemizedlist}
+        
         -   img
         -   img
         -   ...
         :::
     :::
 
-    ::: {.itemizedlist}
+    
     -   Class 1
-        ::: {.itemizedlist}
+        
         -   img
         :::
     :::
@@ -2025,17 +1657,12 @@ sort images to match the generator\'s expectations.
 
 
 
-[]{#ch03lvl1sec43}Working with pretrained models {#working-with-pretrained-models .title style="clear: both"}
+Working with pretrained models {#working-with-pretrained-models .title style="clear: both"}
 ------------------------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-Training large computer vision []{#id239 .indexterm}models is not only
+Training large computer vision models is not only
 hard, but computationally expensive. Therefore, it\'s common to use
 models that were originally trained for another purpose and fine-tune
 them for a new purpose. This is an example of transfer learning.
@@ -2066,10 +1693,7 @@ classify plants.
 
 VGG-16 can be downloaded via Keras by using the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from keras.applications.vgg16 import VGG16
@@ -2077,10 +1701,7 @@ vgg_model = VGG16(include_top=False,input_shape=(150,150,3))
 ```
 :::
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 out: 
@@ -2092,23 +1713,17 @@ Downloading data from https://github.com/fchollet/deep-learning-models/releases/
 When downloading the data, we want to let Keras know that we don\'t want
 to include the top part (the classification part); we also want to let
 Keras know the desired input shape. If we do not specify the input
-shape, the model will accept any[]{#id240 .indexterm} image size, and it
-will not be possible to add `Dense`{.literal} layers on top:
+shape, the model will accept any image size, and it
+will not be possible to add `Dense` layers on top:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 vgg_model.summary()
 ```
 :::
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 out: 
@@ -2160,44 +1775,33 @@ _________________________________________________________________
 ```
 :::
 
-As you can see, the VGG []{#id241 .indexterm}model is very large, with
+As you can see, the VGG model is very large, with
 over 14.7 million trainable parameters. It also consists of both
-`Conv2D`{.literal} and `MaxPooling2D`{.literal} layers, both
+`Conv2D` and `MaxPooling2D` layers, both
 of which we\'ve already learned about when working on the MNIST dataset.
 
 From this point, there are two different ways we can proceed:
 
-::: {.itemizedlist}
+
 -   Add layers and build a new model.
 
 -   Preprocess all the images through the pertained model and then train
     a new model.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec45}Modifying VGG-16 {#modifying-vgg-16 .title}
+### Modifying VGG-16 {#modifying-vgg-16 .title}
 
-</div>
 
-</div>
-:::
-
-In this section, we will be adding[]{#id242 .indexterm} layers on top of
+In this section, we will be adding layers on top of
 the VGG-16 model, and then from there, we will train the new, big model.
 
 We do not want to retrain all those convolutional layers that have been
 trained already, however. So, we must first \"freeze\" all the layers in
 VGG-16, which we can do by running the following:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 for the layer in vgg_model.layers:
@@ -2208,15 +1812,12 @@ for the layer in vgg_model.layers:
 Keras downloads VGG as a functional API model. We will learn more about
 the functional API in [Chapter
 6](https://subscription.packtpub.com/book/data/9781789136364/6){.link},
-[*Using Generative Models*]{.emphasis}, but for now, we just want to use
+[*Using Generative Models*], but for now, we just want to use
 the Sequential API, which allows us to stack layers through
-`model.add()`{.literal}. We can convert a model with the functional API
+`model.add()`. We can convert a model with the functional API
 with the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 finetune = Sequential(layers = vgg_model.layers)
@@ -2224,7 +1825,7 @@ finetune = Sequential(layers = vgg_model.layers)
 :::
 
 As a result of running the code, we have now created a new model called
-`finetune`{.literal} that works just like a normal Sequential model. We
+`finetune` that works just like a normal Sequential model. We
 need to remember that converting models with the Sequential API only
 works if the model can actually be expressed in the Sequential API. Some
 more complex models cannot be converted.
@@ -2232,10 +1833,7 @@ more complex models cannot be converted.
 As a result of everything we\'ve just done, adding layers to our model
 is now simple:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 finetune.add(Flatten())
@@ -2249,10 +1847,7 @@ socket is not. We can train this stacked model just as we would train
 any other model, on the data generator we defined in the previous
 section. This can be executed by running the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 finetune.compile(loss='categorical_crossentropy',optimizer='adam',metrics = ['acc'])
@@ -2265,20 +1860,12 @@ After running this, the model manages to achieve a rate of about 75%
 validation accuracy.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec46}Random image augmentation {#random-image-augmentation .title}
+### Random image augmentation {#random-image-augmentation .title}
 
-</div>
 
-</div>
-:::
-
-A general problem in []{#id243 .indexterm}machine learning is that no
+A general problem in machine learning is that no
 matter how much data we have, having more data will always be better, as
 it would increase the quality of our output while also preventing
 overfitting and allowing our model to deal with a larger variety of
@@ -2288,25 +1875,17 @@ for example, a rotation or a random crop.
 The idea is to get a large number of different images out of one image,
 therefore reducing the chance that the model will overfit. For most
 image augmentation purposes, we can just use Keras\'
-`ImageDataGenerator`{.literal}.
+`ImageDataGenerator`.
 
 More advanced augmentations can be done with the OpenCV library.
 However, focusing on this is outside the scope of this chapter.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-#### []{#ch03lvl3sec24}Augmentation with ImageDataGenerator {#augmentation-with-imagedatagenerator .title}
+#### Augmentation with ImageDataGenerator {#augmentation-with-imagedatagenerator .title}
 
-</div>
 
-</div>
-:::
-
-When using an augmenting []{#id244 .indexterm}data generator, we only
+When using an augmenting data generator, we only
 usually use it for training. The validation generator should not use the
 augmentation features because when we validate our model, we want to
 estimate how well it is doing on unseen, actual data, and not augmented
@@ -2314,13 +1893,10 @@ data.
 
 This is different from rule-based augmentation, where we try to create
 images that are easier to classify. For this reason, we need to create
-two `ImageDataGenerator`{.literal} instances, one for training and one
+two `ImageDataGenerator` instances, one for training and one
 for validation. This can be done by running the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 train_datagen = ImageDataGenerator(
@@ -2338,10 +1914,10 @@ train_datagen = ImageDataGenerator(
 This training data generator makes use of a few built-in augmentation
 techniques.
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#note12}Note {#note .title}
 
-[**Note**]{.strong}: There are more []{#id245 .indexterm}commands
+### Note {#note .title}
+
+[**Note**]: There are more commands
 available in Keras. For a full list, you should refer to the Keras
 documentation at <https://keras.io/>.
 :::
@@ -2349,27 +1925,27 @@ documentation at <https://keras.io/>.
 In the following list, we\'ve highlighted several commonly used
 commands:
 
-::: {.itemizedlist}
--   `rescale`{.literal} scales the values in the image. We used it
+
+-   `rescale` scales the values in the image. We used it
     before and will also use it for validation.
 
--   `rotation_range`{.literal} is a range (0 to 180 degrees) in which to
+-   `rotation_range` is a range (0 to 180 degrees) in which to
     randomly rotate the image.
 
--   `width_shift_range`{.literal} and `height_shift_range`{.literal} are
+-   `width_shift_range` and `height_shift_range` are
     ranges (relative to the image size, so here 20%) in which to
     randomly stretch images horizontally or vertically.
 
--   `shear_range`{.literal} is a range (again, relative to the image) in
+-   `shear_range` is a range (again, relative to the image) in
     which to randomly apply shear.
 
--   `zoom_range`{.literal} is the range in which to randomly zoom into a
+-   `zoom_range` is the range in which to randomly zoom into a
     picture.
 
--   `horizontal_flip`{.literal} specifies whether to randomly flip the
+-   `horizontal_flip` specifies whether to randomly flip the
     image.
 
--   `fill_mode`{.literal} specifies how to fill empty spaces created by,
+-   `fill_mode` specifies how to fill empty spaces created by,
     for example, rotation.
 :::
 
@@ -2380,10 +1956,7 @@ First, we need to import the Keras image tools and specify an image path
 (this one was chosen at random). This can be done by running the
 following:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 from keras.preprocessing import image
@@ -2391,13 +1964,10 @@ fname = 'train/Charlock/270209308.png'
 ```
 :::
 
-We then need to load the image[]{#id246 .indexterm} and convert it to a
+We then need to load the image and convert it to a
 NumPy array, which is achieved with the following code:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 img = image.load_img(fname, target_size=(150, 150))
@@ -2407,38 +1977,29 @@ img = image.img_to_array(img)
 
 As before, we have to add a batch size dimension to the image:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 img = np.expand_dims(img,axis=0)
 ```
 :::
 
-We then use the `ImageDataGenerator`{.literal} instance we just created,
-but instead of using `flow_from_directory`{.literal}, we\'ll use
-`flow`{.literal}, which allows us to pass the data directly into the
+We then use the `ImageDataGenerator` instance we just created,
+but instead of using `flow_from_directory`, we\'ll use
+`flow`, which allows us to pass the data directly into the
 generator. We then pass that one image we want to use, which we can do
 by running this:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 gen = train_datagen.flow(img, batch_size=1)
 ```
 :::
 
-In a loop, we then call `next`{.literal} on our generator four times:
+In a loop, we then call `next` on our generator four times:
 
-::: {.informalexample}
-::: {.toolbar .clearfix}
-Copy
-:::
+
 
 ``` {.programlisting .language-markup}
 for i in range(4):
@@ -2452,24 +2013,19 @@ plt.show()
 
 This will produce the following output:
 
-::: {.mediaobject}
-![](7_files/B10354_03_18.jpg)
 
-::: {.caption}
+![](./images/B10354_03_18.jpg)
+
+
 A few samples of the randomly modified image
 
 
-[]{#ch03lvl1sec44}The modularity tradeoff {#the-modularity-tradeoff .title style="clear: both"}
+The modularity tradeoff {#the-modularity-tradeoff .title style="clear: both"}
 -----------------------------------------
 
-</div>
 
-</div>
 
-------------------------------------------------------------------------
-:::
-
-This chapter has shown[]{#id247 .indexterm} that it is possible, and
+This chapter has shown that it is possible, and
 often useful, to aid a machine learning model with some rule-based
 system. You might also have noticed that the images in the dataset were
 all cropped to show only one plant.
@@ -2484,7 +2040,7 @@ huge amount of data, a deep learning model can learn what would
 otherwise have taken a system with many components much longer to learn.
 However, end-to-end deep learning does have several drawbacks:
 
-::: {.itemizedlist}
+
 -   End-to-end deep learning needs huge amounts of data. Because models
     have so many parameters, a large amount of data is needed in order
     to avoid overfitting.
@@ -2498,7 +2054,7 @@ However, end-to-end deep learning does have several drawbacks:
 :::
 
 Recently, researchers have begun to make their models more modular. A
-great example is Ha and Schmidthuber\'s [*World Models*]{.emphasis},
+great example is Ha and Schmidthuber\'s [*World Models*],
 which can be read here: <https://worldmodels.github.io/>. In this,
 they\'ve encoded visual information, made predictions about the future,
 and chosen actions with three different models.
@@ -2512,7 +2068,7 @@ that there are also seasonal effects. So, Airbnb built a model to
 predict the parameters of the distribution and seasonality directly,
 rather than letting the model predict bookings directly.
 
-If you have a small amount[]{#id248 .indexterm} of data, then your
+If you have a small amount of data, then your
 algorithm\'s performance needs to come from human insight. If some
 subtasks can be easily expressed in code, then it\'s usually better to
 express them in code. If you need explainability and want to see why
@@ -2521,22 +2077,17 @@ intermediate outputs is a good choice. However, if a task is hard and
 you don\'t know exactly what subtasks it entails, and you have lots of
 data, then it\'s often better to use an end-to-end approach.
 
-It\'s very rare to use a [*pure*]{.emphasis} end-to-end approach.
+It\'s very rare to use a [*pure*] end-to-end approach.
 Images, for example, are always preprocessed from the camera chip, you
 never really work with raw data.
 
 Being smart about dividing a task can boost performance and reduce risk.
 
 
-[]{#ch03lvl1sec45}Computer vision beyond classification {#computer-vision-beyond-classification .title style="clear: both"}
+Computer vision beyond classification {#computer-vision-beyond-classification .title style="clear: both"}
 -------------------------------------------------------
 
-</div>
 
-</div>
-
-------------------------------------------------------------------------
-:::
 
 As we have seen, there are many techniques that we can use to make our
 image classifier work better. These are techniques that you\'ll find
@@ -2548,26 +2099,18 @@ that go beyond classifying images. These tasks often require more
 creative use of neural networks than what we\'ve discussed throughout
 this chapter.
 
-To get the []{#id249 .indexterm}most out of this section, you don\'t
+To get the most out of this section, you don\'t
 need to worry too much about the details of the techniques presented,
 but instead look at how researchers were creative about using neural
 networks. We\'re taking this approach because you will often find that
 the tasks you are looking to solve require similar creativity.
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec47}Facial recognition {#facial-recognition .title}
+### Facial recognition {#facial-recognition .title}
 
-</div>
 
-</div>
-:::
-
-Facial recognition has many[]{#id250 .indexterm} applications for retail
+Facial recognition has many applications for retail
 institutions. For instance, if you\'re in the front office, you might
 want to automatically recognize your customer at an ATM, or
 alternatively, you might want to offer face-based security features,
@@ -2578,7 +2121,7 @@ customer you are working with.
 On the surface, facial recognition looks like a classification task. You
 give an image of a face to the machine, and it will predict which person
 it is. The trouble is that you might have millions of customers, but
-only one or two[]{#id251 .indexterm} pictures per customer.
+only one or two pictures per customer.
 
 On top of that, you\'ll likely be continuously getting new customers.
 You can\'t change your model every time you get a new customer, and
@@ -2589,10 +2132,10 @@ The creative insight here is that instead of classifying the customer\'s
 face, you can see whether two images show the same face. You can see a
 visual representation of this idea in the following diagram:
 
-::: {.mediaobject}
-![](9_files/B10354_03_19.jpg)
 
-::: {.caption}
+![](./images/B10354_03_19.jpg)
+
+
 Schematic of a Siamese network
 :::
 :::
@@ -2616,7 +2159,7 @@ can do this with a single classification layer.
 Storing facial embedding is very beneficial as it will save us a
 significant amount of computational cost, in addition to allowing for
 the clustering of faces. Faces will cluster together according to traits
-such as sex, age, and race. By[]{#id252 .indexterm} only comparing an
+such as sex, age, and race. By only comparing an
 image to the images in the same cluster, we can save even more
 computational power and, as a result, get even faster recognition.
 
@@ -2627,7 +2170,7 @@ the entire model. However, another, and in many respects better, option
 is to train the model to generate face embeddings directly. This
 approach is described in Schroff, Kalenichenko, and Philbin\'s 2015
 paper, [*FaceNet: A Unified Embedding for Face Recognition and
-Clustering*]{.emphasis}, which you can read here:
+Clustering*], which you can read here:
 <https://arxiv.org/abs/1503.03832>.
 
 The idea is to create triplets of images: one anchor image, one positive
@@ -2639,20 +2182,20 @@ larger.
 
 The loss function looks like this:
 
-::: {.mediaobject}
-![](9_files/B10354_03_019.jpg)
+
+![](./images/B10354_03_019.jpg)
 :::
 
-Here [![](9_files/B10354_03_020.jpg)]{.inlinemediaobject} is an anchor
-image, and [![](9_files/B10354_03_021.jpg)]{.inlinemediaobject} is the
+Here [![](./images/B10354_03_020.jpg)]{.inlinemediaobject} is an anchor
+image, and [![](./images/B10354_03_021.jpg)]{.inlinemediaobject} is the
 output of the Siamese network, the anchor image\'s embedding. The
 triplet loss is the Euclidean distance between the anchor and the
 positive minus the Euclidean distance between the anchor and the
 negative. A small constant,
-[![](9_files/B10354_03_022.jpg)]{.inlinemediaobject}, is a margin
+[![](./images/B10354_03_022.jpg)]{.inlinemediaobject}, is a margin
 enforced between positive and negative pairs. To reach zero loss, the
 difference between distances needs to be
-[![](9_files/B10354_03_023.jpg)]{.inlinemediaobject}.
+[![](./images/B10354_03_023.jpg)]{.inlinemediaobject}.
 
 You should be able to understand that you can use a neural network to
 predict whether two items are semantically the same in order to get
@@ -2663,32 +2206,24 @@ more than faces. If you wanted to compare time series to classify
 events, then you could use the exact same approach.
 :::
 
-::: {.section lang="en" lang="en"}
-::: {.titlepage}
-<div>
 
-<div>
 
-### []{#ch03lvl2sec48}Bounding box prediction {#bounding-box-prediction .title}
+### Bounding box prediction {#bounding-box-prediction .title}
 
-</div>
 
-</div>
-:::
-
-The likelihood is that at some[]{#id253 .indexterm} point, you\'ll be
+The likelihood is that at some point, you\'ll be
 interested in locating objects within images. For instance, say you are
 an insurance company that needs to inspect the roofs it insures. Getting
 people to climb on roofs to check them is expensive, so an alternative
 is to use satellite imagery. Having acquired the images, you now need to
-find the[]{#id254 .indexterm} roofs in them, as we can see in the
+find the roofs in them, as we can see in the
 following screenshot. You can then crop out the roofs and send the roof
 images to your experts, who will check them:
 
-::: {.mediaobject}
-![](9_files/B10354_03_20.jpg)
 
-::: {.caption}
+![](./images/B10354_03_20.jpg)
+
+
 California homes with bounding boxes around their roofs
 :::
 :::
@@ -2699,26 +2234,26 @@ predictions for what object is shown in the box.
 
 There are two approaches to obtaining such bounding boxes.
 
-A [**Region-based Convolutional Neural Network**]{.strong}
-([**R-CNN**]{.strong}) reuses a classification model. It takes an image
-and slides the classification model over the image. The []{#id255
-.indexterm}result is many classifications for different parts of the
+A [**Region-based Convolutional Neural Network**]
+([**R-CNN**]) reuses a classification model. It takes an image
+and slides the classification model over the image. The 
+result is many classifications for different parts of the
 image. Using this feature map, a region proposal network performs a
 regression task to come up with bounding boxes and a classification
-network creates[]{#id256 .indexterm} classifications for each
+network creates classifications for each
 bounding box.
 
 The approach has been refined, culminating in Ren and others\' 2016
 paper, [*Faster R-CNN: Towards Real-Time Object Detection with Region
-Proposal Networks*]{.emphasis}, which is available at
+Proposal Networks*], which is available at
 <https://arxiv.org/abs/1506.01497>, but the basic concept of sliding
 a classifier over an image has remained the same.
 
-[**You Only Look Once**]{.strong} ([**YOLO**]{.strong}), on the other
+[**You Only Look Once**] ([**YOLO**]), on the other
 hand, uses a single model consisting of only convolutional layers. It
-divides an[]{#id257 .indexterm} image into a grid and predicts an object
+divides an image into a grid and predicts an object
 class for each grid cell. It then predicts several possible bounding
-boxes []{#id258 .indexterm}containing objects for each grid cell.
+boxes containing objects for each grid cell.
 
 For each bounding box, it regresses coordinates and both width and
 height values, as well as a confidence score that this bounding box
@@ -2726,13 +2261,13 @@ actually contains an object. It then eliminates all bounding boxes with
 a too low confidence score or with a too large overlap with another, a
 more confident bounding box.
 
-::: {.note style="margin-left: 0.5in; margin-right: 0.5in;"}
-### []{#note13}Note {#note .title}
+
+### Note {#note .title}
 
 For a more detailed description, read Redmon and Farhadi\'s 2016 paper,
-[*YOLO9000: Better, Faster, Stronger*]{.emphasis}, available at
+[*YOLO9000: Better, Faster, Stronger*], available at
 <https://arxiv.org/abs/1612.08242>. Further reading includes the 2018
-paper, [*YOLOv3: An Incremental Improvement*]{.emphasis}. This is
+paper, [*YOLOv3: An Incremental Improvement*]. This is
 available at <https://arxiv.org/abs/1804.027>.
 
 Both are well-written, tongue-in-cheek papers, that explain the YOLO
@@ -2755,20 +2290,15 @@ directly, but in practice, this is usually not a good idea.
 
 If you\'re interested in reading more about this, [Chapter
 4](https://subscription.packtpub.com/book/data/9781789136364/4){.link},
-[*Understanding Time Series*]{.emphasis}, has a great discussion on
+[*Understanding Time Series*], has a great discussion on
 modularity.
 
 
 
-[]{#ch03lvl1sec46}Exercises {#exercises .title style="clear: both"}
+Exercises {#exercises .title style="clear: both"}
 ---------------------------
 
-</div>
 
-</div>
-
-------------------------------------------------------------------------
-:::
 
 Fashion MNIST is a drop-in replacement for MNIST, but instead of
 handwritten digits, it is about classifying clothes. Try out the
@@ -2787,15 +2317,10 @@ focus on the concepts shown.
 
 
 
-[]{#ch03lvl1sec47}Summary {#summary .title style="clear: both"}
+Summary 
 -------------------------
 
-</div>
 
-</div>
-
-------------------------------------------------------------------------
-:::
 
 In this chapter, you have seen the building blocks of computer vision
 models. We\'ve learned about convolutional layers, and both the ReLU
@@ -2833,8 +2358,8 @@ on the model.
 In the next chapter, we will look at the most iconic and common form of
 financial data: time series. We will tackle the task of forecasting web
 traffic using more traditional statistical methods, such as
-[**ARIMA**]{.strong} (short for [**AutoRegressive Integrated Moving
-Average**]{.strong}), as well as modern neural network-based approaches.
+[**ARIMA**] (short for [**AutoRegressive Integrated Moving
+Average**]), as well as modern neural network-based approaches.
 You will also learn about feature engineering with autocorrelation
 and Fourier transformations. Finally, you will learn how to compare and
 contrast different forecasting methods and build a high-quality
