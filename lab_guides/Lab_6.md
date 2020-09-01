@@ -1,6 +1,6 @@
 
 
-Chapter 6. Using Generative Models {#chapter-6.-using-generative-models .title}
+Chapter 6. Using Generative Models {#lab-6.-using-generative-models .title}
 -------------------------------------------
 
 
@@ -19,9 +19,9 @@ have already been several applications that have used generative models
 that have caused an uproar within the industry.
 
 In 2017, so-called [*DeepFakes*] began to appear on the
-internet. [**Generative Adversarial Networks**]
-([**GANs**]), which we will cover later in
-this chapter, were used to generate pornographic videos featuring famous
+internet. **Generative Adversarial Networks**
+(**GANs**), which we will cover later in
+this lab, were used to generate pornographic videos featuring famous
 celebrities. The year before, in 2016, researchers showcased a system in
 which they could generate videos of politicians saying anything the
 researcher wanted them to say, complete with realistic mouth movements
@@ -38,12 +38,12 @@ turning them into street maps. Another example is that generative models
 can generate code from website screenshots. They can even be used to
 combat unfairness and discrimination in machine learning models,
 as we will
-see in [Chapter 9](https://subscription.packtpub.com/book/data/9781789136364/9){.link},
+see in [Chapter 9](https://subscription.packtpub.com/course/data/9781789136364/9){.link},
 [*Fighting Bias*].
 
 In the field of finance, data is frequently sparse. Think back to the
-fraud case from [Chapter
-2](https://subscription.packtpub.com/book/data/9781789136364/2){.link},
+fraud case from [Lab
+2](https://subscription.packtpub.com/course/data/9781789136364/2){.link},
 [*Applying Machine Learning to Structured Data,*] in which we
 were classifying fraudulent transactions from transaction metadata. We
 found that there was not much fraud taking place in the dataset that we
@@ -62,11 +62,11 @@ feelings about what a selloff should look like. However, what if the
 models could learn what a selloff fundamentally looks like, and then
 create data describing an infinite number of selloffs?
 
-In this chapter, we\'ll be focusing on two families of generative
+In this lab, we\'ll be focusing on two families of generative
 models: autoencoders and GANs. Firstly there is the family of
-[**autoencoders**], which aim to compress data into a lower
+**autoencoders**, which aim to compress data into a lower
 dimensional representation and then reconstruct the data faithfully. The
-second family is that of the [**GANs**], which aim to train a
+second family is that of the **GANs**, which aim to train a
 generator so that a separate discriminator cannot tell fake images from
 true images.
 
@@ -116,8 +116,8 @@ This compressed representation aims to capture the essence of the input,
 which turns out to be useful for us. We might, for example, want to
 capture what essentially distinguishes a fraudulent transaction from a
 genuine one. Vanilla autoencoders accomplish this
-with something similar to standard [**principal component
-analysis**] ([**PCA**]). They allow us to reduce the
+with something similar to standard **principal component
+analysis** (**PCA**). They allow us to reduce the
 dimensionality of our data and focus on what
 matters. But in contrast to PCA, autoencoders can be extended in order
 to generate more data of a certain type. For example, autoencoders can
@@ -151,7 +151,7 @@ experiments are reproducible.
 
 ### Note {#note .title}
 
-[**Note**]: You can find the code for the
+**Note**: You can find the code for the
 MNIST autoencoder and variational autoencoder under the following URL
 <https://www.kaggle.com/jannesklaas/mnist-autoencoder-vae.>
 :::
@@ -349,8 +349,8 @@ fraud problem.
 
 Throughout this section, we will once again be dealing with the problem
 of credit card fraud. This time, we will be using a slightly different
-dataset from that in [Chapter
-2](https://subscription.packtpub.com/book/data/9781789136364/2){.link},
+dataset from that in [Lab
+2](https://subscription.packtpub.com/course/data/9781789136364/2){.link},
 [*Applying Machine Learning to Structured Data*].
 
 This new dataset contains records of actual credit
@@ -361,7 +361,7 @@ end-to-end learning methods in order to build a good fraud detector.
 
 ### Note {#note-1 .title}
 
-[**Note**]: You can find the dataset at:
+**Note**: You can find the dataset at:
 <https://www.kaggle.com/mlg-ulb/creditcardfraud> and the notebook with
 an implementation of an autoencoder and variational autoencoder at:
 <https://www.kaggle.com/jannesklaas/credit-vae>.
@@ -614,8 +614,8 @@ form a cluster in our high-dimensional encodings, then we can use a
 simple check if a new transaction falls into the fraud cluster to flag a
 transaction as fraudulent. A popular method to project high-dimensional
 data into low-dimensional plots while preserving neighborhoods is called
-[**t-distributed stochastic neighbor embedding,**] or[
-**t-SNE**].
+**t-distributed stochastic neighbor embedding,** or[
+**t-SNE**.
 
 In a nutshell, t-SNE aims to faithfully represent the probability that
 two points are neighbors in a random sample of all points. That is, it
@@ -649,7 +649,7 @@ The t-SNE algorithm follows these steps:
     In the preceding formula,
     [![](./images/B10354_06_003.jpg)]{.inlinemediaobject}2 is the
     variance of the Gaussian distribution. We will look at how to
-    determine this variance later on in this chapter. Note that since
+    determine this variance later on in this lab. Note that since
     the similarity between points [*i*] and [*j*]
     is scaled by the sum of distances between [*i*] and all
     other points (expressed as [*k*]), the similarity between
@@ -681,7 +681,7 @@ The t-SNE algorithm follows these steps:
     optimize the positions of the data points in the lower dimensional
     space by following the gradient of a loss
     function. The loss function, in this case, is the
-    [**Kullback--Leibler**] ([**KL**]) divergence
+    **Kullback--Leibler** (**KL**) divergence
     between the similarities in the higher and lower dimensional space.
     We will give the KL divergence a closer look in the section
     on variational autoencoders. For now, just
@@ -782,7 +782,7 @@ will not be covering it in this book.
 
 ### Note {#note .title}
 
-[**Note**]: You can find the faster implementation with
+**Note**: You can find the faster implementation with
 installation instructions under the following URL
 <https://github.com/DmitryUlyanov/Multicore-TSNE>.
 :::
@@ -843,8 +843,8 @@ Variational autoencoders {#variational-autoencoders .title style="clear: both"}
 
 
 Autoencoders are basically an approximation for PCA. However, they can
-be extended to become generative models. Given an input, [**variational
-autoencoders**] ([**VAEs**]) can create encoding
+be extended to become generative models. Given an input, **variational
+autoencoders** (**VAEs**) can create encoding
 [*distributions*]. This means that for a
 fraud case, the encoder would produce a distribution of possible
 encodings that all represent the most important characteristics of the
@@ -1039,8 +1039,8 @@ normal Gaussian distribution in its encodings. Let\'s address that now.
 
 
 To create the custom loss for our VAE, we need a custom loss function.
-This loss function will be based on the [**Kullback-Leibler**]
-([**KL**]) divergence.
+This loss function will be based on the **Kullback-Leibler**
+(**KL**) divergence.
 
 KL divergence, is one of the metrics, just like cross-entropy, that
 machine learning inherited from information theory.
@@ -1392,8 +1392,8 @@ VAEs for time series {#vaes-for-time-series .title style="clear: both"}
 
 This section covers the how and why of time series
 VAEs and gives a couple of examples where they have been used. Time
-series are such a big topic in finance that [Chapter
-4](https://subscription.packtpub.com/book/data/9781789136364/4){.link},
+series are such a big topic in finance that [Lab
+4](https://subscription.packtpub.com/course/data/9781789136364/4){.link},
 [*Understanding Time Series,*] is heavily focused to it.
 
 Autoencoders have found applications in connection to time series as
@@ -1434,7 +1434,7 @@ recommend spoofing or front-running large orders, but that is a story
 for another time.
 
 How would we detect when someone engages in spoofing? One way is to use
-an autoencoder. By using a large amount of order book information, we
+an autoencoder. By using a large amount of order course information, we
 can train an autoencoder to reconstruct \"normal\" trading behavior. For
 traders whose trading patterns deviate a lot from normal trading, the
 reconstruction loss of the trained autoencoder for the transaction will
@@ -1589,9 +1589,9 @@ The training process for a GAN works as follows:
 
 ### Note {#note .title}
 
-[**Note**]: GAN training has a lot of similarities to the
-visualization of the network layers that we discussed in [Chapter
-3](https://subscription.packtpub.com/book/data/9781789136364/3){.link},
+**Note**: GAN training has a lot of similarities to the
+visualization of the network layers that we discussed in [Lab
+3](https://subscription.packtpub.com/course/data/9781789136364/3){.link},
 [*Utilizing Computer Vision*], only this time we don\'t just
 create one image that maximizes an activation
 function, instead we create a generative network that specializes in
@@ -1624,8 +1624,8 @@ distribution of actual data.
 
 GANs get optimized following a game-theoretic value function. Solving
 this type of optimization problem with deep learning is an active area
-of research, and an area we will visit again in [Chapter
-8](https://subscription.packtpub.com/book/data/9781789136364/8){.link},
+of research, and an area we will visit again in [Lab
+8](https://subscription.packtpub.com/course/data/9781789136364/8){.link},
 [*Privacy, Debugging, and Launching Your Products,*] where we
 will discuss reinforcement learning. The fact that deep learning can be
 used to solve Minimax games is exciting news for the field of finance
@@ -1752,8 +1752,8 @@ Again, let\'s take a look at the generator model code, which consists of
 
 4.  Now we reshape our flat vector into a 3D tensor. This is the
     opposite of using a `Flatten` layer, which
-     we did in [Chapter
-    3](https://subscription.packtpub.com/book/data/9781789136364/3){.link},
+     we did in [Lab
+    3](https://subscription.packtpub.com/course/data/9781789136364/3){.link},
     [*Utilizing Computer Vision*]. We now have a tensor with
     128 channels in a 7x7-pixel image or feature map.
 
@@ -1825,7 +1825,7 @@ of Keras\' modular design comes into play.
 
 ### Note {#note-1 .title}
 
-[**Note**]: Keras models can be treated just like Keras layers.
+**Note**: Keras models can be treated just like Keras layers.
 :::
 
 The following code creates a GAN model that can be used to train the
@@ -2008,8 +2008,8 @@ discriminator, then the discriminator loss will stay high. If one of the
 losses goes to zero, it means that the other model lost the race and
 cannot fool or properly discriminate the other model anymore.
 
-This is one of the things that makes GAN training so hard: [**GANs
-don\'t converge to a low loss solution**]; they converge to an
+This is one of the things that makes GAN training so hard: **GANs
+don\'t converge to a low loss solution**; they converge to an
 [*equilibrium*] in which the generator fools the
 discriminator not all the time, but many times. That equilibrium is not
 always stable. Part of the reason so much noise is added to labels and
@@ -2058,12 +2058,12 @@ better. While it may seem odd, it\'s not known why these work, but all
 that matters to us is that they help in practice:
 
 
--   [**Normalize the inputs**]: GANs don\'t work well with
+- **Normalize the inputs**: GANs don\'t work well with
     extreme values, so make sure you always have normalized inputs
     between -1 and 1. This is also the reason why you should use the
     tanh function as your generator output.
 
--   [**Don\'t use the theoretical correct loss function**]: If
+- **Don\'t use the theoretical correct loss function**: If
     you read papers on GANs, you will find that they give the generator
     optimization goal as the following formula:
 
@@ -2083,7 +2083,7 @@ that matters to us is that they help in practice:
     reason is that the first objective often has vanishing gradients at
     the beginning of the GAN training process.
 
--   [**Sample from a normal Gaussian distribution**]: There are
+- **Sample from a normal Gaussian distribution**: There are
     two reasons to sample from normal distributions
     instead of uniform distributions. First, GANs don\'t work well with
     extreme values, and normal distributions have fewer extreme values
@@ -2093,14 +2093,14 @@ that matters to us is that they help in practice:
     vectors in this sphere are easier to describe than latent vectors in
     a cube space.
 
--   [**Use batch normalization**]: We\'ve already seen that
+- **Use batch normalization**: We\'ve already seen that
     GANs don\'t work well with extreme values since they are so fragile.
     Another way to reduce extreme values is to use batch normalization,
-    as we discussed in [Chapter
-    3](https://subscription.packtpub.com/book/data/9781789136364/3){.link},
+    as we discussed in [Lab
+    3](https://subscription.packtpub.com/course/data/9781789136364/3){.link},
     [*Utilizing Computer Vision*].
 
--   [**Use separate batches for real and fake data**]: In the
+- **Use separate batches for real and fake data**: In the
     beginning of this process, real and fake data might have very
     different distributions. As batch norm applies normalization over a
     batch, using the batches\' mean and standard deviation, it is more
@@ -2108,22 +2108,22 @@ that matters to us is that they help in practice:
     lead to slightly less accurate gradient estimates, the gain from
     fewer extreme values is great.
 
--   [**Use soft and noisy labels**]: GANs are fragile; the use
+- **Use soft and noisy labels**: GANs are fragile; the use
     of soft labels reduces the gradients and keeps the gradients from
     tipping over. Adding some random noise to labels also helps to
     stabilize the system.
 
--   [**Use basic GANs**]: There is now a wide range of GAN
+- **Use basic GANs**: There is now a wide range of GAN
     models. Many of them claim wild performance improvements, whereas in
     reality they do not work much better, and are often worse, than a
-    simple [**deep convolutional generative adversarial
-    network,**] or [**DCGAN**]. That does not mean
+    simple **deep convolutional generative adversarial
+    network,** or **DCGAN**. That does not mean
     they have no justification for existing, but for the bulk of tasks,
     more basic GANs will perform better. Another GAN that works well is
     the adversarial autoencoder, which combines a VAE with a GAN by
     training the autoencoder on the gradients of a discriminator.
 
--   [**Avoid ReLU and MaxPool**]: ReLU activations and MaxPool
+- **Avoid ReLU and MaxPool**: ReLU activations and MaxPool
     layers are frequently used in deep learning, but they have the
     disadvantage of producing \"sparse gradients.\" A ReLU activation
     will not have any gradient for negative inputs, and a MaxPool layer
@@ -2131,11 +2131,11 @@ that matters to us is that they help in practice:
     input. Since gradients are what the generator is being trained on,
     sparse gradients will hurt generator training.
 
--   [**Use the Adam optimizer**]: This optimizer has been shown
+- **Use the Adam optimizer**: This optimizer has been shown
     to work very well with GANs, while many other optimizers do not work
     well with them.
 
--   [**Track failures early**]: Sometimes, GANs can fail for
+- **Track failures early**: Sometimes, GANs can fail for
     random reasons. Just choosing the \"wrong\" random seed could set
     your training run up for failure. Usually, it is possible to see
     whether a GAN goes completely off track by observing outputs. They
@@ -2146,7 +2146,7 @@ that matters to us is that they help in practice:
     spending days of GPU time on training that will go
     nowhere.
 
--   [**Don\'t balance loss via statistics**]: Keeping the
+- **Don\'t balance loss via statistics**: Keeping the
     balance between the generator and discriminator is a delicate task.
     Many practitioners, therefore, try to help the balance by training
     either the generator or discriminator a bit more depending on
@@ -2157,7 +2157,7 @@ that matters to us is that they help in practice:
     principled approach, such as \"train the generator while the
     generator loss is above [*X*].\"
 
--   [**If you have labels, use them**]: A slightly more
+- **If you have labels, use them**: A slightly more
     sophisticated version of a GAN discriminator can not only classify
     data as real or fake but also classify the class of the data. In the
     MNIST case, the discriminator would have 11 outputs: an output for
@@ -2166,43 +2166,43 @@ that matters to us is that they help in practice:
     in the domain of semi-supervised learning, which we will cover in
     the next section.
 
--   [**Add noise to inputs, reduce it over time**]: Noise adds
+- **Add noise to inputs, reduce it over time**: Noise adds
     stability to GAN training so it comes as no surprise that noisy
     inputs can help, especially in the early, unstable phases of
     training a GAN. Later, however, it can obfuscate too much and keep
     the GAN from generating realistic images. So, we should reduce the
     noise applied to inputs over time.
 
--   [**Use dropouts in G in both the train and test phases**]:
+- **Use dropouts in G in both the train and test phases**:
     Some researchers find that using dropout on inference time leads to
     better results for the generated data. Why that is the case is still
     an open question.
 
--   [**Historical averaging**]: GANs tend to \"oscillate,\"
+- **Historical averaging**: GANs tend to \"oscillate,\"
     with their weights moving rapidly around a mean during training.
     Historical averaging penalizes weights that are too far away from
     their historical average and reduces oscillation. It, therefore,
     increases the stability of GAN training.
 
--   [**Replay buffers**]: Replay buffers keep a number of older
+- **Replay buffers**: Replay buffers keep a number of older
     generated images so they can be reused for training the
     discriminator. This has a similar effect as historical averaging,
     reducing oscillation and increasing stability. It also reduces the
     correlation and the test data.
 
--   [**Target networks**]: Another \"anti-oscillation\" trick
+- **Target networks**: Another \"anti-oscillation\" trick
     is to use target networks. That is, to create copies of both the
     generator and discriminator, and then train the generator 
     with a frozen copy of the discriminator and train
     the discriminator with a frozen copy of the generator.
 
--   [**Entropy regularization**]: Entropy regularization means
+- **Entropy regularization**: Entropy regularization means
     rewarding the network for outputting more different values. This can
     prevent the generator network from settling on a few things to
     produce, say, only the number seven. It is a regularization method
     as it prevents overfitting.
 
--   [**Use dropout or noise layers**]: Noise is good for GANs.
+- **Use dropout or noise layers**: Noise is good for GANs.
     Keras not only features dropout layers, but it also features a
     number of noise layers that add different kinds of noise to
     activations in a network. You can read the documentation of these
@@ -2226,19 +2226,19 @@ different methods used to bootstrap models with as
 little data as possible. This method is also called active learning or
 semi-supervised learning.
 
-[**Unsupervised learning**] uses unlabeled
+**Unsupervised learning** uses unlabeled
 data to cluster data in different ways. An example is autoencoders,
 where images can be transformed into learned and latent vectors, which
 can then be clustered without the need for labels that describe
 the image.
 
-[**Supervised learning**] uses data with
-labels. An example is the image classifier we built in [Chapter
-3](https://subscription.packtpub.com/book/data/9781789136364/3){.link},
+**Supervised learning** uses data with
+labels. An example is the image classifier we built in [Lab
+3](https://subscription.packtpub.com/course/data/9781789136364/3){.link},
 [*Utilizing Computer Vision,*] or most of the other models
 that we\'ve built in this book.
 
-[**Semi-supervised learning**] aims to 
+**Semi-supervised learning** aims to 
 perform tasks usually done by supervised models, but with
 less data at hand and using either unsupervised or generative methods.
 There are three ways this can work: firstly, by making smarter use of
@@ -2327,8 +2327,8 @@ or just put the item back on the stack and display the next most likely
 label the next time.
 
 A great implementation of this technique is \"Prodigy,\" a labeling tool
-by the company that makes spaCy, which we learned about in [Chapter
-5](https://subscription.packtpub.com/book/data/9781789136364/5){.link},
+by the company that makes spaCy, which we learned about in [Lab
+5](https://subscription.packtpub.com/course/data/9781789136364/5){.link},
 [*Parsing Textual Data with Natural Language Processing*], we
 can see an example of the Prodigy tool in the following screenshot:
 
@@ -2347,7 +2347,7 @@ here: <https://prodi.gy/>.
 
 ### Note {#note .title}
 
-[**Note**]: A better user interface design and smart
+**Note**: A better user interface design and smart
 implementation of weak models can greatly accelerate the speed and
 quality of labeling.
 
@@ -2392,8 +2392,8 @@ digit\" classifier.
 The idea is that to determine whether an image is real or fake, the
 classifier would have to figure out whether it can classify this image
 into one class. If it can, the image is probably real. This approach,
-called [**semi-supervised generative adversarial network**]
-([**SGAN**]), has been shown to generate
+called **semi-supervised generative adversarial network**
+(**SGAN**), has been shown to generate
 more realistic data and deliver better results on limited data than
 standard supervised learning. Of course, GANs can be applied to more
 than just images.
@@ -2407,7 +2407,7 @@ SGANs for fraud detection {#sgans-for-fraud-detection .title style="clear: both"
 
 
 
-As the final applied project of this chapter,
+As the final applied project of this lab,
 let\'s consider the credit card problem again. In
 this section, we will create an SGAN as follows:
 
@@ -2425,7 +2425,7 @@ transactions and still get a decent fraud detector.
 
 ### Note {#note .title}
 
-[**Note**]: You can find the code for the
+**Note**: You can find the code for the
 SGAN on Kaggle under this link:
 <https://www.kaggle.com/jannesklaas/semi-supervised-gan-for-fraud-detection/code>.
 :::
@@ -2652,7 +2652,7 @@ the training for us:
 :::
 
 Take a minute to pause: that was a very long and complicated function to
-code. Before we summarize this chapter, let\'s look at the 15 key
+code. Before we summarize this lab, let\'s look at the 15 key
 elements of that code:
 
 
@@ -2785,7 +2785,7 @@ Summary
 
 
 
-In this chapter, you have learned about the two most important types of
+In this lab, you have learned about the two most important types of
 generative models: autoencoders and GANs. We first developed an
 autoencoder for MNIST images. We then used a similar architecture to
 encode credit card data and detect fraud. Afterward, we expanded the
@@ -2805,5 +2805,5 @@ first impression of how machine learning can solve game-theoretic
 optimization problems. GANs solve a minimax problem, which is frequent
 in economics and finance.
 
-In the next chapter, we will deep dive into exactly that type of
+In the next lab, we will deep dive into exactly that type of
 optimization as we cover reinforcement learning.

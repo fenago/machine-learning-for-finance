@@ -1,6 +1,6 @@
 
 
-Chapter 10. Bayesian Inference and Probabilistic Programming {#chapter-10.-bayesian-inference-and-probabilistic-programming .title}
+Chapter 10. Bayesian Inference and Probabilistic Programming {#lab-10.-bayesian-inference-and-probabilistic-programming .title}
 ---------------------------------------------------------------------
 
 
@@ -16,7 +16,7 @@ with a pen and paper. However, this all changed with the advent of
 modern high-performance computing. It unlocked the ability for us to
 explore wider spaces of mathematics and thus gain more accurate models.
 
-In the final chapter of this book, you\'ll learn about the following:
+In the final lab of this course, you\'ll learn about the following:
 
 
 -   The empirical derivation of the Bayes formula
@@ -29,7 +29,7 @@ In the final chapter of this book, you\'ll learn about the following:
 -   How various methods get applied in stochastic volatility models
 :::
 
-This book has largely covered deep learning and its applications in the
+This course has largely covered deep learning and its applications in the
 finance industry. As we\'ve witnessed, deep learning has been made
 practical through modern computing power, but it is not the only
 technique benefiting from this large increase in power.
@@ -63,7 +63,7 @@ import matplotlib.pyplot as plt% matplotlib inline
 ```
 :::
 
-This example is similar to the one given in the 2015 book, [*Bayesian
+This example is similar to the one given in the 2015 course, [*Bayesian
 Methods for Hackers: Probabilistic Programming and Bayesian
 Inference*], written by Cameron Davidson-Pilon. However, in
 our case, this is adapted to a financial context and rewritten so that
@@ -72,7 +72,7 @@ the mathematical concepts intuitively arise from the code.
 
 ### Note {#note .title}
 
-[**Note**]: You can view the example at the following link:
+**Note**: You can view the example at the following link:
 <http://camdavidsonpilon.github.io/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/>.
 :::
 
@@ -80,8 +80,8 @@ Let\'s imagine that you have a security that can
 either pay \$1 or, alternatively, nothing. The payoff depends on a
 two-step process. With a 50% probability, the payoff is random, with a
 50% chance of getting \$1 and a 50% chance of making nothing. The 50%
-chance of getting the dollar is the [**true payoff
-probability**] ([**TPP**]), [*x*].
+chance of getting the dollar is the **true payoff
+probability** (**TPP**), [*x*].
 
 This payoff scheme is visualized in the following diagram:
 
@@ -112,8 +112,8 @@ In the next section we will simulate the securities payoff process.
 The variable [*x*] represents the TPP. We
  randomly sample 100 truth values, which are 1 if you had
 gotten the dollar under the true payoff, and 0 if otherwise.
-We also sample the two random choices at [**Start**] and
-[**Random Payoff**] in the preceding scheme. It is
+We also sample the two random choices at **Start** and
+**Random Payoff** in the preceding scheme. It is
 computationally more efficient to sample the random outcomes in one go
 for all trials, even though they are not all needed.
 
@@ -162,7 +162,7 @@ called `JobLib`, which will help with parallel execution.
 
 ### Note {#note-1 .title}
 
-[**Note**]: `JobLib` is preinstalled on Kaggle
+**Note**: `JobLib` is preinstalled on Kaggle
 kernels. For more information, you can visit
 <https://joblib.readthedocs.io/en/latest/>.
 :::
@@ -444,7 +444,7 @@ workaround.
 
 ### Note {#note-2 .title}
 
-[**Note**]: The first round prior (all TPPs are equally likely)
+**Note**: The first round prior (all TPPs are equally likely)
 is called a \"flat prior\" because we make no assumptions about the
 distributions of values. In this case, the Bayesian posterior is equal
 to the maximum likelihood estimate.
@@ -722,7 +722,7 @@ plt.title('MH Trace');
 :::
 
 We will then get an output, in the form of a chart, which shows us the
-trace of the [**Metropolis Hasings**] ([**MH**])
+trace of the **Metropolis Hasings** (**MH**)
 sampler:
 
 
@@ -767,7 +767,7 @@ task, but we will put a Bayesian spin on it.
 
 ### Note {#note-3 .title}
 
-[**Note**]: This example is a straight adaptation of an example
+**Note**: This example is a straight adaptation of an example
 from the PyMC3 documentation:
 <https://docs.pymc.io/notebooks/stochastic_volatility.html>. This, in
 turn, is an adaptation of an example from Hoffman\'s 2011 paper,
@@ -946,7 +946,7 @@ model. As you can see, it consists of four key elements:
 :::
 
 The standard sampler for PyMC3 is not Metropolis Hastings, but the
-[**No-U-Turn Sampler**] ([**NUTS**]). PyMC3 will
+**No-U-Turn Sampler** (**NUTS**). PyMC3 will
 default to NUTS if we specify no sampler and just
 call `sample`.
 
@@ -1046,7 +1046,7 @@ to deep probabilistic programming.
 The Bayesian models that we\'ve developed so far are all quite shallow.
 So, let\'s ask ourselves whether we can combine the predictive power of
 deep networks with the advantages of Bayesian models. This is an active
-field of research and a fitting way to close this book.
+field of research and a fitting way to close this course.
 
 Deep networks have a number of parameters; this makes searching through
 the parameter space a hard problem. In traditional supervised deep
@@ -1058,8 +1058,8 @@ learning.
 By and large, there are four ways to do Bayesian deep learning:
 
 
--   Use [**Automatic Differentiation Variational Inference**]
-    ([**AVI**]). This means approximating
+-   Use **Automatic Differentiation Variational Inference**
+    (**AVI**). This means approximating
     the posterior with a guide model and then optimizing model
     parameters using gradient descent. PyMC3 can do this using the AVI
     optimizer. See the paper, [*Automatic Differentiation Variational
@@ -1104,13 +1104,13 @@ Summary
 
 
 
-In this chapter, you got a brief overview of modern Bayesian machine
+In this lab, you got a brief overview of modern Bayesian machine
 learning and its applications in finance. We\'ve only touched upon this
 as it is a very active field of research from which we can expect many
 breakthroughs in the near future. It will be exciting to observe its
 development and bring its applications into production.
 
-Looking back at this chapter, we should feel confident in understanding
+Looking back at this lab, we should feel confident in understanding
 the following:
 
 
@@ -1126,7 +1126,7 @@ the following:
 
 Notice how everything you have learned here transfers to bigger models
 as well, such as the deep neural networks that we\'ve discussed
-throughout the entirety of the book. The sampling process is still a bit
+throughout the entirety of the course. The sampling process is still a bit
 slow for very large models, but researchers are actively working on
 making it faster, and what you\'ve learned is a great foundation for the
 future.
@@ -1138,7 +1138,7 @@ Farewell {#farewell .title style="clear: both"}
 
 
 
-And thus, we close the last chapter of our journey, and I say goodbye to
+And thus, we close the last lab of our journey, and I say goodbye to
 you, dear reader. Let\'s look back at the table of contents that we were
 met with at the start of our journey.
 
@@ -1167,12 +1167,12 @@ following:
 -   Bayesian inference
 :::
 
-In each chapter, we created a large bag of practical tips and tricks
+In each lab, we created a large bag of practical tips and tricks
 that you can use. This will allow you to build state-of-the-art systems
 that will change the financial industry.
 
 Yet, in many ways we have only scratched the surface. Each of the
-chapter topics merit their own book, and even that would not adequately
+lab topics merit their own course, and even that would not adequately
 cover everything that could be said about machine learning in finance.
 
 I leave you with this thought: Machine learning in finance is an
@@ -1186,7 +1186,7 @@ Further reading {#further-reading .title style="clear: both"}
 
 
 
-You made it to the end of the book! What are you going to do now? Read
+You made it to the end of the course! What are you going to do now? Read
 more books! Machine learning, and in particular, deep learning, is a
 fast-moving field, so any reading list risks being outdated by the time
 you read it. However, the following list aims to show you the most
@@ -1199,11 +1199,11 @@ coming years.
 
 
 Wes McKinney, [*Python for Data Analysis*],
-<http://wesmckinney.com/pages/book.html>.
+<http://wesmckinney.com/pages/course.html>.
 
 Wes is the original creator of pandas, a popular Python data-handling
-tool that we saw in [Chapter
-2](https://subscription.packtpub.com/book/data/9781789136364/2){.link},
+tool that we saw in [Lab
+2](https://subscription.packtpub.com/course/data/9781789136364/2){.link},
 [*Applying Machine Learning to Structured Data*]. pandas is a
 core component of any data science workflow in Python and will remain so
 for the foreseeable future. Investing in sound knowledge of the tools he
@@ -1219,7 +1219,7 @@ Marcos Lopez de Prado, [*Advances in Financial Machine
 Learning*],
 <https://www.wiley.com/en-us/Advances+in+Financial+Machine+Learning-p-9781119482086>.
 
-Marcos is an expert at applying machine learning in finance. His book is
+Marcos is an expert at applying machine learning in finance. His course is
 largely focused on the danger of overfitting and how careful researchers
 have to be when doing proper science. While focused more on
 high-frequency trading, Marcos writes very clearly and makes potential
@@ -1237,7 +1237,7 @@ Statistical Learning*],
 
 The \"bible\" of statistical machine learning, containing good
 explanations of all the important concepts of statistical learning. This
-book is best used as a lookup book whenever you need some in-depth
+course is best used as a lookup course whenever you need some in-depth
 information on one concept.
 
 Gareth James, Daniela Witten, Trevor Hastie, and Robert Tibshirani,
@@ -1259,7 +1259,7 @@ statistical learning.
 Ian Goodfellow, Yoshua Bengio, and Aaron Courville, [*Deep
 Learning*], <https://www.deeplearningbook.org/>.
 
-While this book is very praxis-oriented, [*Deep Learning*] is
+While this course is very praxis-oriented, [*Deep Learning*] is
 more focused on the theory behind deep learning. It covers a broad range
 of topics and derives practical applications from theoretical concepts.
 :::
@@ -1271,7 +1271,7 @@ of topics and derives practical applications from theoretical concepts.
 
 Richard S. Sutton and Andrew G. Barto, [*Reinforcement Learning: An
 Introduction*],
-<http://incompleteideas.net/book/the-book-2nd.html>.
+<http://incompleteideas.net/course/the-course-2nd.html>.
 
 The standard work of reinforcement learning discusses all major
 algorithms in depth. The focus is less on flashy results and more on the
@@ -1286,7 +1286,7 @@ reasoning behind and derivation of reinforcement learning algorithms.
 Kevin P. Murphy, [*Machine Learning: a Probabilistic
 Perspective*], <https://www.cs.ubc.ca/~murphyk/MLbook/>.
 
-This book covers machine learning techniques from a probabilistic and
+This course covers machine learning techniques from a probabilistic and
 much more Bayesian perspective. It\'s a very good guide if you want to
 think about machine learning differently.
 
@@ -1294,7 +1294,7 @@ Cameron Davidson-Pilon, [*Probabilistic Programming and Bayesian Methods
 for Hackers*],
 <http://camdavidsonpilon.github.io/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/>.
 
-This is probably the only probabilistic programming book that focuses on
+This is probably the only probabilistic programming course that focuses on
 practical applications. Not only is it free and open source, it also
 gets frequent updates with new libraries and tools so that it always
 stays relevant.

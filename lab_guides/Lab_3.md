@@ -1,6 +1,6 @@
 
 
-Chapter 3. Utilizing Computer Vision {#chapter-3.-utilizing-computer-vision .title}
+Chapter 3. Utilizing Computer Vision {#lab-3.-utilizing-computer-vision .title}
 ---------------------------------------------
 
 
@@ -20,7 +20,7 @@ While the dancing hotdog may be one of the sillier applications of
 computer vision, it successfully showed the world the potential of the
 technology. In a world full of cameras, from the billions of
 smartphones, security cameras, and satellites in use every day, to
-[**Internet of Things**] ([**IoT**]) devices, being
+**Internet of Things** (**IoT**) devices, being
 able to interpret images yields great benefits for both consumers and
 producers.
 
@@ -41,13 +41,13 @@ expensive problem. This could extend to them using computer vision to
 inspect factories and equipment they insure.
 
 Looking at another case in the finance sector, banks needing to comply
-with [**Know-Your-Customer**] ([**KYC**]) rules are
+with **Know-Your-Customer** (**KYC**) rules are
 automating back-office processes and identity verification. In financial
 trading, computer vision can be applied to candlestick charts in order
 to find new patterns for technical analysis. We could dedicate a whole
-book to the practical applications of computer vision.
+course to the practical applications of computer vision.
 
-In this chapter, we will be covering the building blocks of computer
+In this lab, we will be covering the building blocks of computer
 vision models. This will include a focus on the following topics:
 
 
@@ -69,29 +69,29 @@ vision models. This will include a focus on the following topics:
 :::
 
 Before we start, let\'s have a look at all the different libraries we
-will be using in this chapter:
+will be using in this lab:
 
 
--   [**Keras**]: A high-level neural 
+- **Keras**: A high-level neural 
     network library and an interface to TensorFlow.
 
--   [**TensorFlow**]: A dataflow programming
+- **TensorFlow**: A dataflow programming
      and machine learning library that we use for
     GPU-accelerated computation.
 
--   [**Scikit-learn**]: A popular machine
+- **Scikit-learn**: A popular machine
     learning library with implementation of many classic algorithms as
     well as evaluation tools.
 
--   [**OpenCV**]: An image processing
+- **OpenCV**: An image processing
     library that can be used for rule-based augmentation
 
--   [**NumPy**]: A library for handling
+- **NumPy**: A library for handling
     matrices in Python.
 
--   [**Seaborn**]: A plotting library.
+- **Seaborn**: A plotting library.
 
--   [**tqdm**]: A tool to monitor the
+- **tqdm**: A tool to monitor the
     progress of Python programs.
 :::
 
@@ -100,13 +100,13 @@ for OpenCV, can be installed via `pip`; for example,
 `pip install keras`.
 
 OpenCV, however, will require a slightly more complex installation
-procedure. This is beyond the scope of this book, but the information is
+procedure. This is beyond the scope of this course, but the information is
 well documented online via OpenCV documentation,
 which you can view at the following URL:
 <https://docs.opencv.org/trunk/df/d65/tutorial_table_of_content_introduction.html>.
 
 Alternately, it\'s worth noting that both Kaggle and Google Colab come
-with OpenCV preinstalled. To run the examples in this chapter, make sure
+with OpenCV preinstalled. To run the examples in this lab, make sure
 you have OpenCV installed and can import with `import cv2`.
 
 
@@ -116,8 +116,8 @@ Convolutional Neural Networks {#convolutional-neural-networks .title style="clea
 
 
 
-[**Convolutional Neural Networks**], [**ConvNets**],
-or [**CNNs**] for short, are the driving engine behind computer
+**Convolutional Neural Networks**, **ConvNets**,
+or **CNNs** for short, are the driving engine behind computer
 vision. ConvNets allow us to work with larger images while still keeping
 the network at a reasonable size.
 
@@ -127,7 +127,7 @@ networks. Convolution is the mathematically correct term for sliding one
 matrix over another matrix. We\'ll explore in the next section,
 [*Filters on MNIST*], why this is important for ConvNets,
 but also why this is not the best name in the world for them, and why
-ConvNets should, in reality, be called [**filter nets**].
+ConvNets should, in reality, be called **filter nets**.
 
 You may be asking, \"but why filter nets?\" The answer is simply because
 what makes them work is the fact that they use filters.
@@ -706,11 +706,11 @@ model.add(Flatten())
 ConvNets usually consist of a feature extraction
 part, the convolutional layers, as well as a classification part. The
 classification part is made up out of the simple fully connected layers
-that we've already explored in [Chapter
-1](https://subscription.packtpub.com/book/data/9781789136364/1){.link},
+that we've already explored in [Lab
+1](https://subscription.packtpub.com/course/data/9781789136364/1){.link},
 [*Neural Networks and Gradient-Based Optimization*], and
-[Chapter
-2](https://subscription.packtpub.com/book/data/9781789136364/2){.link},
+[Lab
+2](https://subscription.packtpub.com/course/data/9781789136364/2){.link},
 [*Applying Machine Learning to Structured Data*].
 
 To distinguish the plain layers from all other types of layers, we refer
@@ -885,7 +885,7 @@ from keras.datasets import mnist
 ```
 :::
 
-As explained at the beginning of the chapter, we want to reshape the
+As explained at the beginning of the lab, we want to reshape the
 dataset so that it can have a channel dimension as well. The dataset as
 it comes does not have a channel dimension yet, but this is something we
 can do:
@@ -1130,7 +1130,7 @@ model.compile(optimizer=momentum_optimizer,loss='sparse_categorical_crossentropy
 
 
 Back in 2015, Diederik P. Kingma and Jimmy Ba created the
-[**Adam**] ([**Adaptive Momentum Estimation**])
+**Adam** (**Adaptive Momentum Estimation**)
 optimizer. This is another way to make gradient descent 
 work more efficiently. Over the past few years, this method
 has shown very good results and has, therefore,
@@ -1192,7 +1192,7 @@ model.compile(optimizer=adam_optimizer,loss='sparse_categorical_crossentropy',me
 ```
 :::
 
-As you have seen earlier in this chapter, we can also compile the model
+As you have seen earlier in this lab, we can also compile the model
 just by passing the `adam` string as an optimizer. In this
 case, Keras will create an Adam optimizer for us and choose the
 recommended values.
@@ -1282,12 +1282,12 @@ work best, but the difference between the two is not very large.
 
 
 In Keras, regularizers that are applied to
- the weights are called [**kernel\_regularizer**],
+ the weights are called **kernel\_regularizer**,
 and regularizers that are applied to the bias are
-called [**bias\_regularizer**]. You can also apply
+called **bias\_regularizer**. You can also apply
 regularization directly to the activation of the nodes to prevent them
 from being activated very strongly with
-[**activity\_regularizer**].
+**activity\_regularizer**.
 
 For now, let\'s add some L2 regularization to our network. To do this,
 we need to run the following code:
@@ -1454,8 +1454,8 @@ for predictions, dropout doesn\'t do anything.
 ### Batchnorm {#batchnorm .title}
 
 
-[**Batchnorm**], short for [**batch**] 
- [**normalization**], is a technique for
+**Batchnorm**, short for **batch** 
+ **normalization**, is a technique for
 \"normalizing\" input data to a layer batch-wise. Each batchnorm
 computes the mean and standard deviation of the data and applies a
 transformation so that the mean is zero and the standard deviation is
@@ -1810,8 +1810,8 @@ for the layer in vgg_model.layers:
 :::
 
 Keras downloads VGG as a functional API model. We will learn more about
-the functional API in [Chapter
-6](https://subscription.packtpub.com/book/data/9781789136364/6){.link},
+the functional API in [Lab
+6](https://subscription.packtpub.com/course/data/9781789136364/6){.link},
 [*Using Generative Models*], but for now, we just want to use
 the Sequential API, which allows us to stack layers through
 `model.add()`. We can convert a model with the functional API
@@ -1878,7 +1878,7 @@ image augmentation purposes, we can just use Keras\'
 `ImageDataGenerator`.
 
 More advanced augmentations can be done with the OpenCV library.
-However, focusing on this is outside the scope of this chapter.
+However, focusing on this is outside the scope of this lab.
 
 
 
@@ -1917,7 +1917,7 @@ techniques.
 
 ### Note {#note .title}
 
-[**Note**]: There are more commands
+**Note**: There are more commands
 available in Keras. For a full list, you should refer to the Keras
 documentation at <https://keras.io/>.
 :::
@@ -2025,7 +2025,7 @@ The modularity tradeoff {#the-modularity-tradeoff .title style="clear: both"}
 
 
 
-This chapter has shown that it is possible, and
+This lab has shown that it is possible, and
 often useful, to aid a machine learning model with some rule-based
 system. You might also have noticed that the images in the dataset were
 all cropped to show only one plant.
@@ -2091,13 +2091,13 @@ Computer vision beyond classification {#computer-vision-beyond-classification .t
 
 As we have seen, there are many techniques that we can use to make our
 image classifier work better. These are techniques that you\'ll find
-used throughout this book, and not only for computer vision
+used throughout this course, and not only for computer vision
 applications.
 
-In this final section of the chapter, we will discuss some approaches
+In this final section of the lab, we will discuss some approaches
 that go beyond classifying images. These tasks often require more
 creative use of neural networks than what we\'ve discussed throughout
-this chapter.
+this lab.
 
 To get the most out of this section, you don\'t
 need to worry too much about the details of the techniques presented,
@@ -2234,8 +2234,8 @@ predictions for what object is shown in the box.
 
 There are two approaches to obtaining such bounding boxes.
 
-A [**Region-based Convolutional Neural Network**]
-([**R-CNN**]) reuses a classification model. It takes an image
+A **Region-based Convolutional Neural Network**
+(**R-CNN**) reuses a classification model. It takes an image
 and slides the classification model over the image. The 
 result is many classifications for different parts of the
 image. Using this feature map, a region proposal network performs a
@@ -2249,7 +2249,7 @@ Proposal Networks*], which is available at
 <https://arxiv.org/abs/1506.01497>, but the basic concept of sliding
 a classifier over an image has remained the same.
 
-[**You Only Look Once**] ([**YOLO**]), on the other
+**You Only Look Once** (**YOLO**), on the other
 hand, uses a single model consisting of only convolutional layers. It
 divides an image into a grid and predicts an object
 class for each grid cell. It then predicts several possible bounding
@@ -2288,8 +2288,8 @@ deep learning model that classifies damaged roofs. Of course, you could
 train an object locator to distinguish between damaged and intact roofs
 directly, but in practice, this is usually not a good idea.
 
-If you\'re interested in reading more about this, [Chapter
-4](https://subscription.packtpub.com/book/data/9781789136364/4){.link},
+If you\'re interested in reading more about this, [Lab
+4](https://subscription.packtpub.com/course/data/9781789136364/4){.link},
 [*Understanding Time Series*], has a great discussion on
 modularity.
 
@@ -2302,7 +2302,7 @@ Exercises {#exercises .title style="clear: both"}
 
 Fashion MNIST is a drop-in replacement for MNIST, but instead of
 handwritten digits, it is about classifying clothes. Try out the
-techniques we have used in this chapter on Fashion MNIST. How do they
+techniques we have used in this lab on Fashion MNIST. How do they
 work together? What gives good results? You can find the dataset on
 Kaggle at <https://www.kaggle.com/zalando-research/fashionmnist>.
 
@@ -2322,7 +2322,7 @@ Summary
 
 
 
-In this chapter, you have seen the building blocks of computer vision
+In this lab, you have seen the building blocks of computer vision
 models. We\'ve learned about convolutional layers, and both the ReLU
 activation and regularization methods. You have also seen a number of
 ways to use neural networks creatively, such as with Siamese networks
@@ -2350,16 +2350,16 @@ translate into real value for many corporations today. An increasing
 number of firms incorporate image-based data sources in their decision
 making; you are now prepared to tackle such problems head-on.
 
-Over the course of this chapter, we\'ve seen that an entire pipeline is
+Over the course of this lab, we\'ve seen that an entire pipeline is
 involved in a successful computer vision project, and working on the
 pipeline often has a similar or greater benefit as compared to working
 on the model.
 
-In the next chapter, we will look at the most iconic and common form of
+In the next lab, we will look at the most iconic and common form of
 financial data: time series. We will tackle the task of forecasting web
 traffic using more traditional statistical methods, such as
-[**ARIMA**] (short for [**AutoRegressive Integrated Moving
-Average**]), as well as modern neural network-based approaches.
+**ARIMA** (short for **AutoRegressive Integrated Moving
+Average**), as well as modern neural network-based approaches.
 You will also learn about feature engineering with autocorrelation
 and Fourier transformations. Finally, you will learn how to compare and
 contrast different forecasting methods and build a high-quality

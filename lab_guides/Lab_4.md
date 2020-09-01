@@ -1,5 +1,5 @@
 
-Chapter 4. Understanding Time Series {#chapter-4.-understanding-time-series .title}
+Lab 4. Understanding Time Series {#lab-4.-understanding-time-series .title}
 ---------------------------------------------
 
 
@@ -35,23 +35,23 @@ a vast body of knowledge and tools for working with time series has
 developed within the fields of statistics, econometrics,
 and engineering.
 
-In this chapter, we will be looking at a few classic tools that are
+In this lab, we will be looking at a few classic tools that are
 still very much relevant today. We will then learn how neural networks
 can deal with time series, and how deep learning models can express
 uncertainty.
 
 Before we jump into looking at time series, I need to set your
-expectations for this chapter. Many of you might have
- come to this chapter to read about stock market forecasting,
-but I need to warn you that this chapter is not about stock market
-forecasting, neither is any other chapter in this book.
+expectations for this lab. Many of you might have
+ come to this lab to read about stock market forecasting,
+but I need to warn you that this lab is not about stock market
+forecasting, neither is any other lab in this course.
 
 Economic theory shows that markets are somewhat efficient. The efficient
 market hypothesis states that all publicly available information is
 included in stock prices. This extends to information on how to process
 information, such as forecasting algorithms.
 
-If this book were to present an algorithm that could predict prices on
+If this course were to present an algorithm that could predict prices on
 the stock market and deliver superior returns, many investors would
 simply implement this algorithm. Since those algorithms would all buy or
 sell in anticipation of price changes, they would change the prices in
@@ -59,7 +59,7 @@ the present, thus destroying the advantage that you would gain by using
 the algorithm. Therefore, the algorithm presented would not work for
 future readers.
 
-Instead, this chapter will use traffic data from Wikipedia. Our goal is
+Instead, this lab will use traffic data from Wikipedia. Our goal is
 to forecast traffic for a specific Wikipedia page. We can obtain the
 Wikipedia traffic data via the `wikipediatrend` CRAN package.
 
@@ -82,8 +82,8 @@ Visualization and preparation in pandas {#visualization-and-preparation-in-panda
 
 
 
-As we saw in [Chapter
-2](https://subscription.packtpub.com/book/data/9781789136364/2){.link},
+As we saw in [Lab
+2](https://subscription.packtpub.com/course/data/9781789136364/2){.link},
 [*Applying Machine Learning to Structured Data*], it\'s
 usually a good idea to get an overview of the data before we
  start training. You can achieve this for the data we
@@ -106,7 +106,7 @@ Running this code will give us the following table:
   1   2PM\_zh.wikipedia.org\_all-access\_spider    0            0            ...   0
 :::
 
-The data in the [**Page**] column contains the name of the
+The data in the **Page** column contains the name of the
 page, the language of the Wikipedia page, the type of accessing device,
 and the accessing agent. The other columns contain the traffic for that
 page on that date.
@@ -116,7 +116,7 @@ Korean pop band, on the Chinese version of Wikipedia, by all methods of
 access, but only for agents classified as spider traffic; that is,
 traffic not coming from humans. While most time series work is focused
 on local, time-dependent features, we can enrich
-all of our models by providing access to [**global features**].
+all of our models by providing access to **global features**.
 
 Therefore, we want to split up the page string into smaller, more useful
 features. We can achieve this by running the following code:
@@ -245,8 +245,8 @@ Distribution of records by access type
 :::
 
 There are two possible access methods:
-[**mobile**] and [**desktop**]. There\'s also a third
-option [**all-access**], which combines the statistics for
+**mobile** and **desktop**. There\'s also a third
+option **all-access**, which combines the statistics for
 mobile and desktop access.
 
 We can then plot the distribution of records by agent by running the
@@ -281,7 +281,7 @@ their interactions. There are only two real considerations that need to
 be addressed for global features:
 
 
--   [**Is the distribution of features very skewed?**] If this
+- **Is the distribution of features very skewed?** If this
     is the case then there might only be a few instances that possess a
     global feature, and our model might overfit on this global feature.
     Imagine that there were only a small number of articles from the
@@ -290,7 +290,7 @@ be addressed for global features:
     Our distribution is relatively even, so we do not have to worry
     about this.
 
--   [**Can features be easily encoded?**] Some global features
+- **Can features be easily encoded?** Some global features
     cannot be one-hot encoded. Imagine that we were given the full text
     of a Wikipedia article with the time series. It would not be
     possible to use this feature straight away, as some heavy 
@@ -358,10 +358,10 @@ title. Next, we plot the actual page views. Our [*X*]
 coordinates are the days, and the [*Y*] coordinates are the
 page views.
 
-To compute the mean, we are going to use a [**convolve**]
+To compute the mean, we are going to use a **convolve**
 operation, which you might be familiar with as we explored convolutions
-in [Chapter
-3](https://subscription.packtpub.com/book/data/9781789136364/3){.link},
+in [Lab
+3](https://subscription.packtpub.com/course/data/9781789136364/3){.link},
 [*Utilizing Computer Vision*]. This 
 convolve operation creates a vector of ones divided by the
 window size, in this case 10. The convolve operation slides the vector
@@ -478,15 +478,15 @@ was ton the same day one week ago would help our model.
 
 When both the function and the Fourier transform are discrete, which is
 the case in a series of daily measurements, it is 
-called the [**discrete Fourier transform**]
-([**DFT**]). A very fast algorithm that is used for computing
-the DFT is known as the [**Fast Fourier Transform**]
-([**FFT**]), which today has become an important algorithm
+called the **discrete Fourier transform**
+(**DFT**). A very fast algorithm that is used for computing
+the DFT is known as the **Fast Fourier Transform**
+(**FFT**), which today has become an important algorithm
 in scientific computing. This theory was known to the mathematician Carl
 Gauss in 1805 but was brought to light more recently by American
 mathematicians James W. Cooley and John Tukey in 1965.
 
-It\'s beyond the scope of this chapter to go into how and why the
+It\'s beyond the scope of this lab to go into how and why the
 Fourier transformations work, so in this section we will only be giving
 a brief introduction. Imagine our function as a piece of wire. We take
 this wire and wrap it around a point, and if you wrap the wire so that
@@ -776,7 +776,7 @@ still small. Since we have an abundance of series and only a few
 observations per series, a side-by-side split is more feasible in our
 case.
 
-In this chapter, we\'re focusing on forecasting traffic for 50 days. So,
+In this lab, we\'re focusing on forecasting traffic for 50 days. So,
 we must first split the last 50 days of each series from the rest, as
 seen in the following code, before splitting the training and validation
 set:
@@ -797,8 +797,8 @@ When splitting, we use `X.values` to only get the data, not a
 DataFrame containing the data. After splitting we are left with 130,556
 series for training and 14,507 for validation.
 
-In this example, we are going to use the [**mean absolute percentage
-error**] ([**MAPE**]) as a loss and evaluation metric.
+In this example, we are going to use the **mean absolute percentage
+error** (**MAPE**) as a loss and evaluation metric.
 MAPE can cause division-by-zero errors if the true
 value of `y` is zero. Thus, to prevent division by zero
 occurring, we\'ll use a small-value epsilon:
@@ -822,7 +822,7 @@ A note on backtesting {#a-note-on-backtesting .title style="clear: both"}
 The peculiarities of choosing training and testing sets are especially
 important in both systematic investing and algorithmic trading. The main
 way to test trading algorithms is a process called
-[**backtesting**].
+**backtesting**.
 
 Backtesting means we train the algorithm on data from a certain time
 period and then test its performance on
@@ -837,7 +837,7 @@ Let\'s take a look at four of the most important biases that we need to
 be aware of:
 
 
--   [**Look-ahead bias**]: This is introduced if future data is
+- **Look-ahead bias**: This is introduced if future data is
     accidentally included at a point in the simulation 
     where that data would not have been available yet. This
     can be caused by a technical bug in the simulator, but it can
@@ -847,7 +847,7 @@ be aware of:
     look-ahead bias is introduced. The same goes for the calculation of
     maxima or minima.
 
--   [**Survivorship bias**]: This is introduced if only stocks
+- **Survivorship bias**: This is introduced if only stocks
     that still exist at the time of testing are included in the
     simulation. Consider, for example, the 2008 financial crisis in
     which many firms went bankrupt. Leaving the
@@ -855,7 +855,7 @@ be aware of:
     introduce survivorship bias. After all, the algorithm could have
     invested in those stocks in 2008.
 
--   [**Psychological tolerance bias**]: What looks good in a
+- **Psychological tolerance bias**: What looks good in a
     backtest might not be good in real life. Consider an algorithm that
     loses money for four months in a row before making it all back in a
     backtest. We might feel satisfied with this algorithm. However, if
@@ -864,7 +864,7 @@ be aware of:
     back, then will we sit tight or pull the plug? In the backtest, we
     know the final result, but in real life, we do not.
 
--   [**Overfitting**]: This is a problem for all machine
+- **Overfitting**: This is a problem for all machine
     learning algorithms, but in backtesting, overfitting is a persistent
     and insidious problem. Not only does the
     algorithm potentially overfit, but the designer of the algorithm
@@ -1006,20 +1006,20 @@ forecasting will not continue the trend, and if a time series shows
 cyclical behavior, then the median will not continue 
 with the cycle.
 
-[**ARIMA**] which stands for [**Autoregressive Integrated
-Moving Average**], is made up of three core components:
+**ARIMA** which stands for **Autoregressive Integrated
+Moving Average**, is made up of three core components:
 
 
--   [**Autoregression**]: The model uses
+- **Autoregression**: The model uses
     the relationship between a value and a number of lagged
     observations.
 
--   [**Integrated**]: The model uses the
+- **Integrated**: The model uses the
     difference between raw observations to make the time series
     stationary. A time series going continuously upward will have a flat
     integral as the differences between points are always the same.
 
--   [**Moving Average**]: The model uses
+- **Moving Average**: The model uses
     residual errors from a moving average.
 :::
 
@@ -1328,7 +1328,7 @@ series to process.
 
 ### Note {#note .title}
 
-[**Note**]: The library\'s repository can be found here:
+**Note**: The library\'s repository can be found here:
 <https://github.com/oseiskar/simdkalman>.
 :::
 
@@ -1441,7 +1441,7 @@ However, one weakness of Kalman filters is that they cannot discover
 patterns by themselves and need carefully engineered priors in order to
 work.
 
-In the second half of this chapter, we will be looking at neural
+In the second half of this lab, we will be looking at neural
 network-based approaches that can automatically model time series, and
 often with higher accuracy.
 
@@ -1451,7 +1451,7 @@ Forecasting with neural networks {#forecasting-with-neural-networks .title style
 
 
 
-The second half of the chapter is all about neural networks. In the
+The second half of the lab is all about neural networks. In the
 first part, we will be building a simple neural 
 network that only forecasts the next time step. Since the
 spikes in the series are very large, we will be working with
@@ -1465,7 +1465,7 @@ networks is that they can take in both a high number of features in
 addition to very high-dimensional data. The 
 disadvantage is that we have to be careful about what
 features we input. Remember how we discussed look-ahead bias earlier in
-the chapter, including future data that would not have been available at
+the lab, including future data that would not have been available at
 the time of forecasting, which is a problem in backtesting.
 
 
@@ -1613,7 +1613,7 @@ Now we come to the lagged features. Technically, neural networks could
 discover what past events are relevant for forecasting themselves.
 However, this is pretty difficult because of the 
 vanishing gradient problem, something that is covered in more
-detail later, in the [*LSTM*] section of this chapter. For
+detail later, in the [*LSTM*] section of this lab. For
 now, let\'s just set up a little function that creates an array lagged
 by a number of days:
 
@@ -1783,8 +1783,8 @@ preceding code step by step in order to fully understand it:
 :::
 
 Finally, we can use our `get_batch` function to write a
-generator, just like we did in [Chapter
-3](https://subscription.packtpub.com/book/data/9781789136364/3){.link},
+generator, just like we did in [Lab
+3](https://subscription.packtpub.com/course/data/9781789136364/3){.link},
 [*Utilizing Computer Vision*]. This generator loops over the
 original training set and passes a subset into the `get_batch`
 function. It then yields the batch obtained.
@@ -1819,8 +1819,8 @@ Conv1D {#conv1d .title style="clear: both"}
 
 
 You might remember Convolution Neural Networks (ConvNets, or CNNs) from
-[Chapter
-3,](https://subscription.packtpub.com/book/data/9781789136364/3){.link}
+[Lab
+3,](https://subscription.packtpub.com/course/data/9781789136364/3){.link}
 [*Utilizing Computer Vision*], where we looked briefly at
 roofs and insurance. In computer vision, convolutional filters slide
 over the image two-dimensionally. There is also a version of
@@ -1855,7 +1855,7 @@ model.add(Dense(1))
 
 Notice that next to `Conv1D` and `Activation`, there
 are two more layers in this network. `MaxPool1D` works exactly
-like `MaxPooling2D`, which we used earlier in the book. It
+like `MaxPooling2D`, which we used earlier in the course. It
 takes a piece of the sequence with a specified length and returns the
 maximum element in the sequence. This is similar to how it returned the
 maximum element of a small window in two-dimensional convolutional
@@ -1918,7 +1918,7 @@ Your validation loss will still be quite high, around 12,798,928. The
 absolute loss value is never a good guide for how well your model is
 doing. You\'ll find that it\'s better to use other metrics in order to
 see whether your forecasts are useful. However, please note that we will
-reduce the loss significantly later in this chapter.
+reduce the loss significantly later in this lab.
 
 
 
@@ -1996,7 +1996,7 @@ Another method to make order matter within neural
 networks is to give the network some kind of memory. So far, all of our
 networks have done a forward pass without any memory of what happened
 before or after the pass. It\'s time to change that
-with a [**recurrent neural network**] ([**RNN**]):
+with a **recurrent neural network** (**RNN**):
 
 
 ![](./images/B10354_04_19.jpg)
@@ -2087,7 +2087,7 @@ However, in practice, this approach often falls short because of the
 vanishing gradients problem.
 
 Over the course of many timesteps, the network has a hard time keeping
-up meaningful gradients. While this is not the focus of this chapter, a
+up meaningful gradients. While this is not the focus of this lab, a
 more detailed exploration of why this happens can be read in the 1994
 paper, [*Learning long-term dependencies with gradient descent is
 difficult,*] available at
@@ -2095,7 +2095,7 @@ difficult,*] available at
 Patrice Simard, and Paolo Frasconi.
 
 In direct response to the vanishing gradients problem of simple RNNs,
-the [**Long Short-Term Memory**] ([**LSTM**]) layer
+the **Long Short-Term Memory** (**LSTM**) layer
 was invented. This layer performs much better at longer time series.
 Yet, if relevant observations are a few hundred steps behind in
 the series, then even LSTM will struggle. This is why we manually
@@ -2112,8 +2112,8 @@ A rolled out RNN
 :::
 :::
 
-As you can see, this is the same as the RNN that we saw in [Chapter
-2](https://subscription.packtpub.com/book/data/9781789136364/2){.link},
+As you can see, this is the same as the RNN that we saw in [Lab
+2](https://subscription.packtpub.com/course/data/9781789136364/2){.link},
 [*Applying Machine Learning to Structured Data*], except that
 this has been unrolled over time.
 
@@ -2208,7 +2208,7 @@ model.add(Dense(1))
 
 ### Note {#note .title}
 
-[**Note**]: If you are using a GPU and TensorFlow backend with
+**Note**: If you are using a GPU and TensorFlow backend with
 Keras, use `CuDNNLSTM` instead of `LSTM`. It\'s
 significantly faster while working in exactly the same way.
 :::
@@ -2234,7 +2234,7 @@ Recurrent dropout {#recurrent-dropout .title style="clear: both"}
 
 
 
-Having read this far into the book, you\'ve already 
+Having read this far into the course, you\'ve already 
 encountered the concept of [*dropout*]. Dropout
 removes some elements of one layer of input at random. A common and
 important tool in RNNs is a [*recurrent dropout*], which does
@@ -2378,7 +2378,7 @@ of `X`.
 
 ### Note {#note .title}
 
-[**Note**]: For this example to work, you have to load the
+**Note**: For this example to work, you have to load the
 backend, clear the session, and set the learning phase before defining
 and training the model, as the training process will leave the setting
 in the TensorFlow graph. You can also save the trained model, clear the
@@ -2475,9 +2475,9 @@ Exercises {#exercises .title style="clear: both"}
 
 
 
-Now we\'re at the end of the chapter, why not try some of the following
+Now we\'re at the end of the lab, why not try some of the following
 exercises? You\'ll find guides on how to complete them all throughout
-this chapter:
+this lab:
 
 
 -   A good trick is to use LSTMs on top of one-dimensional convolution,
@@ -2509,12 +2509,12 @@ Summary
 
 
 
-In this chapter, you learned about a wide range of conventional tools
+In this lab, you learned about a wide range of conventional tools
 for dealing with time series data. You also learned about
 one-dimensional convolution and recurrent architectures, and finally,
 you learned a simple way to get your models to express uncertainty.
 
-Time series are the most iconic form of financial data. This chapter has
+Time series are the most iconic form of financial data. This lab has
 given you a rich toolbox for dealing with time series. Let\'s recap all
 of the things that we\'ve covered on the example of forecasting web
 traffic for Wikipedia:
@@ -2545,11 +2545,11 @@ traffic for Wikipedia:
 :::
 
 This rich toolbox of time series techniques comes in especially handy in
-the next chapter, where we will cover natural language processing.
+the next lab, where we will cover natural language processing.
 Language is basically a sequence, or time series, of words. This means
 we can reuse many tools from time series modeling for natural language
 processing.
 
-In the next chapter, you will learn how to find company names in text,
+In the next lab, you will learn how to find company names in text,
 how to group text by topic, and even how to translate text using neural
 networks.

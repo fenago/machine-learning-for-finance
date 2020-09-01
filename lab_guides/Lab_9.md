@@ -1,6 +1,6 @@
 
 
-Chapter 9. Fighting Bias {#chapter-9.-fighting-bias .title}
+Chapter 9. Fighting Bias {#lab-9.-fighting-bias .title}
 ---------------------------------
 
 
@@ -14,14 +14,14 @@ an unjust world. Simply put, if we are not careful, our programs will
 amplify human biases.
 
 In the financial industry, anti-discrimination is not only a matter of
-morality. Take, for instance, the [**Equal Credit Opportunity
-Act**] ([**ECOA**]), which came into force in 1974 in
+morality. Take, for instance, the **Equal Credit Opportunity
+Act** (**ECOA**), which came into force in 1974 in
 the United States. This law explicitly forbids creditors from
 discriminating applicants based on race, sex, marital status, and
 several other attributes. It also requires creditors to inform
 applicants about the reasons for denial.
 
-The algorithms discussed in this book are discrimination machines. Given
+The algorithms discussed in this course are discrimination machines. Given
 an objective, these machines will find the features that it's best to
 discriminate on. Yet, as we've discussed discrimination is not always
 okay.
@@ -30,23 +30,23 @@ While it\'s okay to target ads for books from a certain country to
 people who are also from that country, it\'s usually not okay, and
 thanks to the ECOA, often illegal, to deny a loan to people from a
 certain country. Within the financial domain, there are much stricter
-rules for discrimination than those seen in book sales. This is because
+rules for discrimination than those seen in course sales. This is because
 decisions in the financial domain have a much more
-severe impact on people\'s lives than those of book sales.
+severe impact on people\'s lives than those of course sales.
 
-Equally, discrimination in this context is [**feature
-specific**]. For example, while it\'s okay to discriminate
+Equally, discrimination in this context is **feature
+specific**. For example, while it\'s okay to discriminate
 against loan applicants based on their history of repaying loans, it\'s
 not okay to do so based on their country of origin, unless there are
 sanctions against that country or similar overarching laws in place.
 
-Throughout this chapter, we\'ll discuss the following:
+Throughout this lab, we\'ll discuss the following:
 
 
 -   Where bias in machines comes from
 
--   The legal implications of biased [**machine learning**]
-    ([**ML**]) models
+-   The legal implications of biased **machine learning**
+    (**ML**) models
 
 -   How observed unfairness can be reduced
 
@@ -58,7 +58,7 @@ Throughout this chapter, we\'ll discuss the following:
     addressed in non-technical ways
 :::
 
-The algorithms discussed in this book are feature extraction algorithms.
+The algorithms discussed in this course are feature extraction algorithms.
 Even if regulated features are omitted, an algorithm might infer them
 from proxy features and then discriminate based on them anyway. As an
 example of this, ZIP codes can be used to predict race reasonably well
@@ -73,14 +73,14 @@ Sources of unfairness in machine learning {#sources-of-unfairness-in-machine-lea
 
 
 As we have discussed many times throughout this
-book, models are a function of the data that they are trained on.
+course, models are a function of the data that they are trained on.
 Generally speaking, more data will lead to smaller errors. So, by
 definition, there is less data on minority groups,
 simply because there are fewer people in those groups.
 
-This [**disparate sample size**] can lead to worse model
+This **disparate sample size** can lead to worse model
 performance for the minority group. As a result, this increased error is
-often known as a [**systematic error**]. The model might have
+often known as a **systematic error**. The model might have
 to overfit the majority group data so that the relationships it found do
 not apply to the minority group data. Since there
 is little minority group data, this is not punished as much.
@@ -99,14 +99,13 @@ example, \"raw data\" does not exist. Data does not appear naturally,
 instead it\'s measured by humans using human-made measurement protocols,
 which in themselves can be biased in many different ways.
 
-Biases could include having [**sampling biases**], such as in
+Biases could include having **sampling biases**, such as in
 the Manhattan housing example, or having
-[**measurement biases**], which is when your sample might not
+**measurement biases**, which is when your sample might not
 measure what it is intended to measure, or may even discriminate against
 one group.
 
-Another bias that\'s possible is [**pre-existing social
-biases**]. These are visible in word
+Another bias that\'s possible is **pre-existing social biases**. These are visible in word
 vectors, for instance, in Word2Vec, where the mapping from father to
 doctor in latent space maps from mother to nurse. Likewise, the vector
 from man to computer programmer maps from woman to homemaker. This is
@@ -128,20 +127,20 @@ treatment*], and [*disparate impact*]. Let\'s take
 a minute to look at each of these:
 
 
--   [**Disparate treatment**]: This is one kind of unlawful
+- **Disparate treatment**: This is one kind of unlawful
     discrimination. Intentionally discriminating against ZIP codes with
     the hope of discriminating against race is not legal. Disparate
     treatment problems have less to do with the algorithm and more to do
     with the organization running it.
 
--   [**Disparate impact**]: This can be a problem if an
+- **Disparate impact**: This can be a problem if an
     algorithm is deployed that has a different impact 
     on different groups, even without the organization
     knowing about it. Let\'s walk through a lending scenario in which
     disparate impact could be a problem. Firstly, the plaintiff must
     establish that there is a disparate impact. Assessing if there\'s a
     disparate impact is usually done with the
-    [**four-fifths rule**], which says that if the selection
+    **four-fifths rule**, which says that if the selection
     rate of a group is less than 80% of the group, then it is regarded
     as evidence of adverse impact. If a lender has 150 loan applicants
     from group A, of which 100, or 67%, are accepted, and 50 applicants
@@ -158,7 +157,7 @@ a minute to look at each of these:
 
 ### Note {#note .title}
 
-[**Note**]: For a more in-depth overview of these topics, see
+**Note**: For a more in-depth overview of these topics, see
 Moritz Hardt\'s 2017 NeurIPS presentation on the topic at
 <http://mrtz.org/nips17/#/11>.
 :::
@@ -207,9 +206,9 @@ point. Let\'s look at the distribution of applicants in this graph:
 
 ### Note {#note .title}
 
-[**Note**]: The data for this example is synthetic; you can
+**Note**: The data for this example is synthetic; you can
 find the Excel file used for these calculations in the GitHub repository
-of this book,
+of this course,
 <https://github.com/PacktPublishing/Machine-Learning-for-Finance/blob/master/9.1_parity.xlsx>.
 :::
 
@@ -229,28 +228,28 @@ So, what can we see? We can see the following:
 
 
 -   In orange are applicants who would not have
-    repaid the loan and did not get accepted: [**true
-    negatives**] ([**TNs**]).
+    repaid the loan and did not get accepted: **true
+    negatives** (**TNs**).
 
 -   In blue are applicants who would have repaid
-    the loan but did not get accepted: [**false negatives**]
-    ([**FNs**]).
+    the loan but did not get accepted: **false negatives**
+    (**FNs**).
 
 -   In yellow are applicants who did get the loan
-    but did not pay it back: [**false positives**]
-    ([**FPs**]).
+    but did not pay it back: **false positives**
+    (**FPs**).
 
 -   In gray are applicants who did receive the loan
-    and paid it back: [**true positives**]
-    ([**TPs**]).
+    and paid it back: **true positives**
+    (**TPs**).
 :::
 
 As you can see, there are several issues with this
-choice of cutoff point. [**Group B**] applicants need to have a
-better score to get a loan than [**Group A**] applicants,
+choice of cutoff point. **Group B** applicants need to have a
+better score to get a loan than **Group A** applicants,
 indicating disparate treatment. At the same time, only around 51% of
-[**Group A**] applicants get a loan but only 37% of [**Group
-B**] applicants do, indicating disparate impact.
+**Group A** applicants get a loan but only 37% of **Group
+B** applicants do, indicating disparate impact.
 
 A [*group unaware threshold*], which we can see below, would
 give both groups the same minimum score:
@@ -264,10 +263,10 @@ Equal cutoff
 :::
 
 In the preceding graph, while both groups have the same cutoff rate,
-[**Group A**] has been given fewer loans. At the same time,
-predictions for [**Group A**] have a lower accuracy than the
-predictions given for [**Group B**]. It seems that although
-both groups face the same score threshold, [**Group A**] is at
+**Group A** has been given fewer loans. At the same time,
+predictions for **Group A** have a lower accuracy than the
+predictions given for **Group B**. It seems that although
+both groups face the same score threshold, **Group A** is at
 a disadvantage.
 
 Demographic parity aims to achieve fairness by ensuring that both groups
@@ -293,13 +292,13 @@ Equal pick rate
 
 While this method cannot be blamed for statistical discrimination and
 disparate impact, it can be blamed for disparate treatment. In the equal
-pick rate graphic we can see how [**Group A**] is given a lower
-threshold score; meanwhile, there are more successful [**Group
-A**] applicants who default on their loans. In fact, [**Group
-A**] is not profitable and gets subsidized by [**Group
-B**]. Accepting a worse economic outcome to favor a certain
+pick rate graphic we can see how **Group A** is given a lower
+threshold score; meanwhile, there are more successful **Group
+A** applicants who default on their loans. In fact, **Group
+A** is not profitable and gets subsidized by **Group
+B**. Accepting a worse economic outcome to favor a certain
 group is also known as taste-based discrimination. It could be said that
-the higher thresholds for [**Group B**] are unfair, as they
+the higher thresholds for **Group B** are unfair, as they
 have a lower FP rate.
 
 TP parity, which is also called equal opportunity, means that both
@@ -325,7 +324,7 @@ Equal opportunity
 Equal opportunity can address many of the problems
 of demographic parity, as most people believe that everyone should be
 given the same opportunities. Still, our classifier is less accurate for
-[**Group A**], and there is a form of disparate treatment in
+**Group A**, and there is a form of disparate treatment in
 place.
 
 Accuracy parity tells us that the accuracy of predictions should be the
@@ -348,7 +347,7 @@ Equal accuracy
 :::
 
 From the preceding diagram, the downside becomes apparent. In order to
-satisfy the accuracy constraint, members of [**Group B**] are
+satisfy the accuracy constraint, members of **Group B** are
 given much easier access to loans.
 
 Therefore to solve this, trade-offs are necessary
@@ -446,9 +445,9 @@ adversarial loss.
 
 ### Note {#note .title}
 
-[**Note**]: This implementation of the adversarial fairness
+**Note**: This implementation of the adversarial fairness
 method follows an implementation by Stijn Tonk and Henk Griffioen. You
-can find the code to this chapter on Kaggle at
+can find the code to this lab on Kaggle at
 <https://www.kaggle.com/jannesklaas/learning-how-to-be-fair>.
 
 Stijn\'s and Henk\'s original blogpost can be found here:
@@ -464,7 +463,7 @@ taking data from the 1994 US census provided by the UCI repository:
 To make loading the data easier, it has been
 transformed into a CSV file with column headers. As a side note, please
 refer to the online version to see the data as viewing the data would be
-difficult in the format of the book.
+difficult in the format of the course.
 
 First, we load the data. The dataset contains data about people from a
 number of different races, but for the simplicity of this task, we will
@@ -702,7 +701,7 @@ trainable_clf_net(True)
 :::
 
 Now we can compile our classifier. As you will see later on in this
-chapter, it is useful to keep the classifier network as a separate
+lab, it is useful to keep the classifier network as a separate
 variable from the compiled classifier with which we make predictions:
 
 
@@ -891,7 +890,7 @@ discrimination lawsuits.
 
 ### Note {#note-1 .title}
 
-[**Note**]: Neither gender or race was included in the features
+**Note**: Neither gender or race was included in the features
 of the classifier. Yet, the classifier discriminates strongly on them.
 If the features can be inferred, dropping sensitive columns is not
 enough.
@@ -1117,7 +1116,7 @@ Causal learning {#causal-learning .title style="clear: both"}
 
 
 
-This book is by and large a book about statistical
+This course is by and large a course about statistical
 learning. Given data [*X*] and targets [*Y*], we
 aim to estimate [![](./images/B10354_09_011.jpg)]{.inlinemediaobject},
 the distribution of target values given certain data points. Statistical
@@ -1220,7 +1219,7 @@ skiers.
 
 
 To distinguish the influence on policy and
-response, we need access to an [**instrument, Z**]. An
+response, we need access to an **instrument, Z**. An
 instrument is a variable that influences the policy, but nothing else.
 The reinsurance cost, for example, could prompt the insurance company to
 give out fewer insurance policies. This relationship can be seen in the
@@ -1235,9 +1234,9 @@ Causal flowchart
 :::
 
 The field of econometrics already has a built a
-method to work with these kinds of situations called [**instrumental
-variables two-stage least squares**] ([**IV2SLS,**] or
-just [**2SLS**]). In a nutshell, 2SLS first fits a linear
+method to work with these kinds of situations called **instrumental
+variables two-stage least squares** (**IV2SLS,** or
+just **2SLS**). In a nutshell, 2SLS first fits a linear
 regression model between the instrument, [*z,*] and the
 policy, [*p*], which in econometrics called the endogenous or
 treatment variable.
@@ -1270,7 +1269,7 @@ way to run 2SLS.
 
 ### Note {#note .title}
 
-[**Note**]: You can find the package on GitHub at
+**Note**: You can find the package on GitHub at
 <https://github.com/bashtage/linearmodels>.
 :::
 
@@ -1406,7 +1405,7 @@ associations.
 
 A final, more technical, method to reduce
 unfairness is to peek inside the model to ensure it is fair. We already
-looked at interpretability in the last chapter, mostly to debug data and
+looked at interpretability in the last lab, mostly to debug data and
 spot overfitting, but now, we will give it another look, this time to
 justify the model\'s predictions.
 
@@ -1417,16 +1416,16 @@ Interpreting models to ensure fairness {#interpreting-models-to-ensure-fairness 
 
 
 
-In [Chapter
-8](https://subscription.packtpub.com/book/data/9781789136364/8){.link},
+In [Lab
+8](https://subscription.packtpub.com/course/data/9781789136364/8){.link},
 [*Privacy, Debugging, and Launching Your Products,*] we
 discussed model interpretability as a debugging method. We 
 used LIME to spot the features that the model is overfitting
 to.
 
 In this section, we will use a slightly more
-sophisticated method called [**SHAP**] ([**SHapley Additive
-exPlanation**]). SHAP combines several different explanation
+sophisticated method called **SHAP** (**SHapley Additive
+exPlanation**). SHAP combines several different explanation
 approaches into one neat method. This method lets us generate
 explanations for individual predictions as well as for entire datasets
 in order to understand the model better.
@@ -1445,8 +1444,8 @@ find a slightly extended version of the notebook on Kaggle:
 :::
 
 SHAP combines seven model interpretation methods, those being LIME,
-Shapley sampling values, DeepLIFT, [**Quantitative Input
-Influence**] ([**QII**]), layer-wise relevance
+Shapley sampling values, DeepLIFT, **Quantitative Input
+Influence** (**QII**), layer-wise relevance
 propagation, Shapley regression values, and a tree interpreter that has
 two modules: a model-agnostic `KernelExplainer` and a
 `TreeExplainer` module specifically for tree-based methods
@@ -1692,7 +1691,7 @@ SHAP marriage dependence
 :::
 :::
 
-As you can see, [**Married-civ-spouse**], the census code for a
+As you can see, **Married-civ-spouse**, the census code for a
 civilian marriage with no partner in the armed forces,
  stands out with a positive influence on model outcomes.
 Meanwhile, every other type of arrangement has slightly negative scores,
@@ -1715,7 +1714,7 @@ Unfairness as complex system failure {#unfairness-as-complex-system-failure .tit
 
 
 
-In this chapter, you have been equipped with an
+In this lab, you have been equipped with an
 arsenal of technical tools to make machine learning models fairer.
 However, a model does not operate in a vacuum. Models are embedded in
 complex socio-technical systems. There are humans developing and
@@ -1930,7 +1929,7 @@ Exercises {#exercises .title style="clear: both"}
 
 
 
-In this chapter, you have learned a lot about both the technical and
+In this lab, you have learned a lot about both the technical and
 non-technical considerations of fairness in machine learning. These
 exercises will help you think much more deeply about the topic:
 
@@ -1939,12 +1938,12 @@ exercises will help you think much more deeply about the topic:
     incorporated in your organization? What works well and what could be
     improved?
 
--   Revisit any of the models developed in this book. Are they fair? How
+-   Revisit any of the models developed in this course. Are they fair? How
     would you test them for fairness?
 
 -   Fairness is only one of the many complex issues large models can
     have. Can you think of an issue in your area of work that could be
-    tackled with the tools discussed in this chapter?
+    tackled with the tools discussed in this lab?
 
 
 Summary 
@@ -1952,7 +1951,7 @@ Summary
 
 
 
-In this chapter, you have learned about fairness in machine learning in
+In this lab, you have learned about fairness in machine learning in
 different aspects. First, we discussed legal definitions of fairness and
 quantitative ways to measure these definitions. We then discussed
 technical methods to train models to meet fairness criteria. We also
@@ -1967,5 +1966,5 @@ creating a fair model. Remember that models in finance operate in
 high-stakes environments and need to meet many regulatory demands. If
 you fail to do so, damage could be severe.
 
-In the next, and final, chapter of this book, we will be looking at
+In the next, and final, lab of this course, we will be looking at
 probabilistic programming and Bayesian inference.

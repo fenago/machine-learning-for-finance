@@ -1,6 +1,6 @@
 
 
-Chapter 8. Privacy, Debugging, and Launching Your Products {#chapter-8.-privacy-debugging-and-launching-your-products .title}
+Lab 8. Privacy, Debugging, and Launching Your Products {#lab-8.-privacy-debugging-and-launching-your-products .title}
 -------------------------------------------------------------------
 
 
@@ -14,7 +14,7 @@ software, a mistake usually leads to the program crashing, and while
 they\'re annoying for the user, they are helpful for the programmer. At
 least it\'s clear that the code failed, and often the developer will
 find an accompanying crash report that describes what went wrong. Yet as
-you go beyond this book and start developing your own models, you\'ll
+you go beyond this course and start developing your own models, you\'ll
 sometimes encounter machine learning code crashes too, which, for
 example, could be caused if the data that you fed into the algorithm had
 the wrong format or shape.
@@ -26,7 +26,7 @@ to the point that you might not even be aware that they\'ve even failed
 at all, but at other times, the model might not train well, it
 won\'t converge, or it won\'t achieve a low loss rate.
 
-In this chapter, we\'ll be focusing on how you debug these silent
+In this lab, we\'ll be focusing on how you debug these silent
 failures so that they don\'t impact the machine learning algorithms that
 you\'ve created. This will include looking at the following subject
 areas:
@@ -75,12 +75,12 @@ Debugging data {#debugging-data .title style="clear: both"}
 
 
 
-You\'ll remember that back in the first chapter of
-this book, we discussed how machine learning models are a function of
+You\'ll remember that back in the first lab of
+this course, we discussed how machine learning models are a function of
 their training data, meaning that, for example, bad data will lead to
 bad models, or as we put it, garbage in, garbage out. If your project is
 failing, your data is the most likely culprit. Therefore, in this
-chapter we will start by looking at the data first, before moving on to
+lab we will start by looking at the data first, before moving on to
 look at the other possible issues that might cause our model to crash.
 
 However, even if you have a working model, the real-world data coming in
@@ -187,8 +187,8 @@ cannot use the data, for instance due to GDPR, even though they greenlit
 it earlier. In this case, you have multiple options.
 
 Most of the time, one of the best options would be to \"augment your
-data.\" We\'ve already seen some data augmentation in [Chapter
-3,](https://subscription.packtpub.com/book/data/9781789136364/3){.link}
+data.\" We\'ve already seen some data augmentation in [Lab
+3,](https://subscription.packtpub.com/course/data/9781789136364/3){.link}
 [*Utilizing Computer Vision*]. Of course, you can augment all
 kinds of data in various ways, including slightly changing some database
 entries. Taking augmentation a step further, you might be able to
@@ -196,8 +196,8 @@ entries. Taking augmentation a step further, you might be able to
 effectively how most reinforcement learning researchers gather data, but
 this can also work in other cases.
 
-The data we used for fraud detection back in [Chapter
-2](https://subscription.packtpub.com/book/data/9781789136364/2){.link},
+The data we used for fraud detection back in [Lab
+2](https://subscription.packtpub.com/course/data/9781789136364/2){.link},
 [*Applying Machine Learning to Structured Data*] was obtained
 from simulation. The simulation requires you to be able to write down
 the rules of your environment within a program. Powerful learning
@@ -210,14 +210,14 @@ you haven\'t tracked a certain data point, it does not mean that nobody
 else has. There is an astonishing amount of data available on the
 internet. Even if the data was not originally collected for your
 purpose, you might be able to retool data by either relabeling it or by
-using it for [**transfer learning**]. You
+using it for **transfer learning**. You
 might be able to train a model on a large dataset for a different task
 and then use that model as a basis for your task. Equally, you can find
 a model that someone else has trained for a different task and repurpose
 it for your task.
 
-Finally, you might be able to create a [**simple
-model**], which does not capture the relationship in the data
+Finally, you might be able to create a **simple
+model**, which does not capture the relationship in the data
 completely but is enough to ship a product. Random forests and other
 tree-based methods often require much less data than neural networks.
 
@@ -269,7 +269,7 @@ pip install marbles
 
 ### Note {#note .title}
 
-[**Note**]: You can find a Kaggle kernel
+**Note**: You can find a Kaggle kernel
 demonstrating marbles here:
 <https://www.kaggle.com/jannesklaas/marbles-test>.
 :::
@@ -392,7 +392,7 @@ error output:
 
 ### Note {#note-1 .title}
 
-[**Note**]: This code will not run and will fail.
+**Note**: This code will not run and will fail.
 :::
 
 
@@ -492,8 +492,8 @@ cannot control, and that is sometimes against their own interest.
 Naturally, they are not happy about it and regulators have to come
 up with some new data regulations.
 
-At the time of writing, the European Union has introduced the [**General
-Data Protection Regulation**] ([**GDPR**]), but it\'s
+At the time of writing, the European Union has introduced the **General
+Data Protection Regulation** (**GDPR**), but it\'s
 likely that other jurisdictions will develop stricter privacy
 protections, too.
 
@@ -524,7 +524,7 @@ records. You need practices in place that monitor and prevent such
 accidents, here are four of the key ones:
 
 
--   [**Be transparent and obtain consent**]: Customers want
+- **Be transparent and obtain consent**: Customers want
     good products, and they understand how their data can make your
     product better for them. Rather than pursuing an adversarial
     approach in which you wrap all your practices in a very long
@@ -535,14 +535,14 @@ accidents, here are four of the key ones:
     users will trust you more and this can then be used to improve your
     product through customer feedback.
 
--   [**Remember that breaches happen to the best**]: No matter
+- **Remember that breaches happen to the best**: No matter
     how good your security is, there is a chance that you\'ll get
     hacked. So, you should design your personal data storage under the
     assumption that the entire database might be dumped on the internet
     one day. This assumption will help you to create stronger privacy
     and help you to avoid disaster once you actually get hacked.
 
--   [**Be mindful about what can be inferred from data**]: You
+- **Be mindful about what can be inferred from data**: You
     might not be tracking personally identifying information in your
     database, but when combined with another database, your customers
     can still be individually identified.
@@ -556,7 +556,7 @@ accidents, here are four of the key ones:
     transactions are no longer anonymous. Consumers expect companies to
     be mindful of these effects.
 
--   [**Encrypt and Obfuscate data**]: Apple, for instance,
+- **Encrypt and Obfuscate data**: Apple, for instance,
     collects phone data but adds random noise to the collected data. The
     noise renders each individual record incorrect, but in aggregate the
     records still give a picture of user behavior. There
@@ -592,7 +592,7 @@ accidents, here are four of the key ones:
     approaches like this, you can ensure that in the case of a data
     breach, no sensitive individual information is leaked.
 
--   [**Train locally, and upload only a few gradients**]: One
+- **Train locally, and upload only a few gradients**: One
     way to avoid uploading user data is to train your model on the
     user\'s device. The user accumulates data on the device. You can
     then download your model on to the device and perform a single
@@ -621,7 +621,7 @@ include s[*tandardization, Min-Max, mean normalization,*] and
 each one:
 
 
--   [**Standardization**] ensures that all
+- **Standardization** ensures that all
     of the data has a mean of zero and a standard deviation of one. It
     is computed by subtracting the mean and dividing by the standard
     deviation of the data:
@@ -636,7 +636,7 @@ each one:
     ensure that your features are between zero and one, which is the
     range in which neural networks learn best.
 
--   [**Min-Max**] rescaling does exactly
+- **Min-Max** rescaling does exactly
     that. It scales all data between zero and one by first subtracting
     the minimum value and then dividing by the range of values. We can
     see this expressed in the formula below:
@@ -649,7 +649,7 @@ each one:
     the case in images, for instance, Min-Max scaling will give you a
     nice scaling of values between zero and one.
 
--   Similar to Min-Max, [**mean normalization**] ensures your
+-   Similar to Min-Max, **mean normalization** ensures your
     data has values between minus one and one with
     a mean of zero. This is done by subtracting the mean and then
     dividing by the range of data, which is expressed in the following
@@ -664,7 +664,7 @@ each one:
 
 -   For some applications, it is better to not scale
      individual features, but instead vectors of features. In
-    this case, you would apply [**unit length scaling**] by
+    this case, you would apply **unit length scaling** by
     dividing each element in the vector by the
     total length of the vector, as we can see below:
 
@@ -699,8 +699,8 @@ feature distribution and adjust your scaling.
 Why did your model make the prediction it made? For
 complex models, this question is pretty hard to answer. A global
 explanation for a very complex model might in itself be very complex.
-The[ **Local Interpretable Model-Agnostic Explanations**]
-([**LIME**]) is, a popular algorithm for model explanation that
+The[ **Local Interpretable Model-Agnostic Explanations**
+(**LIME**) is, a popular algorithm for model explanation that
 focuses on local explanations. Rather than trying to answer; \"How does
 this model make predictions?\" LIME tries to answer; \"Why did the model
 make [*this*] prediction on [*this*] data?\"
@@ -708,7 +708,7 @@ make [*this*] prediction on [*this*] data?\"
 
 ### Note {#note-2 .title}
 
-[**Note**]: The authors of LIME, Ribeiro, Singh, and Guestrin,
+**Note**: The authors of LIME, Ribeiro, Singh, and Guestrin,
 curated a great GitHub repository around their algorithm with many
 explanations and tutorials, which you can find here:
 <https://github.com/marcotcr/lime>.
@@ -843,7 +843,7 @@ working with Keras.
 
 ### Note {#note .title}
 
-[**Note**]: You can find Hyperas on
+**Note**: You can find Hyperas on
 GitHub: <https://github.com/maxpumperla/hyperas>.
 :::
 
@@ -860,18 +860,18 @@ Depending on your setup, you might need to make a
 few adjustments to the installation. If this is the case, then the
 Hyperas GitHub page, link above, offers more information.
 
-Hyperas offers two optimization methods, [**Random Search**]
-and [**Tree of Parzen Estimators**]. Within a range of
+Hyperas offers two optimization methods, **Random Search**
+and **Tree of Parzen Estimators**. Within a range of
 parameters that we think are reasonable, the random search will sample
 randomly and train a model with random hyperparameters. It will then
 pick the best-performing model as the solution.
 
-[**Random search**] is simple and robust, and it can be scaled
+**Random search** is simple and robust, and it can be scaled
 easily. It basically makes no assumption about the hyperparameters,
 their relation, and the loss surface. On the flip side, it is relatively
 slow.
 
-The [**Tree of Parzen**] ([**TPE**])
+The **Tree of Parzen** (**TPE**)
 algorithm models the relation
 [*P(x\|y),*] where [*x*] represents the
 hyperparameters and [*y*] the associated performance. This is
@@ -890,7 +890,7 @@ start with TPE, and if TPE struggles, move to random search.
 
 ### Note {#note-1 .title}
 
-[**Note**]: The code for this example can be found at:
+**Note**: The code for this example can be found at:
 <https://www.kaggle.com/jannesklaas/Hyperas>.
 :::
 
@@ -1391,7 +1391,7 @@ during training.
 
 ### Note {#note-2 .title}
 
-[**Note**]: TensorBoard does not run on Kaggle. To try out
+**Note**: TensorBoard does not run on Kaggle. To try out
 TensorBoard, install Keras and TensorFlow on your own machine.
 :::
 
@@ -1468,7 +1468,7 @@ in, for example, `logs` in our case. TensorBoard runs on port
 `6006` by default, so in your browser,
 go to `http://localhost:6006` to see TensorBoard.
 
-Once the page has loaded, navigate to the [**HISTOGRAMS**]
+Once the page has loaded, navigate to the **HISTOGRAMS**
 section; this section should look something like this:
 
 
@@ -1483,7 +1483,7 @@ You can see the distribution of gradients and
 weights in the first layer. As you can see, the gradients are uniformly
 distributed and extremely close to zero. The weights hardly change at
 all over the different epochs. We are dealing with
-a [**vanishing gradient problem**]; we will cover this problem
+a **vanishing gradient problem**; we will cover this problem
 in depth later.
 
 Armed with the real-time insight that this problem is happening, we can
@@ -1497,7 +1497,7 @@ understand why something complex goes wrong.
 
 ### Note {#note-3 .title}
 
-[**Note**]: The TensorFlow debugger does not work well with
+**Note**: The TensorFlow debugger does not work well with
 models trained in Jupyter Notebooks. Save your model training code to a
 Python `.py` script and run that script.
 :::
@@ -1535,7 +1535,7 @@ tensorboard --logdir=/full_path_to_your_logs --debugger_port 2018
 
 Now you can open TensorBoard as usual in your browser on port
 `6006`. TensorBoard now has a new section called
-[**DEBUGGER**]:
+**DEBUGGER**:
 
 
 ![](./images/B10354_08_07.jpg)
@@ -1545,8 +1545,8 @@ TensorBoard debugger
 :::
 :::
 
-By clicking [**STEP**], you execute the next step in the
-training process. With [**CONTINUE...,**] you
+By clicking **STEP**, you execute the next step in the
+training process. With **CONTINUE...,** you
  can train your model for one or more epochs. By navigating
 the tree on the left side, you can view the components of your model.
 You can visualize individual elements of your model, to see how
@@ -1605,7 +1605,7 @@ weight values. As backpropagation multiplies the later layers\'
 gradients with the layers\' weights, large weights amplify gradients. To
 counteract the exploding gradient problem, you can use weight
 regularization, which incentivizes smaller weights. Using a method
-called [**gradient clipping**], you can ensure that gradients
+called **gradient clipping**, you can ensure that gradients
 do not become larger than a certain value. In Keras, you can clip both
 the norm and the absolute value of gradients:
 
@@ -1619,8 +1619,8 @@ clip_norm_sgd = SGD(lr=0.01, clipnorm=1.)
 ```
 :::
 
-Convolutional layers and [**long short-term memory
-(LSTM) networks**] are less susceptible to both vanishing and
+Convolutional layers and **long short-term memory
+(LSTM) networks** are less susceptible to both vanishing and
 exploding gradients. ReLU and batch normalization generally stabilize
 the network. Both of these problems might be caused
 by non-regularized inputs, so you should check your data too. Batch
@@ -1666,8 +1666,8 @@ changes, so the data you trained on might no longer represent the real
 world. Your model might rely on the outputs of some other systems that
 are subject to change. There might be unintended side effects and
 weaknesses of your model that only show with extended usage. Your model
-might influence the world that it tries to model. [**Model
-decay**] describes how models have a lifespan after which
+might influence the world that it tries to model. **Model
+decay** describes how models have a lifespan after which
 performance deteriorates.
 
 Data scientists should have the full life cycle of their models in mind.
@@ -1861,7 +1861,7 @@ hardware and software that enable faster machine learning applications.
 
 
 A lot of progress in deep learning has been driven by the use of
-[**graphics processing units**] ([**GPUs**]). GPUs
+**graphics processing units** (**GPUs**). GPUs
 enable highly parallel computing at the expense of
 operating frequency. Recently, multiple manufacturers have started
 working on specialized deep learning hardware. Most
@@ -1869,7 +1869,7 @@ of the time, GPUs are a good choice for deep learning models or other
 parallelizable algorithms such as XGboost gradient-boosted trees.
 However, not all applications benefit equally.
 
-In [**natural language processing (NLP)**], for instance, batch
+In **natural language processing (NLP)**, for instance, batch
 sizes often need to be small, so the parallelization of operations does
 not work as well since not that many samples are processed at the same
 time. Additionally, some words appear much more often than others,
@@ -2026,7 +2026,7 @@ significantly by optimizing your pipeline. There are several
  steps you can take to optimize your pipeline:
 
 
--   [**Create a pipeline running parallel to the model**]:
+- **Create a pipeline running parallel to the model**:
     Otherwise, your GPU will be idle while the data is loading. Keras
     does this by default. If you have a generator and want to have a
     larger queue of data to be held ready for preprocessing, change the
@@ -2035,7 +2035,7 @@ significantly by optimizing your pipeline. There are several
     argument of the `fit_generator` method to zero, the
     generator will run on the main thread, which slows things down.
 
--   [**Preprocess data in parallel**]: Even if you have a
+- **Preprocess data in parallel**: Even if you have a
     generator working independently of the model training, it might not
     keep up with the model. So, it is better to run multiple generators
     in parallel. In Keras, you can do this by setting
@@ -2109,14 +2109,14 @@ significantly by optimizing your pipeline. There are several
     You can also use the `tf.data` API together with an
     estimator, which does most of the work for you.
 
--   [**Combine files into large files**]: Reading a file takes
+- **Combine files into large files**: Reading a file takes
     time. If you have to read thousands of small files, this can
     significantly slow you down. TensorFlow offers its own data format
     called TFRecord. You can also just fuse an entire batch into
     a single NumPy array and save that array instead of every example.
 
--   [**Train with the** ] `tf.data.Dataset` [
-    **API**]: If you are using the TensorFlow version of Keras,
+- **Train with the** ] `tf.data.Dataset` [
+    **API**: If you are using the TensorFlow version of Keras,
     you can use the `Dataset` API, which optimizes data
     loading and processing for you. The `Dataset` API is the
     recommended way to load data into TensorFlow. It offers a wide range
@@ -2127,7 +2127,7 @@ significantly by optimizing your pipeline. There are several
     
     ### Note {#note-1 .title}
 
-    [**Note**]: For a more comprehensive guide to the
+    **Note**: For a more comprehensive guide to the
     `Dat` `aset` API, see
     <https://www.tensorflow.org/get_started/datasets_quickstart>.
     :::
@@ -2219,7 +2219,7 @@ Cython converts it to fast-running C code.
 
 ### Note {#note-2 .title}
 
-[**Note**]: You can read the full Cython
+**Note**: You can read the full Cython
 documentation here:
 [http://cython.readthedocs.io](http://cython.readthedocs.io/){.ulink}.
 This section is a short introduction to Cython. If performance is
@@ -2366,16 +2366,16 @@ Exercises {#exercises .title style="clear: both"}
 
 
 
-Now that we\'re at the end of this chapter, it\'s time to put what
+Now that we\'re at the end of this lab, it\'s time to put what
 we\'ve learned into use. Using the knowledge that you\'ve gained in this
-chapter, why not try the following exercises?
+lab, why not try the following exercises?
 
 
 -   Try to build any model that features exploding gradients in
     training. Hint: Do not normalize inputs and play with the
     initialization of layers.
 
--   Go to any example in this book and try to optimize performance by
+-   Go to any example in this course and try to optimize performance by
     improving the data pipeline.
 
 
@@ -2385,7 +2385,7 @@ Summary
 
 
 
-In this chapter, you have learned a number of practical tips for
+In this lab, you have learned a number of practical tips for
 debugging and improving your model. Let\'s recap all of the things that
 we have looked at:
 
@@ -2423,11 +2423,11 @@ to properly scrutinize your model can cost you, your employer, or your
 clients millions of dollars. For these reasons, some firms are reluctant
 to deploy machine learning models into trading at all. They fear that
 they will never understand the models and thus won\'t be able to manage
-them in a production environment. Hopefully, this chapter alleviates
+them in a production environment. Hopefully, this lab alleviates
 that fear by showcasing some practical tools that can make models
 understandable, generalizable, and safe to deploy.
 
-In the next chapter, we will look at a special, persistent, and
+In the next lab, we will look at a special, persistent, and
 dangerous problem associated with machine learning models: bias.
 Statistical models tend to fit to and amplify human biases. Financial
 institutions have to follow strict regulations to prevent them from

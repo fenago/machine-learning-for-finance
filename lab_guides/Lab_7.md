@@ -1,5 +1,5 @@
 
-Chapter 7. Reinforcement Learning for Financial Markets {#chapter-7.-reinforcement-learning-for-financial-markets .title}
+Lab 7. Reinforcement Learning for Financial Markets {#lab-7.-reinforcement-learning-for-financial-markets .title}
 ----------------------------------------------------------------
 
 
@@ -7,8 +7,8 @@ Humans don\'t learn from millions of labeled examples. Instead, we often
 learn from positive or negative experiences that we associate with our
 actions. Children that touch a hot stove once will never touch it again.
 Learning from experiences and the associated rewards or punishments is
-the core idea behind [**reinforcement learning**]
-([**RL**]). RL allows us to learn sophisticated decision-making
+the core idea behind **reinforcement learning**
+(**RL**). RL allows us to learn sophisticated decision-making
 rules while having no data at all. Through this approach, several
 high-profile breakthroughs occurred in AI, such as AlphaGo, which beat
 the world Go champion in 2016.
@@ -35,16 +35,16 @@ when agents will collaborate or fight. Meanwhile at DeepMind,
 researchers there have used RL to yield new insights into the workings
 of the frontal cortex in the brain and the role of the dopamine hormone.
 
-This chapter will start with an intuitive introduction to RL using a
+This lab will start with an intuitive introduction to RL using a
 simple \"catch the fruit\" game. We will then dive into the underlying
 theory before covering more advanced RL applications. The examples in
-this chapter rely on visualizations that are not easily rendered in
+this lab rely on visualizations that are not easily rendered in
 Kaggle kernels. In order to simplify them, the example algorithms are
 also not optimized for GPU usage. It is, therefore, best to run these
 examples on your local machine.
 
-The algorithms in this chapter run relatively quickly, so you won\'t
-have to wait too long for them to run. The chapter code was written on a
+The algorithms in this lab run relatively quickly, so you won\'t
+have to wait too long for them to run. The lab code was written on a
 Mid-2012 MacBook Pro, and no example took longer than 20 minutes to run
 on that machine. Of course, you can also run the code on Kaggle, however
 the visualizations will not work there.
@@ -110,7 +110,7 @@ RL scheme
 
 The model then learns to find actions that lead to maximum rewards.
 There are many ways this can work in practice. Right now, we are going
-to look at [**Q-learning**]. Q-learning made a splash when it
+to look at **Q-learning**. Q-learning made a splash when it
 was used to train a computer to play Atari video
 games. Today, it is still a relevant concept. Most modern RL algorithms
 are based on some adaptation of Q-learning.
@@ -143,7 +143,7 @@ For example, they do not only think about whether they can eliminate an
 opponent\'s figure in the next move, they also consider how taking a
 specific action now will help them in the long run. In Q-learning, we
 choose our action based on the highest expected future reward. We use a
-[**Q-function**] to calculate this. This
+**Q-function** to calculate this. This
 is a mathematical function that takes two arguments: the current state
 of the game, and a given action. We can write this as [*Q(state,
 action)*].
@@ -169,7 +169,7 @@ therefore, arrive at an expected reward of this:
 
 ### Note {#note .title}
 
-[**Note**]: We discount future rewards in RL for the same
+**Note**: We discount future rewards in RL for the same
 reason we discount future returns in finance. They are uncertain. Our
 choice here reflects how much we value future returns.
 :::
@@ -216,11 +216,11 @@ Q-function.
 
 ### Note {#note-1 .title}
 
-[**Note**]: We estimate
+**Note**: We estimate
 [![](./images/B10354_07_010.jpg)]{.inlinemediaobject} through the same
 neural network as [*Q(s,a)*]. This leads to some instability
 as our targets now change as the networks learn, just as with
-[**generative adversarial networks (GANs)**].
+**generative adversarial networks (GANs)**.
 :::
 
 Given a batch of experiences,
@@ -532,7 +532,7 @@ reinforcement learning lies in Markov models.
 
 ### Note {#note .title}
 
-[**Note**]: This section requires a bit of mathematical
+**Note**: This section requires a bit of mathematical
 background knowledge. If you are struggling, there is a beautiful visual
 introduction by Victor Powell here:
 <http://setosa.io/ev/markov-chains/>.
@@ -557,24 +557,24 @@ The Markov model
 :::
 
 As you can see, there are three states in this model,
-[**BUY**], [**HOLD,**] and [**SELL**]. For
+**BUY**, **HOLD,** and **SELL**. For
 every two states, there is a transition probability. For example, the
-probability that a state gets a [**BUY**] recommendation if it
-had a [**HOLD**] recommendation in the previous round is
+probability that a state gets a **BUY** recommendation if it
+had a **HOLD** recommendation in the previous round is
 described by [![](./images/B10354_07_022.jpg)]{.inlinemediaobject}, which
 is equal to 0.5. There is a 50% chance that a stock that is currently in
-[**HOLD**] will move to [**BUY**] in the next round.
+**HOLD** will move to **BUY** in the next round.
 
 States are associated with rewards. If you own stock, and that stock has
-a [**BUY**] recommendation, the stock will go up, and you will
-earn a reward of [**1**]. If the stock has a sell
+a **BUY** recommendation, the stock will go up, and you will
+earn a reward of **1**. If the stock has a sell
 recommendation, you will gain a negative reward, or punishment, of
-[**-1**].
+**-1**.
 
 
 ### Note {#note-1 .title}
 
-[**Note**]: In some textbooks, the rewards are associated with
+**Note**: In some textbooks, the rewards are associated with
 state transitions and not states themselves. It turns out to be
 mathematically equivalent, and for the ease of notation, we are
 associating the rewards with states here.
@@ -584,10 +584,10 @@ In a Markov model, an agent can follow a policy, usually denoted as
 [![](./images/B10354_07_023.jpg)]{.inlinemediaobject}. A policy describes
 the probability of taking action [*a*]
 when in state [*s*]. Say you are a trader: you own stock and
-that stock gets a [**SELL**] recommendation. In that case, you
+that stock gets a **SELL** recommendation. In that case, you
 might choose to sell the stock in 50% of cases, hold the stock in 30% of
 cases, and buy more in 20% of cases. In other words, your policy for the
-state [**SELL**] can be described as follows:
+state **SELL** can be described as follows:
 
 
 ![](./images/B10354_07_024.jpg)
@@ -634,7 +634,7 @@ policy [![](./images/B10354_07_032.jpg)]{.inlinemediaobject} is followed:
 
 ### Note {#note-2 .title}
 
-[**Note**]: We use the expected value since our environment and
+**Note**: We use the expected value since our environment and
 our actions are stochastic. We cannot say for certain that we will land
 in a specific state; we can only give a probability.
 :::
@@ -771,7 +771,7 @@ familiar with the work discussed here will find reference points that
 they can use to develop a deeper understanding of Bellman equations.
 Readers unfamiliar with these works will find inspiration for further
 reading and applications for techniques discussed throughout this
-chapter.
+lab.
 
 
 
@@ -789,16 +789,16 @@ investment opportunity.
 
 The recursiveness of the Bellman equation inspired the subfield of
 recursive economics. Nancy Stokey, Robert Lucas, and Edward Prescott
-wrote an influential 1989 book titled [*Recursive Methods in Economic
+wrote an influential 1989 course titled [*Recursive Methods in Economic
 Dynamics*]
 (<http://www.hup.harvard.edu/catalog.php?isbn=9780674750968>) in which
 they apply the recursive approach to solve problems in economic theory.
-This book inspired others to use recursive economics to address a wide
+This course inspired others to use recursive economics to address a wide
 range of economic problems, from the principal-agent problem to optimal
 economic growth.
 
 Avinash Dixit and Robert Pindyck developed and applied the approach
-successfully to capital budgeting in their 1994 book, [*Investment Under
+successfully to capital budgeting in their 1994 course, [*Investment Under
 Uncertainty*]
 (<https://press.princeton.edu/titles/5474.html>). Patrick Anderson
 applied it to the valuation of private businesses in his 2009 article,
@@ -845,8 +845,8 @@ at random. Only a stochastic policy can do that.
 To learn a policy, we have to be able to compute a gradient with respect
 to policy. Contrary to most people\'s expectations, policies are
 differentiable. In this section, we will build up a policy gradient step
-by step and use it to create an [**advantage actor-critic**]
-([**A2C**]) model for continuous control.
+by step and use it to create an **advantage actor-critic**
+(**A2C**) model for continuous control.
 
 The first part in the process of differentiating
 policies is to look at the advantage we can have by picking a particular
@@ -939,8 +939,8 @@ deviation, [![](./images/B10354_07_076.jpg)]{.inlinemediaobject}. This
 allows us to sample from a learned distribution just as we did for the
 autoencoder.
 
-A common variant of the A2C approach is the [**asynchronous advantage
-actor-critic**] or [**A3C**]. A3C works 
+A common variant of the A2C approach is the **asynchronous advantage
+actor-critic** or **A3C**. A3C works 
 exactly like A2C, except that at training time, multiple
 agents are simulated in parallel. This means that more independent data
 can be gathered. Independent data is important as too-correlated
@@ -983,7 +983,7 @@ pitfalls.
 
 ### Note {#note .title}
 
-[**Note**]: When implementing a new algorithm, try it out on a
+**Note**: When implementing a new algorithm, try it out on a
 task you can visualize. Failures are often subtle and easier to spot
 visually than through data.
 :::
@@ -1331,7 +1331,7 @@ def actor_optimizer(self):
     a constant 3.14... and
     [![](./images/B10354_07_094.jpg)]{.inlinemediaobject} is the standard
     deviation. While the proof that this term expresses the entropy of a
-    normal distribution is outside of the scope of this chapter, you can
+    normal distribution is outside of the scope of this lab, you can
     see that the entropy goes up if the standard deviation goes up.
 
 7.  We add the entropy term to the value of the policy. By using
@@ -1624,7 +1624,7 @@ within a large universe of stocks.
 
 ### Note {#note-1 .title}
 
-[**Note**]: Please do not trade based on this algorithm. It is
+**Note**: Please do not trade based on this algorithm. It is
 only a simplified and slightly naive implementation to demonstrate the
 concept and shouldn\'t be used in the real world.
 :::
@@ -1646,7 +1646,7 @@ to add them, however.
 
 ### Note {#note-2 .title}
 
-[**Tip**]: The full implementation of the environment and agent
+**Tip**: The full implementation of the environment and agent
 can be found at <https://www.kaggle.com/jannesklaas/a2c-stock-trading>.
 :::
 
@@ -1734,7 +1734,7 @@ pendulum environment. Let\'s see how we set it up:
     ratio between the mean and standard deviation of returns, over the
     last 20 days. You could modify the reward function to, for example,
     include transaction costs or slippage. If you do want to do this,
-    then refer to the section on reward shaping later in this chapter.
+    then refer to the section on reward shaping later in this lab.
 
 7.  The return on the next day is the last element of the episode data.
 
@@ -1846,8 +1846,8 @@ Evolutionary strategies and genetic algorithms {#evolutionary-strategies-and-gen
 
 
 Recently, a decades-old optimization algorithm for reinforcement
-learning algorithms has come back into fashion. [**Evolutionary
-strategies**] ([**ES**]) are much simpler than
+learning algorithms has come back into fashion. **Evolutionary
+strategies** (**ES**) are much simpler than
 Q-learning or A2C.
 
 Instead of training one model through
@@ -1896,13 +1896,13 @@ alpha = 0.1 #3
 :::
 
 
-1.  [**Population size**]: We will create
+1.  **Population size**: We will create
     50 versions of the model at each iteration
 
-2.  [**Noise standard deviation**]: The noise we add will have
+2.  **Noise standard deviation**: The noise we add will have
     mean of zero and a standard deviation of 0.1
 
-3.  [**Learning rate**]: Weights don\'t just simply get set to
+3.  **Learning rate**: Weights don\'t just simply get set to
     the new average but are slowly moved in the direction to avoid
     overshooting
 :::
@@ -2051,7 +2051,7 @@ algorithm now maximizes as follows:
 #### Inverse reinforcement learning {#inverse-reinforcement-learning .title}
 
 
-In [**inverse reinforcement learning**] ([**IRL**]), a
+In **inverse reinforcement learning** (**IRL**), a
 model is trained to predict the reward function of a human expert. A
 human expert is performing a task, and the model
 observes states and actions. It then tries to find a value function that
@@ -2108,31 +2108,31 @@ results. RL algorithms are quite sensitive to hyperparameter choices.
 But there are a few ways to make RL more robust:
 
 
--   [**Using a larger experience replay buffer**]: The goal of
+- **Using a larger experience replay buffer**: The goal of
     using experience replay buffers is to collect uncorrelated
     experiences. This can be achieved by just creating a
      larger buffer or a whole buffer database that can store
     millions of examples, possibly from different agents.
 
--   [**Target networks**]: RL is unstable in part because the
+- **Target networks**: RL is unstable in part because the
     neural network relies on its own output for training. By using a
     frozen target network for generating training data, we can mitigate
     problems. The frozen target network should only be updated slowly
     by, for example, moving the weights of the target network only a few
     percent every few epochs in the direction of the trained network.
 
--   [**Noisy inputs**]: Adding noise to the state
+- **Noisy inputs**: Adding noise to the state
     representation helps the model generalize to other situations and
     avoids overfitting. It has proven especially useful if the agent is
     trained in a simulation but needs to generalize to the real, more
     complex world.
 
--   [**Adversarial examples**]: In a GAN-like setup, an
+- **Adversarial examples**: In a GAN-like setup, an
     adversarial network can be trained to fool the model by changing the
     state representations. The model can, in turn, learn to ignore the
     adversarial attacks. This makes learning more robust.
 
--   [**Separating policy learning from feature extraction**]:
+- **Separating policy learning from feature extraction**:
     The most well-known results in reinforcement
     learning have learned a game from raw inputs. However, this requires
     the neural network to interpret, for example, an image by learning
@@ -2153,7 +2153,7 @@ Frontiers of RL {#frontiers-of-rl .title style="clear: both"}
 
 
 You have now seen the theory behind and application
-of the most useful RL techniques. Yet, RL is a moving field. This book
+of the most useful RL techniques. Yet, RL is a moving field. This course
 cannot cover all of the current trends that might
 be interesting to practitioners, but it can highlight some that
 are particularly useful for practitioners in the financial industry.
@@ -2213,8 +2213,8 @@ neural networks. Because of that, one longstanding dream of researchers
 and companies who are currently having to pay Ph.D.
 students is to automate the process of designing neural networks.
 
-One example of this so-called AutoML is the [**neural evolution
-of augmenting topologies**], known as the NEAT algorithm. NEAT
+One example of this so-called AutoML is the **neural evolution
+of augmenting topologies**, known as the NEAT algorithm. NEAT
 uses an evolutionary strategy to design a neural network that is then
 trained by standard backpropagation:
 
@@ -2237,30 +2237,30 @@ use reinforcement learning, which yields similar results. There are a
 couple \"off-the-shelf\" AutoML solutions:
 
 
--   [**tpot**] (<https://github.com/EpistasisLab/tpot>): This
+- **tpot** (<https://github.com/EpistasisLab/tpot>): This
     is a data science assistant that optimizes 
     machine learning pipelines using 
     genetic algorithms. It is built on top of scikit-learn,
     so it does not create deep learning models but models useful for
     structured data, such as random forests.
 
--   [**auto-sklear**] [**n**]
+- **auto-sklear** **n**
     (<https://github.com/automl/auto-sklearn>): This is also based on
     scikit-learn but focuses more on
      creating models rather than feature extraction.
 
--   [**AutoW**] [**EKA**]
+- **AutoW** **EKA**
     (<https://github.com/automl/autoweka>): This is similar to
     `auto-sklearn`, except that it is
     built on the WEKA package, which runs on Java.
 
--   [**H2O A**] [**utoML**]
+- **H2O A** **utoML**
     (<http://docs.h2o.ai/h2o/latest-stable/h2o-docs/automl.html>): This
     is an AutoML tool that is
     part of the H2O software package, which provides model selection and
     ensembling.
 
--   [**Google Cloud AutoML**]
+- **Google Cloud AutoML**
     (<https://cloud.google.com/automl/>): This is currently focused on
     pipelines for computer 
     vision.
@@ -2270,11 +2270,11 @@ For the subfield of hyperparameter search, there are a few packages
 available as well:
 
 
--   [**Hyperopt**] (<https://github.com/hyperopt/hyperopt>):
+- **Hyperopt** (<https://github.com/hyperopt/hyperopt>):
     This package allows for distributed, asynchronous hyperparameter
     search in Python.
 
--   [**Spearmint**] (<https://github.com/HIPS/Spearmint>): This
+- **Spearmint** (<https://github.com/HIPS/Spearmint>): This
     package is similar to Hyperopt, optimizing hyperparameters but using
     a more advanced Bayesian optimization process.
 :::
@@ -2329,11 +2329,11 @@ As we\'ve now completed the task, let\'s try our hand at two appropriate
 exercises based on the content that we\'ve covered.
 
 
-1.  [**A simple** ] [**RL task**]: Go to
+1.  **A simple** ] **RL task**: Go to
     <https://github.com/openai/gym>. Once there, install the Gym
     environment and train an agent to solve the \"Cartpole\" problem.
 
-2.  [**A multi-agent** ] [**RL task**]: Go to
+2.  **A multi-agent** ] **RL task**: Go to
     <https://github.com/crazymuse/snakegame-numpy>. This is a Gym
     environment that lets you play multiple agents in a \"Snake\" game.
     Experiment with different strategies. Can you create an agent that
@@ -2346,15 +2346,15 @@ Summary
 
 
 
-In this chapter, you learned about the main algorithms in RL,
+In this lab, you learned about the main algorithms in RL,
 Q-learning, policy gradients, and evolutionary strategies. You saw how
 these algorithms could be applied to trading and learned about some of
 the pitfalls of applying RL. You also saw the direction of current
 research and how you can benefit from this research today. At this point
-in the book, you are now equipped with a number of advanced machine
+in the course, you are now equipped with a number of advanced machine
 learning algorithms, which are hopefully useful to you when developing
 machine learning models.
 
-In the next chapter, we will discuss the practicalities of developing,
+In the next lab, we will discuss the practicalities of developing,
 debugging, and deploying machine learning systems. We will break out of
 the data-science sandbox and get our models into the real world.

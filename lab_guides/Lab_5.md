@@ -1,6 +1,6 @@
 
 
-Chapter 5. Parsing Textual Data with Natural Language Processing {#chapter-5.-parsing-textual-data-with-natural-language-processing .title}
+Lab 5. Parsing Textual Data with Natural Language Processing {#lab-5.-parsing-textual-data-with-natural-language-processing .title}
 -------------------------------------------------------------------------
 
 
@@ -20,7 +20,7 @@ processing this information can increase the speed of trades occurring
 and widen the breadth of information considered for trades while at the
 same time reducing overall costs.
 
-[**Natural language processing**] ([**NLP**]) is
+**Natural language processing** (**NLP**) is
 making inroads into the finance sector. As an example, insurance
 companies are increasingly looking to process claims automatically,
 while retail banks try to streamline their customer service and offer
@@ -33,10 +33,10 @@ linguists. Today, the linguists are being replaced by neural networks
 that are able to learn the complex, and often hard to codify, rules of
 language.
 
-In this chapter, you will learn how to build powerful natural language
+In this lab, you will learn how to build powerful natural language
 models with Keras, as well as how to use the spaCy NLP library.
 
-The focus of this chapter will be on the following:
+The focus of this lab will be on the following:
 
 
 -   Fine-tuning spaCy\'s models for your own custom applications
@@ -84,7 +84,7 @@ $ python -m spacy download en
 
 ### Note {#note .title}
 
-[**Note**]: This chapter makes use of the English language
+**Note**: This lab makes use of the English language
 models, but more are available. Most features are available in English,
 German, Spanish, Portuguese, French, Italian, and Dutch. Entity
 recognition is available for many more languages through the
@@ -178,8 +178,8 @@ Named entity recognition {#named-entity-recognition .title style="clear: both"}
 
 
 
-A common task in NLP is [**named entity recognition**]
-([**NER**]). NER is all about finding things that the text
+A common task in NLP is **named entity recognition**
+(**NER**). NER is all about finding things that the text
 explicitly refers to. Before discussing more about
 what is going on, let\'s jump right in and do some hands-on NER on the
 first article in our dataset.
@@ -206,7 +206,7 @@ text = df.loc[0,'content']
 
 Finally, we\'ll run this piece of text through the English language
 model pipeline. This will create a `Doc` instance, something
-we explained earlier on in this chapter. The file will hold a lot of
+we explained earlier on in this lab. The file will hold a lot of
 information, including the named entities:
 
 
@@ -261,7 +261,7 @@ for our own purposes, and in a minute, we will see how that works.
 
 You can also see in our output that NER offers a wide range of tags,
 some of which come with strange abbreviations. For now, don\'t worry as
-we will examine a full list of tags later on in this chapter.
+we will examine a full list of tags later on in this lab.
 
 Right now, let\'s answer a different question: what organizations does
 the news in our dataset write about? To make this exercise run faster,
@@ -365,47 +365,47 @@ trained on the [*OntoNotes 5.0 corpus*], meaning it can
 recognize the following categories:
 
 
--   [**PERSON**]: People, including fictional characters
+- **PERSON**: People, including fictional characters
 
--   [**ORG**]: Companies, agencies, institutions
+- **ORG**: Companies, agencies, institutions
 
--   [**GPE**]: Places including countries, cities, and states
+- **GPE**: Places including countries, cities, and states
 
--   [**DATE**]: Absolute (for example, January 2017) or
+- **DATE**: Absolute (for example, January 2017) or
     relative dates (for example, two weeks)
 
--   [**CARDINAL**]: Numerals that are not covered by other
+- **CARDINAL**: Numerals that are not covered by other
     types
 
--   [**NORP**]: Nationalities or religious or political groups
+- **NORP**: Nationalities or religious or political groups
 
--   [**ORDINAL**]: \"first,\" \"second,\" and so on
+- **ORDINAL**: \"first,\" \"second,\" and so on
 
--   [**TIME**]: Times shorter than a day (for example, two
+- **TIME**: Times shorter than a day (for example, two
     hours)
 
--   [**WORK\_OF\_ART**]: Titles of books, songs, and so on
+- **WORK\_OF\_ART**: Titles of books, songs, and so on
 
--   [**LOC**]: Locations that are not `GPE`s, for
+- **LOC**: Locations that are not `GPE`s, for
     example, mountain ranges or streams
 
--   [**MONEY**]: Monetary values
+- **MONEY**: Monetary values
 
--   [**FAC**]: Facilities such as
+- **FAC**: Facilities such as
     airports, highways or bridges
 
--   [**PERCENT**]: Percentages
+- **PERCENT**: Percentages
 
--   [**EVENT**]: Named hurricanes, battles, sporting events,
+- **EVENT**: Named hurricanes, battles, sporting events,
     and so on
 
--   [**QUANTITY**]: Measurements such as weights or distance
+- **QUANTITY**: Measurements such as weights or distance
 
--   [**LAW**]: Named documents that are laws
+- **LAW**: Named documents that are laws
 
--   [**PRODUCT**]: Objects, vehicles, food, and so on
+- **PRODUCT**: Objects, vehicles, food, and so on
 
--   [**LANGUAGE**]: Any named language
+- **LANGUAGE**: Any named language
 :::
 
 Using this list, we will now look at the 15 most frequently named
@@ -436,8 +436,8 @@ As you can see, political institutions such as the
 [*senate*] are most frequently named in our news dataset.
 Likewise, some companies, such as [*Volkswagen*], that were
 in the center of media attention can also be found in the chart. Take a
-minute to also notice how [**the White House**] and [**White
-House**] are listed as two separate organizations, despite us
+minute to also notice how **the White House** and **White
+House** are listed as two separate organizations, despite us
 knowing they are the same entity.
 
 Depending on your needs, you might want to do some post-processing, such
@@ -450,7 +450,7 @@ Should you want to look at it in more detail, you can get the
 documentation and example from the following link:
 <https://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.str.replace.html>
 
-Also, note how [**Trump**] is shown here as 
+Also, note how **Trump** is shown here as 
 an organization. However, if you look at the tagged text, you
 will also see that \"Trump\" is tagged several times as an NORP,
 a political organization. This has happened because the NER infers the
@@ -495,7 +495,7 @@ As you can see, you provide a list of tuples of the string, together
 with the start and end points, as well as the types of entities you want
 to tag. Data such as this is usually collected
 through manual tagging, often on platforms such as Amazon\'s[
-**Mechanical Turk**] ([**MTurk**]).
+**Mechanical Turk** (**MTurk**).
 
 The company behind spaCy, Explosion AI, also make a (paid) data tagging
 system called [*Prodigy*], which enables efficient data
@@ -627,8 +627,8 @@ Once you\'ve run the code, the output should look something like this:
 :::
 
 What you are seeing is the loss value of a part of the spaCy pipeline,
-in this case, the [**named entity recognition**]
-([**NER**]) engine. Similar to the cross-entropy loss we
+in this case, the **named entity recognition**
+(**NER**) engine. Similar to the cross-entropy loss we
 discussed in previous chapters, the actual value is hard to interpret
 and does not tell you very much. What matters here is that the loss is
 decreasing over time and that it reaches a value much lower than the
@@ -654,7 +654,7 @@ the move would likely not find regulatory approval.
 
 So, the question arises, why did the trading algorithms choose to buy
 stock based on these four words? The answer is through
-[**part-of-speech**] ([**POS**]) tagging. POS tagging
+**part-of-speech** (**POS**) tagging. POS tagging
 allows an understanding of which words take which function in a
 sentence and how the words relate to each other.
 
@@ -678,7 +678,7 @@ displacy.render(doc,style='dep',jupyter=True, options={'distance':120})
 Again, we will load the pretrained English model and run our sentence
 through it. Then we\'ll use `displacy` just as we did for NER.
 
-To make the graphics fit better in this book, we will set the
+To make the graphics fit better in this course, we will set the
 `distance` option to something shorter than the default, in
 this case, 1,120, so that words get displayed closer together, as we can
 see in the following diagram:
@@ -691,10 +691,10 @@ spaCy POS tagger
 :::
 :::
 
-As you can see, the POS tagger identified [**buy**] as a verb
-and [**Google**] and [**Apple**] as the nouns in the
-sentence. It also identified that [**Apple**] is the object the
-action is applied to and that [**Google**] is applying the
+As you can see, the POS tagger identified **buy** as a verb
+and **Google** and **Apple** as the nouns in the
+sentence. It also identified that **Apple** is the object the
+action is applied to and that **Google** is applying the
 action.
 
 We can access this information for nouns through this code:
@@ -1136,7 +1136,7 @@ matching. Invented back in the 1950s, they were, for a very long time,
 the most useful way to find things in text and
 proponents argue that they still are.
 
-No chapter on NLP would be complete without mentioning regexes. With
+No lab on NLP would be complete without mentioning regexes. With
 that being said, this section is by no means a complete regex tutorial.
 It\'s intended to introduce the general idea and show how regexes can be
 used in Python, pandas, and spaCy.
@@ -1296,7 +1296,7 @@ unsurprisingly no articles in our dataset do.
 A regex is a powerful tool, and this very short
 introduction does not do it justice. In fact, there are several books
 longer than this one written purely on the topic of regexes. However,
-for the purpose of this book, we\'re only going to briefly introduce
+for the purpose of this course, we\'re only going to briefly introduce
 you to the topic.
 
 A regex, as a tool, works well on simple and clear-to-define patterns.
@@ -1345,7 +1345,7 @@ or \"fire.\"
 
 ### Note {#note .title}
 
-[**Note**]: In preparation for this section, the code and data
+**Note**: In preparation for this section, the code and data
 can be found on Kaggle at <https://www.kaggle.com/jannesklaas/nl>.
 
 
@@ -1446,7 +1446,7 @@ df = pd.read_csv('clean_socialmedia-disaster.csv')
 
 
 Lemmas have already made several appearances
-throughout this chapter. A lemma in the field of linguistics, also
+throughout this lab. A lemma in the field of linguistics, also
 called a headword, is the word under which the set of related words or
 forms appears in a dictionary. For example, \"was\" and \"is\" appear
 under \"be,\" \"mice\" appears under \"mouse,\" and so on. Quite often,
@@ -1592,8 +1592,8 @@ in the text.
 
 One of the ways of doing a bag-of-words
 classification is by simply counting the occurrences of different words
-from within a text. This is done with a so-called [**count
-vector**]. Each word has an index, and for
+from within a text. This is done with a so-called **count
+vector**. Each word has an index, and for
 each text, the value of the count vector at that index is the number of
 occurrences of the word that belong to the index.
 
@@ -1639,8 +1639,8 @@ X_test_counts = count_vectorizer.transform(X_test)
 
 Once we have obtained our count vectors, we can
 then perform a simple logistic regression on them. While we could use
-Keras for logistic regression, as we did in the first chapter of this
-book, it is often easier to just use the logistic regression class from
+Keras for logistic regression, as we did in the first lab of this
+course, it is often easier to just use the logistic regression class from
 scikit-learn:
 
 
@@ -1682,8 +1682,8 @@ a baseline for more advanced methods, which we will be discussing later.
 ### TF-IDF {#tf-idf .title}
 
 
-[**TF-IDF**] stands for [**Term Frequency, Inverse Document
-Frequency**]. It aims to address a problem of simple
+**TF-IDF** stands for **Term Frequency, Inverse Document
+Frequency**. It aims to address a problem of simple
  word counting, that being words that frequently appear in a
 text are important, while words that appear in [*all*] texts
 are not important.
@@ -1752,12 +1752,12 @@ Topic modeling {#topic-modeling .title style="clear: both"}
 A final, very useful application of word counting
 is topic modeling. Given a set of texts, are we able to find clusters of
 topics? The method to do this is called
-[**Latent Dirichlet Allocation**] ([**LDA**]).
+**Latent Dirichlet Allocation** (**LDA**).
 
 
 ### Note {#note .title}
 
-[**Note**]: The code and data for this section can be found on
+**Note**: The code and data for this section can be found on
 Kaggle at <https://www.kaggle.com/jannesklaas/topic-modeling-with-lda>.
 :::
 
@@ -1901,7 +1901,7 @@ Word embeddings {#word-embeddings .title style="clear: both"}
 The order of words in a text matters. Therefore, we
 can expect higher performance if we do not just look at texts in
 aggregate but see them as a sequence. This section makes use of a lot of
-the techniques discussed in the previous chapter; however, here we\'re
+the techniques discussed in the previous lab; however, here we\'re
 going to add a critical ingredient, word vectors.
 
 Words and word tokens are categorical features. As such, we cannot
@@ -2101,7 +2101,7 @@ embeddings.
 
 Like in computer vision, NLP models can benefit from using pretrained
 pieces of other models. In this case, we will use the pretrained GloVe
-vectors. [**GloVe**] stands for [**Global Vectors**]
+vectors. **GloVe** stands for **Global Vectors**
 for Word 8 and is a project of the Stanford NLP
 group. GloVe provides different sets of vectors trained in different
 texts.
@@ -2127,7 +2127,7 @@ Equally, words describing similar things such as \"frog\" and \"toad\"
 are very close to each other in the GloVe vector space. Encoding
 semantic meanings in vectors offer a range of other exciting
 opportunities for document similarity and topic modeling, as we will see
-later in this chapter. Semantic vectors are also pretty useful for a
+later in this lab. Semantic vectors are also pretty useful for a
 wide range of NLP tasks, such as our text classification problem.
 
 The actual GloVe vectors are in a text file. We will use the
@@ -2326,14 +2326,14 @@ semantical level, even if they include different words.
 
 Text is a time series. Different words follow each
 other and the order in which they do matters. Therefore, every neural
-network-based technique from the previous chapter can also be used for
+network-based technique from the previous lab can also be used for
 NLP. In addition, there are some building blocks that were not
-introduced in [Chapter
-4](https://subscription.packtpub.com/book/data/9781789136364/4){.link},
+introduced in [Lab
+4](https://subscription.packtpub.com/course/data/9781789136364/4){.link},
 [*Understanding Time Series*] that are useful for NLP.
 
 Let\'s start with an LSTM, otherwise known as long short-term memory.
-All you have to change from the implementation in the last chapter is
+All you have to change from the implementation in the last lab is
 that the first layer of the network should be an embedding layer. This
 example below uses a `CuDNNLSTM` layer,
 which trains much faster than a regular `LSTM` layer.
@@ -2353,8 +2353,8 @@ model.add(Dense(1, activation='sigmoid'))
 :::
 
 One technique used frequently in NLP but less frequently in time series
-forecasting is a bidirectional [**recurrent neural network**]
-([**RNN**]). A bidirectional RNN is effectively just two RNNs
+forecasting is a bidirectional **recurrent neural network**
+(**RNN**). A bidirectional RNN is effectively just two RNNs
 where one gets fed the sequence forward, while the other one gets fed
 the sequence backward:
 
@@ -2495,7 +2495,7 @@ connected. We can use this to create much more advanced and complex
 models.
 
 We will use the functional API a lot more from now on. This section of
-the chapter aims to provide a brief overview of the Keras functional
+the lab aims to provide a brief overview of the Keras functional
 API, as we will be going into much more depth in later chapters.
 Firstly, let\'s look at a simple two-layer network in both the
 sequential and functional way:
@@ -2525,7 +2525,7 @@ _________________________________________________________________
 
 The preceding model is a simple model implemented
 in the sequential API. Take note that this is how we have done it
-throughout this book so far. We will now implement the same model in the
+throughout this course so far. We will now implement the same model in the
 functional API:
 
 
@@ -2617,7 +2617,7 @@ model = Model(model_input, model_output)
 
 Layers can be reused. For example, we could train some layers in one
 computational graph and then use them for another, as we will do in the
-section on seq2seq models later in the chapter.
+section on seq2seq models later in the lab.
 
 One more caveat before we move on to use the functional API to build
 advanced models. We should note that the activation function of
@@ -2852,7 +2852,7 @@ sequence is over.
 
 ### Note {#note .title}
 
-[**Note**]: The data and code for this section can be found on
+**Note**: The data and code for this section can be found on
 Kaggle at
 <https://www.kaggle.com/jannesklaas/a-simple-seq2seq-translat>.
 
@@ -2861,7 +2861,7 @@ Kaggle at
 
 
 We use a dataset of English phrases and their
-translation. This dataset was obtained from the [**Tabotea**]
+translation. This dataset was obtained from the **Tabotea**
 project, a translation database, and you can find
 the file attached to the code on Kaggle. We implement this model on a
 character level, which means that unlike previous models, we won\'t
@@ -3375,7 +3375,7 @@ def decode_sequence(input_seq):
 ```
 :::
 
-For the final time in this chapter, let\'s break down the code:
+For the final time in this lab, let\'s break down the code:
 
 
 1.  Encode the input as state vectors
@@ -3471,7 +3471,7 @@ Seq2seq models are useful not only for translating between languages.
 They can be trained on just about anything that takes a sequence as an
 input and also outputs a sequence.
 
-Remember our forecasting task from the last chapter? The winning
+Remember our forecasting task from the last lab? The winning
 solution to the forecasting problem was a seq2seq model. Text
 summarization is another useful application. Seq2seq models can also be
 trained to output a series of actions, such as a sequence of trades that
@@ -3484,9 +3484,9 @@ Exercises {#exercises .title style="clear: both"}
 
 
 
-Now that we\'re at the end of the chapter, let\'s see what we\'ve
-learned. To finish this chapter, I\'ve included three exercises that
-will challenge you based on what we\'ve covered in this chapter:
+Now that we\'re at the end of the lab, let\'s see what we\'ve
+learned. To finish this lab, I\'ve included three exercises that
+will challenge you based on what we\'ve covered in this lab:
 
 
 1.  Add an extra layer to the encoder of the translation model. The
@@ -3505,7 +3505,7 @@ will challenge you based on what we\'ve covered in this chapter:
     <https://www.kaggle.com/aaron7sun/stocknews>. The task is to use the
     daily news as an input to predict stock prices. There are a number
     of kernels already that can help you with this. Use what you have
-    learned in this chapter to predict some stock prices!
+    learned in this lab to predict some stock prices!
 
 
 
@@ -3514,9 +3514,9 @@ Summary
 
 
 
-In this chapter, you have learned the most important NLP techniques.
+In this lab, you have learned the most important NLP techniques.
 There was a lot that we\'ve learned, and here\'s a big list of things we
-covered in this chapter and everything you should now feel confident
+covered in this lab and everything you should now feel confident
 about understanding:
 
 
@@ -3545,14 +3545,14 @@ about understanding:
 :::
 
 You now have a big set of tools in your toolbox that will allow you to
-tackle NLP problems. Throughout the rest of this book, you will see some
+tackle NLP problems. Throughout the rest of this course, you will see some
 of these techniques again, being used in different contexts to solve
 hard problems. These techniques are useful across the industry, from
 retail banking to hedge fund investing. While the problem your
 institution is trying to solve might require a bit of tweaking, the
 general approaches are quite transferable.
 
-In the next chapter, we will look at a technique that has gained a lot
+In the next lab, we will look at a technique that has gained a lot
 of attention since DeepMind beat a human Go champion: reinforcement
 learning. This technique is especially useful when working in financial
 markets and is in many ways a natural extension of what many

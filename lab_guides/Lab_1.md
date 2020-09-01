@@ -1,5 +1,5 @@
 
-Chapter 1. Neural Networks and Gradient-Based Optimization {#chapter-1.-neural-networks-and-gradient-based-optimization .title}
+Chapter 1. Neural Networks and Gradient-Based Optimization {#lab-1.-neural-networks-and-gradient-based-optimization .title}
 -------------------------------------------------------------------
 
 
@@ -55,7 +55,7 @@ it is good news or bad news that\'s being reported, and whether we can
 learn something about the relationship between this company and another
 company mentioned in the article. Those are just a couple of examples of
 contextualizing the story. Firms that master sourcing
-such [**alternative data,**] as it is often called, will often
+such **alternative data,** as it is often called, will often
 have an advantage.
 
 But it does not stop there. Financial professionals are expensive people
@@ -77,12 +77,12 @@ and thus reduce their fees to stay competitive.
 
 
 
-Our journey in this book {.title style="clear: both"}
+Our journey in this course
 ------------------------
 
 * * * * *
 
-This book is not only about investing or trading in the finance sector;
+This course is not only about investing or trading in the finance sector;
 it's much more as a direct result of the love story between computers
 and finance. Investment firms have customers, often insurance firms or
 pension funds, and these firms are financial services companies
@@ -109,7 +109,7 @@ submit insurance claims from their phone and to get an instant response.
 In today's world, insurers need to be able to automatically assess
 claims and make decisions in order to fulfill their customers' demands.
 
-This book is not about how to write trading algorithms in order to make
+This course is not about how to write trading algorithms in order to make
 a quick buck. It is about leveraging the art and craft of building
 machine learning-driven systems that are useful in the financial
 industry.
@@ -117,11 +117,11 @@ industry.
 Building anything of value requires a lot of time and effort. Right now,
 the market for building valuable things, to make an analogy to
 economics, is highly inefficient. Applications of machine learning will
-transform the industry over the next few decades, and this book will
+transform the industry over the next few decades, and this course will
 provide you with a toolbox that allows you to be part of the change.
 
-Many of the examples in this book use data outside the realm of
-"financial data." Stock market data is used at no time in this book, and
+Many of the examples in this course use data outside the realm of
+"financial data." Stock market data is used at no time in this course, and
 this decision was made for three specific reasons.
 
 Firstly, the examples that are shown demonstrate techniques that can
@@ -130,8 +130,8 @@ chosen that demonstrate some common challenges that professionals, like
 yourselves, will face while also remaining computationally tractable.
 
 Secondly, financial data is fundamentally time dependent. To make this
-book useful over a longer span of time, and to ensure that as machine
-learning becomes more prominent, this book remains a vital part of your
+course useful over a longer span of time, and to ensure that as machine
+learning becomes more prominent, this course remains a vital part of your
 toolkit, we have used some non-financial data so that the data discussed
 here will still be relevant.
 
@@ -219,7 +219,7 @@ differentiate dogs from all other animals.
 
 ### Note {#note .title}
 
-[**Note**]: The classifier does not know what a dog
+**Note**: The classifier does not know what a dog
 fundamentally is. It only knows the statistical patterns that linked
 images to dogs in training.
 :::
@@ -236,7 +236,7 @@ Unsupervised learning {#unsupervised-learning .title style="clear: both"}
 
 
 While supervised learning has made great advances
-over the last few years, most of this book will focus on working with
+over the last few years, most of this course will focus on working with
 labeled examples. However, sometimes we may not have labels. In this
 case, we can still use machine learning to find hidden patterns in data.
 
@@ -346,7 +346,7 @@ should question them precisely because they are black boxes.
 
 There will come a time when even the most sophisticated deep neural
 network will make a fundamentally wrong prediction, just as the advanced
-[**Collateralized Debt Obligation**] ([**CDO**])
+**Collateralized Debt Obligation** (**CDO**)
 models did in the financial crises of 2008. Even worse, black box
 machine learning models, which will make millions of decisions on loan
 approval or insurance, impacting everyday people\'s lives, will
@@ -354,7 +354,7 @@ eventually make wrong decisions.
 
 Sometimes they will be biased. Machine learning is ever only as good as
 the data that we feed it, data that can often be biased in what it\'s
-showing, something we\'ll consider later on in this chapter. This is
+showing, something we\'ll consider later on in this lab. This is
 something we must pay a lot of time in addressing, as if we mindlessly
 deploy these algorithms, we will automate discrimination too, which has
 the possibility of causing another financial crisis.
@@ -366,7 +366,7 @@ their acceptance through the heavy use of math pose a much bigger threat
 to society than the self-aware artificial intelligence taking over the
 world that you see in movies.
 
-While this is not an ethics book, it makes sense for any practitioner of
+While this is not an ethics course, it makes sense for any practitioner of
 the field to get familiar with the ethical implications of his or her
 work. In addition to recommending that you read Cathy O\'Neil\'s
 [*Weapons of math destruction,*] it\'s also worth asking you
@@ -392,19 +392,19 @@ voice and playing complex board games like Go, modern machine learning
 has matched, and continues to match and even beat, human performance at
 a dazzling range of tasks.
 
-Interestingly, [**deep learning**] is the method behind all
+Interestingly, **deep learning** is the method behind all
 these advances. In fact, the bulk of advances come from a subfield of
-deep learning called [**deep neural networks**]. While 
+deep learning called **deep neural networks**. While 
 many practitioners are familiar with standard econometric
 models, such as regression, few are familiar with this new breed
 of modeling.
 
-The bulk of this book is devoted to deep learning. This is because it is
+The bulk of this course is devoted to deep learning. This is because it is
 one of the most promising techniques for machine learning and will give
 anyone mastering it the ability to tackle tasks considered impossible
 before.
 
-In this chapter, we will explore how and why neural networks work in
+In this lab, we will explore how and why neural networks work in
 order to give you a fundamental understanding of the topic.
 
 
@@ -426,16 +426,16 @@ in the cloud, or on a website such as Kaggle.
 
 ### Note {#note .title}
 
-[**Note**]: All code examples for this book can be found here:
+**Note**: All code examples for this course can be found here:
 <https://github.com/PacktPublishing/Machine-Learning-for-Finance> and
-for chapter 1 refer the following link:
-<https://www.kaggle.com/jannesklaas/machine-learning-for-finance-chapter-1-code>.
+for lab 1 refer the following link:
+<https://www.kaggle.com/jannesklaas/machine-learning-for-finance-lab-1-code>.
 :::
 
 Deep learning is computer intensive, and the data used in the examples
-throughout this book are frequently over a gigabyte in size. It can be
-accelerated by the use of [**Graphics Processing Units**]
-([**GPUs**]), which were invented for
+throughout this course are frequently over a gigabyte in size. It can be
+accelerated by the use of **Graphics Processing Units**
+(**GPUs**), which were invented for
 rendering video and games. If you have a GPU enabled computer, you can
 run the examples locally. If you do not have such a machine, it is
 recommended to use a service such as Kaggle kernels.
@@ -451,7 +451,7 @@ GPU. There are countless tutorials for this online and a decent box can
 be assembled for as little as a few hundred dollars all the way to
 \$5,000.
 
-The examples in this book can all be run on Kaggle
+The examples in this course can all be run on Kaggle
 for free, though. In fact, they have been developed using this site.
 
 
@@ -472,7 +472,7 @@ To use Kaggle, you can visit their website at <https://www.kaggle.com/>.
 In order to use the site, you will be required to create an account.
 
 After you\'ve created your account, you can find the
-[**Kernels**] page by clicking on [**Kernels**]
+**Kernels** page by clicking on **Kernels**
 located in the main menu, as seen in the following screenshot:
 
 
@@ -488,8 +488,8 @@ kernels that other people have both written and published.
 Kernels can be private, but publishing kernels is a good way to show
 skills and share knowledge.
 
-To start a new kernel, click [**New Kernel**]. In the dialog
-that follows, you want to select [**Notebook**]:
+To start a new kernel, click **New Kernel**. In the dialog
+that follows, you want to select **Notebook**:
 
 
 ![](./images/B10354_01_05.jpg)
@@ -516,9 +516,9 @@ code. You can upload and download notebooks with the little cloud
 buttons featured in the top-right corner.
 
 To publish a notebook from the kernel editor, firstly you must click the
-[**Commit & Run**] button and then set the notebook to
-[**Public**] in the settings. To enable a GPU on your notebook,
-make sure to check the [**Enable GPU**] button located in
+**Commit & Run** button and then set the notebook to
+**Public** in the settings. To enable a GPU on your notebook,
+make sure to check the **Enable GPU** button located in
 the bottom right. It\'s important to remember that this will restart
 your notebook, so your environment variables will be lost.
 
@@ -529,22 +529,22 @@ click the restart button located in the bottom-right corner.
 
 With this system, you can connect a kernel to any dataset hosted on
 Kaggle, or alternatively you can just upload a new dataset on the fly.
-The notebooks belonging to this book already come with the data
+The notebooks belonging to this course already come with the data
 connection.
 
 Kaggle kernels come with the most frequently used
 packages preinstalled, so for most of the time you do not have to worry
 about installing packages.
 
-Sometimes this book does use custom packages not installed in Kaggle by
+Sometimes this course does use custom packages not installed in Kaggle by
 default. In this case, you can add custom packages at the bottom of the
 Settings menu. Instructions for installing custom packages will be
-provided when they are used in this book.
+provided when they are used in this course.
 
 Kaggle kernels are free to use and can save you a lot of time and money,
 so it\'s recommended to run the code samples on Kaggle. To copy a
 notebook, go to the link provided at the beginning of the code section
-of each chapter and then click [**Fork Notebook**]. Note that
+of each lab and then click **Fork Notebook**. Note that
 Kaggle kernels can run for up to six hours.
 
 
@@ -562,7 +562,7 @@ download the distribution. The graphical installer will guide you
 through the steps necessary to install Anaconda on your system. When
 installing Anaconda, you\'ll also install a range of useful Python
 libraries such as NumPy and matplotlib, which will be used throughout
-this book.
+this course.
 
 After installing Anaconda, you can start a Jupyter server locally by
 opening your machine\'s Terminal and typing in the following code:
@@ -577,13 +577,13 @@ $ jupyter notebook
 You can then visit the URL displayed in the Terminal. This will take you
 to your local notebook server.
 
-To start a new notebook, click on [**New**] in the top-right
+To start a new notebook, click on **New** in the top-right
 corner.
 
-All code samples in this book use Python 3, so make sure you are using
+All code samples in this course use Python 3, so make sure you are using
 Python 3 in your local notebooks. If you are running your notebooks
 locally, you will also need to install both TensorFlow and Keras, the
-two deep learning libraries used throughout this book.
+two deep learning libraries used throughout this course.
 
 
 
@@ -627,7 +627,7 @@ $ sudo pip install Keras
 
 Keras will now automatically use the TensorFlow backend. Note that
 TensorFlow 1.7 will include Keras built in, which we\'ll cover this
-later on in this chapter.
+later on in this lab.
 :::
 
 
@@ -635,7 +635,7 @@ later on in this chapter.
 #### Using data locally
 
 
-To use the data of the book code samples locally, visit the notebooks on
+To use the data of the course code samples locally, visit the notebooks on
 Kaggle and then download the connected datasets from there. Note that
 the file paths to the data will change depending on where you save the
 data, so you will need to replace the file paths when running notebooks
@@ -653,17 +653,17 @@ Using the AWS deep learning AMI
 
 
 
-[**Amazon Web Services**] ([**AWS**]) provides an
+**Amazon Web Services** (**AWS**) provides an
 easy-to-use, preconfigured way to run deep learning
 in the cloud.
 
 Visit <https://aws.amazon.com/machine-learning/amis/> for instructions
-on how to set up an [**Amazon Machine Image**
-]([**AMI**]). While AMIs are paid, they can run longer
+on how to set up an **Amazon Machine Image**
+](**AMI**). While AMIs are paid, they can run longer
 than Kaggle kernels. So, for big projects, it might be worth using
 an AMI instead of a kernel.
 
-To run the notebooks for this book on an AMI, first set up the AMI, then
+To run the notebooks for this course on an AMI, first set up the AMI, then
 download the notebooks from GitHub, and then upload them to your AMI.
 You will have to download the data from Kaggle as well. See the [*Using
 data locally*] section for instructions.
@@ -748,7 +748,7 @@ A forward pass {#a-forward-pass .title style="clear: both"}
 
 
 
-Over the course of this book, we will build powerful
+Over the course of this course, we will build powerful
 neural networks that are able to approximate extremely complex
 functions. We will be mapping text to named entities, images to their
 content, and even news articles to their summaries. But for now, we will
@@ -761,7 +761,7 @@ We will be working with a simple problem. Given an input matrix,
 from a mathematical perspective in order to gain some intuition for what
 is going on.
 
-Later on in this chapter, we will implement what we have described in
+Later on in this lab, we will implement what we have described in
 Python. We already know that we need data to train a neural network, and
 so the data, seen here, will be our dataset for the exercise:
 
@@ -839,16 +839,16 @@ Logistic regressor
 :::
 
 To compute the output of the regressor, we must
-first do a [**linear step**]. We compute the 
+first do a **linear step**. We compute the 
 dot product of the input, [*X*], and the weights,
 [*W*]. This is the same as multiplying each value of
 [*X*] with its weight and then taking the sum. To this
 number, we then add the bias, [*b*]. Afterward, we do a
-[**nonlinear step**].
+**nonlinear step**.
 
 In the nonlinear step, we run the linear intermediate
- product, [*z*], through an [**activation
-function**]; in this case, the sigmoid
+ product, [*z*], through an **activation
+function**; in this case, the sigmoid
 function. The sigmoid function squishes the input values to outputs
 between zero and one:
 
@@ -1034,7 +1034,7 @@ distance function, which we use to evaluate how close
 
 ### Note {#note .title}
 
-[**Note**]: This approach makes a crucial assumption that our
+**Note**: This approach makes a crucial assumption that our
 data, [*X*], and labels, [*y*], represent our
 desired function, [*f*]. This is not always the case.
 When our data contains systematic biases, we might gain a function
@@ -1209,7 +1209,7 @@ model has or which activation functions it should use, since there is no
 way to compute the gradient with respect to model topology.
 
 These settings, which cannot be optimized by gradient descent, are
-called [**hyperparameters**] and are usually set by humans. You
+called **hyperparameters** and are usually set by humans. You
 just saw how we gradually scale down the loss
 function, but how do we update the parameters? To this end, we\'re going
 to need another method called backpropagation.
@@ -1314,7 +1314,7 @@ rate.
 The learning rate is something akin to the gas pedal
 within a car. It sets by how much we want to apply the gradient updates.
 It is one of those hyperparameters that we have to set manually, and
-something we will discuss in the next chapter.
+something we will discuss in the next lab.
 
 Within the code, our parameter updates look like this:
 
@@ -1501,7 +1501,7 @@ A deeper network {#a-deeper-network .title style="clear: both"}
 
 
 
-We established earlier in this chapter that in order
+We established earlier in this lab that in order
 to approximate more complex functions, we need bigger and deeper
 networks. Creating a deeper network works by stacking layers on top of
 each other.
@@ -1543,8 +1543,8 @@ a2 = sigmoid(z2)
 
 ### Note {#note .title}
 
-[**Note**]: The full code for this example can be found in the
-GitHub repository belonging to this book.
+**Note**: The full code for this example can be found in the
+GitHub repository belonging to this course.
 :::
 
 As you can see, the first activation function is not a sigmoid function
@@ -1610,7 +1610,7 @@ Take a look at the following chart. What we see here is the two moons
 dataset that could be clearly separated, but right now there
  is a lot of noise, which makes the separation hard to see
 even for humans. You can find the full code for the two-layer neural
-network as well as for the generation of these samples in the Chapter 1
+network as well as for the generation of these samples in the Lab 1
 GitHub repo:
 
 
@@ -1668,7 +1668,7 @@ means is that it can run the operations needed for a neural network in a
 highly optimized way. Therefore, it\'s much faster and easier to use
 than TensorFlow. Because Keras acts as an interface to TensorFlow, it
 makes it easier to build even more complex neural networks. Throughout
-the rest of the book, we will be working with the Keras library in order
+the rest of the course, we will be working with the Keras library in order
 to build our neural networks.
 
 
@@ -1681,7 +1681,7 @@ modules we will use. In this case, we need two types of layers:
 
 
 -   The `Dense` layer is the plain layer that we have gotten
-    to know in this chapter
+    to know in this lab
 
 -   The `Activation` layer allows us to add an activation
     function
@@ -1698,7 +1698,7 @@ from keras.layers import Dense, Activation
 
 Keras offers two ways to build models, through the sequential and the
 functional APIs. Because the sequential API is easier to use and allows
-more rapid model building, we will be using it for most of the book.
+more rapid model building, we will be using it for most of the course.
 However, in later chapters, we will take a look at the functional API as
 well.
 
@@ -1823,10 +1823,10 @@ specify how exactly we want to train the model; and, more importantly,
 we need to specify which optimizer and which loss
 function we want to use.
 
-The simple optimizer we have used so far is called the [**Stochastic
-Gradient Descent**], or [**SGD**]. To look at more
-optimizers, see [Chapter
-2](https://subscription.packtpub.com/book/data/9781789136364/2){.link},
+The simple optimizer we have used so far is called the **Stochastic
+Gradient Descent**, or **SGD**. To look at more
+optimizers, see [Lab
+2](https://subscription.packtpub.com/course/data/9781789136364/2){.link},
 [*Applying Machine Learning to Structured Data*].
 
 The loss function we use for this binary classification problem is
@@ -1880,17 +1880,17 @@ loss: 0.2901 - acc: 0.8800
 :::
 
 The full output of the training process has been truncated in the
-middle, this is to save space in the book, but you can see that the loss
+middle, this is to save space in the course, but you can see that the loss
 goes continuously down while accuracy goes up. In other words, success!
 
-Over the course of this book, we will be adding more bells and whistles
+Over the course of this course, we will be adding more bells and whistles
 to these methods. But at this moment, we have a pretty solid
 understanding of the theory of deep learning. We are just missing one
 building block: how does Keras actually work under the hood? What is
 TensorFlow? And why does deep learning work faster on a GPU?
 
 We will be answering these questions in the next, and final, section of
-this chapter.
+this lab.
 
 
 ### Keras and TensorFlow {#keras-and-tensorflow .title}
@@ -1902,7 +1902,7 @@ computations by itself; it is just a simple way to interact with
 TensorFlow, which is running in the background.
 
 TensorFlow is a software library developed by Google and is very popular
-for deep learning. In this book, we usually try to work with TensorFlow
+for deep learning. In this course, we usually try to work with TensorFlow
 only through Keras, since that is easier than working with TensorFlow
 directly. However, sometimes we might want to write a bit of TensorFlow
 code in order to build more advanced models.
@@ -1921,7 +1921,7 @@ from tensorflow.keras.layers import Dense, Activation
 ```
 :::
 
-This book will treat Keras as a standalone library. However, you might
+This course will treat Keras as a standalone library. However, you might
 want to use a different backend for Keras one day, as it keeps the code
 cleaner if we have shorter `import` statements.
 
@@ -1952,7 +1952,7 @@ in the following table:
   n      n-dimensional matrix   You get the idea
 :::
 
-This book mostly uses the word tensor for rank-three or higher tensors.
+This course mostly uses the word tensor for rank-three or higher tensors.
 
 TensorFlow and every other deep learning library perform calculations
 along a computational graph. In a computational graph, operations, such
@@ -1983,7 +1983,7 @@ a modern GPU can have hundreds or even thousands of cores.
 
 The entire graph of just a very simple model can
 look quite complex, but you can see the components of the dense layer.
-There is a [**matrix multiplication**] ([**matmul**]),
+There is a **matrix multiplication** (**matmul**),
 adding bias and a ReLU activation function:
 
 
@@ -1998,7 +1998,7 @@ TensorBoard.
 Another advantage of using computational graphs such
 as this is that TensorFlow and other libraries can quickly and
 automatically calculate derivatives along this graph. As we have
-explored throughout this chapter, calculating derivatives is key for
+explored throughout this lab, calculating derivatives is key for
 training neural networks.
 
 
@@ -2008,9 +2008,9 @@ Exercises {#exercises .title style="clear: both"}
 
 
 
-Now that we have finished the first chapter in this exciting journey,
+Now that we have finished the first lab in this exciting journey,
 I\'ve got a challenge for you! You\'ll find some exercises that you can
-do that are all themed around what we\'ve covered in this chapter!
+do that are all themed around what we\'ve covered in this lab!
 
 So, why not try to do the following:
 
@@ -2036,7 +2036,7 @@ Summary
 
 
 And that\'s it! We\'ve learned how neural networks work. Throughout the
-rest of this book, we\'ll look at how to build more complex neural
+rest of this course, we\'ll look at how to build more complex neural
 networks that can approximate more complex functions.
 
 As it turns out, there are a few tweaks to make to the basic structure
@@ -2058,7 +2058,7 @@ basic ideas introduced in this chapter, however, stay the same:
     chain rule in a process called backpropagation
 :::
 
-The key takeaway from this chapter is that while we are looking for
+The key takeaway from this lab is that while we are looking for
 function [*f*], we can try and find it by optimizing a
 function to perform like [*f*] on a dataset. A subtle but
 important distinction is that we do not know whether
@@ -2081,7 +2081,7 @@ However, for every failure, there are plenty of success stories in deep
 learning. It is one of the high-impact technologies that will reshape
 the face of finance.
 
-In the next chapter, we will get our hands dirty by jumping in and
+In the next lab, we will get our hands dirty by jumping in and
 working with a common type of data in finance, structured tabular data.
 More specifically, we will tackle the problem of fraud, a problem that
 many financial institutions sadly have to deal with and for which modern
