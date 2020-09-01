@@ -48,6 +48,4 @@ Labs for this course are available at path shared below. Elev8ed Notecourses (po
 ### About
 Machine Learning for Finance explores new advances in machine learning and shows how they can be applied across the financial sector, including insurance, transactions, and lending. This course explains the concepts and algorithms behind the main machine learning techniques and provides example Python code for implementing the models yourself.
 
-The course is based on Jannes Klaas’ experience of running machine learning training courses for financial professionals. Rather than providing ready-made financial algorithms, the course focuses on advanced machine learning concepts and ideas that can be applied in a wide variety of ways.
-
 The course systematically explains how machine learning works on structured data, text, images, and time series. You'll cover generative adversarial learning, reinforcement learning, debugging, and launching machine learning products. Later labs will discuss how to fight bias in machine learning. The course ends with an exploration of Bayesian inference and probabilistic programming.
