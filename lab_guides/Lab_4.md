@@ -71,7 +71,7 @@ The dataset that we are going to use here is the traffic data of around
 be obtained from Kaggle.
 
 
-### Note {#note .title}
+### Note
 
 The data can be found at the following links:
 <https://www.kaggle.com/c/web-traffic-time-series-forecasting>
@@ -80,7 +80,7 @@ The data can be found at the following links:
 
 
 
-Visualization and preparation in pandas {#visualization-and-preparation-in-pandas .title style="clear: both"}
+Visualization and preparation in pandas
 ---------------------------------------------------------
 
 
@@ -187,7 +187,7 @@ the dataset. This means we can now move on to exploring it.
 
 
 
-### Aggregate global feature statistics {#aggregate-global-feature-statistics .title}
+### Aggregate global feature statistics
 
 
 After all of this hard work, we can now create some
@@ -303,7 +303,7 @@ be addressed for global features:
     one-hot encoded since there are too many of them.
 
 
-### Examining the sample time series {#examining-the-sample-time-series .title}
+### Examining the sample time series
 
 
 To examine the global features, of our dataset, we have to look at a few
@@ -457,7 +457,7 @@ handle nonstationarity.
 
 
 
-Fast Fourier transformations {#fast-fourier-transformations .title style="clear: both"}
+Fast Fourier transformations
 ----------------------------------------------
 
 
@@ -624,7 +624,7 @@ Saturday correlates with access on the previous Saturday.
 
 
 
-Autocorrelation {#autocorrelation .title style="clear: both"}
+Autocorrelation
 ---------------------------------
 
 
@@ -722,7 +722,7 @@ long periods of time.
 
 
 
-Establishing a training and testing regime {#establishing-a-training-and-testing-regime .title style="clear: both"}
+Establishing a training and testing regime
 ------------------------------------------------------------
 
 
@@ -817,7 +817,7 @@ def mape(y_true,y_pred):
 
 
 
-A note on backtesting {#a-note-on-backtesting .title style="clear: both"}
+A note on backtesting
 ---------------------------------------
 
 
@@ -900,7 +900,7 @@ validate on different pages and then test on future data in the end.
 
 
 
-Median forecasting {#median-forecasting .title style="clear: both"}
+Median forecasting
 ------------------------------------
 
 
@@ -996,7 +996,7 @@ check before using more advanced methods.
 
 
 
-ARIMA {#arima .title style="clear: both"}
+ARIMA
 -----------------------
 
 
@@ -1178,7 +1178,7 @@ but in the beginning, it does a remarkable job.
 
 
 
-Kalman filters {#kalman-filters .title style="clear: both"}
+Kalman filters
 --------------------------------
 
 
@@ -1329,7 +1329,7 @@ independent time series, which is very handy if you have 145,000 time
 series to process.
 
 
-### Note {#note .title}
+### Note
 
 **Note**: The library\'s repository can be found here:
 <https://github.com/oseiskar/simdkalman>.
@@ -1449,7 +1449,7 @@ network-based approaches that can automatically model time series, and
 often with higher accuracy.
 
 
-Forecasting with neural networks {#forecasting-with-neural-networks .title style="clear: both"}
+Forecasting with neural networks
 --------------------------------------------------
 
 
@@ -1473,7 +1473,7 @@ the time of forecasting, which is a problem in backtesting.
 
 
 
-### Data preparation {#data-preparation .title}
+### Data preparation
 
 
 For each series, we will assemble the following features:
@@ -1519,7 +1519,7 @@ giving our input data the shape (batch size, look back window size, 29).
 
 
 
-#### Weekdays {#weekdays .title}
+#### Weekdays
 
 
 The day of the week matters. Sundays may show
@@ -1816,7 +1816,7 @@ This function is what we will train and validate on.
 
 
 
-Conv1D {#conv1d .title style="clear: both"}
+Conv1D
 ------------------------
 
 
@@ -1925,7 +1925,7 @@ reduce the loss significantly later in this lab.
 
 
 
-Dilated and causal convolution {#dilated-and-causal-convolution .title style="clear: both"}
+Dilated and causal convolution
 ------------------------------------------------
 
 
@@ -1990,7 +1990,7 @@ model.add(Conv1D(16,5, padding='causal', dilation_rate=4))
 
 
 
-Simple RNN {#simple-rnn .title style="clear: both"}
+Simple RNN
 ----------------------------
 
 
@@ -2079,7 +2079,7 @@ version of the RNN.
 
 
 
-LSTM {#lstm .title style="clear: both"}
+LSTM
 ----------------------
 
 
@@ -2122,7 +2122,7 @@ this has been unrolled over time.
 
 
 
-### The carry {#the-carry .title}
+### The carry
 
 
 The central addition of an LSTM over an RNN is the [*carry*].
@@ -2209,7 +2209,7 @@ model.add(Dense(1))
 
 
 
-### Note {#note .title}
+### Note
 
 **Note**: If you are using a GPU and TensorFlow backend with
 Keras, use `CuDNNLSTM` instead of `LSTM`. It\'s
@@ -2232,7 +2232,7 @@ several orders of magnitude better than our initial model.
 
 
 
-Recurrent dropout {#recurrent-dropout .title style="clear: both"}
+Recurrent dropout
 -----------------------------------
 
 
@@ -2271,7 +2271,7 @@ model.add(Dense(1))
 
 
 
-Bayesian deep learning {#bayesian-deep-learning .title style="clear: both"}
+Bayesian deep learning
 ----------------------------------------
 
 
@@ -2379,7 +2379,7 @@ probability distribution for the `y` value at every instance
 of `X`.
 
 
-### Note {#note .title}
+### Note
 
 **Note**: For this example to work, you have to load the
 backend, clear the session, and set the learning phase before defining
@@ -2473,7 +2473,7 @@ certainly see many advances in the next few years.
 
 
 
-Exercises {#exercises .title style="clear: both"}
+Exercises
 ---------------------------
 
 

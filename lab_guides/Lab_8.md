@@ -71,7 +71,7 @@ a failure, but as a success to avoid problems.
 
 
 
-Debugging data {#debugging-data .title style="clear: both"}
+Debugging data
 --------------------------------
 
 
@@ -91,7 +91,7 @@ enough data, and how to test your data.
 
 
 
-### How to find out whether your data is up to the task {#how-to-find-out-whether-your-data-is-up-to-the-task .title}
+### How to find out whether your data is up to the task
 
 
 There are two aspects to consider when wanting to know whether your data
@@ -233,7 +233,7 @@ data for their project.
 
 
 
-### Unit testing data {#unit-testing-data .title}
+### Unit testing data
 
 
 If you build a model, you\'re making assumptions
@@ -268,7 +268,7 @@ pip install marbles
 
 
 
-### Note {#note .title}
+### Note
 
 **Note**: You can find a Kaggle kernel
 demonstrating marbles here:
@@ -391,7 +391,7 @@ of a bad prediction. Instead, the test will fail with the following
 error output:
 
 
-### Note {#note-1 .title}
+### Note
 
 **Note**: This code will not run and will fail.
 
@@ -484,7 +484,7 @@ learning.
 
 
 
-### Keeping data private and complying with regulations {#keeping-data-private-and-complying-with-regulations .title}
+### Keeping data private and complying with regulations
 
 
 In recent years, consumers have woken up to the
@@ -611,7 +611,7 @@ accidents, here are four of the key ones:
     note that this only works if you have a large enough user base.
 
 
-### Preparing the data for training {#preparing-the-data-for-training .title}
+### Preparing the data for training
 
 
 In earlier labs, we have seen the benefits of
@@ -694,7 +694,7 @@ feature distribution and adjust your scaling.
 
 
 
-### Understanding which inputs led to which predictions {#understanding-which-inputs-led-to-which-predictions .title}
+### Understanding which inputs led to which predictions
 
 
 Why did your model make the prediction it made? For
@@ -707,7 +707,7 @@ this model make predictions?\" LIME tries to answer; \"Why did the model
 make [*this*] prediction on [*this*] data?\"
 
 
-### Note {#note-2 .title}
+### Note
 
 **Note**: The authors of LIME, Ribeiro, Singh, and Guestrin,
 curated a great GitHub repository around their algorithm with many
@@ -808,7 +808,7 @@ is about how to debug your model.
 
 
 
-Debugging your model {#debugging-your-model .title style="clear: both"}
+Debugging your model
 ---------------------------------------
 
 
@@ -822,7 +822,7 @@ your model.
 
 
 
-### Hyperparameter search with Hyperas {#hyperparameter-search-with-hyperas .title}
+### Hyperparameter search with Hyperas
 
 
 Manually tuning the hyperparameters of a neural network can be a tedious
@@ -842,7 +842,7 @@ for `hyperopt`, a popular optimization library made for
 working with Keras.
 
 
-### Note {#note .title}
+### Note
 
 **Note**: You can find Hyperas on
 GitHub: <https://github.com/maxpumperla/hyperas>.
@@ -889,7 +889,7 @@ some difficult loss surfaces. As a rule of thumb, it makes sense to
 start with TPE, and if TPE struggles, move to random search.
 
 
-### Note {#note-1 .title}
+### Note
 
 **Note**: The code for this example can be found at:
 <https://www.kaggle.com/jannesklaas/Hyperas>.
@@ -1132,7 +1132,7 @@ approach first before investing in hyperparameter search.
 
 
 
-### Efficient learning rate search {#efficient-learning-rate-search .title}
+### Efficient learning rate search
 
 
 One of the most important hyperparameters is the learning rate. Finding
@@ -1235,7 +1235,7 @@ lower than the optimum found by line search.
 
 
 
-### Learning rate scheduling {#learning-rate-scheduling .title}
+### Learning rate scheduling
 
 
 Why stop at using one learning rate? In the
@@ -1376,7 +1376,7 @@ Learning rate restarts
 
 
 
-### Monitoring training with TensorBoard {#monitoring-training-with-tensorboard .title}
+### Monitoring training with TensorBoard
 
 
 An important part of debugging a model is knowing
@@ -1390,7 +1390,7 @@ you can observe the distributions of the model\'s weights and gradients
 during training.
 
 
-### Note {#note-2 .title}
+### Note
 
 **Note**: TensorBoard does not run on Kaggle. To try out
 TensorBoard, install Keras and TensorFlow on your own machine.
@@ -1496,7 +1496,7 @@ models, such as generative adversarial networks, and are trying to
 understand why something complex goes wrong.
 
 
-### Note {#note-3 .title}
+### Note
 
 **Note**: The TensorFlow debugger does not work well with
 models trained in Jupyter Notebooks. Save your model training code to a
@@ -1558,7 +1558,7 @@ great tool.
 
 
 
-### Exploding and vanishing gradients {#exploding-and-vanishing-gradients .title}
+### Exploding and vanishing gradients
 
 
 The vanishing gradient problem describes the issue
@@ -1647,7 +1647,7 @@ models in production and speed up the machine learning process.
 
 
 
-Deployment {#deployment .title style="clear: both"}
+Deployment
 -----------------------------
 
 
@@ -1688,7 +1688,7 @@ Tips*] for more details on choosing a deployment method.
 
 
 
-### Launching fast {#launching-fast .title}
+### Launching fast
 
 
 The process of developing models depends on
@@ -1722,7 +1722,7 @@ advantage.
 
 
 
-### Understanding and monitoring metrics {#understanding-and-monitoring-metrics .title}
+### Understanding and monitoring metrics
 
 
 To ensure that optimizing metrics such as the mean
@@ -1804,7 +1804,7 @@ detected quickly, and the model can be improved.
 
 
 
-### Understanding where your data comes from {#understanding-where-your-data-comes-from .title}
+### Understanding where your data comes from
 
 
 More often than not, your data gets collected by some other system that
@@ -1846,7 +1846,7 @@ reduce the risk of your model breaking when data changes.
 
 
 
-Performance tips {#performance-tips .title style="clear: both"}
+Performance tips
 -----------------------------------
 
 
@@ -1881,7 +1881,7 @@ however, a GPU or even specialized hardware is preferable.
 
 
 
-### Making use of distributed training with TF estimators {#making-use-of-distributed-training-with-tf-estimators .title}
+### Making use of distributed training with TF estimators
 
 
 Keras is not only a standalone library that can use
@@ -1895,7 +1895,7 @@ yet. Estimators also have a number of other speed-up tricks, so they are
 usually faster than Keras models.
 
 
-### Note {#note .title}
+### Note
 
 You can find information on how to set up your cluster for distributed
 TensorFlow here: <https://www.tensorflow.org/deploy/distributed>.
@@ -2008,7 +2008,7 @@ import them to a different layer.
 
 
 
-### Optimizing your pipeline {#optimizing-your-pipeline .title}
+### Optimizing your pipeline
 
 
 With the right hardware and optimized software in
@@ -2126,7 +2126,7 @@ significantly by optimizing your pipeline. There are several
     `tf.data.TFRecordDataset`.
 
     
-    ### Note {#note-1 .title}
+    ### Note
 
     **Note**: For a more comprehensive guide to the
     `Dat` `aset` API, see
@@ -2207,7 +2207,7 @@ network, using CPUs and keeping all your data in RAM if possible.
 
 
 
-### Speeding up your code with Cython {#speeding-up-your-code-with-cython .title}
+### Speeding up your code with Cython
 
 
 Python is a popular language because developing
@@ -2218,7 +2218,7 @@ Using this language, you can write pretty much normal Python code, and
 Cython converts it to fast-running C code.
 
 
-### Note {#note-2 .title}
+### Note
 
 **Note**: You can read the full Cython
 documentation here:
@@ -2345,7 +2345,7 @@ and gain execution speed.
 
 
 
-### Caching frequent requests {#caching-frequent-requests .title}
+### Caching frequent requests
 
 
 An under-appreciated way to make models run faster is to cache frequent
@@ -2362,7 +2362,7 @@ important.
 
 
 
-Exercises {#exercises .title style="clear: both"}
+Exercises
 ----------------------------
 
 

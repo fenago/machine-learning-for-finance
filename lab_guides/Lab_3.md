@@ -113,7 +113,7 @@ you have OpenCV installed and can import with `import cv2`.
 
 
 
-Convolutional Neural Networks {#convolutional-neural-networks .title style="clear: both"}
+Convolutional Neural Networks
 -----------------------------------------------
 
 
@@ -140,7 +140,7 @@ World!\" application for computer vision.
 
 
 
-### Filters on MNIST {#filters-on-mnist .title}
+### Filters on MNIST
 
 
 What does a computer actually see when it sees an
@@ -226,7 +226,7 @@ directions.
 
 
 
-### Adding a second filter {#adding-a-second-filter .title}
+### Adding a second filter
 
 
 Our vertical filter is working, but we\'ve already noticed that we also
@@ -273,7 +273,7 @@ ConvNet is able to extract ever more complex and semantic features.
 
 
 
-Filters on color images {#filters-on-color-images .title style="clear: both"}
+Filters on color images
 -----------------------------------------
 
 
@@ -319,7 +319,7 @@ channels.
 
 
 
-The building blocks of ConvNets in Keras {#the-building-blocks-of-convnets-in-keras .title style="clear: both"}
+The building blocks of ConvNets in Keras
 ----------------------------------------------------------
 
 
@@ -384,7 +384,7 @@ channel added.
 
 
 
-### Conv2D {#conv2d .title}
+### Conv2D
 
 
 Now we come to the meat and potatoes of ConvNets:
@@ -415,7 +415,7 @@ we want to use, and the size of each filter.
 
 
 
-#### Kernel size {#kernel-size .title}
+#### Kernel size
 
 
 The size of the filter is also called
@@ -435,7 +435,7 @@ results.
 
 
 
-#### Stride size {#stride-size .title}
+#### Stride size
 
 
 The `strides` parameter specifies the step size, also called
@@ -456,7 +456,7 @@ in the case of the filter size, this is rarely done.
 
 
 
-#### Padding {#padding .title}
+#### Padding
 
 
 Finally, we have to add `padding` to our
@@ -510,7 +510,7 @@ Option 3: Valid padding
 
 
 
-#### Input shape {#input-shape .title}
+#### Input shape
 
 
 Keras requires us to specify the input shape.
@@ -521,7 +521,7 @@ previous layer\'s output shape.
 
 
 
-#### Simplified Conv2D notation {#simplified-conv2d-notation .title}
+#### Simplified Conv2D notation
 
 
 The preceding layer takes a 28x28x1 input and slides six filters with a
@@ -544,7 +544,7 @@ network, we wouldn\'t even have to specify the input shape.
 
 
 
-#### ReLU activation {#relu-activation .title}
+#### ReLU activation
 
 
 Convolutional layers only perform a linear step.
@@ -605,7 +605,7 @@ model.add(Activation('relu'))
 
 
 
-### MaxPooling2D {#maxpooling2d .title}
+### MaxPooling2D
 
 
 It\'s common practice to use a pooling layer after
@@ -675,7 +675,7 @@ layer does not perform a linear step.
 
 
 
-### Flatten {#flatten .title}
+### Flatten
 
 
 You might have noticed that our feature maps are
@@ -702,7 +702,7 @@ model.add(Flatten())
 ```
 
 
-### Dense {#dense .title}
+### Dense
 
 
 ConvNets usually consist of a feature extraction
@@ -741,7 +741,7 @@ model.add(Activation('softmax'))
 ```
 
 
-### Training MNIST {#training-mnist .title}
+### Training MNIST
 
 
 Let\'s now put all of these elements together so we can train a ConvNet
@@ -749,7 +749,7 @@ on the MNIST dataset.
 
 
 
-#### The model {#the-model .title}
+#### The model
 
 
 First, we must specify the model, which we can do
@@ -869,7 +869,7 @@ reduced by convolutional and pooling layers.
 
 
 
-#### Loading the data {#loading-the-data .title}
+#### Loading the data
 
 
 The MNIST dataset we are using comes preinstalled
@@ -937,7 +937,7 @@ out:
 ```
 
 
-#### Compiling and training {#compiling-and-training .title}
+#### Compiling and training
 
 
 In the previous labs, we have used one-hot
@@ -1050,7 +1050,7 @@ validation accuracy, which is pretty nice!
 
 
 
-More bells and whistles for our neural network {#more-bells-and-whistles-for-our-neural-network .title style="clear: both"}
+More bells and whistles for our neural network
 ----------------------------------------------------------------
 
 
@@ -1060,7 +1060,7 @@ network.
 
 
 
-### Momentum {#momentum .title}
+### Momentum
 
 
 In previous labs we\'ve explained gradient descent in terms of
@@ -1128,7 +1128,7 @@ model.compile(optimizer=momentum_optimizer,loss='sparse_categorical_crossentropy
 ```
 
 
-### The Adam optimizer {#the-adam-optimizer .title}
+### The Adam optimizer
 
 
 Back in 2015, Diederik P. Kingma and Jimmy Ba created the
@@ -1202,7 +1202,7 @@ recommended values.
 
 
 
-### Regularization {#regularization .title}
+### Regularization
 
 
 Regularization is a technique used to avoid
@@ -1234,7 +1234,7 @@ training data.
 
 
 
-#### L2 regularization {#l2-regularization .title}
+#### L2 regularization
 
 
 One popular technique to counter overfitting is L2 regularization. L2
@@ -1263,7 +1263,7 @@ will prevent the algorithm from overfitting.
 
 
 
-#### L1 regularization {#l1-regularization .title}
+#### L1 regularization
 
 
 L1 regularization is very similar to L2
@@ -1280,7 +1280,7 @@ work best, but the difference between the two is not very large.
 
 
 
-#### Regularization in Keras {#regularization-in-keras .title}
+#### Regularization in Keras
 
 
 In Keras, regularizers that are applied to
@@ -1360,7 +1360,7 @@ accuracy on the validation than on the training set; this is a clear
 sign of underfitting.
 
 
-### Dropout {#dropout .title}
+### Dropout
 
 
 As the title of the 2014 paper by Srivastava et al gives away, [*Dropout
@@ -1453,7 +1453,7 @@ for predictions, dropout doesn\'t do anything.
 
 
 
-### Batchnorm {#batchnorm .title}
+### Batchnorm
 
 
 **Batchnorm**, short for **batch** 
@@ -1534,7 +1534,7 @@ extremely popular tool in computer vision.
 
 
 
-Working with big image datasets {#working-with-big-image-datasets .title style="clear: both"}
+Working with big image datasets
 -------------------------------------------------
 
 
@@ -1568,7 +1568,7 @@ dataset as well as the [*Planet: Understanding the Amazon from
 Space*] dataset.
 
 
-### Note {#note .title}
+### Note
 
 The code and data for this section and the section on stacking
 pretrained models can be found and run here:
@@ -1659,7 +1659,7 @@ sort images to match the generator\'s expectations.
 
 
 
-Working with pretrained models {#working-with-pretrained-models .title style="clear: both"}
+Working with pretrained models
 ------------------------------------------------
 
 
@@ -1793,7 +1793,7 @@ From this point, there are two different ways we can proceed:
 
 
 
-### Modifying VGG-16 {#modifying-vgg-16 .title}
+### Modifying VGG-16
 
 
 In this section, we will be adding layers on top of
@@ -1864,7 +1864,7 @@ validation accuracy.
 
 
 
-### Random image augmentation {#random-image-augmentation .title}
+### Random image augmentation
 
 
 A general problem in machine learning is that no
@@ -1884,7 +1884,7 @@ However, focusing on this is outside the scope of this lab.
 
 
 
-#### Augmentation with ImageDataGenerator {#augmentation-with-imagedatagenerator .title}
+#### Augmentation with ImageDataGenerator
 
 
 When using an augmenting data generator, we only
@@ -1917,7 +1917,7 @@ This training data generator makes use of a few built-in augmentation
 techniques.
 
 
-### Note {#note .title}
+### Note
 
 **Note**: There are more commands
 available in Keras. For a full list, you should refer to the Keras
@@ -2022,7 +2022,7 @@ This will produce the following output:
 A few samples of the randomly modified image
 
 
-The modularity tradeoff {#the-modularity-tradeoff .title style="clear: both"}
+The modularity tradeoff
 -----------------------------------------
 
 
@@ -2086,7 +2086,7 @@ never really work with raw data.
 Being smart about dividing a task can boost performance and reduce risk.
 
 
-Computer vision beyond classification {#computer-vision-beyond-classification .title style="clear: both"}
+Computer vision beyond classification
 -------------------------------------------------------
 
 
@@ -2109,7 +2109,7 @@ the tasks you are looking to solve require similar creativity.
 
 
 
-### Facial recognition {#facial-recognition .title}
+### Facial recognition
 
 
 Facial recognition has many applications for retail
@@ -2210,7 +2210,7 @@ events, then you could use the exact same approach.
 
 
 
-### Bounding box prediction {#bounding-box-prediction .title}
+### Bounding box prediction
 
 
 The likelihood is that at some point, you\'ll be
@@ -2264,7 +2264,7 @@ a too low confidence score or with a too large overlap with another, a
 more confident bounding box.
 
 
-### Note {#note .title}
+### Note
 
 For a more detailed description, read Redmon and Farhadi\'s 2016 paper,
 [*YOLO9000: Better, Faster, Stronger*], available at
@@ -2297,7 +2297,7 @@ modularity.
 
 
 
-Exercises {#exercises .title style="clear: both"}
+Exercises
 ---------------------------
 
 

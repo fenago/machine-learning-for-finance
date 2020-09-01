@@ -72,7 +72,7 @@ true images.
 
 
 
-Understanding autoencoders {#understanding-autoencoders .title style="clear: both"}
+Understanding autoencoders
 --------------------------------------------
 
 
@@ -134,7 +134,7 @@ as the MNIST dataset.
 
 
 
-### Autoencoder for MNIST {#autoencoder-for-mnist .title}
+### Autoencoder for MNIST
 
 
 Let\'s start with a simple autoencoder for the MNIST dataset of
@@ -149,7 +149,7 @@ and Matplotlib libraries, and set a random seed to ensure that your
 experiments are reproducible.
 
 
-### Note {#note .title}
+### Note
 
 **Note**: You can find the code for the
 MNIST autoencoder and variational autoencoder under the following URL
@@ -344,7 +344,7 @@ fraud problem.
 
 
 
-### Autoencoder for credit cards {#autoencoder-for-credit-cards .title}
+### Autoencoder for credit cards
 
 
 Throughout this section, we will once again be dealing with the problem
@@ -359,7 +359,7 @@ itself much to feature engineering. Therefore, we will have to rely on
 end-to-end learning methods in order to build a good fraud detector.
 
 
-### Note {#note-1 .title}
+### Note
 
 **Note**: You can find the dataset at:
 <https://www.kaggle.com/mlg-ulb/creditcardfraud> and the notebook with
@@ -558,7 +558,7 @@ margin. As you can see, visual inspection gives more insight than
 looking at abstract numbers.
 
 
-Visualizing latent spaces with t-SNE {#visualizing-latent-spaces-with-t-sne .title style="clear: both"}
+Visualizing latent spaces with t-SNE
 ------------------------------------------------------
 
 
@@ -780,7 +780,7 @@ this is not as well documented and contains fewer features, therefore we
 will not be covering it in this book.
 
 
-### Note {#note .title}
+### Note
 
 **Note**: You can find the faster implementation with
 installation instructions under the following URL
@@ -837,7 +837,7 @@ autoencoder, which will be the focus of the next section.
 
 
 
-Variational autoencoders {#variational-autoencoders .title style="clear: both"}
+Variational autoencoders
 ------------------------------------------
 
 
@@ -886,7 +886,7 @@ deviation of one.
 
 
 
-### MNIST example {#mnist-example .title}
+### MNIST example
 
 
 Now on to our first VAE. This VAE will work with the MNIST dataset and
@@ -1035,7 +1035,7 @@ normal Gaussian distribution in its encodings. Let\'s address that now.
 
 
 
-### Kullback--Leibler divergence {#kullbackleibler-divergence .title}
+### Kullback--Leibler divergence
 
 
 To create the custom loss for our VAE, we need a custom loss function.
@@ -1148,7 +1148,7 @@ term is added to the reconstruction loss.
 
 
 
-### Creating a custom loss {#creating-a-custom-loss .title}
+### Creating a custom loss
 
 
 The VAE loss is a combination of two losses: a reconstruction loss
@@ -1343,7 +1343,7 @@ discuss how this technique can be used for credit card fraud detection.
 
 
 
-### VAEs for an end-to-end fraud detection system {#vaes-for-an-end-to-end-fraud-detection-system .title}
+### VAEs for an end-to-end fraud detection system
 
 
 To transfer the VAE from an MNIST example to a real fraud detection
@@ -1385,7 +1385,7 @@ work for time series.
 
 
 
-VAEs for time series {#vaes-for-time-series .title style="clear: both"}
+VAEs for time series
 --------------------------------------
 
 
@@ -1519,7 +1519,7 @@ realistic data.
 
 
 
-GANs {#gans .title style="clear: both"}
+GANs
 ----------------------
 
 
@@ -1587,7 +1587,7 @@ The training process for a GAN works as follows:
 
 
 
-### Note {#note .title}
+### Note
 
 **Note**: GAN training has a lot of similarities to the
 visualization of the network layers that we discussed in Lab 3,
@@ -1632,7 +1632,7 @@ and economics, which features many such problems.
 
 
 
-### A MNIST GAN {#a-mnist-gan .title}
+### A MNIST GAN
 
 
 Let\'s now implement a GAN in order to generate MNIST characters. Before
@@ -1822,7 +1822,7 @@ backpropagate through and train the generator. This is where the power
 of Keras\' modular design comes into play.
 
 
-### Note {#note-1 .title}
+### Note
 
 **Note**: Keras models can be treated just like Keras layers.
 
@@ -2024,7 +2024,7 @@ theoretical reason for why these tricks work.
 
 
 
-### Understanding GAN latent vectors {#understanding-gan-latent-vectors .title}
+### Understanding GAN latent vectors
 
 
 For autoencoders, the latent space was a relatively
@@ -2047,7 +2047,7 @@ representations is an active field of research.
 
 
 
-### GAN training tricks {#gan-training-tricks .title}
+### GAN training tricks
 
 
 GANs are tricky to train. They might collapse,
@@ -2301,7 +2301,7 @@ labeling data and can accelerate your efforts quite drastically.
 
 
 
-### Leveraging machines for human labeling {#leveraging-machines-for-human-labeling .title}
+### Leveraging machines for human labeling
 
 
 In labeling, many companies rely on Microsoft
@@ -2343,14 +2343,14 @@ you can find more out about it by reading its official documentation
 here: <https://prodi.gy/>.
 
 
-### Note {#note .title}
+### Note
 
 **Note**: A better user interface design and smart
 implementation of weak models can greatly accelerate the speed and
 quality of labeling.
 
 
-### Pseudo labeling for unlabeled data {#pseudo-labeling-for-unlabeled-data .title}
+### Pseudo labeling for unlabeled data
 
 
 Often there is plenty of unlabeled data available,
@@ -2400,7 +2400,7 @@ In the next section, we will apply them to our fraud detection task.
 
 
 
-SGANs for fraud detection {#sgans-for-fraud-detection .title style="clear: both"}
+SGANs for fraud detection
 -------------------------------------------
 
 
@@ -2421,7 +2421,7 @@ We will train this model on fewer than 1,000
 transactions and still get a decent fraud detector.
 
 
-### Note {#note .title}
+### Note
 
 **Note**: You can find the code for the
 SGAN on Kaggle under this link:
@@ -2757,7 +2757,7 @@ trained on fewer than 1,000 transactions.
 
 
 
-Exercises {#exercises .title style="clear: both"}
+Exercises
 ---------------------------
 
 

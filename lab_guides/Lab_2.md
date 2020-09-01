@@ -69,7 +69,7 @@ auto-encoders.
 
 
 
-The data {#the-data .title style="clear: both"}
+The data
 --------------------------
 
 
@@ -81,7 +81,7 @@ within a dataset, a classic machine learning problem many financial
 institutions deal with.
 
 
-### Note {#note .title}
+### Note
 
 **Note**: Before we go further, a digital copy of the code,
 as well as an interactive notebook for this lab are accessible
@@ -165,7 +165,7 @@ dropped, leaving us with around 2.8 million examples to work with.
 
 
 
-Heuristic, feature-based, and E2E models {#heuristic-feature-based-and-e2e-models .title style="clear: both"}
+Heuristic, feature-based, and E2E models
 ----------------------------------------------------------
 
 
@@ -260,7 +260,7 @@ build them.
 
 
 
-The machine learning software stack {#the-machine-learning-software-stack .title style="clear: both"}
+The machine learning software stack
 -----------------------------------------------------
 
 
@@ -304,7 +304,7 @@ showing you how they are integrated into the process of creating a
 predictive model.
 
 
-### Note {#note .title}
+### Note
 
 **Note**: All of the libraries needed for this lab are
 installed on Kaggle kernels by default. If you are running this code
@@ -315,7 +315,7 @@ install all of the libraries needed.
 
 
 
-The heuristic approach {#the-heuristic-approach .title style="clear: both"}
+The heuristic approach
 ----------------------------------------
 
 
@@ -330,7 +330,7 @@ it does at measuring fraud rates.
 
 
 
-### Making predictions using the heuristic model {#making-predictions-using-the-heuristic-model .title}
+### Making predictions using the heuristic model
 
 
 We will be making our predictions using the
@@ -356,7 +356,7 @@ can be easy to write, and quick to deploy.
 
 
 
-### The F1 score {#the-f1-score .title}
+### The F1 score
 
 
 One important thing we must consider is the need
@@ -440,7 +440,7 @@ frauds.
 
 
 
-### Evaluating with a confusion matrix {#evaluating-with-a-confusion-matrix .title}
+### Evaluating with a confusion matrix
 
 
 A more qualitative and interpretable way of
@@ -490,7 +490,7 @@ we can do better.
 
 
 
-The feature engineering approach {#the-feature-engineering-approach .title style="clear: both"}
+The feature engineering approach
 --------------------------------------------------
 
 
@@ -558,7 +558,7 @@ the three approaches and how they can be turned into features.
 
 
 
-### A feature from intuition -- fraudsters don\'t sleep {#a-feature-from-intuition-fraudsters-dont-sleep .title}
+### A feature from intuition -- fraudsters don\'t sleep
 
 
 Without knowing much about fraud, we can intuitively describe fraudsters
@@ -649,7 +649,7 @@ to make this a great time of the day to catch fraud.
 
 
 
-### Expert insight -- transfer, then cash out {#expert-insight-transfer-then-cash-out .title}
+### Expert insight -- transfer, then cash out
 
 
 The description of the dataset came with another description that
@@ -687,7 +687,7 @@ this insight for predictive modeling here.
 
 
 
-### Statistical quirks -- errors in balances {#statistical-quirks-errors-in-balances .title}
+### Statistical quirks -- errors in balances
 
 
 A closer examination of the data shows that there
@@ -756,7 +756,7 @@ end up hurting the performance of our model in production.
 
 
 
-Preparing the data for the Keras library {#preparing-the-data-for-the-keras-library .title style="clear: both"}
+Preparing the data for the Keras library
 ----------------------------------------------------------
 
 
@@ -803,7 +803,7 @@ data needs special treatment.
 
 
 
-### One-hot encoding {#one-hot-encoding .title}
+### One-hot encoding
 
 
 The most commonly used method to encode categorical
@@ -896,7 +896,7 @@ neural network will be able to work with.
 
 
 
-### Entity embeddings {#entity-embeddings .title}
+### Entity embeddings
 
 
 In this section, we\'re going to walk through
@@ -932,7 +932,7 @@ also make them useful for categorical data.
 
 
 
-#### Tokenizing categories {#tokenizing-categories .title}
+#### Tokenizing categories
 
 
 Just as with text, we have to tokenize the inputs
@@ -982,7 +982,7 @@ other_cols = [c for c in df.columns if ((c != 'type') and (c != 'isFraud'))]
 ```
 
 
-#### Creating input models {#creating-input-models .title}
+#### Creating input models
 
 
 The model we are creating will have two inputs: one
@@ -1073,7 +1073,7 @@ merged_model.compile(loss='binary_crossentropy',optimizer='adam', metrics=['accu
 ```
 
 
-#### Training the model {#training-the-model .title}
+#### Training the model
 
 
 In this section we\'re going to train a model with
@@ -1109,7 +1109,7 @@ Epoch 1/1
 ```
 
 
-Creating predictive models with Keras {#creating-predictive-models-with-keras .title style="clear: both"}
+Creating predictive models with Keras
 -------------------------------------------------------
 
 
@@ -1137,7 +1137,7 @@ to create a model.
 
 
 
-### Extracting the target {#extracting-the-target .title}
+### Extracting the target
 
 
 To train the model, a neural network needs a
@@ -1173,7 +1173,7 @@ X = x_df.values
 ```
 
 
-### Creating a test set {#creating-a-test-set .title}
+### Creating a test set
 
 
 When we train our model, we run the risk of
@@ -1213,7 +1213,7 @@ experiments.
 
 
 
-### Creating a validation set {#creating-a-validation-set .title}
+### Creating a validation set
 
 
 Now you might be tempted to just try out a lot of different models until
@@ -1243,7 +1243,7 @@ X_train, X_test, y_train, y_test = train_test_split(X_train, y_train, test_size=
 ```
 
 
-### Oversampling the training data {#oversampling-the-training-data .title}
+### Oversampling the training data
 
 
 Remember that in our dataset, only a tiny fraction
@@ -1257,7 +1257,7 @@ dataset until we have the same amount of fraudulent transactions as
 genuine transactions.
 
 
-### Note {#note .title}
+### Note
 
 **Note**: A useful library for this kind of task is
 `imblearn`, which includes a SMOTE function. See,
@@ -1279,7 +1279,7 @@ X_train_res, y_train_res = sm.fit_sample(X_train, y_train)
 ```
 
 
-### Building the model {#building-the-model .title}
+### Building the model
 
 
 We\'ve successfully addressed several key learning
@@ -1310,7 +1310,7 @@ from keras.optimizers import SGD
 
 
 
-#### Creating a simple baseline {#creating-a-simple-baseline .title}
+#### Creating a simple baseline
 
 
 Before we dive into more advanced models, it is
@@ -1403,7 +1403,7 @@ track the F1 score in training since the calculation of an F1 score is
 somewhat slow and would end up slowing down the training of our model.
 
 
-### Note {#note-1 .title}
+### Note
 
 **Note**: Remember that accuracy on an imbalanced dataset can
 be very high, even if the model is performing poorly.
@@ -1491,7 +1491,7 @@ that!
 
 
 
-#### Building more complex models {#building-more-complex-models .title}
+#### Building more complex models
 
 
 After we have created a simple baseline, we can go
@@ -1548,7 +1548,7 @@ enterprise-ready machine learning: tree-based methods.
 
 
 
-A brief primer on tree-based methods {#a-brief-primer-on-tree-based-methods .title style="clear: both"}
+A brief primer on tree-based methods
 ------------------------------------------------------
 
 
@@ -1565,7 +1565,7 @@ modeling. This is the reason why the rest of the course does not deal with
 tree-based methods.
 
 
-### Note {#note .title}
+### Note
 
 **Note**: For a deeper dive into
 XGBoost, check out the tutorials on the XGBoost documentation page:
@@ -1577,7 +1577,7 @@ section of the website.
 
 
 
-### A simple decision tree {#a-simple-decision-tree .title}
+### A simple decision tree
 
 
 The basic idea behind tree-based methods is the decision tree. A
@@ -1621,7 +1621,7 @@ the origin account, given that it is the first node in the tree.
 
 
 
-### A random forest {#a-random-forest .title}
+### A random forest
 
 
 A more advanced version of a simple decision tree
@@ -1697,7 +1697,7 @@ do get more complex, deep learning gets to shine.
 
 
 
-### XGBoost {#xgboost .title}
+### XGBoost
 
 
 **XGBoost** stands for **eXtreme Gradient
@@ -1711,7 +1711,7 @@ which slowly reduces the total number of model errors. XGBoost is a
 popular library that implements gradient boosting very efficiently.
 
 
-### Note {#note-1 .title}
+### Note
 
 **Note**: XGBoost is installed on Kaggle
 kernels by default. If you are running these examples locally, see the
@@ -1759,7 +1759,7 @@ unstructured data is needed, these tools begin to fail.
 
 
 
-E2E modeling {#e2e-modeling .title style="clear: both"}
+E2E modeling
 ------------------------------
 
 
@@ -1785,7 +1785,7 @@ models.
 
 
 
-Exercises {#exercises .title style="clear: both"}
+Exercises
 ---------------------------
 
 

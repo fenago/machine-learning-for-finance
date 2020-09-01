@@ -59,7 +59,7 @@ So, let\'s get started!
 
 
 
-An introductory guide to spaCy {#an-introductory-guide-to-spacy .title style="clear: both"}
+An introductory guide to spaCy
 ------------------------------------------------
 
 
@@ -84,7 +84,7 @@ $ python -m spacy download en
 
 
 
-### Note {#note .title}
+### Note
 
 **Note**: This lab makes use of the English language
 models, but more are available. Most features are available in English,
@@ -106,7 +106,7 @@ worry, as this section will show you how to use spaCy for a wide range
 of practical tasks.
 
 
-### Note {#note-1 .title}
+### Note
 
 You can find the data and code for this section on
 Kaggle at <https://www.kaggle.com/jannesklaas/analyzing-the-news>.
@@ -175,7 +175,7 @@ politically oriented publications.
 
 
 
-Named entity recognition {#named-entity-recognition .title style="clear: both"}
+Named entity recognition
 ------------------------------------------
 
 
@@ -468,7 +468,7 @@ than the Washington Post or Breitbart.
 
 
 
-### Fine-tuning the NER {#fine-tuning-the-ner .title}
+### Fine-tuning the NER
 
 
 A common issue you may find is that the pretrained
@@ -638,7 +638,7 @@ initial loss.
 
 
 
-Part-of-speech (POS) tagging {#part-of-speech-pos-tagging .title style="clear: both"}
+Part-of-speech (POS) tagging
 ----------------------------------------------
 
 
@@ -735,7 +735,7 @@ another story, however.
 
 
 
-Rule-based matching {#rule-based-matching .title style="clear: both"}
+Rule-based matching
 -------------------------------------
 
 
@@ -905,7 +905,7 @@ matchers.
 
 
 
-### Adding custom functions to matchers {#adding-custom-functions-to-matchers .title}
+### Adding custom functions to matchers
 
 
 Let\'s move on to a more complex case. We know that the iPhone is a
@@ -1036,7 +1036,7 @@ section.
 
 
 
-### Adding the matcher to the pipeline {#adding-the-matcher-to-the-pipeline .title}
+### Adding the matcher to the pipeline
 
 
 Calling the matcher separately is somewhat
@@ -1091,7 +1091,7 @@ spaCy now finds the iPhone as a product
 
 
 
-### Combining rule-based and learning-based systems {#combining-rule-based-and-learning-based-systems .title}
+### Combining rule-based and learning-based systems
 
 
 One especially interesting aspect of spaCy\'s pipeline system is that it
@@ -1128,7 +1128,7 @@ training a new NER.
 
 
 
-Regular expressions {#regular-expressions .title style="clear: both"}
+Regular expressions
 -------------------------------------
 
 
@@ -1271,7 +1271,7 @@ The span, the start and the end of our match, is the characters 18 to
 
 
 
-### Regex in pandas {#regex-in-pandas .title}
+### Regex in pandas
 
 
 The data for NLP problems often comes in pandas
@@ -1292,7 +1292,7 @@ unsurprisingly no articles in our dataset do.
 
 
 
-### When to use regexes and when not to {#when-to-use-regexes-and-when-not-to .title}
+### When to use regexes and when not to
 
 
 A regex is a powerful tool, and this very short
@@ -1316,7 +1316,7 @@ encoded, such as a VAT number, use regexes.
 
 
 
-A text classification task {#a-text-classification-task .title style="clear: both"}
+A text classification task
 --------------------------------------------
 
 
@@ -1345,14 +1345,14 @@ searching Twitter for words common to disaster tweets such as \"ablaze\"
 or \"fire.\"
 
 
-### Note {#note .title}
+### Note
 
 **Note**: In preparation for this section, the code and data
 can be found on Kaggle at <https://www.kaggle.com/jannesklaas/nl>.
 
 
 
-Preparing the data {#preparing-the-data .title style="clear: both"}
+Preparing the data
 ------------------------------------
 
 
@@ -1366,7 +1366,7 @@ challenges and techniques.
 
 
 
-### Sanitizing characters {#sanitizing-characters .title}
+### Sanitizing characters
 
 
 To store text, computers need to encode the
@@ -1444,7 +1444,7 @@ df = pd.read_csv('clean_socialmedia-disaster.csv')
 ```
 
 
-### Lemmatization {#lemmatization .title}
+### Lemmatization
 
 
 Lemmas have already made several appearances
@@ -1511,7 +1511,7 @@ df['joint_lemmas'] = df['lemmas'].progress_apply(lambda row: ' '.join(row))
 ```
 
 
-### Preparing the target {#preparing-the-target .title}
+### Preparing the target
 
 
 There are several possible prediction targets in
@@ -1563,7 +1563,7 @@ f['relevant'] = df.choose_one.map({'Relevant':1,'Not Relevant':0})
 ```
 
 
-### Preparing the training and test sets {#preparing-the-training-and-test-sets .title}
+### Preparing the training and test sets
 
 
 Before we start building models, we\'re going to
@@ -1582,7 +1582,7 @@ X_train, X_test, y_train, y_test = train_test_split(df['joint_lemmas'],
 ```
 
 
-Bag-of-words {#bag-of-words .title style="clear: both"}
+Bag-of-words
 ------------------------------
 
 
@@ -1681,7 +1681,7 @@ a baseline for more advanced methods, which we will be discussing later.
 
 
 
-### TF-IDF {#tf-idf .title}
+### TF-IDF
 
 
 **TF-IDF** stands for **Term Frequency, Inverse Document
@@ -1746,7 +1746,7 @@ accuracy_score(y_pred=y_predicted, y_true=y_test)
 
 
 
-Topic modeling {#topic-modeling .title style="clear: both"}
+Topic modeling
 --------------------------------
 
 
@@ -1757,7 +1757,7 @@ topics? The method to do this is called
 **Latent Dirichlet Allocation** (**LDA**).
 
 
-### Note {#note .title}
+### Note
 
 **Note**: The code and data for this section can be found on
 Kaggle at <https://www.kaggle.com/jannesklaas/topic-modeling-with-lda>.
@@ -1895,7 +1895,7 @@ clustered this way.
 
 
 
-Word embeddings {#word-embeddings .title style="clear: both"}
+Word embeddings
 ---------------------------------
 
 
@@ -1927,7 +1927,7 @@ help our model.
 
 
 
-### Preprocessing for training with word vectors {#preprocessing-for-training-with-word-vectors .title}
+### Preprocessing for training with word vectors
 
 
 Before we start with training word embeddings, we
@@ -2098,7 +2098,7 @@ embeddings.
 
 
 
-### Loading pretrained word vectors {#loading-pretrained-word-vectors .title}
+### Loading pretrained word vectors
 
 
 Like in computer vision, NLP models can benefit from using pretrained
@@ -2323,7 +2323,7 @@ semantical level, even if they include different words.
 
 
 
-### Time series models with word vectors {#time-series-models-with-word-vectors .title}
+### Time series models with word vectors
 
 
 Text is a time series. Different words follow each
@@ -2391,7 +2391,7 @@ we can perform vector math on them! This is useful if we want to measure
 the similarity between two texts, for instance.
 
 
-Document similarity with word embeddings {#document-similarity-with-word-embeddings .title style="clear: both"}
+Document similarity with word embeddings
 ----------------------------------------------------------
 
 
@@ -2461,7 +2461,7 @@ pretty similar. Yet, this approach is still useful and a good
 illustration of the advantages of representing semantics as vectors.
 
 
-A quick tour of the Keras functional API {#a-quick-tour-of-the-keras-functional-api .title style="clear: both"}
+A quick tour of the Keras functional API
 ----------------------------------------------------------
 
 
@@ -2639,7 +2639,7 @@ When using the functional API, this can be easier than adding an
 activation function.
 
 
-Attention {#attention .title style="clear: both"}
+Attention
 ---------------------------
 
 
@@ -2795,7 +2795,7 @@ This model can be trained, just as any Keras model
 can be, and achieves around 80% accuracy on the validation set.
 
 
-Seq2seq models {#seq2seq-models .title style="clear: both"}
+Seq2seq models
 --------------------------------
 
 
@@ -2823,7 +2823,7 @@ will be focusing on language translation.
 
 
 
-### Seq2seq architecture overview {#seq2seq-architecture-overview .title}
+### Seq2seq architecture overview
 
 
 If all phrases had the exact same length, we could
@@ -2852,14 +2852,14 @@ produces a `<STOP>` tag, which indicates that the
 sequence is over.
 
 
-### Note {#note .title}
+### Note
 
 **Note**: The data and code for this section can be found on
 Kaggle at
 <https://www.kaggle.com/jannesklaas/a-simple-seq2seq-translat>.
 
 
-### The data {#the-data .title}
+### The data
 
 
 We use a dataset of English phrases and their
@@ -2970,7 +2970,7 @@ Let\'s break this code down so that we can understand it in more detail:
     characters.
 
 
-### Encoding characters {#encoding-characters .title}
+### Encoding characters
 
 
 We now need to create lists of alphabetically
@@ -3249,7 +3249,7 @@ to give an example of what a seq2seq architecture can do.
 
 
 
-### Creating inference models {#creating-inference-models .title}
+### Creating inference models
 
 
 Overfitting or not, we would like to use our model
@@ -3317,7 +3317,7 @@ Let\'s look at the six elements of this code:
     character output as well as the state output.
 
 
-### Making translations {#making-translations .title}
+### Making translations
 
 
 We can now start to use our model. To do this, we
@@ -3481,7 +3481,7 @@ would minimize the impact of a large order.
 
 
 
-Exercises {#exercises .title style="clear: both"}
+Exercises
 ---------------------------
 
 

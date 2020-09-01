@@ -189,7 +189,7 @@ three different types of learning: supervised, unsupervised, and
 reinforcement learning.
 
 
-Supervised learning {#supervised-learning .title style="clear: both"}
+Supervised learning
 -------------------------------------
 
 
@@ -219,7 +219,7 @@ train a classifier on detecting the subtle statistical patterns that
 differentiate dogs from all other animals.
 
 
-### Note {#note .title}
+### Note
 
 **Note**: The classifier does not know what a dog
 fundamentally is. It only knows the statistical patterns that linked
@@ -232,7 +232,7 @@ just output nonsense.
 
 
 
-Unsupervised learning {#unsupervised-learning .title style="clear: both"}
+Unsupervised learning
 ---------------------------------------
 
 
@@ -266,7 +266,7 @@ learning, but it still holds great potential.
 
 
 
-Reinforcement learning {#reinforcement-learning .title style="clear: both"}
+Reinforcement learning
 ----------------------------------------
 
 
@@ -298,7 +298,7 @@ smart as humans.
 
 
 
-### The unreasonable effectiveness of data {#the-unreasonable-effectiveness-of-data .title}
+### The unreasonable effectiveness of data
 
 
 In 2009, three Google engineers published a landmark
@@ -335,7 +335,7 @@ data the financial industry is confronted with.
 
 
 
-### All models are wrong {#all-models-are-wrong .title}
+### All models are wrong
 
 
 There is a saying in statistics that [*all models are wrong, but some
@@ -411,7 +411,7 @@ order to give you a fundamental understanding of the topic.
 
 
 
-Setting up your workspace {#setting-up-your-workspace .title style="clear: both"}
+Setting up your workspace
 -------------------------------------------
 
 
@@ -426,7 +426,7 @@ You can run Jupyter notebooks either on your local machine, on a server
 in the cloud, or on a website such as Kaggle.
 
 
-### Note {#note .title}
+### Note
 
 **Note**: All code examples for this course can be found here:
 <https://github.com/PacktPublishing/Machine-Learning-for-Finance> and
@@ -551,7 +551,7 @@ Kaggle kernels can run for up to six hours.
 
 
 
-### Running notebooks locally {#running-notebooks-locally .title}
+### Running notebooks locally
 
 
 If you have a machine powerful enough to run deep
@@ -589,7 +589,7 @@ two deep learning libraries used throughout this course.
 
 
 
-#### Installing TensorFlow {#installing-tensorflow .title}
+#### Installing TensorFlow
 
 
 Before installing Keras, we need to first install
@@ -614,7 +614,7 @@ install CUDA, visit <https://docs.nvidia.com/cuda/index.html>.
 
 
 
-#### Installing Keras {#installing-keras .title}
+#### Installing Keras
 
 
 After you have installed TensorFlow, you can install
@@ -672,7 +672,7 @@ data locally*] section for instructions.
 
 
 
-Approximating functions {#approximating-functions .title style="clear: both"}
+Approximating functions
 -----------------------------------------
 
 
@@ -745,7 +745,7 @@ are useful for a large number of tasks.
 
 
 
-A forward pass {#a-forward-pass .title style="clear: both"}
+A forward pass
 --------------------------------
 
 
@@ -802,7 +802,7 @@ regressors.
 
 
 
-A logistic regressor {#a-logistic-regressor .title style="clear: both"}
+A logistic regressor
 --------------------------------------
 
 
@@ -861,7 +861,7 @@ between zero and one:
 The Sigmoid function
 
 
-### Python version of our logistic regressor {#python-version-of-our-logistic-regressor .title}
+### Python version of our logistic regressor
 
 
 If all the preceding math was a bit too theoretical
@@ -981,7 +981,7 @@ in the next section, we will optimize the model parameters.
 
 
 
-Optimizing model parameters {#optimizing-model-parameters .title style="clear: both"}
+Optimizing model parameters
 ---------------------------------------------
 
 
@@ -1034,7 +1034,7 @@ distance function, which we use to evaluate how close
 [*y*] are.
 
 
-### Note {#note .title}
+### Note
 
 **Note**: This approach makes a crucial assumption that our
 data, [*X*], and labels, [*y*], represent our
@@ -1065,7 +1065,7 @@ desired function or not.
 
 
 
-Measuring model loss {#measuring-model-loss .title style="clear: both"}
+Measuring model loss
 --------------------------------------
 
 
@@ -1162,7 +1162,7 @@ in our function space.
 
 
 
-### Gradient descent {#gradient-descent .title}
+### Gradient descent
 
 
 Now that we know what we judge our candidate models,
@@ -1219,7 +1219,7 @@ to need another method called backpropagation.
 
 
 
-### Backpropagation {#backpropagation .title}
+### Backpropagation
 
 
 Backpropagation allows us to apply gradient descent
@@ -1287,7 +1287,7 @@ db = 1/N * np.sum(dz,axis=0,keepdims=True)
 ```
 
 
-### Parameter updates {#parameter-updates .title}
+### Parameter updates
 
 
 Now we have the gradients, how do we improve our model? Going back to
@@ -1329,7 +1329,7 @@ b -= alpha * db
 ```
 
 
-### Putting it all together {#putting-it-all-together .title}
+### Putting it all together
 
 
 Well done! We\'ve now looked at all the parts that are needed in order
@@ -1498,7 +1498,7 @@ The output of the previous code, showing loss rate improving over time
 
 
 
-A deeper network {#a-deeper-network .title style="clear: both"}
+A deeper network
 ----------------------------------
 
 
@@ -1543,7 +1543,7 @@ a2 = sigmoid(z2)
 
 
 
-### Note {#note .title}
+### Note
 
 **Note**: The full code for this example can be found in the
 GitHub repository belonging to this course.
@@ -1659,7 +1659,7 @@ called Keras.
 
 
 
-A brief introduction to Keras {#a-brief-introduction-to-keras .title style="clear: both"}
+A brief introduction to Keras
 -----------------------------------------------
 
 
@@ -1675,7 +1675,7 @@ to build our neural networks.
 
 
 
-### Importing Keras {#importing-keras .title}
+### Importing Keras
 
 
 When importing Keras, we usually just import the
@@ -1713,7 +1713,7 @@ from keras.models import Sequential
 ```
 
 
-### A two-layer model in Keras {#a-two-layer-model-in-keras .title}
+### A two-layer model in Keras
 
 
 Building a neural network in the
@@ -1721,7 +1721,7 @@ sequential API works as follows.
 
 
 
-#### Stacking layers {#stacking-layers .title}
+#### Stacking layers
 
 
 Firstly, we create an empty sequential model with no layers:
@@ -1817,7 +1817,7 @@ different amounts of samples.
 
 
 
-#### Compiling the model {#compiling-the-model .title}
+#### Compiling the model
 
 
 Before we can start training the model, we have to
@@ -1845,7 +1845,7 @@ model.compile(optimizer='sgd',
 ```
 
 
-#### Training the model {#training-the-model .title}
+#### Training the model
 
 
 Now we are ready to run the training process, which
@@ -1895,7 +1895,7 @@ We will be answering these questions in the next, and final, section of
 this lab.
 
 
-### Keras and TensorFlow {#keras-and-tensorflow .title}
+### Keras and TensorFlow
 
 
 Keras is a high-level library and can be used as a
@@ -1929,7 +1929,7 @@ cleaner if we have shorter `import` statements.
 
 
 
-Tensors and the computational graph {#tensors-and-the-computational-graph .title style="clear: both"}
+Tensors and the computational graph
 -----------------------------------------------------
 
 
@@ -2005,7 +2005,7 @@ training neural networks.
 
 
 
-Exercises {#exercises .title style="clear: both"}
+Exercises
 ---------------------------
 
 

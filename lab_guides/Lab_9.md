@@ -68,7 +68,7 @@ features is not enough when it comes to combating bias.
 
 
 
-Sources of unfairness in machine learning {#sources-of-unfairness-in-machine-learning .title style="clear: both"}
+Sources of unfairness in machine learning
 ------------------------------------------------------------
 
 
@@ -118,7 +118,7 @@ and these biases get encoded into models.
 
 
 
-Legal perspectives {#legal-perspectives .title style="clear: both"}
+Legal perspectives
 -------------------------------------
 
 
@@ -156,7 +156,7 @@ a minute to look at each of these:
 
 
 
-### Note {#note .title}
+### Note
 
 **Note**: For a more in-depth overview of these topics, see
 Moritz Hardt\'s 2017 NeurIPS presentation on the topic at
@@ -183,7 +183,7 @@ machine learning, we\'re going to dive into how we can define and
 quantify fairness, before using this insight to create fairer models.
 
 
-Observational fairness {#observational-fairness .title style="clear: both"}
+Observational fairness
 -----------------------------------------
 
 
@@ -205,7 +205,7 @@ applicants. Given a credit score, our classifier must find a cutoff
 point. Let\'s look at the distribution of applicants in this graph:
 
 
-### Note {#note .title}
+### Note
 
 **Note**: The data for this example is synthetic; you can
 find the Excel file used for these calculations in the GitHub repository
@@ -389,7 +389,7 @@ fairer, which is what the next section is about.
 
 
 
-Training to be fair {#training-to-be-fair .title style="clear: both"}
+Training to be fair
 --------------------------------------
 
 
@@ -444,7 +444,7 @@ hyperparameter that we can use to amplify or reduce the impact of the
 adversarial loss.
 
 
-### Note {#note .title}
+### Note
 
 **Note**: This implementation of the adversarial fairness
 method follows an implementation by Stijn Tonk and Henk Griffioen. You
@@ -889,7 +889,7 @@ to judge loan applications, for instance, we would be vulnerable to
 discrimination lawsuits.
 
 
-### Note {#note-1 .title}
+### Note
 
 **Note**: Neither gender or race was included in the features
 of the classifier. Yet, the classifier discriminates strongly on them.
@@ -1112,7 +1112,7 @@ associations.
 
 
 
-Causal learning {#causal-learning .title style="clear: both"}
+Causal learning
 ----------------------------------
 
 
@@ -1175,7 +1175,7 @@ predictions about the content of the text.
 
 
 
-### Obtaining causal models {#obtaining-causal-models .title}
+### Obtaining causal models
 
 
 The golden route to obtaining information about
@@ -1216,7 +1216,7 @@ skiers.
 
 
 
-### Instrument variables {#instrument-variables .title}
+### Instrument variables
 
 
 To distinguish the influence on policy and
@@ -1268,7 +1268,7 @@ Python. The `linear model` package in Python features an easy
 way to run 2SLS.
 
 
-### Note {#note .title}
+### Note
 
 **Note**: You can find the package on GitHub at
 <https://github.com/bashtage/linearmodels>.
@@ -1294,7 +1294,7 @@ iv = IV2SLS(dependent=y,exog=X,endog=P],instruments=Z).fit(cov_type='unadjusted'
 ```
 
 
-### Non-linear causal models {#non-linear-causal-models .title}
+### Non-linear causal models
 
 
 What if the relationships between features, the
@@ -1412,7 +1412,7 @@ justify the model\'s predictions.
 
 
 
-Interpreting models to ensure fairness {#interpreting-models-to-ensure-fairness .title style="clear: both"}
+Interpreting models to ensure fairness
 ---------------------------------------------------------
 
 
@@ -1436,7 +1436,7 @@ install it locally with `pip install shap`. Kaggle kernels
 have SHAP preinstalled.
 
 
-### Note {#note .title}
+### Note
 
 The example code given here is from the SHAP example notebooks. You can
 find a slightly extended version of the notebook on Kaggle:
@@ -1710,7 +1710,7 @@ features on which we select. We are no longer interested in just
 
 
 
-Unfairness as complex system failure {#unfairness-as-complex-system-failure .title style="clear: both"}
+Unfairness as complex system failure
 -------------------------------------------------------
 
 
@@ -1738,7 +1738,7 @@ following sections.
 
 
 
-### Complex systems are intrinsically hazardous systems {#complex-systems-are-intrinsically-hazardous-systems .title}
+### Complex systems are intrinsically hazardous systems
 
 
 Systems are usually complex because they are
@@ -1756,7 +1756,7 @@ can break, and they do so constantly in a number of small ways.
 
 
 
-### Catastrophes are caused by multiple failures {#catastrophes-are-caused-by-multiple-failures .title}
+### Catastrophes are caused by multiple failures
 
 
 In a complex system, no single point of failure can cause catastrophes
@@ -1774,7 +1774,7 @@ fair model.
 
 
 
-### Complex systems run in degraded mode {#complex-systems-run-in-degraded-mode .title}
+### Complex systems run in degraded mode
 
 
 In most accident reports, there is a section that lists
@@ -1794,7 +1794,7 @@ it is too late.
 
 
 
-### Human operators both cause and prevent accidents {#human-operators-both-cause-and-prevent-accidents .title}
+### Human operators both cause and prevent accidents
 
 
 Once things have gone wrong, blame is often put at the human operators
@@ -1808,7 +1808,7 @@ entire team has to work to keep it fair.
 
 
 
-### Accident-free operation requires experience with failure {#accident-free-operation-requires-experience-with-failure .title}
+### Accident-free operation requires experience with failure
 
 
 In fairness, the single biggest problem is often that the designers of a
@@ -1820,7 +1820,7 @@ failures before bigger accidents happen.
 
 
 
-A checklist for developing fair models {#a-checklist-for-developing-fair-models .title style="clear: both"}
+A checklist for developing fair models
 ---------------------------------------------------------
 
 
@@ -1851,7 +1851,7 @@ comes with several sub-issues.
 -   Who is responsible when things go wrong?
 
 
-### Is the data biased? {#is-the-data-biased .title}
+### Is the data biased?
 
 
 
@@ -1870,7 +1870,7 @@ comes with several sub-issues.
     subgroups?
 
 
-### Are errors biased? {#are-errors-biased .title}
+### Are errors biased?
 
 
 
@@ -1881,7 +1881,7 @@ comes with several sub-issues.
 -   How do the errors in the model lead to different outcomes?
 
 
-### How is feedback incorporated? {#how-is-feedback-incorporated .title}
+### How is feedback incorporated?
 
 
 
@@ -1900,7 +1900,7 @@ comes with several sub-issues.
     them?
 
 
-### Can the model be interpreted? {#can-the-model-be-interpreted .title}
+### Can the model be interpreted?
 
 
 
@@ -1925,7 +1925,7 @@ comes with several sub-issues.
 
 
 
-Exercises {#exercises .title style="clear: both"}
+Exercises
 ----------------------------
 
 

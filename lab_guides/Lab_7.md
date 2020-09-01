@@ -53,7 +53,7 @@ the visualizations will not work there.
 
 
 
-Catch -- a quick guide to reinforcement learning {#catch-a-quick-guide-to-reinforcement-learning .title style="clear: both"}
+Catch -- a quick guide to reinforcement learning
 ------------------------------------------------------------------
 
 
@@ -169,7 +169,7 @@ therefore, arrive at an expected reward of this:
 
 
 
-### Note {#note .title}
+### Note
 
 **Note**: We discount future rewards in RL for the same
 reason we discount future returns in finance. They are uncertain. Our
@@ -188,7 +188,7 @@ This is where neural networks come into play.
 
 
 
-### Q-learning turns RL into supervised learning {#q-learning-turns-rl-into-supervised-learning .title}
+### Q-learning turns RL into supervised learning
 
 
 When playing a game, we generate lots of
@@ -216,7 +216,7 @@ and actions [*a*], we will have a good approximation of the
 Q-function.
 
 
-### Note {#note-1 .title}
+### Note
 
 **Note**: We estimate
 [![](./images/B10354_07_010.jpg)]{.inlinemediaobject} through the same
@@ -371,7 +371,7 @@ created:
     as well as the discounted expected future reward.
 
 
-### Defining the Q-learning model {#defining-the-q-learning-model .title}
+### Defining the Q-learning model
 
 
 Now it is time to define the model that will learn
@@ -406,7 +406,7 @@ model.compile(optimizer='sgd', loss='mse')
 ```
 
 
-### Training to play Catch {#training-to-play-catch .title}
+### Training to play Catch
 
 
 The final ingredient to Q-learning is exploration.
@@ -521,7 +521,7 @@ futures market.
 
 
 
-Markov processes and the bellman equation -- A more formal introduction to RL {#markov-processes-and-the-bellman-equation-a-more-formal-introduction-to-rl .title style="clear: both"}
+Markov processes and the bellman equation -- A more formal introduction to RL
 -----------------------------------------------------------------------------------------------
 
 
@@ -532,7 +532,7 @@ more GPUs, the theoretical foundation of
 reinforcement learning lies in Markov models.
 
 
-### Note {#note .title}
+### Note
 
 **Note**: This section requires a bit of mathematical
 background knowledge. If you are struggling, there is a beautiful visual
@@ -574,7 +574,7 @@ recommendation, you will gain a negative reward, or punishment, of
 **-1**.
 
 
-### Note {#note-1 .title}
+### Note
 
 **Note**: In some textbooks, the rewards are associated with
 state transitions and not states themselves. It turns out to be
@@ -634,7 +634,7 @@ policy [![](./images/B10354_07_032.jpg)]{.inlinemediaobject} is followed:
 
 
 
-### Note {#note-2 .title}
+### Note
 
 **Note**: We use the expected value since our environment and
 our actions are stochastic. We cannot say for certain that we will land
@@ -777,7 +777,7 @@ lab.
 
 
 
-### The Bellman equation in economics {#the-bellman-equation-in-economics .title}
+### The Bellman equation in economics
 
 
 While the first application of the Bellman equation
@@ -813,7 +813,7 @@ promising subfield of the science.
 
 
 
-Advantage actor-critic models {#advantage-actor-critic-models .title style="clear: both"}
+Advantage actor-critic models
 -----------------------------------------------
 
 
@@ -956,7 +956,7 @@ following examples.
 
 
 
-### Learning to balance {#learning-to-balance .title}
+### Learning to balance
 
 
 In this section, we will train an A2C model to
@@ -983,7 +983,7 @@ can get an intuitive grasp of how the algorithm learns, including any
 pitfalls.
 
 
-### Note {#note .title}
+### Note
 
 **Note**: When implementing a new algorithm, try it out on a
 task you can visualize. Failures are often subtle and easier to spot
@@ -1613,7 +1613,7 @@ Our experiment boils down to these functions:
     the trained agent together with its scores.
 
 
-### Learning to trade {#learning-to-trade .title}
+### Learning to trade
 
 
 Reinforcement learning algorithms are largely developed in games and
@@ -1624,7 +1624,7 @@ to create an A2C agent that learns how to balance a portfolio of stocks
 within a large universe of stocks.
 
 
-### Note {#note-1 .title}
+### Note
 
 **Note**: Please do not trade based on this algorithm. It is
 only a simplified and slightly naive implementation to demonstrate the
@@ -1646,7 +1646,7 @@ slippage are not added to the environment. It would not be too difficult
 to add them, however.
 
 
-### Note {#note-2 .title}
+### Note
 
 **Tip**: The full implementation of the environment and agent
 can be found at <https://www.kaggle.com/jannesklaas/a2c-stock-trading>.
@@ -1842,7 +1842,7 @@ And that is it! This algorithm can now learn to balance a portfolio just
 as it could learn to balance before.
 
 
-Evolutionary strategies and genetic algorithms {#evolutionary-strategies-and-genetic-algorithms .title style="clear: both"}
+Evolutionary strategies and genetic algorithms
 ----------------------------------------------------------------
 
 
@@ -1970,7 +1970,7 @@ the DHL order routing system, to complex trading systems.
 
 
 
-Practical tips for RL engineering {#practical-tips-for-rl-engineering .title style="clear: both"}
+Practical tips for RL engineering
 ---------------------------------------------------
 
 
@@ -1981,7 +1981,7 @@ are highly relevant to financial practitioners.
 
 
 
-### Designing good reward functions {#designing-good-reward-functions .title}
+### Designing good reward functions
 
 
 Reinforcement learning is the field of designing
@@ -2006,7 +2006,7 @@ next three subsections.
 
 
 
-#### Careful, manual reward shaping {#careful-manual-reward-shaping .title}
+#### Careful, manual reward shaping
 
 
 By manually creating rewards, practitioners can help the system to
@@ -2050,7 +2050,7 @@ algorithm now maximizes as follows:
 ![](./images/B10354_07_101.jpg)
 
 
-#### Inverse reinforcement learning {#inverse-reinforcement-learning .title}
+#### Inverse reinforcement learning
 
 
 In **inverse reinforcement learning** (**IRL**), a
@@ -2080,7 +2080,7 @@ algorithm which works as follows:
     [![](./images/B10354_07_105.jpg)]{.inlinemediaobject} is very high
 
 
-#### Learning from human preferences {#learning-from-human-preferences .title}
+#### Learning from human preferences
 
 
 Similar to IRL, which produces a reward function
@@ -2102,7 +2102,7 @@ Learning from preferences
 
 
 
-### Robust RL {#robust-rl .title}
+### Robust RL
 
 
 Much like for GANs, RL can be fragile and can be hard to train for good
@@ -2149,7 +2149,7 @@ Similar to the GAN tips, there is little theoretical reason for why
 these tricks work, but they will make your RL work better in practice.
 
 
-Frontiers of RL {#frontiers-of-rl .title style="clear: both"}
+Frontiers of RL
 ---------------------------------
 
 
@@ -2162,7 +2162,7 @@ are particularly useful for practitioners in the financial industry.
 
 
 
-### Multi-agent RL {#multi-agent-rl .title}
+### Multi-agent RL
 
 
 Markets, by definition, include many agents. Lowe
@@ -2207,7 +2207,7 @@ agent.
 
 
 
-### Learning how to learn {#learning-how-to-learn .title}
+### Learning how to learn
 
 
 A shortcoming of deep learning is that skilled humans have to develop
@@ -2289,7 +2289,7 @@ start using machine learning.
 
 
 
-### Understanding the brain through RL {#understanding-the-brain-through-rl .title}
+### Understanding the brain through RL
 
 
 The other emerging field in finance and economics
@@ -2322,7 +2322,7 @@ into human behavior.
 
 
 
-Exercises {#exercises .title style="clear: both"}
+Exercises
 ---------------------------
 
 

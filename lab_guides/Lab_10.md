@@ -48,7 +48,7 @@ more explicit.
 
 
 
-An intuitive guide to Bayesian inference {#an-intuitive-guide-to-bayesian-inference .title style="clear: both"}
+An intuitive guide to Bayesian inference
 -----------------------------------------------------------
 
 
@@ -72,7 +72,7 @@ our case, this is adapted to a financial context and rewritten so that
 the mathematical concepts intuitively arise from the code.
 
 
-### Note {#note .title}
+### Note
 
 **Note**: You can view the example at the following link:
 <http://camdavidsonpilon.github.io/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/>.
@@ -108,7 +108,7 @@ In the next section we will simulate the securities payoff process.
 
 
 
-### Flat prior {#flat-prior .title}
+### Flat prior
 
 
 The variable [*x*] represents the TPP. We
@@ -162,7 +162,7 @@ we want to speed this process up. To do this, we can use a library
 called `JobLib`, which will help with parallel execution.
 
 
-### Note {#note-1 .title}
+### Note
 
 **Note**: `JobLib` is preinstalled on Kaggle
 kernels. For more information, you can visit
@@ -253,7 +253,7 @@ quantify such uncertainty.
 
 
 
-### \<50% prior {#prior .title}
+### \<50% prior
 
 
 At this point, you are able to take your results to 
@@ -319,7 +319,7 @@ Distribution of possible TPPs from 0 to 0.5
 
 
 
-### Prior and posterior {#prior-and-posterior .title}
+### Prior and posterior
 
 
 Clearly, your choice of values to try influenced
@@ -444,7 +444,7 @@ simulation method is, as an alternative, a simple and convenient
 workaround.
 
 
-### Note {#note-2 .title}
+### Note
 
 **Note**: The first round prior (all TPPs are equally likely)
 is called a \"flat prior\" because we make no assumptions about the
@@ -452,7 +452,7 @@ distributions of values. In this case, the Bayesian posterior is equal
 to the maximum likelihood estimate.
 
 
-### Markov Chain Monte Carlo {#markov-chain-monte-carlo .title}
+### Markov Chain Monte Carlo
 
 
 In the previous section, we approximated the
@@ -759,7 +759,7 @@ The proposed value versus posterior probability
 
 
 
-### Metropolis-Hastings MCMC {#metropolis-hastings-mcmc .title}
+### Metropolis-Hastings MCMC
 
 
 To demonstrate the power and flexibility of PyMC3,
@@ -767,7 +767,7 @@ we are going to use it for a classic econometrics
 task, but we will put a Bayesian spin on it.
 
 
-### Note {#note-3 .title}
+### Note
 
 **Note**: This example is a straight adaptation of an example
 from the PyMC3 documentation:
@@ -1042,7 +1042,7 @@ to deep probabilistic programming.
 
 
 
-### From probabilistic programming to deep probabilistic programming {#from-probabilistic-programming-to-deep-probabilistic-programming .title}
+### From probabilistic programming to deep probabilistic programming
 
 
 The Bayesian models that we\'ve developed so far are all quite shallow.
@@ -1135,7 +1135,7 @@ future.
 
 
 
-Farewell {#farewell .title style="clear: both"}
+Farewell
 ---------------------------
 
 
@@ -1183,7 +1183,7 @@ reader; there are models to be trained, data to be analyzed, and
 inferences to be made!
 
 
-Further reading {#further-reading .title style="clear: both"}
+Further reading
 ----------------------------------
 
 
@@ -1197,7 +1197,7 @@ coming years.
 
 
 
-### General data analysis {#general-data-analysis .title}
+### General data analysis
 
 
 Wes McKinney, [*Python for Data Analysis*],
@@ -1214,7 +1214,7 @@ presents is definitely worth your time.
 
 
 
-### Sound science in machine learning {#sound-science-in-machine-learning .title}
+### Sound science in machine learning
 
 
 Marcos Lopez de Prado, [*Advances in Financial Machine
@@ -1230,7 +1230,7 @@ issues and solutions very understandable.
 
 
 
-### General machine learning {#general-machine-learning .title}
+### General machine learning
 
 
 Trevor Hastie, Robert Tibshirani, and Jerome Friedman, [*Elements of
@@ -1255,7 +1255,7 @@ statistical learning.
 
 
 
-### General deep learning {#general-deep-learning .title}
+### General deep learning
 
 
 Ian Goodfellow, Yoshua Bengio, and Aaron Courville, [*Deep
@@ -1268,7 +1268,7 @@ of topics and derives practical applications from theoretical concepts.
 
 
 
-### Reinforcement learning {#reinforcement-learning .title}
+### Reinforcement learning
 
 
 Richard S. Sutton and Andrew G. Barto, [*Reinforcement Learning: An
@@ -1282,7 +1282,7 @@ reasoning behind and derivation of reinforcement learning algorithms.
 
 
 
-### Bayesian machine learning {#bayesian-machine-learning .title}
+### Bayesian machine learning
 
 
 Kevin P. Murphy, [*Machine Learning: a Probabilistic
