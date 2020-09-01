@@ -1,6 +1,8 @@
+<img align="right" src="../logo.png">
 
 
-Chapter 10. Bayesian Inference and Probabilistic Programming {#lab-10.-bayesian-inference-and-probabilistic-programming .title}
+
+Lab 10. Bayesian Inference and Probabilistic Programming
 ---------------------------------------------------------------------
 
 
@@ -1142,7 +1144,7 @@ And thus, we close the last lab of our journey, and I say goodbye to
 you, dear reader. Let\'s look back at the table of contents that we were
 met with at the start of our journey.
 
-Over the past 10 chapters, we\'ve covered a whole lot, including the
+Over the past 10 labs, we\'ve covered a whole lot, including the
 following:
 
 

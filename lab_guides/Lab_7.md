@@ -1,5 +1,7 @@
+<img align="right" src="../logo.png">
 
-Lab 7. Reinforcement Learning for Financial Markets {#lab-7.-reinforcement-learning-for-financial-markets .title}
+
+Lab 7. Reinforcement Learning for Financial Markets
 ----------------------------------------------------------------
 
 

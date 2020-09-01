@@ -1,5 +1,8 @@
 
-Chapter 2. Applying Machine Learning to Structured Data {#lab-2.-applying-machine-learning-to-structured-data .title}
+
+<img align="right" src="../logo.png">
+
+Lab 2. Applying Machine Learning to Structured Data
 ----------------------------------------------------------------
 
 
@@ -1688,7 +1691,7 @@ that simple relationships with low-dimensional data can be hard to learn
 for a deep learning model, which has to fit multiple parameters exactly
 in order to match the simple function.
 
-As we will see in later chapters of this course, as soon as relationships
+As we will see in later labs of this course, as soon as relationships
 do get more complex, deep learning gets to shine.
 
 
@@ -1777,7 +1780,7 @@ images well, but it is hard to come up with exact rules that distinguish
 things, which is where E2E shines.
 
 In the dataset used for this lab, we do not have access to more
-data, but the rest of the chapters of this course demonstrate various E2E
+data, but the rest of the labs of this course demonstrate various E2E
 models.
 
 

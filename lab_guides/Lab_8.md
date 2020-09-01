@@ -1,10 +1,11 @@
+<img align="right" src="../logo.png">
 
 
-Lab 8. Privacy, Debugging, and Launching Your Products {#lab-8.-privacy-debugging-and-launching-your-products .title}
+Lab 8. Privacy, Debugging, and Launching Your Products
 -------------------------------------------------------------------
 
 
-Over the course of the last seven chapters we\'ve developed a large
+Over the course of the last seven labs we\'ve developed a large
 toolbox of machine learning algorithms that we could use for machine
 learning problems in finance. To help round-off this toolbox, we\'re now
 going to look at what you can do if your algorithms don\'t work.
@@ -613,7 +614,7 @@ accidents, here are four of the key ones:
 ### Preparing the data for training {#preparing-the-data-for-training .title}
 
 
-In earlier chapters, we have seen the benefits of
+In earlier labs, we have seen the benefits of
 normalizing and scaling features, we also discussed how you should scale
 all numerical features. There are four ways of feature scaling; these
 include s[*tandardization, Min-Max, mean normalization,*] and

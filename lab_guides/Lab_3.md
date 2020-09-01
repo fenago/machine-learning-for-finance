@@ -1,6 +1,8 @@
 
 
-Chapter 3. Utilizing Computer Vision {#lab-3.-utilizing-computer-vision .title}
+<img align="right" src="../logo.png">
+
+Lab 3. Utilizing Computer Vision
 ---------------------------------------------
 
 
@@ -730,7 +732,7 @@ model.add(Dense(10))
 
 After the linear step of the dense layer, we can add a
 `softmax` activation for multi-class regression, just as we
-did in the first two chapters, by running the following code:
+did in the first two labs, by running the following code:
 
 
 
@@ -938,7 +940,7 @@ out:
 #### Compiling and training {#compiling-and-training .title}
 
 
-In the previous chapters, we have used one-hot
+In the previous labs, we have used one-hot
 encoded targets for multiclass regression. While we
 have reshaped the data, the targets are still in their original form.
 They are a flat vector containing the numerical data representation for
@@ -966,7 +968,7 @@ targets to one-hot on the fly. This loss function is called
 `sparse_categorical_crossentropy`.
 
 It\'s the same as the categorical cross-entropy loss used in earlier
-chapters, the only difference is that this uses sparse, that is, not
+labs, the only difference is that this uses sparse, that is, not
 one-hot encoded, targets.
 
 Just as before, you still need to make sure that your network output has
@@ -1061,7 +1063,7 @@ network.
 ### Momentum {#momentum .title}
 
 
-In previous chapters we\'ve explained gradient descent in terms of
+In previous labs we\'ve explained gradient descent in terms of
 someone trying to find the way down a mountain by
 just following the slope of the floor. Momentum can be explained with
 an analogy to physics, where a ball is rolling down the same hill. A

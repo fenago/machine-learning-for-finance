@@ -1,11 +1,11 @@
+<img align="right" src="../logo.png">
 
-
-Chapter 6. Using Generative Models {#lab-6.-using-generative-models .title}
+Lab 6. Using Generative Models
 -------------------------------------------
 
 
 Generative models generate new data. In a way, they are the exact
-opposite of the models that we\'ve dealt with in prior chapters. While
+opposite of the models that we\'ve dealt with in prior labs. While
 an image classifier takes in a high-dimensional input, the image, and
 outputs a low-dimensional output such as the content of the image, a
 generative model goes about things in exactly the opposite way around.
@@ -38,7 +38,7 @@ turning them into street maps. Another example is that generative models
 can generate code from website screenshots. They can even be used to
 combat unfairness and discrimination in machine learning models,
 as we will
-see in [Chapter 9,
+see in [Lab 9,
 [*Fighting Bias*].
 
 In the field of finance, data is frequently sparse. Think back to the
@@ -172,7 +172,7 @@ is a good refresher for us on how the functional API works.
 
 First, we import the `Model` class, which allows us to create
 functional API models. We also need to import both the `Input`
-and `Dense` layers. You\'ll remember from previous chapters
+and `Dense` layers. You\'ll remember from previous labs
 how the functional API needs a separate input layer, while the
 sequential API does not need one. To import both layers, we need to run
 the following:
@@ -1502,7 +1502,7 @@ This solves the problem that a standard maximum likelihood model for
 this kind of problem is computationally intractable. Two other methods
 performing the same feat are the [*Markov Chain Monte Carlo*]
 and [*Hamilton Monte Carlo*] methods. While neither will be
-covered in depth here, though they will be featured in later chapters,
+covered in depth here, though they will be featured in later labs,
 it\'s worth understanding that VAEs address long-standing problems in
 mathematical finance in a computationally tractable way.
 
@@ -2232,8 +2232,7 @@ can then be clustered without the need for labels that describe
 the image.
 
 **Supervised learning** uses data with
-labels. An example is the image classifier we built in Lab
-3,
+labels. An example is the image classifier we built in Lab 3,
 [*Utilizing Computer Vision,*] or most of the other models
 that we\'ve built in this book.
 

@@ -1,6 +1,8 @@
 
 
-Lab 5. Parsing Textual Data with Natural Language Processing {#lab-5.-parsing-textual-data-with-natural-language-processing .title}
+<img align="right" src="../logo.png">
+
+Lab 5. Parsing Textual Data with Natural Language Processing
 -------------------------------------------------------------------------
 
 
@@ -9,7 +11,7 @@ one of the most successful quantitative hedge funds of all time, had
 previously worked at IBM, where he applied machine learning to natural
 language problems.
 
-As we\'ve explored in earlier chapters, in today\'s world, information
+As we\'ve explored in earlier labs, in today\'s world, information
 drives finance, and the most important source of information is written
 and spoken language. Ask any finance professional what they are actually
 spending time on, and you will find that a significant part of their
@@ -629,7 +631,7 @@ Once you\'ve run the code, the output should look something like this:
 What you are seeing is the loss value of a part of the spaCy pipeline,
 in this case, the **named entity recognition**
 (**NER**) engine. Similar to the cross-entropy loss we
-discussed in previous chapters, the actual value is hard to interpret
+discussed in previous labs, the actual value is hard to interpret
 and does not tell you very much. What matters here is that the loss is
 decreasing over time and that it reaches a value much lower than the
 initial loss.
@@ -2496,7 +2498,7 @@ models.
 
 We will use the functional API a lot more from now on. This section of
 the lab aims to provide a brief overview of the Keras functional
-API, as we will be going into much more depth in later chapters.
+API, as we will be going into much more depth in later labs.
 Firstly, let\'s look at a simple two-layer network in both the
 sequential and functional way:
 

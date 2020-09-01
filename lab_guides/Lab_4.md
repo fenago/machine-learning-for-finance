@@ -1,5 +1,8 @@
 
-Lab 4. Understanding Time Series {#lab-4.-understanding-time-series .title}
+
+<img align="right" src="../logo.png">
+
+Lab 4. Understanding Time Series
 ---------------------------------------------
 
 

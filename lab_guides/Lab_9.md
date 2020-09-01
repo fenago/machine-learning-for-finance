@@ -1,6 +1,7 @@
+<img align="right" src="../logo.png">
 
 
-Chapter 9. Fighting Bias {#lab-9.-fighting-bias .title}
+Lab 9. Fighting Bias
 ---------------------------------
 
 

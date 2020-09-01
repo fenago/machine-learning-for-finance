@@ -1,5 +1,7 @@
 
-Chapter 1. Neural Networks and Gradient-Based Optimization {#lab-1.-neural-networks-and-gradient-based-optimization .title}
+<img align="right" src="./logo.png">
+
+Lab 1. Neural Networks and Gradient-Based Optimization
 -------------------------------------------------------------------
 
 
@@ -1699,7 +1701,7 @@ from keras.layers import Dense, Activation
 Keras offers two ways to build models, through the sequential and the
 functional APIs. Because the sequential API is easier to use and allows
 more rapid model building, we will be using it for most of the course.
-However, in later chapters, we will take a look at the functional API as
+However, in later labs, we will take a look at the functional API as
 well.
 
 We can access the sequential API through this code:
@@ -2041,7 +2043,7 @@ networks that can approximate more complex functions.
 
 As it turns out, there are a few tweaks to make to the basic structure
 for it to work well on specific tasks, such as image recognition. The
-basic ideas introduced in this chapter, however, stay the same:
+basic ideas introduced in this lab, however, stay the same:
 
 
 -   Neural networks function as approximators

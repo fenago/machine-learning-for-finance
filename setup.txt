@@ -12,23 +12,23 @@ pip install marbles hyperopt hyperas
 pip install shap==0.19.5
 
 
-Chapter 4
+Lab 4
 https://www.kaggle.com/szrlee/stock-time-series-20050101-to-20171231
 https://www.kaggle.com/uciml/electric-power-consumption-data-set
 
-Chapter 5
+Lab 5
 https://www.kaggle.com/jannesklaas/analyzing-the-news
 https://www.kaggle.com/jannesklaas/topic-modeling-with-lda
 https://www.kaggle.com/aaron7sun/stocknews
 
 
-Chapter 6
+Lab 6
 https://www.kaggle.com/jannesklaas/mnist-autoencoder-vae
 https://www.kaggle.com/mlg-ulb/creditcardfraud
 https://www.kaggle.com/szrlee/stock-time-series-20050101-to-20171231
 
 
-Chapter 9
+Lab 9
 https://www.kaggle.com/jannesklaas/learning-how-to-be-fair
 https://www.kaggle.com/jannesklaas/explaining-income-classification-with-keras
  
