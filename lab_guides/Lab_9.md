@@ -43,19 +43,13 @@ sanctions against that country or similar overarching laws in place.
 
 Throughout this lab, we\'ll discuss the following:
 
-
--   Where bias in machines comes from
-
--   The legal implications of biased **machine learning**
+- Where bias in machines comes from
+- The legal implications of biased **machine learning**
     (**ML**) models
-
--   How observed unfairness can be reduced
-
--   How models can be inspected for bias and unfairness
-
--   How causal modeling can reduce bias
-
--   How unfairness is a complex systems failure that needs to be
+- How observed unfairness can be reduced
+- How models can be inspected for bias and unfairness
+- How causal modeling can reduce bias
+- How unfairness is a complex systems failure that needs to be
     addressed in non-technical ways
 
 
@@ -235,20 +229,16 @@ cutoff point here has been chosen to maximize profits:
 
 So, what can we see? We can see the following:
 
-
--   In orange are applicants who would not have
+- In orange are applicants who would not have
     repaid the loan and did not get accepted: **true
     negatives** (**TNs**).
-
--   In blue are applicants who would have repaid
+- In blue are applicants who would have repaid
     the loan but did not get accepted: **false negatives**
     (**FNs**).
-
--   In yellow are applicants who did get the loan
+- In yellow are applicants who did get the loan
     but did not pay it back: **false positives**
     (**FPs**).
-
--   In gray are applicants who did receive the loan
+- In gray are applicants who did receive the loan
     and paid it back: **true positives**
     (**TPs**).
 
@@ -1842,94 +1832,66 @@ comes with several sub-issues.
 ### What is the goal of the model developers? 
 
 
-
--   Is fairness an explicit goal?
-
--   Is the model evaluation metric chosen to reflect the fairness of the
+- Is fairness an explicit goal?
+- Is the model evaluation metric chosen to reflect the fairness of the
     model?
-
--   How do model developers get promoted and rewarded?
-
--   How does the model influence business results?
-
--   Would the model discriminate against the developer\'s demographic?
-
--   How diverse is the development team?
-
--   Who is responsible when things go wrong?
+- How do model developers get promoted and rewarded?
+- How does the model influence business results?
+- Would the model discriminate against the developer\'s demographic?
+- How diverse is the development team?
+- Who is responsible when things go wrong?
 
 
 ### Is the data biased?
 
 
-
--   How was the data collected?
-
--   Are there statistical misrepresentations in the sample?
-
--   Are sample sizes for minorities adequate?
-
--   Are sensitive variables included?
-
--   Can sensitive variables be inferred from the
+- How was the data collected?
+- Are there statistical misrepresentations in the sample?
+- Are sample sizes for minorities adequate?
+- Are sensitive variables included?
+- Can sensitive variables be inferred from the
     data?
-
--   Are there interactions between features that might only affect
+- Are there interactions between features that might only affect
     subgroups?
 
 
 ### Are errors biased?
 
 
-
--   What are the error rates for different subgroups?
-
--   What is the error rate of a simple, rule-based alternative?
-
--   How do the errors in the model lead to different outcomes?
+- What are the error rates for different subgroups?
+- What is the error rate of a simple, rule-based alternative?
+- How do the errors in the model lead to different outcomes?
 
 
 ### How is feedback incorporated?
 
 
-
--   Is there an appeals/reporting process?
-
--   Can mistakes be attributed back to a model?
-
--   Do model developers get insight into what happens with their
+- Is there an appeals/reporting process?
+- Can mistakes be attributed back to a model?
+- Do model developers get insight into what happens with their
     model\'s predictions?
-
--   Can the model be audited?
-
--   Is the model open source?
-
--   Do people know which features are used to make predictions about
+- Can the model be audited?
+- Is the model open source?
+- Do people know which features are used to make predictions about
     them?
 
 
 ### Can the model be interpreted?
 
 
-
--   Is a model interpretation, for example, individual results, in
+- Is a model interpretation, for example, individual results, in
     place?
-
--   Can the interpretation be understood by those it matters to?
-
--   Can findings from the interpretation lead to changes in the model?
+- Can the interpretation be understood by those it matters to?
+- Can findings from the interpretation lead to changes in the model?
 
 
 ### What happens to models after deployment? 
 
 
-
--   Is there a central repository to keep track of all the models
+- Is there a central repository to keep track of all the models
     deployed?
-
--   Are input assumptions checked continuously?
-
--   Are accuracy and fairness metrics monitored continuously?
+- Are input assumptions checked continuously?
+- Are accuracy and fairness metrics monitored continuously?
 
 
 
@@ -1942,15 +1904,12 @@ In this lab, you have learned a lot about both the technical and
 non-technical considerations of fairness in machine learning. These
 exercises will help you think much more deeply about the topic:
 
-
--   Think about the organization you work for. How is fairness
+- Think about the organization you work for. How is fairness
     incorporated in your organization? What works well and what could be
     improved?
-
--   Revisit any of the models developed in this course. Are they fair? How
+- Revisit any of the models developed in this course. Are they fair? How
     would you test them for fairness?
-
--   Fairness is only one of the many complex issues large models can
+- Fairness is only one of the many complex issues large models can
     have. Can you think of an issue in your area of work that could be
     tackled with the tools discussed in this lab?
 

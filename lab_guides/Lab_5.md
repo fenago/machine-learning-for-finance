@@ -40,14 +40,9 @@ models with Keras, as well as how to use the spaCy NLP library.
 
 The focus of this lab will be on the following:
 
-
--   Fine-tuning spaCy\'s models for your own custom applications
--   Finding parts of speech and mapping the grammatical structure of
-    sentences
--   Using techniques such as Bag-of-Words and TF-IDF for classification
--   Understanding how to build advanced models with the Keras functional
-    API
--   Training models to focus with attention, as well as to translate
+- Fine-tuning spaCy\'s models for your own custom applications- Finding parts of speech and mapping the grammatical structure of
+    sentences- Using techniques such as Bag-of-Words and TF-IDF for classification- Understanding how to build advanced models with the Keras functional
+    API- Training models to focus with attention, as well as to translate
     sentences with a sequence to sequence (seq2seq) model
 
 
@@ -801,31 +796,22 @@ The lower case of the third token has to be
 
 The possible attributes for a token can be the following:
 
-
--   `ORTH`: The token text has to match exactly
-
--   `LOWER`: The lower case of the token has to match
-
--   `LENGTH`: The length of the token text has to match
-
--   `IS_ALPHA`, `IS_ASCII`, `IS_DIGIT`:
+- `ORTH`: The token text has to match exactly
+- `LOWER`: The lower case of the token has to match
+- `LENGTH`: The length of the token text has to match
+- `IS_ALPHA`, `IS_ASCII`, `IS_DIGIT`:
     The token text has to consist of alphanumeric characters, ASCII
     symbols, or digits
-
--   `IS_LOWER`, `IS_UPPER`, `IS_TITLE`:
+- `IS_LOWER`, `IS_UPPER`, `IS_TITLE`:
     The token text has to be lower case, upper case, or title case
-
--   `IS_PUNCT`, `IS_SPACE`, `IS_STOP`: The
+- `IS_PUNCT`, `IS_SPACE`, `IS_STOP`: The
     token text has to be punctuation, white space, or a stop word
-
--   `LIKE_NUM`, `LIKE_URL`, `LIKE_EMAIL`:
+- `LIKE_NUM`, `LIKE_URL`, `LIKE_EMAIL`:
     The token has to resemble a number, URL, or email
-
--   `POS`, `TAG`, `DEP`,
+- `POS`, `TAG`, `DEP`,
     `LEMMA`, `SHAPE`: The token\'s position, tag,
     dependency, lemma, or shape has to match
-
--   `ENT_TYPE`: The token\'s entity type from NER has to match
+- `ENT_TYPE`: The token\'s entity type from NER has to match
 
 
 spaCy\'s lemmatization is extremely useful. A lemma is the base version
@@ -943,15 +929,11 @@ Next, we need to define an `on_match` rule. This function will
 be called every time the matcher finds a match. `on_match`
 rules have four arguments:
 
-
--   `matcher`: The matcher that made the match.
-
--   `doc`: The document the match was made in.
-
--   `i`: The index of a match. The first match in a document
+- `matcher`: The matcher that made the match.
+- `doc`: The document the match was made in.
+- `i`: The index of a match. The first match in a document
     would have index zero, the second would have index one, and so on.
-
--   `matches`: A list of all matches made.
+- `matches`: A list of all matches made.
 
 
 There are two things happening in our `on_match` rule:
@@ -3528,29 +3510,18 @@ There was a lot that we\'ve learned, and here\'s a big list of things we
 covered in this lab and everything you should now feel confident
 about understanding:
 
-
--   Finding named entities
-
--   Fine-tuning spaCy\'s models for your own custom applications
-
--   Finding parts of speech and mapping the grammatical structure of
+- Finding named entities
+- Fine-tuning spaCy\'s models for your own custom applications
+- Finding parts of speech and mapping the grammatical structure of
     sentences
-
--   Using regular expressions
-
--   Preparing text data for classification tasks
-
--   Using techniques such as bag-of-words and TF-IDF for classification
-
--   Modeling the topics present in a text with LDA
-
--   Using pretrained word embeddings
-
--   Building advanced models with the Keras functional API
-
--   Training your model to focus on attention
-
--   Translating sentences with the seq2seq model
+- Using regular expressions
+- Preparing text data for classification tasks
+- Using techniques such as bag-of-words and TF-IDF for classification
+- Modeling the topics present in a text with LDA
+- Using pretrained word embeddings
+- Building advanced models with the Keras functional API
+- Training your model to focus on attention
+- Translating sentences with the seq2seq model
 
 
 You now have a big set of tools in your toolbox that will allow you to

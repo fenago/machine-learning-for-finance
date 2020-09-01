@@ -1094,21 +1094,17 @@ the following formula:
 
 Let\'s go through this formula step by step:
 
-
--   [*D~BCE~*]: This is the distance function for binary
+- [*D~BCE~*]: This is the distance function for binary
     cross entropy loss.
-
--   [![](./images/B10354_01_016.jpg)]{.inlinemediaobject}: The loss over
+- [![](./images/B10354_01_016.jpg)]{.inlinemediaobject}: The loss over
     a batch of [*N*] examples is the average loss of all
     examples.
-
--   [![](./images/B10354_01_017.jpg)]{.inlinemediaobject}: This
+- [![](./images/B10354_01_017.jpg)]{.inlinemediaobject}: This
     part of the loss only comes into play if the
     true value, [*y~i~*] is 1. If [*y~i~*] is 1,
     we want [![](./images/B10354_01_018.jpg)]{.inlinemediaobject} to be
     as close to 1 as possible, so we can achieve a low loss.
-
--   [![](./images/B10354_01_019.jpg)]{.inlinemediaobject}: This part of
+- [![](./images/B10354_01_019.jpg)]{.inlinemediaobject}: This part of
     the loss comes into play if [*y~i~*], is 0. If so, we
     want [![](./images/B10354_01_020.jpg)]{.inlinemediaobject} to be
     close to 0 as well.
@@ -1688,11 +1684,9 @@ to build our neural networks.
 When importing Keras, we usually just import the
 modules we will use. In this case, we need two types of layers:
 
-
--   The `Dense` layer is the plain layer that we have gotten
+- The `Dense` layer is the plain layer that we have gotten
     to know in this lab
-
--   The `Activation` layer allows us to add an activation
+- The `Activation` layer allows us to add an activation
     function
 
 
@@ -2052,18 +2046,14 @@ As it turns out, there are a few tweaks to make to the basic structure
 for it to work well on specific tasks, such as image recognition. The
 basic ideas introduced in this lab, however, stay the same:
 
-
--   Neural networks function as approximators
-
--   We gauge how well our approximated function,
+- Neural networks function as approximators
+- We gauge how well our approximated function,
     [![](./images/B10354_01_027.jpg)]{.inlinemediaobject}, performs
     through a loss function
-
--   Parameters of the model are optimized by updating them in the
+- Parameters of the model are optimized by updating them in the
     opposite direction of the derivative of the loss function with
     respect to the parameter
-
--   The derivatives are calculated backward through the model using the
+- The derivatives are calculated backward through the model using the
     chain rule in a process called backpropagation
 
 

@@ -52,15 +52,7 @@ course to the practical applications of computer vision.
 In this lab, we will be covering the building blocks of computer
 vision models. This will include a focus on the following topics:
 
-
--   Convolutional layers.
--   Padding.
--   Pooling.
--   Regularization to prevent overfitting.
--   Momentum-based optimization.
--   Batch normalization.
--   Advanced architectures for computer vision beyond classification.
--   A note on libraries.
+- Convolutional layers.- Padding.- Pooling.- Regularization to prevent overfitting.- Momentum-based optimization.- Batch normalization.- Advanced architectures for computer vision beyond classification.- A note on libraries.
 
 #### Pre-reqs:
 - Google Chrome (Recommended)
@@ -1620,8 +1612,7 @@ How did Keras find the images and how does it know
 which classes the images belong to? The Keras generator expects the
 following folder structure:
 
-
--   Root:
+- Root:
 
     
     -   Class 0
@@ -1779,10 +1770,8 @@ of which we\'ve already learned about when working on the MNIST dataset.
 
 From this point, there are two different ways we can proceed:
 
-
--   Add layers and build a new model.
-
--   Preprocess all the images through the pertained model and then train
+- Add layers and build a new model.
+- Preprocess all the images through the pertained model and then train
     a new model.
 
 
@@ -1922,27 +1911,20 @@ documentation at <https://keras.io/>.
 In the following list, we\'ve highlighted several commonly used
 commands:
 
-
--   `rescale` scales the values in the image. We used it
+- `rescale` scales the values in the image. We used it
     before and will also use it for validation.
-
--   `rotation_range` is a range (0 to 180 degrees) in which to
+- `rotation_range` is a range (0 to 180 degrees) in which to
     randomly rotate the image.
-
--   `width_shift_range` and `height_shift_range` are
+- `width_shift_range` and `height_shift_range` are
     ranges (relative to the image size, so here 20%) in which to
     randomly stretch images horizontally or vertically.
-
--   `shear_range` is a range (again, relative to the image) in
+- `shear_range` is a range (again, relative to the image) in
     which to randomly apply shear.
-
--   `zoom_range` is the range in which to randomly zoom into a
+- `zoom_range` is the range in which to randomly zoom into a
     picture.
-
--   `horizontal_flip` specifies whether to randomly flip the
+- `horizontal_flip` specifies whether to randomly flip the
     image.
-
--   `fill_mode` specifies how to fill empty spaces created by,
+- `fill_mode` specifies how to fill empty spaces created by,
     for example, rotation.
 
 
@@ -2037,16 +2019,13 @@ huge amount of data, a deep learning model can learn what would
 otherwise have taken a system with many components much longer to learn.
 However, end-to-end deep learning does have several drawbacks:
 
-
--   End-to-end deep learning needs huge amounts of data. Because models
+- End-to-end deep learning needs huge amounts of data. Because models
     have so many parameters, a large amount of data is needed in order
     to avoid overfitting.
-
--   End-to-end deep learning is hard to debug. If you replace your
+- End-to-end deep learning is hard to debug. If you replace your
     entire system with one black box model, you have little hope of
     finding out why certain things happened.
-
--   Some things are hard to learn but easy to write down as a code,
+- Some things are hard to learn but easy to write down as a code,
     especially sanity-check rules.
 
 

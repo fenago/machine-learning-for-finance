@@ -202,14 +202,10 @@ This is where neural networks come into play.
 When playing a game, we generate lots of
 \"experiences.\" These experiences consist of the following:
 
-
--   The initial state, [*s*]
-
--   The action taken, [*a*]
-
--   The reward earned, [*r*]
-
--   The state that followed,
+- The initial state, [*s*]
+- The action taken, [*a*]
+- The reward earned, [*r*]
+- The state that followed,
     [![](./images/B10354_07_008.jpg)]{.inlinemediaobject}
 
 

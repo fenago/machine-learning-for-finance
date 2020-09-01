@@ -180,17 +180,14 @@ Before we dive into developing models to detect
 fraud, let\'s take a second to pause and ponder over
 the different kinds of models we could build.
 
-
--   A heuristic-based model is a simple \"rule of
+- A heuristic-based model is a simple \"rule of
     thumb\" developed purely by humans. Usually, the heuristic model
     stems from having an expert knowledge of the problem.
-
--   A feature-based model relies heavily on humans modifying the data to
+- A feature-based model relies heavily on humans modifying the data to
     create new and meaningful features, which are then fed into a
     (simple) machine learning algorithm. This approach mixes expert
     knowledge with learning from data.
-
--   An E2E model learns purely from raw data. No human expertise is
+- An E2E model learns purely from raw data. No human expertise is
     used, and the model learns everything directly from observations.
 
 

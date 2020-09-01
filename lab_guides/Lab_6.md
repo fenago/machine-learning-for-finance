@@ -1656,8 +1656,7 @@ from keras.layers import Conv2D, UpSampling2D
 
 Let\'s look at some of the key elements:
 
-
--   `LeakyReLU` is just like ReLU, except that the activation
+- `LeakyReLU` is just like ReLU, except that the activation
     allows for small negative values. This prevents
     the gradient from ever becoming zero. This activation function works
     well for GANs, something we will discuss in the next section:
@@ -1671,11 +1670,9 @@ Leaky ReLU
 
 
 
-
--   `Reshape` does the same as `np.reshape`: it
+- `Reshape` does the same as `np.reshape`: it
     brings a tensor into a new form.
-
--   `UpSampling2D` scales a 2D feature map up, for example, by
+- `UpSampling2D` scales a 2D feature map up, for example, by
     a factor of two, by repeating all numbers in the feature map.
 
 

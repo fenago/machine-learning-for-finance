@@ -20,12 +20,8 @@ explore wider spaces of mathematics and thus gain more accurate models.
 
 In the final lab of this course, you\'ll learn about the following:
 
-
--   The empirical derivation of the Bayes formula
--   How and why the Markov Chain Monte Carlo works
--   How to use PyMC3 for Bayesian inference and probabilistic
-    programming
--   How various methods get applied in stochastic volatility models
+- The empirical derivation of the Bayes formula- How and why the Markov Chain Monte Carlo works- How to use PyMC3 for Bayesian inference and probabilistic
+    programming- How various methods get applied in stochastic volatility models
 
 
 This course has largely covered deep learning and its applications in the
@@ -1062,24 +1058,20 @@ learning.
 
 By and large, there are four ways to do Bayesian deep learning:
 
-
--   Use **Automatic Differentiation Variational Inference**
+- Use **Automatic Differentiation Variational Inference**
     (**AVI**). This means approximating
     the posterior with a guide model and then optimizing model
     parameters using gradient descent. PyMC3 can do this using the AVI
     optimizer. See the paper, [*Automatic Differentiation Variational
     Inference*], by Alp Kucukelbir and others, 2016 paper at
     <https://arxiv.org/abs/1603.00788>.
-
--   Alternatively, you can use, Pyro which implements fast,
+- Alternatively, you can use, Pyro which implements fast,
     GPU-optimized AVI, which you can view here: <http://pyro.ai/>.
-
--   While it would be too much to give an extensive tutorial on this
+- While it would be too much to give an extensive tutorial on this
     approach here, the PyMC3 documentation has a good tutorial on this:
     [https://docs.pymc.io/
     notebooks/bayesian\_neural\_network\_advi.html](https://docs.pymc.io/%20notebooks/bayesian_neural_network_advi.html){.ulink}.
-
--   Assume posterior values are normally
+- Assume posterior values are normally
     distributed, then use a standard neural network library such as
     Keras and learn a mean and standard deviation for every parameter.
     Remember how we sampled the [*z*] value from a
@@ -1087,15 +1079,13 @@ By and large, there are four ways to do Bayesian deep learning:
     autoencoders? We can do this for every layer. This trains faster and
     takes less computing power and memory than AVI but is less flexible
     and has twice the parameters of a non-Bayesian neural network.
-
--   Use the dropout trick. When working with time series, we turned
+- Use the dropout trick. When working with time series, we turned
     dropout on at test time and ran inference multiple times to obtain
     confidence intervals. This is a form of Bayesian learning that is
     very easy to achieve, with no more parameters than a regular neural
     network. However, it\'s slower at inference time, and does not come
     with all the flexibility of AVI, either.
-
--   Pick and mix. To train a neural network, we need a gradient signal,
+- Pick and mix. To train a neural network, we need a gradient signal,
     which we can obtain from AVI. We can train the socket of a neural
     network, sometimes called the feature extractor, in a regular
     fashion and the head of the network in a Bayesian manner. This way,
@@ -1118,15 +1108,11 @@ development and bring its applications into production.
 Looking back at this lab, we should feel confident in understanding
 the following:
 
-
--   The empirical derivation of Bayes formula
-
--   How and why the Markov Chain Monte Carlo works
-
--   How to use PyMC3 for Bayesian inference and probabilistic
+- The empirical derivation of Bayes formula
+- How and why the Markov Chain Monte Carlo works
+- How to use PyMC3 for Bayesian inference and probabilistic
     programming
-
--   How these methods get applied in stochastic volatility models
+- How these methods get applied in stochastic volatility models
 
 
 Notice how everything you have learned here transfers to bigger models
@@ -1150,26 +1136,16 @@ met with at the start of our journey.
 Over the past 10 labs, we\'ve covered a whole lot, including the
 following:
 
-
--   Gradient descent-based optimization
-
--   Feature engineering
-
--   Tree-based methods
-
--   Computer vision
-
--   Time series models
-
--   Natural language processing
-
--   Generative models
-
--   Debugging machine learning systems
-
--   Ethics in machine learning
-
--   Bayesian inference
+- Gradient descent-based optimization
+- Feature engineering
+- Tree-based methods
+- Computer vision
+- Time series models
+- Natural language processing
+- Generative models
+- Debugging machine learning systems
+- Ethics in machine learning
+- Bayesian inference
 
 
 In each lab, we created a large bag of practical tips and tricks

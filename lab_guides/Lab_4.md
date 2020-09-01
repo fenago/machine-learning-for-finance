@@ -1486,39 +1486,27 @@ the time of forecasting, which is a problem in backtesting.
 
 For each series, we will assemble the following features:
 
-
--   `log_view`: The natural logarithm of page views. Since the
+- `log_view`: The natural logarithm of page views. Since the
     logarithm of zero is undefined, we will use
     `log1p`, which is the natural logarithm of page views plus
     one.
-
--   `days`: One-hot encoded weekdays.
-
--   `year_lag`: The value of `log_view` from 365
+- `days`: One-hot encoded weekdays.
+- `year_lag`: The value of `log_view` from 365
     days ago. `-1` if there is no value available.
-
--   `halfyear_lag`: The value of `log_view` from 182
+- `halfyear_lag`: The value of `log_view` from 182
     days ago. `-1` if there is no value available.
-
--   `quarter_lag`: The value of `log_view` from 91
+- `quarter_lag`: The value of `log_view` from 91
     days ago. `-1` if there is no value available.
-
--   `page_enc`: The one-hot encoded subpage.
-
--   `agent_enc`: The one-hot encoded agent.
-
--   `acc_enc`: The one-hot encoded access method.
-
--   `year_autocorr`: The autocorrelation of the series of 365
+- `page_enc`: The one-hot encoded subpage.
+- `agent_enc`: The one-hot encoded agent.
+- `acc_enc`: The one-hot encoded access method.
+- `year_autocorr`: The autocorrelation of the series of 365
     days.
-
--   `halfyr_autocorr`: The autocorrelation of the series of
+- `halfyr_autocorr`: The autocorrelation of the series of
     182 days.
-
--   `quarter_autocorr`: The autocorrelation of the series of
+- `quarter_autocorr`: The autocorrelation of the series of
     91 days.
-
--   `medians`: The median of page views over the lookback
+- `medians`: The median of page views over the lookback
     period.
 
 
@@ -2490,20 +2478,17 @@ Now we\'re at the end of the lab, why not try some of the following
 exercises? You\'ll find guides on how to complete them all throughout
 this lab:
 
-
--   A good trick is to use LSTMs on top of one-dimensional convolution,
+- A good trick is to use LSTMs on top of one-dimensional convolution,
     as one-dimensional convolution can go over large sequences while
     using fewer parameters. Try to implement an architecture that first
     uses a few convolutional and pooling layers and then a few LSTM
     layers. Try it out on the web traffic dataset. Then try adding
     (recurrent) dropout. Can you beat the LSTM model?
-
--   Add uncertainty to your web traffic forecasts. To do this, remember
+- Add uncertainty to your web traffic forecasts. To do this, remember
     to run your model with dropout turned on at inference time. You will
     obtain multiple forecasts for one time step. Think about what this
     would mean in the context of trading and stock prices.
-
--   Visit the Kaggle datasets page and search for time series data. Make
+- Visit the Kaggle datasets page and search for time series data. Make
     a forecasting model. This involves feature engineering with
     autocorrelation and Fourier transformation, picking the right model
     from the ones introduced (for example, ARIMA versus neural
@@ -2530,27 +2515,19 @@ given you a rich toolbox for dealing with time series. Let\'s recap all
 of the things that we\'ve covered on the example of forecasting web
 traffic for Wikipedia:
 
-
--   Basic data exploration to understand what we are dealing with
-
--   Fourier transformation and autocorrelation as tools for feature
+- Basic data exploration to understand what we are dealing with
+- Fourier transformation and autocorrelation as tools for feature
     engineering and understanding data
-
--   Using a simple median forecast as a baseline and sanity check
-
--   Understanding and using ARIMA and Kalman filters as classic
+- Using a simple median forecast as a baseline and sanity check
+- Understanding and using ARIMA and Kalman filters as classic
     prediction models
-
--   Designing features, including building a data loading mechanism for
+- Designing features, including building a data loading mechanism for
     all our time series
-
--   Using one-dimensional convolutions and variants such as causal
+- Using one-dimensional convolutions and variants such as causal
     convolutions and dilated convolutions
-
--   Understanding the purpose and use of RNNs and their more powerful
+- Understanding the purpose and use of RNNs and their more powerful
     variant, LSTMs
-
--   Getting to grips with understanding how to add uncertainty to our
+- Getting to grips with understanding how to add uncertainty to our
     forecasts with the dropout trick, taking our first step into
     Bayesian learning
 
