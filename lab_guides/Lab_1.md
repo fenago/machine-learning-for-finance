@@ -154,7 +154,7 @@ What is machine learning?
 > computers the ability to learn without being explicitly programmed.\"
 >
 > \- Arthur Samuel, 1959
-:::
+
 
 What do we mean by machine learning? Most computer
 programs today are handcrafted by humans. Software engineers carefully
@@ -203,8 +203,8 @@ under a paradigm known as supervised learning.
 
 
 Supervised learning
-:::
-:::
+
+
 
 In supervised learning, we have a large number of training examples,
 such as images of animals, and labels that describe what the expected
@@ -222,7 +222,7 @@ differentiate dogs from all other animals.
 **Note**: The classifier does not know what a dog
 fundamentally is. It only knows the statistical patterns that linked
 images to dogs in training.
-:::
+
 
 If a supervised learning classifier encounters something that\'s very
 different from the training data, it can often get confused and will
@@ -245,8 +245,8 @@ case, we can still use machine learning to find hidden patterns in data.
 
 
 Clustering is a common form of unsupervised learning
-:::
-:::
+
+
 
 Imagine a company that has a number of customers for its products. These
 customers can probably be grouped into different market segments, but
@@ -281,8 +281,8 @@ from the car in front.
 
 
 Reinforcement learning
-:::
-:::
+
+
 
 A driving instructor does not tell the student to \"push the brake
 halfway down while moving the steering wheel two degrees to the right,\"
@@ -329,7 +329,7 @@ This approach is superior if there is a very large number of rules, or
 even if these rules are difficult to describe. Modern machine learning
 is, therefore, the ideal tool for combing through the huge amounts of
 data the financial industry is confronted with.
-:::
+
 
 
 
@@ -383,7 +383,7 @@ researchers, in 2008 in the wake of the financial crisis:
 > accuracy. Instead, I will make explicit its assumptions and
 > oversights. I understand that my work may have enormous effects on
 > society and the economy, many of them beyond my comprehension.\"
-:::
+
 
 In recent years, machine learning has made a number
 of great strides, with researchers mastering tasks that were previously
@@ -430,7 +430,7 @@ in the cloud, or on a website such as Kaggle.
 <https://github.com/PacktPublishing/Machine-Learning-for-Finance> and
 for lab 1 refer the following link:
 <https://www.kaggle.com/jannesklaas/machine-learning-for-finance-lab-1-code>.
-:::
+
 
 Deep learning is computer intensive, and the data used in the examples
 throughout this course are frequently over a gigabyte in size. It can be
@@ -480,8 +480,8 @@ located in the main menu, as seen in the following screenshot:
 
 
 Public Kaggle kernels
-:::
-:::
+
+
 
 In the preceding screenshot, you can see a number of 
 kernels that other people have both written and published.
@@ -496,8 +496,8 @@ that follows, you want to select **Notebook**:
 
 
 The kernel editor
-:::
-:::
+
+
 
 You will get to the kernel editor, which looks like the preceding
 screenshot.
@@ -572,7 +572,7 @@ opening your machine\'s Terminal and typing in the following code:
 ``` {.programlisting .language-markup}
 $ jupyter notebook
 ```
-:::
+
 
 You can then visit the URL displayed in the Terminal. This will take you
 to your local notebook server.
@@ -599,7 +599,7 @@ entering the following command:
 ``` {.programlisting .language-markup}
 $ sudo pip install TensorFlow
 ```
-:::
+
 
 For instructions on how to install TensorFlow with GPU support, simply
 click on this link, where you will be provided with the instructions for
@@ -608,7 +608,7 @@ doing so: <https://www.tensorflow.org/>.
 It\'s worth noting that you will need a CUDA-enabled GPU in order to run
 TensorFlow with CUDA. For instructions on how to
 install CUDA, visit <https://docs.nvidia.com/cuda/index.html>.
-:::
+
 
 
 
@@ -623,12 +623,12 @@ Keras in the same way, by running the following command:
 ``` {.programlisting .language-markup}
 $ sudo pip install Keras
 ```
-:::
+
 
 Keras will now automatically use the TensorFlow backend. Note that
 TensorFlow 1.7 will include Keras built in, which we\'ll cover this
 later on in this lab.
-:::
+
 
 
 
@@ -683,20 +683,20 @@ the following formula:
 
 
 ![](./images/B10354_01_001.jpg)
-:::
+
 
 A simple function could be like this:
 
 
 ![](./images/B10354_01_002.jpg)
-:::
+
 
 In this case, we can give the function an input, [*x*], and
 it would quadruple it:
 
 
 ![](./images/B10354_01_003.jpg)
-:::
+
 
 You might have seen functions like this in school, but functions can do
 more; as an example, they can map an element from a set (the collection
@@ -708,7 +708,7 @@ what is in the image:
 
 
 ![](./images/B10354_01_004.jpg)
-:::
+
 
 This function would map an image of a cat to the label \"cat,\" as we
 can see in the following diagram:
@@ -718,8 +718,8 @@ can see in the following diagram:
 
 
 Mapping images to labels
-:::
-:::
+
+
 
 We should note that for a computer, images are matrices full of numbers
 and any description of an image\'s content would also be stored as a
@@ -772,7 +772,7 @@ so the data, seen here, will be our dataset for the exercise:
   1      0      0      1
   1      1      1      1
   0      1      1      0
-:::
+
 
 In the dataset, each row contains an input vector, [*X*], and
 an output, [*y*].
@@ -781,13 +781,13 @@ The data follows the formula:
 
 
 ![](./images/B10354_01_005.jpg)
-:::
+
 
 The function we want to approximate is as follows:
 
 
 ![](./images/B10354_01_006.jpg)
-:::
+
 
 In this case, writing down the function is relatively straightforward.
 However, keep in mind that in most cases it is not possible to write
@@ -835,8 +835,8 @@ layer up or down:
 
 
 Logistic regressor
-:::
-:::
+
+
 
 To compute the output of the regressor, we must
 first do a **linear step**. We compute the 
@@ -877,7 +877,7 @@ random seed. We can do this by running the following code:
 import numpy as np
 np.random.seed(1)
 ```
-:::
+
 
 Since our dataset is quite small, we\'ll define it manually as NumPy
 matrices, as we can see here:
@@ -892,7 +892,7 @@ X = np.array([[0,1,0],
 
 y = np.array([[0,1,1,0]]).T
 ```
-:::
+
 
 We can define the sigmoid, which squishes all the values into values
 between 0 and 1, through an activation function as a Python function:
@@ -903,7 +903,7 @@ between 0 and 1, through an activation function as a Python function:
 def sigmoid(x):
     return 1/(1+np.exp(-x))
 ```
-:::
+
 
 So far, so good. We now need to initialize [*W*]. In this
 case, we actually know already what values [*W*] should have.
@@ -927,7 +927,7 @@ of 1, so we first multiply the values generated by 2 and then subtract
 W = 2*np.random.random((3,1)) - 1
 b = 0
 ```
-:::
+
 
 With that done, all the variables are set. We can now move on to do the
 linear step, which is achieved with the following:
@@ -937,7 +937,7 @@ linear step, which is achieved with the following:
 ``` {.programlisting .language-markup}
 z = X.dot(W) + b
 ```
-:::
+
 
 Now we can do the nonlinear step, which is run with the following:
 
@@ -946,7 +946,7 @@ Now we can do the nonlinear step, which is run with the following:
 ``` {.programlisting .language-markup}
 A = sigmoid(z)
 ```
-:::
+
 
 Now, if we print out `A`, we\'ll get the following output:
 
@@ -955,7 +955,7 @@ Now, if we print out `A`, we\'ll get the following output:
 ``` {.programlisting .language-markup}
 print(A)
 ```
-:::
+
 
 
 
@@ -966,7 +966,7 @@ out:
  [ 0.3262757 ]
  [ 0.36375058]]
 ```
-:::
+
 
 But wait! This output looks nothing like our desired output,
 [*y*], at all! Clearly, our regressor is representing
@@ -1008,20 +1008,20 @@ We know that the following is true:
 
 
 ![](./images/B10354_01_011.jpg)
-:::
+
 
 We also know that:
 
 
 ![](./images/B10354_01_012.jpg)
-:::
+
 
 We can try to find [*f*] by optimizing using the following
 formula:
 
 
 ![](./images/B10354_01_013.jpg)
-:::
+
 
 Within this formula,
 [![](./images/B10354_01_029.jpg)]{.inlinemediaobject} is the space of
@@ -1039,7 +1039,7 @@ data, [*X*], and labels, [*y*], represent our
 desired function, [*f*]. This is not always the case.
 When our data contains systematic biases, we might gain a function
 that fits our data well but is different from the one we wanted.
-:::
+
 
 An example of optimizing model parameters comes from
 human resource management. Imagine you are trying to build a model that
@@ -1081,7 +1081,7 @@ the following formula:
 
 
 ![](./images/B10354_01_015.jpg)
-:::
+
 
 Let\'s go through this formula step by step:
 
@@ -1103,7 +1103,7 @@ Let\'s go through this formula step by step:
     the loss comes into play if [*y~i~*], is 0. If so, we
     want [![](./images/B10354_01_020.jpg)]{.inlinemediaobject} to be
     close to 0 as well.
-:::
+
 
 In Python, this loss function is implemented as follows:
 
@@ -1115,7 +1115,7 @@ def bce_loss(y,y_hat):
   loss = -1/N * (y*np.log(y_hat) + (1 - y)*np.log(1-y_hat))
   return loss
 ```
-:::
+
 
 The output, `A,` of our logistic regressor is equal to
 [![](./images/B10354_01_021.jpg)]{.inlinemediaobject}, so we can
@@ -1127,7 +1127,7 @@ calculate the binary cross-entropy loss as follows:
 loss = bce_loss(y,A)
 print(loss)
 ```
-:::
+
 
 
 
@@ -1135,7 +1135,7 @@ print(loss)
 out: 
 0.82232258208779863
 ```
-:::
+
 
 As we can see, this is quite a high loss, so we
 should now look at seeing how we can improve our model. The goal here is
@@ -1194,8 +1194,8 @@ seeing in the following diagram:
 
 
 Gradient descent
-:::
-:::
+
+
 
 Gradient descent requires that the loss function has a derivative with
 respect to the parameters that we want to optimize. This will work well
@@ -1213,7 +1213,7 @@ called **hyperparameters** and are usually set by humans. You
 just saw how we gradually scale down the loss
 function, but how do we update the parameters? To this end, we\'re going
 to need another method called backpropagation.
-:::
+
 
 
 
@@ -1238,8 +1238,8 @@ logistic regressor:
 
 
 Forward and backward pass through a logistic regressor
-:::
-:::
+
+
 
 To keep things simple, we refer to the derivative of
 the loss function to any variable as the [*d*] variable. For
@@ -1252,13 +1252,13 @@ rule as the following:
 
 
 ![](./images/B10354_01_023.jpg)
-:::
+
 
 This is also sometimes written as follows:
 
 
 ![](./images/B10354_01_024.jpg)
-:::
+
 
 The chain rule basically says that if you want to take the derivative
 through a number of nested functions, you multiply the derivative of the
@@ -1303,7 +1303,7 @@ The update rule for a parameter, [*p*], then goes like this:
 
 
 ![](./images/B10354_01_025.jpg)
-:::
+
 
 Here [*p*] is a model parameter (either in weight or a bias),
 [*dp*] is the loss derivative with respect to
@@ -1351,7 +1351,7 @@ X = np.array([[0,1,0],
 
 y = np.array([[0,1,1,0]]).T
 ```
-:::
+
 
 The next step is for us to define the sigmoid activation function and
 loss function, which we can do with the following code:
@@ -1367,7 +1367,7 @@ def bce_loss(y,y_hat):
     loss = -1/N * np.sum((y*np.log(y_hat) + (1 - y)*np.log(1-y_hat)))
     return loss
 ```
-:::
+
 
 We\'ll then randomly initialize our model, which we can achieve with the
 following code:
@@ -1378,7 +1378,7 @@ following code:
 W = 2*np.random.random((3,1)) - 1
 b = 0
 ```
-:::
+
 
 As part of this process, we also need to set some hyperparameters. The
 first one is alpha, which we will just set to `1` here. Alpha
@@ -1397,7 +1397,7 @@ parameters with the following code:
 alpha = 1
 epochs = 20
 ```
-:::
+
 
 Since it is used in the training loop, it\'s also useful to define the
 number of samples in our data. We\'ll also define an empty array in
@@ -1410,7 +1410,7 @@ we simply run the following:
 N = y.shape[0]
 losses = []
 ```
-:::
+
 
 Now we come to the main training loop:
 
@@ -1436,7 +1436,7 @@ for i in range(epochs):
     W -= alpha * dW
     b -= alpha * db
 ```
-:::
+
 
 As a result of running the previous code, we would get the following
 output:
@@ -1466,7 +1466,7 @@ Epoch: 17 Loss: 0.22314516463
 Epoch: 18 Loss: 0.21285058467
 Epoch: 19 Loss: 0.203407060401
 ```
-:::
+
 
 You can see that over the course of the output, the
 loss steadily decreases, starting at `0.822322582088` and
@@ -1484,7 +1484,7 @@ plt.xlabel('epoch')
 plt.ylabel('loss')
 plt.show()
 ```
-:::
+
 
 This will then output the following chart:
 
@@ -1514,8 +1514,8 @@ seen in the following diagram:
 
 
 Sketch of a two-layer neural network
-:::
-:::
+
+
 
 The input gets multiplied with the first set of
 weights, [*W~1~*], producing an intermediate product,
@@ -1538,14 +1538,14 @@ z2 = a1.dot(W2) + b2
 
 a2 = sigmoid(z2)
 ```
-:::
+
 
 
 ### Note {#note .title}
 
 **Note**: The full code for this example can be found in the
 GitHub repository belonging to this course.
-:::
+
 
 As you can see, the first activation function is not a sigmoid function
 but is actually a tanh function. Tanh is a popular activation function
@@ -1557,8 +1557,8 @@ values in the range between -1 and 1 rather than 0 and 1:
 
 
 The tanh function
-:::
-:::
+
+
 
 Backpropagation through our deeper network works by
 the chain rule, too. We go back through the network and multiply the
@@ -1569,8 +1569,8 @@ derivatives:
 
 
 Forward and backward pass through a two-layer neural network
-:::
-:::
+
+
 
 The preceding equations can be expressed as the
 following Python code:
@@ -1596,7 +1596,7 @@ dW1 = np.dot(X.T, dz1)
 # Calculate loss derivative with respect to first layer bias
 db1 = np.sum(dz1, axis=0)
 ```
-:::
+
 
 Note that while the size of the inputs and outputs are determined by
 your problem, you can freely choose the size of your hidden layer. The
@@ -1618,8 +1618,8 @@ GitHub repo:
 
 
 The two moons dataset
-:::
-:::
+
+
 
 The following diagram shows a visualization of the decision boundary,
 that is, the line at which the model separates the two classes, using a
@@ -1630,8 +1630,8 @@ hidden layer size of 1:
 
 
 Decision boundary for hidden layer size 1
-:::
-:::
+
+
 
 As you can see, the network does not capture the
 true relationship of the data. This is because it\'s too simplistic. In
@@ -1643,8 +1643,8 @@ with a hidden layer size of 500:
 
 
 Decision boundary for hidden layer size 500
-:::
-:::
+
+
 
 This model clearly fits the noise, but not the
 moons. In this case, the right hidden layer size is about 3.
@@ -1685,7 +1685,7 @@ modules we will use. In this case, we need two types of layers:
 
 -   The `Activation` layer allows us to add an activation
     function
-:::
+
 
 We can import them simply by running the following code:
 
@@ -1694,7 +1694,7 @@ We can import them simply by running the following code:
 ``` {.programlisting .language-markup}
 from keras.layers import Dense, Activation
 ```
-:::
+
 
 Keras offers two ways to build models, through the sequential and the
 functional APIs. Because the sequential API is easier to use and allows
@@ -1729,7 +1729,7 @@ Firstly, we create an empty sequential model with no layers:
 ``` {.programlisting .language-markup}
 model = Sequential()
 ```
-:::
+
 
 Then we can add layers to this model, just like
 stacking a layer cake, with `model.add()`.
@@ -1743,7 +1743,7 @@ point. We can add a hidden layer of size 3 with the following code:
 ``` {.programlisting .language-markup}
 model.add(Dense(3,input_dim=2))
 ```
-:::
+
 
 Note how we nest the functions inside `model.add()`. We
 specify the `Dense` layer, and the positional argument is the
@@ -1757,7 +1757,7 @@ To add a `tanh` activation function, we call the following:
 ``` {.programlisting .language-markup}
 model.add(Activation('tanh'))
 ```
-:::
+
 
 Then, we add the linear step and the activation function of the output
 layer in the same way, by calling up:
@@ -1768,7 +1768,7 @@ layer in the same way, by calling up:
 model.add(Dense(1))
 model.add(Activation('sigmoid'))
 ```
-:::
+
 
 Then to get an overview of all the layers we now
 have in our model, we can use the following command:
@@ -1778,7 +1778,7 @@ have in our model, we can use the following command:
 ``` {.programlisting .language-markup}
 model.summary()
 ```
-:::
+
 
 This yields the following overview of the model:
 
@@ -1800,7 +1800,7 @@ Total params: 13
 Trainable params: 13
 Non-trainable params: 0
 ```
-:::
+
 
 You can see the layers listed nicely, including their output shape and
 the number of parameters the layer has. `None`, located within
@@ -1811,7 +1811,7 @@ layer will accept any number of samples.
 In pretty much every network, you will see that the input dimension on
 the first dimension is variable like this in order to accommodate the
 different amounts of samples.
-:::
+
 
 
 
@@ -1825,8 +1825,8 @@ function we want to use.
 
 The simple optimizer we have used so far is called the **Stochastic
 Gradient Descent**, or **SGD**. To look at more
-optimizers, see [Lab
-2](https://subscription.packtpub.com/course/data/9781789136364/2){.link},
+optimizers, see Lab
+2,
 [*Applying Machine Learning to Structured Data*].
 
 The loss function we use for this binary classification problem is
@@ -1854,7 +1854,7 @@ we can do with the following line:
 ``` {.programlisting .language-markup}
 history = model.fit(X,y,epochs=900)
 ```
-:::
+
 
 This will train the model for 900 iterations, which are also referred to
 as epochs. The output should look similar to this:
@@ -1877,7 +1877,7 @@ Epoch 900/900
 200/200 [==============================] - 0s 87us/step - 
 loss: 0.2901 - acc: 0.8800
 ```
-:::
+
 
 The full output of the training process has been truncated in the
 middle, this is to save space in the course, but you can see that the loss
@@ -1919,7 +1919,7 @@ So, we could import the Keras layers by running the following:
 ``` {.programlisting .language-markup}
 from tensorflow.keras.layers import Dense, Activation
 ```
-:::
+
 
 This course will treat Keras as a standalone library. However, you might
 want to use a different backend for Keras one day, as it keeps the code
@@ -1950,7 +1950,7 @@ in the following table:
   2      Matrix                 Table of numbers
   3      Cube Matrix            Cube of numbers
   n      n-dimensional matrix   You get the idea
-:::
+
 
 This course mostly uses the word tensor for rank-three or higher tensors.
 
@@ -1968,8 +1968,8 @@ graph:
 
 
 A simple computational graph
-:::
-:::
+
+
 
 The advantage of structuring computations as a graph is that it\'s
 easier to run nodes in parallel. Through parallel computation, we do not
@@ -1992,8 +1992,8 @@ adding bias and a ReLU activation function:
 
 The computational graph of a single layer in TensorFlow. Screenshot from
 TensorBoard.
-:::
-:::
+
+
 
 Another advantage of using computational graphs such
 as this is that TensorFlow and other libraries can quickly and
@@ -2056,7 +2056,7 @@ basic ideas introduced in this chapter, however, stay the same:
 
 -   The derivatives are calculated backward through the model using the
     chain rule in a process called backpropagation
-:::
+
 
 The key takeaway from this lab is that while we are looking for
 function [*f*], we can try and find it by optimizing a

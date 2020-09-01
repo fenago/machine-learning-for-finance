@@ -56,7 +56,7 @@ Throughout this lab, we\'ll discuss the following:
 
 -   How unfairness is a complex systems failure that needs to be
     addressed in non-technical ways
-:::
+
 
 The algorithms discussed in this course are feature extraction algorithms.
 Even if regulated features are omitted, an algorithm might infer them
@@ -152,7 +152,7 @@ a minute to look at each of these:
     After this is done, the plaintiff has the opportunity to show that
     the goal of the procedure could also be achieved with a different
     procedure that shows a smaller disparity.
-:::
+
 
 
 ### Note {#note .title}
@@ -160,7 +160,7 @@ a minute to look at each of these:
 **Note**: For a more in-depth overview of these topics, see
 Moritz Hardt\'s 2017 NeurIPS presentation on the topic at
 <http://mrtz.org/nips17/#/11>.
-:::
+
 
 The disparate treatment doctrine tries to achieve procedural fairness
 and equal opportunity. The disparate impact doctrine aims for
@@ -210,15 +210,15 @@ point. Let\'s look at the distribution of applicants in this graph:
 find the Excel file used for these calculations in the GitHub repository
 of this course,
 <https://github.com/PacktPublishing/Machine-Learning-for-Finance/blob/master/9.1_parity.xlsx>.
-:::
+
 
 
 ![](./images/B10354_09_01.jpg)
 
 
 Max profits
-:::
-:::
+
+
 
 For this exercise, we assume that a successful applicant yields a profit
 of \$300, while a defaulting successful applicant costs \$700. The
@@ -242,7 +242,7 @@ So, what can we see? We can see the following:
 -   In gray are applicants who did receive the loan
     and paid it back: **true positives**
     (**TPs**).
-:::
+
 
 As you can see, there are several issues with this
 choice of cutoff point. **Group B** applicants need to have a
@@ -259,8 +259,8 @@ give both groups the same minimum score:
 
 
 Equal cutoff
-:::
-:::
+
+
 
 In the preceding graph, while both groups have the same cutoff rate,
 **Group A** has been given fewer loans. At the same time,
@@ -277,7 +277,7 @@ follows:
 
 
 ![](./images/B10354_09_002.jpg)
-:::
+
 
 If we apply this rule to the same context as we
 used previously, we\'ll arrive at the following cutoff points:
@@ -287,8 +287,8 @@ used previously, we\'ll arrive at the following cutoff points:
 
 
 Equal pick rate
-:::
-:::
+
+
 
 While this method cannot be blamed for statistical discrimination and
 disparate impact, it can be blamed for disparate treatment. In the equal
@@ -308,7 +308,7 @@ this can be expressed as follows:
 
 
 ![](./images/B10354_09_003.jpg)
-:::
+
 
 Applied to our data, this policy looks similar to demographic parity,
 except that the group cutoff point is even lower:
@@ -318,8 +318,8 @@ except that the group cutoff point is even lower:
 
 
 Equal opportunity
-:::
-:::
+
+
 
 Equal opportunity can address many of the problems
 of demographic parity, as most people believe that everyone should be
@@ -332,7 +332,7 @@ same for both groups. Mathematically, this can be expressed as follows:
 
 
 ![](./images/B10354_09_004.jpg)
-:::
+
 
 The probability that the classifier is correct should be the same for
 the two possible values of the sensitive variable [*A*]. When
@@ -343,8 +343,8 @@ we apply this criteria to our data, we arrive at the following output:
 
 
 Equal accuracy
-:::
-:::
+
+
 
 From the preceding diagram, the downside becomes apparent. In order to
 satisfy the accuracy constraint, members of **Group B** are
@@ -357,7 +357,7 @@ demographics have the same base rates:
 
 
 ![](./images/B10354_09_005.jpg)
-:::
+
 
 There are many more ways to express fairness. The key takeaway, however,
 is that none of them perfectly satisfies all of the fairness criteria.
@@ -423,8 +423,8 @@ the classifier:
 
 
 Making an unbiased classifier to detect the income of an adult
-:::
-:::
+
+
 
 The classifier aims to classify by income but also aims to fool the
 adversarial network. The classifier\'s minimization objective formula is
@@ -432,7 +432,7 @@ as follows:
 
 
 ![](./images/B10354_09_006.jpg)
-:::
+
 
 Within that formula,
 [![](./images/B10354_09_007.jpg)]{.inlinemediaobject} is a binary
@@ -452,7 +452,7 @@ can find the code to this lab on Kaggle at
 
 Stijn\'s and Henk\'s original blogpost can be found here:
 <https://blog.godatadriven.com/fairness-in-ml>.
-:::
+
 
 To train this model fairly, we not only need data [*X*] and
 targets [*y*], but also data about the sensitive attributes,
@@ -477,7 +477,7 @@ path = '../input/adult.csv'
 input_data = pd.read_csv(path, na_values="?")
 input_data = input_data[input_data['race'].isin(['White', 'Black'])]
 ```
-:::
+
 
 Next, we select the sensitive attributes, in this case we\'re focusing
 on race and gender, into our sensitive dataset, `A`. We
@@ -494,7 +494,7 @@ A = input_data[sensitive_attribs]
 A = pd.get_dummies(A,drop_first=True)
 A.columns = sensitive_attribs
 ```
-:::
+
 
 Our target is the `income` attribute. Therefore, we need to
 encode `>50K` as 1 and everything else as zero, which is
@@ -505,7 +505,7 @@ achieved by writing this code:
 ``` {.programlisting .language-markup}
 y = (input_data['income'] == '>50K').astype(int)
 ```
-:::
+
 
 To get our training data, we firstly remove the sensitive and target
 attributes. Then we fill all of the missing values and one-hot encode
@@ -520,7 +520,7 @@ X = X.fillna('Unknown')
 
 X = pd.get_dummies(X, drop_first=True)
 ```
-:::
+
 
 Finally, we split the data into train and test sets. As seen in the
 following code, we then stratify the data to ensure that the same number
@@ -532,7 +532,7 @@ of high earners are in both the test and training data:
 X_train, X_test, y_train, y_test, A_train, A_test = \
 train_test_split(X, y, A, test_size=0.5, stratify=y, random_state=7)
 ```
-:::
+
 
 To ensure the data works nicely with the neural network, we\'re now
 going to scale the data using scikit-learn\'s
@@ -547,7 +547,7 @@ X_train = pd.DataFrame(scaler.transform(X_train), columns=X_train.columns, index
                        
 X_test = pd.DataFrame(scaler.transform(X_test), columns=X_test.columns, index=X_test.index)
 ```
-:::
+
 
 We need a metric of how fair our model is. We are
 using the disparate impact selection rule. The `p_rule` method
@@ -570,7 +570,7 @@ def p_rule(y_pred, a_values, threshold=0.5):
     odds = y_a_1.mean() / y_a_0.mean()                          #2
     return np.min([odds, 1/odds]) * 100
 ```
-:::
+
 
 Let\'s explore this code in some more detail. As you can see from the
 preceding code block, it\'s created with two key features, which are as
@@ -585,7 +585,7 @@ follows:
     divide the ratio of the one group by the ratio of the other group.
     By returning the minimum of either the odds or one divided by the
     odds, we ensure the return of a value below one.
-:::
+
 
 To make the model setup a bit easier, we need to define the number of
 input features and the number of sensitive features. This is something
@@ -597,7 +597,7 @@ that is simply done by running these two lines:
 n_features=X_train.shape[1]
 n_sensitive=A_train.shape[1]
 ```
-:::
+
 
 Now we set up our classifier. Note how this
 classifier is a standard classification neural network. It features
@@ -621,7 +621,7 @@ x = Dropout(0.2)(x)
 outputs = Dense(1, activation='sigmoid', name='y')(x)
 clf_net = Model(inputs=[clf_inputs], outputs=[outputs])
 ```
-:::
+
 
 The adversarial network is a classifier with two heads: one to predict
 the applicant\'s race from the model output, and one to predict the
@@ -638,7 +638,7 @@ out_race = Dense(1, activation='sigmoid')(x)
 out_gender = Dense(1, activation='sigmoid')(x)
 adv_net = Model(inputs=[adv_inputs], outputs=[out_race,out_gender])
 ```
-:::
+
 
 As with generative adversarial networks, we have to make the networks
 trainable and untrainable multiple times. To make this easier, the
@@ -655,7 +655,7 @@ def make_trainable_fn(net):              #1
             layer.trainable = flag
     return make_trainable                #4
 ```
-:::
+
 
 From the preceding code, there are four key features that we should take
 a moment to explore:
@@ -675,7 +675,7 @@ a moment to explore:
     is not trainable, too.
 
 4.  Finally, we return the function.
-:::
+
 
 Using a function to create another function might seem convoluted at
 first, but this allows us to create \"switches\" for the neural network
@@ -688,7 +688,7 @@ functions for the classifier and the adversarial network:
 trainable_clf_net = make_trainable_fn(clf_net)
 trainable_adv_net = make_trainable_fn(adv_net)
 ```
-:::
+
 
 To make the classifier trainable, we can use the function with the
 `True` flag:
@@ -698,7 +698,7 @@ To make the classifier trainable, we can use the function with the
 ``` {.programlisting .language-markup}
 trainable_clf_net(True)
 ```
-:::
+
 
 Now we can compile our classifier. As you will see later on in this
 lab, it is useful to keep the classifier network as a separate
@@ -710,7 +710,7 @@ variable from the compiled classifier with which we make predictions:
 clf = clf_net
 clf.compile(loss='binary_crossentropy', optimizer='adam')
 ```
-:::
+
 
 Remember that to train our classifier, we need to run its predictions
 through the adversary as well as obtaining the adversary loss and
@@ -728,7 +728,7 @@ immediately passed on to the adversary:
 ``` {.programlisting .language-markup}
 adv_out = adv_net(clf_net(clf_inputs))
 ```
-:::
+
 
 We then define the classifier output to be the output of the classifier
 network, just as we would for classification:
@@ -738,7 +738,7 @@ network, just as we would for classification:
 ``` {.programlisting .language-markup}
 clf_out = clf_net(clf_inputs)
 ```
-:::
+
 
 Then, we define the combined model to map from the classifier input,
 that is, the data about an applicant, to the classifier output and
@@ -749,7 +749,7 @@ adversary output:
 ``` {.programlisting .language-markup}
 clf_w_adv = Model(inputs=[clf_inputs], outputs=[clf_out]+adv_out)
 ```
-:::
+
 
 When training the combined model, we only want to
 update the weights of the classifier, as we will train the adversary
@@ -762,7 +762,7 @@ network trainable and the adversarial network untrainable:
 trainable_clf_net(True)
 trainable_adv_net(False)
 ```
-:::
+
 
 Remember the hyperparameter,
 [![](./images/B10354_09_010.jpg)]{.inlinemediaobject}, from the preceding
@@ -777,7 +777,7 @@ With the lambda values in hand, we can create the weighted loss:
 ``` {.programlisting .language-markup}
 loss_weights = [1.]+[-lambda_param for lambda_param in lambdas]
 ```
-:::
+
 
 The preceding expression leads to loss weights of \[1.,-130,-30\]. This
 means the classification error has a weight of 1, the race prediction
@@ -794,7 +794,7 @@ Finally, we can compile the combined network:
 ``` {.programlisting .language-markup}
 clf_w_adv.compile(loss='binary_crossentropy'), loss_weights=loss_weights,optimizer='adam')
 ```
-:::
+
 
 With the classifier and combined classifier-adversarial model in place,
 the only thing missing is a compiled adversarial model. To get this,
@@ -806,7 +806,7 @@ inputs to the outputs of the nested adversarial-classifier model:
 ``` {.programlisting .language-markup}
 adv = Model(inputs=[clf_inputs], outputs=adv_net(clf_net(clf_inputs)))
 ```
-:::
+
 
 Then, when training the adversarial model, we want to optimize the
 weights of the adversarial network and not of the classifier network, so
@@ -819,7 +819,7 @@ classifier not trainable:
 trainable_clf_net(False)
 trainable_adv_net(True)
 ```
-:::
+
 
 Finally, we compile the adversarial model just like we would with a
 regular Keras model:
@@ -829,7 +829,7 @@ regular Keras model:
 ``` {.programlisting .language-markup}
 adv.compile(loss='binary_crossentropy', optimizer='adam')
 ```
-:::
+
 
 With all the pieces in hand, we can now pretrain the classifier. This
 means we train the classifier without any special fairness
@@ -841,7 +841,7 @@ considerations:
 trainable_clf_net(True)
 clf.fit(X_train.values, y_train.values, epochs=10)
 ```
-:::
+
 
 After we have trained the model, we can make predictions on the
 validation set to evaluate both the model\'s fairness and accuracy:
@@ -851,7 +851,7 @@ validation set to evaluate both the model\'s fairness and accuracy:
 ``` {.programlisting .language-markup}
 y_pred = clf.predict(X_test)
 ```
-:::
+
 
 Now we\'ll calculate the model\'s accuracy and
 `p_rule` for both gender and race. In all calculations, we\'re
@@ -867,7 +867,7 @@ for sens in A_test.columns:
     pr = p_rule(y_pred,A_test[sens])
     print('{}: {:.2f}%'.format(sens,pr))
 ```
-:::
+
 
 
 
@@ -877,7 +877,7 @@ Clf acc: 85.44
 race: 41.71%
 gender: 29.41%
 ```
-:::
+
 
 As you can see, the classifier achieves a respectable accuracy, 85.44%,
 in predicting incomes. However, it is deeply unfair. It gives women only
@@ -894,7 +894,7 @@ discrimination lawsuits.
 of the classifier. Yet, the classifier discriminates strongly on them.
 If the features can be inferred, dropping sensitive columns is not
 enough.
-:::
+
 
 To get out of this mess, we will pretrain the adversarial network before
 training both networks to make fair predictions. Once again, we use our
@@ -907,7 +907,7 @@ trainable:
 trainable_clf_net(False)
 trainable_adv_net(True)
 ```
-:::
+
 
 As the distributions for race and gender in the data might be skewed,
 we\'re going to use weighted classes to adjust for this:
@@ -917,7 +917,7 @@ we\'re going to use weighted classes to adjust for this:
 ``` {.programlisting .language-markup}
 class_weight_adv = compute_class_weights(A_train)
 ```
-:::
+
 
 We then train the adversary to predict race and gender from the training
 data through the predictions of the classifier:
@@ -927,7 +927,7 @@ data through the predictions of the classifier:
 ``` {.programlisting .language-markup}
 adv.fit(X_train.values, np.hsplit(A_train.values, A_train.shape[1]), class_weight=class_weight_adv, epochs=10)
 ```
-:::
+
 
 NumPy\'s `hsplit` function splits the 2D `A_train`
 matrix into two vectors that are then used to train the two model heads.
@@ -945,7 +945,7 @@ n_iter=250
 batch_size=128
 n_sensitive = A_train.shape[1]
 ```
-:::
+
 
 The combined network of the classifier and adversarial also needs some
 class weights. The weights for the income predictions, less/more than
@@ -957,7 +957,7 @@ we use the preceding computed adversarial class weights:
 ``` {.programlisting .language-markup}
 class_weight_clf_w_adv = [{0:1., 1:1.}]+class_weight_adv
 ```
-:::
+
 
 To keep track of metrics, we set up one DataFrame for validation
 metrics, accuracy, and area under the curve, as well as for the fairness
@@ -970,7 +970,7 @@ and gender:
 val_metrics = pd.DataFrame()
 fairness_metrics = pd.DataFrame()
 ```
-:::
+
 
 Inside the main training loop, three steps are performed: training the
 adversarial network, training the classifier to be fair, and printing
@@ -985,7 +985,7 @@ Within the code, you will find them in the same loop, where
 ``` {.programlisting .language-markup}
 for idx in range(n_iter):
 ```
-:::
+
 
 The first step is to train the adversarial network. To this end, we\'re
 going to make the classifier untrainable, the adversarial network
@@ -999,7 +999,7 @@ trainable_clf_net(False)
 trainable_adv_net(True)
 adv.fit(X_train.values, np.hsplit(A_train.values, A_train.shape[1]), batch_size=batch_size, class_weight=class_weight_adv, epochs=1, verbose=0)
 ```
-:::
+
 
 Training the classifier to be a good classifier but also to fool the
 adversary and be fair involves three steps. Firstly, we make the
@@ -1011,7 +1011,7 @@ adversary untrainable and the classifier trainable:
 trainable_clf_net(True)
 trainable_adv_net(False)
 ```
-:::
+
 
 Then we sample a batch from `X`, `y`, and
 `A`:
@@ -1024,7 +1024,7 @@ X_batch = X_train.values[indices]
 y_batch = y_train.values[indices]
 A_batch = A_train.values[indices]
 ```
-:::
+
 
 Finally, we train the combined adversary and
 classifier. Since the adversarial network is set to not be trainable,
@@ -1038,7 +1038,7 @@ to fool the adversarial network:
 ``` {.programlisting .language-markup}
 clf_w_adv.train_on_batch(X_batch, [y_batch]+\np.hsplit(A_batch, n_sensitive),class_weight=class_weight_clf_w_adv)
 ```
-:::
+
 
 Finally, we want to keep track of progress by first making predictions
 on the test:
@@ -1048,7 +1048,7 @@ on the test:
 ``` {.programlisting .language-markup}
 y_pred = pd.Series(clf.predict(X_test).ravel(), index=y_test.index)
 ```
-:::
+
 
 We then calculate the area under the curve (`ROC AUC`) and the
 accuracy of the predictions, and save them in the
@@ -1063,7 +1063,7 @@ acc = accuracy_score(y_test, (y_pred>0.5))*100
 val_metrics.loc[idx, 'ROC AUC'] = roc_auc
 val_metrics.loc[idx, 'Accuracy'] = acc
 ```
-:::
+
 
 Next up, we calculate `p_rule` for both race and gender and
 save those values in the fairness metrics:
@@ -1075,7 +1075,7 @@ for sensitive_attr :n A_test.columns:
     fairness_metrics.loc[idx, sensitive_attr] =\
     p_rule(y_pred,A_test[sensitive_attr])
 ```
-:::
+
 
 If we plot both the fairness and validation metrics, we\'ll arrive at
 the following plot:
@@ -1085,8 +1085,8 @@ the following plot:
 
 
 Pivot train progress
-:::
-:::
+
+
 
 As you can see, the fairness scores of the
 classifier steadily increase with training. After about 150 epochs, the
@@ -1211,7 +1211,7 @@ prominent media article titled [*Freestyle skiing is safe, and you
 should not get insurance*], for example, would reduce the
 number of people taking insurance as well as the number of reckless
 skiers.
-:::
+
 
 
 
@@ -1230,8 +1230,8 @@ flowchart below, where the relationship has been mapped:
 
 
 Causal flowchart
-:::
-:::
+
+
 
 The field of econometrics already has a built a
 method to work with these kinds of situations called **instrumental
@@ -1257,8 +1257,8 @@ In the following diagram, you can see an overview of how 2SLS works:
 
 
 IV2SLS
-:::
-:::
+
+
 
 2SLS is probably what the insurance company in our
 case would use since it is an established method. We won\'t go into
@@ -1271,7 +1271,7 @@ way to run 2SLS.
 
 **Note**: You can find the package on GitHub at
 <https://github.com/bashtage/linearmodels>.
-:::
+
 
 You can install the package by running:
 
@@ -1280,7 +1280,7 @@ You can install the package by running:
 ``` {.programlisting .language-markup}
 pip install linearmodels
 ```
-:::
+
 
 If you have data `X`, `y`, `P`, and
 `Z`, you can run a 2SLS regression as follows:
@@ -1310,7 +1310,7 @@ applicant\'s features, [*x*]:
 
 
 ![](./images/B10354_09_023.jpg)
-:::
+
 
 Function [*f*] determines policy
 [![](./images/B10354_09_024.jpg)]{.inlinemediaobject} given the
@@ -1319,14 +1319,14 @@ applicant\'s features, [*x,*] as well as the instrument,
 
 
 ![](./images/B10354_09_025.jpg)
-:::
+
 
 Given these two functions, the following identity holds, if the
 confounding variable has a mean of zero overall features:
 
 
 ![](./images/B10354_09_026.jpg)
-:::
+
 
 This means that if we can reliably estimate the
 function, [*g,*] and distribution, [*F*], we can
@@ -1339,7 +1339,7 @@ features [*x*], policy
 
 
 ![](./images/B10354_09_029.jpg)
-:::
+
 
 The preceding function is the squared error between the predicted
 outcome using the prediction function, [*g,*] and the actual
@@ -1359,8 +1359,8 @@ overview of which you can see in the following diagram:
 
 
 Deep IV
-:::
-:::
+
+
 
 The idea of Deep IV is to first train a neural
 network to express a distribution, [*F(z,x),*] which
@@ -1416,8 +1416,8 @@ Interpreting models to ensure fairness {#interpreting-models-to-ensure-fairness 
 
 
 
-In [Lab
-8](https://subscription.packtpub.com/course/data/9781789136364/8){.link},
+In Lab
+8,
 [*Privacy, Debugging, and Launching Your Products,*] we
 discussed model interpretability as a debugging method. We 
 used LIME to spot the features that the model is overfitting
@@ -1441,7 +1441,7 @@ The example code given here is from the SHAP example notebooks. You can
 find a slightly extended version of the notebook on Kaggle:
 
 <https://www.kaggle.com/jannesklaas/explaining-income-classification-with-keras>
-:::
+
 
 SHAP combines seven model interpretation methods, those being LIME,
 Shapley sampling values, DeepLIFT, **Quantitative Input
@@ -1499,7 +1499,7 @@ provide 100 rows of the dataset as values for `z`:
 ``` {.programlisting .language-markup}
 explainer = shap.KernelExplainer(f, X.iloc[:100,:])
 ```
-:::
+
 
 Next, we need to calculate the SHAP values indicating the importance of
 different features for a single example. We let SHAP create 500
@@ -1511,7 +1511,7 @@ total of 50,000 examples to compare the one example to:
 ``` {.programlisting .language-markup}
 shap_values = explainer.shap_values(X.iloc[350,:], nsamples=500)
 ```
-:::
+
 
 Finally, we can plot the influence of the features with SHAP\'s own
 plotting tool. This time, we provide a row from
@@ -1524,7 +1524,7 @@ to make it easier to read:
 ``` {.programlisting .language-markup}
 shap.force_plot(explainer.expected_value, shap_values)
 ```
-:::
+
 
 We can see the output of the code in the following graph:
 
@@ -1533,8 +1533,8 @@ We can see the output of the code in the following graph:
 
 
 The influence of features with the SHAP plotting tool
-:::
-:::
+
+
 
 If you look at the preceding plot, the predictions of the model seem, by
 and large, reasonable. The model gives the applicant a high chance of
@@ -1555,7 +1555,7 @@ plot the SHAP values of another applicant:
 shap_values = explainer.shap_values(X.iloc[167,:], nsamples=500)
 shap.force_plot(explainer.expected_value, shap_values)
 ```
-:::
+
 
 The following outputted graph is then shown. This also shows some of the
 problems that we\'ve encountered:
@@ -1565,8 +1565,8 @@ problems that we\'ve encountered:
 
 
 The SHAP values showing some of the problems we can encounter
-:::
-:::
+
+
 
 In this example, the applicant also has a good education, and works 48
 hours a week in the technology industry, but the model gives her a much
@@ -1589,7 +1589,7 @@ We can use the SHAP value calculations for multiple rows:
 ``` {.programlisting .language-markup}
 shap_values = explainer.shap_values(X.iloc[100:330,:], nsamples=500)
 ```
-:::
+
 
 Then, we can plot a forced plot for all of these values as well:
 
@@ -1598,7 +1598,7 @@ Then, we can plot a forced plot for all of these values as well:
 ``` {.programlisting .language-markup}
 shap.force_plot(explainer.expected_value, shap_values)
 ```
-:::
+
 
 Again, this code produces a SHAP dataset graph, which we can see in the
 following graphic:
@@ -1608,8 +1608,8 @@ following graphic:
 
 
 SHAP dataset
-:::
-:::
+
+
 
 The preceding plot shows 230 rows of the dataset, grouped by similarity
 with the forces of each feature that matter to them. In your live
@@ -1631,8 +1631,8 @@ marriage:
 
 
 SHAP marriage outcome
-:::
-:::
+
+
 
 As you can see in this chart, marriage status
 either strongly positively or negatively impacts people from different
@@ -1647,7 +1647,7 @@ model:
 ``` {.programlisting .language-markup}
 shap.summary_plot(shap_values, X.iloc[100:330,:])
 ```
-:::
+
 
 This code then outputs the final summary plot graph, which we can see
 below:
@@ -1657,8 +1657,8 @@ below:
 
 
 SHAP summary plot
-:::
-:::
+
+
 
 As you can see, education is the most important influence on our model.
 It also has the widest spread of influence. Low education levels really
@@ -1678,7 +1678,7 @@ of marriage on our model\'s predictions:
 ``` {.programlisting .language-markup}
 shap.dependence_plot("marital-status", shap_values, X.iloc[100:330,:], display_features=X_display.iloc[100:330,:])
 ```
-:::
+
 
 As a result of running this code, we can now see a visualized
 representation of the effect of marriage in the following graph:
@@ -1688,8 +1688,8 @@ representation of the effect of marriage in the following graph:
 
 
 SHAP marriage dependence
-:::
-:::
+
+
 
 As you can see, **Married-civ-spouse**, the census code for a
 civilian marriage with no partner in the armed forces,
@@ -1751,7 +1751,7 @@ Since the financial system is so hazardous, it is important to make sure
 it is safe against unfairness, too. Luckily, there are a number of
 safeguards in place to keep the system fair. Naturally, these safeguards
 can break, and they do so constantly in a number of small ways.
-:::
+
 
 
 
@@ -1769,7 +1769,7 @@ criticism must be suppressed. On the flip side, just fixing your model
 will not magically keep all unfairness away. The procedures and culture
 inside and outside the firm can also cause discrimination, even with a
 fair model.
-:::
+
 
 
 
@@ -1789,7 +1789,7 @@ from happening. However, once these safeguards
 fail, catastrophe is right around the corner. Even if your system seems
 to run smoothly, check for proto-accidents and strange behavior before
 it is too late.
-:::
+
 
 
 
@@ -1803,7 +1803,7 @@ last minute to prevent accidents from happening. Counterintuitively, it
 is rarely one human and one action that causes the accident, but the
 behavior of many humans over many actions. For models to be fair, the
 entire team has to work to keep it fair.
-:::
+
 
 
 

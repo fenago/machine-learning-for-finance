@@ -54,7 +54,7 @@ areas:
 -   Deploying machine learning products and iterating on them
 
 -   Speeding up training and inference
-:::
+
 
 The first step you must take, before even attempting to debug your
 program, is to acknowledge that even good machine learning engineers
@@ -100,7 +100,7 @@ is up to the task of training a good model:
 -   Does the data predict what you want it to predict?
 
 -   Do you have enough data?
-:::
+
 
 To find out whether your model does contain predicting information, also
 called a signal, you could ask yourself the question, could a human make
@@ -161,7 +161,7 @@ of thumb to follow, however:
 
 -   Your dataset should get bigger as the number of parameters in your
     model gets bigger.
-:::
+
 
 Keep in mind these rules are only rules of thumb and might be very
 different for your specific application. If you can make use of transfer
@@ -173,7 +173,7 @@ If you have any reasonable amount of data, say, a few hundred samples,
 then you can start building your model. In this case, a sensible
 suggestion would be to start with a simple model that you can deploy
 while you collect more data.
-:::
+
 
 
 
@@ -187,8 +187,8 @@ cannot use the data, for instance due to GDPR, even though they greenlit
 it earlier. In this case, you have multiple options.
 
 Most of the time, one of the best options would be to \"augment your
-data.\" We\'ve already seen some data augmentation in [Lab
-3,](https://subscription.packtpub.com/course/data/9781789136364/3){.link}
+data.\" We\'ve already seen some data augmentation in Lab
+3,
 [*Utilizing Computer Vision*]. Of course, you can augment all
 kinds of data in various ways, including slightly changing some database
 entries. Taking augmentation a step further, you might be able to
@@ -196,8 +196,8 @@ entries. Taking augmentation a step further, you might be able to
 effectively how most reinforcement learning researchers gather data, but
 this can also work in other cases.
 
-The data we used for fraud detection back in [Lab
-2](https://subscription.packtpub.com/course/data/9781789136364/2){.link},
+The data we used for fraud detection back in Lab
+2,
 [*Applying Machine Learning to Structured Data*] was obtained
 from simulation. The simulation requires you to be able to write down
 the rules of your environment within a program. Powerful learning
@@ -228,7 +228,7 @@ early. You can always scale up data collection later. A mistake many
 practitioners make is that they spend huge amounts of time and money on
 getting a big dataset, only to find that they have the wrong kind of
 data for their project.
-:::
+
 
 
 
@@ -264,7 +264,7 @@ You can install it with the following command:
 ``` {.programlisting .language-markup}
 pip install marbles
 ```
-:::
+
 
 
 ### Note {#note .title}
@@ -272,7 +272,7 @@ pip install marbles
 **Note**: You can find a Kaggle kernel
 demonstrating marbles here:
 <https://www.kaggle.com/jannesklaas/marbles-test>.
-:::
+
 
 The following code sample shows a simple marbles unit test. Imagine you
 are gathering data about the unemployment rate in Ireland. For your
@@ -304,7 +304,7 @@ class TimeSeriesTestCase(marbles.core.TestCase,mixins.MonotonicMixins):         
         
         self.assertMonotonicIncreasing(sequence=self.df.dates,note = 'Dates need to increase monotonically')                                                 #8
 ```
-:::
+
 
 Don\'t worry if you don\'t fully understand the code. We\'re now going
 to go through each stage of the code:
@@ -359,7 +359,7 @@ to go through each stage of the code:
     our assertion had required intermediate variables, such as a maximum
     value, marbles will display it in the error report. To make our
     error more readable, we can attach a handy note.
-:::
+
 
 To run a unit test in a Jupyter Notebook, we need to tell marbles to
 ignore the first argument; we achieve this by running the following:
@@ -370,7 +370,7 @@ ignore the first argument; we achieve this by running the following:
 if __name__ == '__main__':
     marbles.core.main(argv=['first-arg-is-ignored'], exit=False)
 ```
-:::
+
 
 It\'s more common to run unit tests directly from the command line. So,
 if you saved the preceding code in the command line, you could run it
@@ -381,7 +381,7 @@ with this command:
 ``` {.programlisting .language-markup}
 python -m marbles marbles_test.py
 ```
-:::
+
 
 Of course, there are problems with our data. Luckily for us, our test
 ensures that this error does not get passed on to 
@@ -393,7 +393,7 @@ error output:
 ### Note {#note-1 .title}
 
 **Note**: This code will not run and will fail.
-:::
+
 
 
 
@@ -420,7 +420,7 @@ Note:                                                 #6
 
 ----------------------------------------------------------------------
 ```
-:::
+
 
 
 
@@ -429,7 +429,7 @@ Ran 1 test in 0.007s
 
 FAILED (failures=1)
 ```
-:::
+
 
 So, what exactly caused the data to fail? Let\'s have a look:
 
@@ -460,7 +460,7 @@ So, what exactly caused the data to fail? Let\'s have a look:
     failure. Sometimes, you may be able to accept data even though it
     failed some tests, but more often than not you\'ll want to dig in
     and see what is going on.
-:::
+
 
 The point of unit testing data is to make the failures loud in order to
 prevent data issues from giving you bad predictions. A failure with an
@@ -479,7 +479,7 @@ institutions engaging in machine learning.
 The next section will therefore discuss how to preserve privacy and
 comply with regulations while still gaining benefits from machine
 learning.
-:::
+
 
 
 
@@ -575,11 +575,11 @@ accidents, here are four of the key ones:
 
     
     ![](./images/B10354_08_001.jpg)
-    :::
+    
 
     
     ![](./images/B10354_08_002.jpg)
-    :::
+    
 
     Here [*E*] is an encryption function, [*m*] is
     some plain text data, and [*D*] is a decryption function.
@@ -628,7 +628,7 @@ each one:
 
     
     ![](./images/B10354_08_003.jpg)
-    :::
+    
 
     This is probably the most common way of scaling features. It\'s
     especially useful if you suspect that your data contains outliers as
@@ -643,7 +643,7 @@ each one:
 
     
     ![](./images/B10354_08_004.jpg)
-    :::
+    
 
     If you know for sure that your data contains no outliers, which is
     the case in images, for instance, Min-Max scaling will give you a
@@ -657,7 +657,7 @@ each one:
 
     
     ![](./images/B10354_08_005.jpg)
-    :::
+    
 
     Mean normalization is done less frequently but, depending on your
     application, might be a good approach.
@@ -670,7 +670,7 @@ each one:
 
     
     ![](./images/B10354_08_006.jpg)
-    :::
+    
 
     The length of the vector usually means the L2 norm of the vector
     [![](./images/B10354_08_007.jpg)]{.inlinemediaobject}, that is, the
@@ -678,7 +678,7 @@ each one:
     length means the L1 norm of the vector,
     [![](./images/B10354_08_008.jpg)]{.inlinemediaobject}, which is the
     sum of vector elements.
-:::
+
 
 However you scale, it is important to only measure the scaling factors,
 mean, and standard deviation on the test set. These factors include only
@@ -689,7 +689,7 @@ test set than it will in production, due to this information advantage.
 Equally importantly, you should check that your production code has
 proper feature scaling as well. Over time, you should recalculate your
 feature distribution and adjust your scaling.
-:::
+
 
 
 
@@ -712,7 +712,7 @@ make [*this*] prediction on [*this*] data?\"
 curated a great GitHub repository around their algorithm with many
 explanations and tutorials, which you can find here:
 <https://github.com/marcotcr/lime>.
-:::
+
 
 On Kaggle kernels, LIME is installed by default. However, you can
 install LIME locally with the following command:
@@ -722,7 +722,7 @@ install LIME locally with the following command:
 ``` {.programlisting .language-markup}
 pip install lime
 ```
-:::
+
 
 The LIME algorithm works with any classifier, which is why
  it is model agnostic. To make an explanation, LIME cuts up
@@ -749,7 +749,7 @@ exp = explainer.explain_instance(test_example,             #3classifier.predict_
                                  
 exp.show_in_notebook()                                     #6
 ```
-:::
+
 
 Now, let\'s understand what\'s going on in that code snippet:
 
@@ -771,15 +771,15 @@ Now, let\'s understand what\'s going on in that code snippet:
 
 6.  Finally, we can render a visualization of our prediction, which
     looks like this:
-:::
+
 
 
 ![](./images/B10354_08_01.jpg)
 
 
 LIME text output
-:::
-:::
+
+
 
 The explanation shows the classes with different features that the text
 gets classified as most often. It shows the words that most contribute
@@ -845,7 +845,7 @@ working with Keras.
 
 **Note**: You can find Hyperas on
 GitHub: <https://github.com/maxpumperla/hyperas>.
-:::
+
 
 We can install Hyperas with `pip`:
 
@@ -854,7 +854,7 @@ We can install Hyperas with `pip`:
 ``` {.programlisting .language-markup}
 pip install hyperas
 ```
-:::
+
 
 Depending on your setup, you might need to make a
 few adjustments to the installation. If this is the case, then the
@@ -892,7 +892,7 @@ start with TPE, and if TPE struggles, move to random search.
 
 **Note**: The code for this example can be found at:
 <https://www.kaggle.com/jannesklaas/Hyperas>.
-:::
+
 
 The following example will show you how to use Hyperas and Hyperopt for
 an MNIST dataset classifier:
@@ -904,7 +904,7 @@ from hyperopt import Trials, STATUS_OK, tpe        #1
 from hyperas import optim                          #2
 from hyperas.distributions import choice, uniform 
 ```
-:::
+
 
 While the code was short, let\'s explain what it
 all means:
@@ -922,7 +922,7 @@ all means:
     function. `choice` and `uniform` can be used
     to choose between discrete and 
     continuous hyperparameters respectively.
-:::
+
 
 To build on the previous ideas that we\'ve explored, let\'s now add the
 following, which we will explain in more detail once the code has been
@@ -956,7 +956,7 @@ def data():                                      #1
     
     return X_train, y_train, X_test, y_test      #5
 ```
-:::
+
 
 Let\'s take a moment to look at the code we\'ve just produced:
 
@@ -979,13 +979,13 @@ Let\'s take a moment to look at the code we\'ve just produced:
     
     
     Copy
-    :::
+    
 
     ``` {.programlisting .language-markup}
     from keras.datasets import mnist
     (Y_train, y_train), (X_test, y_test) = mnist.load_data() 
     ```
-    :::
+    
 
     I would still keep the no internet version around because it is the
     default setting.
@@ -1000,7 +1000,7 @@ Let\'s take a moment to look at the code we\'ve just produced:
     
     
     Copy
-    :::
+    
 
     ``` {.programlisting .language-markup}
     def model(X_train, y_train, X_test, y_test):                   #1
@@ -1028,8 +1028,8 @@ Let\'s take a moment to look at the code we\'ve just produced:
         print('Test accuracy:', acc)
         return {'loss': -acc, 'status': STATUS_OK, 'model': model} #8
     ```
-    :::
-:::
+    
+
 
 As you can see, the preceding snippet of code is made up of eight
 defining pieces. Let\'s now explore them so that we\'re able to fully
@@ -1077,7 +1077,7 @@ understand the code we\'ve just produced:
     
     
     Copy
-    :::
+    
 
     ``` {.programlisting .language-markup}
     best_run, best_model = optim.minimize(model=model,
@@ -1087,8 +1087,8 @@ understand the code we\'ve just produced:
                                         trials=Trials(),
                     notebook_name='__notebook_source__')
     ```
-    :::
-:::
+    
+
 
 We pass the `model` method and the `data` method,
 and we specify how many trials we want to run and which class should
@@ -1112,7 +1112,7 @@ the hyperparameters of the best model. If you print out
  'Dropout_1': 0.10640021656377913,
  'batch_size': 0}
 ```
-:::
+
 
 For `choice` selections, Hyperas shows
 the index. In this case, the activation function `tanh` was
@@ -1127,7 +1127,7 @@ if you have enough compute power available.
 However, it won\'t get a model that does not work at all to work. When
 choosing this approach, you need to be sure to have a somewhat-working
 approach first before investing in hyperparameter search.
-:::
+
 
 
 
@@ -1181,7 +1181,7 @@ for i in range(20):                                       #2
     losses.append(loss)
     lrs.append(init_lr*2**i)
 ```
-:::
+
 
 Let\'s now take a more detailed look at the
 preceding featured code:
@@ -1200,7 +1200,7 @@ preceding featured code:
 4.  We then fit the model with our new learning rate.
 
 5.  Finally, we keep track of the loss.
-:::
+
 
 If your dataset is very large, you can perform this learning rate search
 on a subset of the data. The interesting part comes from the
@@ -1213,7 +1213,7 @@ fig, ax = plt.subplots(figsize = (10,7))
 plt.plot(lrs,losses)
 ax.set_xscale('log')
 ```
-:::
+
 
 When you run this code, it will then output the following chart:
 
@@ -1222,15 +1222,15 @@ When you run this code, it will then output the following chart:
 
 
 Learning rate finder
-:::
-:::
+
+
 
 As you can see, the loss is optimal between 1e-3
 and 1e-2. We can also see that the loss surface is relatively flat in
 this area. This gives us insight that we should use a learning rate
 around 1e-3. To avoid overshooting, we select a learning rate somewhat
 lower than the optimum found by line search.
-:::
+
 
 
 
@@ -1249,7 +1249,7 @@ becomes a function of [*t*]:
 
 
 ![](./images/B10354_08_009.jpg)
-:::
+
 
 Here [*l*] is the cycle length and
 [![](./images/B10354_08_010.jpg)]{.inlinemediaobject} is the initial
@@ -1268,7 +1268,7 @@ def cosine_anneal_schedule(t):
     cos_out = np.cos(cos_inner) + 1
     return float(lr_init / 2 * cos_out)
 ```
-:::
+
 
 The preceding code features three key features:
 
@@ -1284,7 +1284,7 @@ The preceding code features three key features:
 
 3.  Finally we calculate the new learning rate using the preceding
     formula. This is the new learning rate.
-:::
+
 
 To get a better understanding of what the learning rate scheduling
 function does, we can plot the learning rate it would set over 10
@@ -1296,7 +1296,7 @@ epochs:
 srs = [cosine_anneal_schedule(t) for t in range(10)]
 plt.plot(srs)
 ```
-:::
+
 
 With the output of the code being shown in the following graph:
 
@@ -1305,8 +1305,8 @@ With the output of the code being shown in the following graph:
 
 
 Cosine anneal
-:::
-:::
+
+
 
 We can use this function to schedule learning rates with Keras\'
 `LearningRateScheduler` callback:
@@ -1317,7 +1317,7 @@ We can use this function to schedule learning rates with Keras\'
 from keras.callbacks import LearningRateScheduler
 cb = LearningRateScheduler(cosine_anneal_schedule)
 ```
-:::
+
 
 We now have a callback that Keras will call at the
 end of each epoch in order to get a new learning rate. We pass this
@@ -1329,7 +1329,7 @@ a decreasing learning rate:
 ``` {.programlisting .language-markup}
 model.fit(x_train,y_train,batch_size=128,epochs=5,callbacks=[cb])
 ```
-:::
+
 
 A version of the learning rate annealing is to add restarts. At the end
 of an annealing cycle, we move the learning rate back up. This is a
@@ -1346,8 +1346,8 @@ for the model to stay in them:
 
 
 Shallow broad minima
-:::
-:::
+
+
 
 As the cosine function goes back up by itself, we
 only have to remove the line to stop it from doing so:
@@ -1363,7 +1363,7 @@ def cosine_anneal_schedule(t):
     cos_out = np.cos(cos_inner) + 1
     return float(lr_init / 2 * cos_out)
 ```
-:::
+
 
 The new learning rate schedule now looks like this:
 
@@ -1372,7 +1372,7 @@ The new learning rate schedule now looks like this:
 
 
 Learning rate restarts
-:::
+
 
 
 ### Monitoring training with TensorBoard {#monitoring-training-with-tensorboard .title}
@@ -1393,7 +1393,7 @@ during training.
 
 **Note**: TensorBoard does not run on Kaggle. To try out
 TensorBoard, install Keras and TensorFlow on your own machine.
-:::
+
 
 To use TensorBoard with Keras, we set up a new callback. TensorBoard has
 many options, so let\'s walk through them step by step:
@@ -1412,7 +1412,7 @@ tb = TensorBoard(log_dir='./logs/test2',           #1
                  embeddings_layer_names=None, 
                  embeddings_metadata=None)
 ```
-:::
+
 
 There are five key pieces of the preceding code that we need to take
 into consideration:
@@ -1440,7 +1440,7 @@ into consideration:
 
 5.  TensorBoard can also visualize trained embeddings nicely. Our model
     does not have embeddings, so we are not interested in saving them.
-:::
+
 
 Once we have the callback set up, we can pass it to the training
 process. We will train the MNIST model once again. We multiply the
@@ -1452,7 +1452,7 @@ need to run the following code:
 ``` {.programlisting .language-markup}
 hist = model.fit(x_train*255,y_train,batch_size=128,epochs=5,callbacks=[tb],validation_data=(x_test*255,y_test))
 ```
-:::
+
 
 To start TensorBoard, open your console and type in the following:
 
@@ -1461,7 +1461,7 @@ To start TensorBoard, open your console and type in the following:
 ``` {.programlisting .language-markup}
 tensorboard --logdir=/full_path_to_your_logs
 ```
-:::
+
 
 Here `full_path_to_your_logs` is the path you saved your logs
 in, for example, `logs` in our case. TensorBoard runs on port
@@ -1476,8 +1476,8 @@ section; this section should look something like this:
 
 
 TensorBoard histograms
-:::
-:::
+
+
 
 You can see the distribution of gradients and
 weights in the first layer. As you can see, the gradients are uniformly
@@ -1500,7 +1500,7 @@ understand why something complex goes wrong.
 **Note**: The TensorFlow debugger does not work well with
 models trained in Jupyter Notebooks. Save your model training code to a
 Python `.py` script and run that script.
-:::
+
 
 To use the TensorFlow debugger, you have to set your model\'s runtime to
 a special debugger runtime. In specifying the debugger runtime, you also
@@ -1516,7 +1516,7 @@ import keras
 
 keras.backend.set_session(tf_debug.TensorBoardDebugWrapperSession(tf.Session(), "localhost:2018"))
 ```
-:::
+
 
 Once Keras begins to work with the debugger
 runtime, you can debug your model. For the debugger to work, you need to
@@ -1531,7 +1531,7 @@ debugger port as follows:
 ``` {.programlisting .language-markup}
 tensorboard --logdir=/full_path_to_your_logs --debugger_port 2018
 ```
-:::
+
 
 Now you can open TensorBoard as usual in your browser on port
 `6006`. TensorBoard now has a new section called
@@ -1542,8 +1542,8 @@ Now you can open TensorBoard as usual in your browser on port
 
 
 TensorBoard debugger
-:::
-:::
+
+
 
 By clicking **STEP**, you execute the next step in the
 training process. With **CONTINUE...,** you
@@ -1553,7 +1553,7 @@ You can visualize individual elements of your model, to see how
 different actions affect them. Using the debugger effectively requires a
 bit of practice, but if you are working with complex models, it is a
 great tool.
-:::
+
 
 
 
@@ -1582,8 +1582,8 @@ you\'ll see that it is very flat toward large values:
 
 
 Sigmoid vanishing
-:::
-:::
+
+
 
 The small gradients of the sigmoid function are the
 reason why the ReLU activation function has become popular for training
@@ -1617,7 +1617,7 @@ from keras.optimizers import SGD
 clip_val_sgd = SGD(lr=0.01, clipvalue=0.5)
 clip_norm_sgd = SGD(lr=0.01, clipnorm=1.)
 ```
-:::
+
 
 Convolutional layers and **long short-term memory
 (LSTM) networks** are less susceptible to both vanishing and
@@ -1635,7 +1635,7 @@ layer to your model as follows:
 from keras.layers import BatchNormalization
 model.add(BatchNormalization())
 ```
-:::
+
 
 Batch normalization also reduces the risk of vanishing gradients and has
 enabled the construction of much deeper networks recently.
@@ -1717,7 +1717,7 @@ likely made up of different people from the modeling team. If the
 infrastructure team does not have to wait for the modeling team but can
 start optimizing the infrastructure immediately, then you gain a time
 advantage.
-:::
+
 
 
 
@@ -1736,8 +1736,8 @@ investment products to retail investors.
 
 
 Higher order effects
-:::
-:::
+
+
 
 You might predict whether the user is interested in a given product,
 measured by the user reading the product description. However, the
@@ -1799,7 +1799,7 @@ mobile app. If you have a good review system in place, data scientists
 who work on the model should regularly check the model\'s outputs. This
 way, patterns in failures (our model does poorly on dark images) can be
 detected quickly, and the model can be improved.
-:::
+
 
 
 
@@ -1876,7 +1876,7 @@ time. Additionally, some words appear much more often than others,
 giving large benefits to caching frequent words. Thus, many NLP tasks
 run faster on CPUs than GPUs. If you can work with large batches,
 however, a GPU or even specialized hardware is preferable.
-:::
+
 
 
 
@@ -1898,7 +1898,7 @@ usually faster than Keras models.
 
 You can find information on how to set up your cluster for distributed
 TensorFlow here: <https://www.tensorflow.org/deploy/distributed>.
-:::
+
 
 By changing the `import` statements, you can easily use Keras
 as part of TensorFlow and don\'t have to change your main code:
@@ -1911,7 +1911,7 @@ from tensorflow.python import keras
 
 from tensorflow.python.keras.models import Sequentialfrom tensorflow.python.keras.layers import Dense,Activation
 ```
-:::
+
 
 In this section, we will create a model to learn the MNIST problem
 before training it using the estimator API. First, we load and prepare
@@ -1926,7 +1926,7 @@ x_train.shape = (60000, 28 * 28)
 x_train = x_train / 255
 y_train = keras.utils.to_categorical(y_train)
 ```
-:::
+
 
 We can create a Keras model as usual:
 
@@ -1945,7 +1945,7 @@ model.add(Activation('softmax'))
 
 model.compile(optimizer=keras.optimizers.SGD(lr=0.0001, momentum=0.9),loss='categorical_crossentropy',metric='accuracy')
 ```
-:::
+
 
 The TensorFlow version of Keras offers a one-line conversion to a TF
 estimator:
@@ -1955,7 +1955,7 @@ estimator:
 ``` {.programlisting .language-markup}
 estimator = keras.estimator.model_to_estimator(keras_model=model)
 ```
-:::
+
 
 To set up training, we need to know the name assigned to the model
 input. We can quickly check this with the following code:
@@ -1966,7 +1966,7 @@ input. We can quickly check this with the following code:
 model.input_names
 ['dense_1_input']
 ```
-:::
+
 
 Estimators get trained with an input function. The
 input function allows us to specify a whole pipeline, which will be
@@ -1978,7 +1978,7 @@ yields our training set:
 ``` {.programlisting .language-markup}
 train_input_fn = tf.estimator.inputs.numpy_input_fn(x={'dense_1_input': x_train},y=y_train,num_epochs=1,shuffle=False)
 ```
-:::
+
 
 Finally, we train the estimator on the input. And that is it; you can
 now utilize distributed TensorFlow with estimators:
@@ -2003,7 +2003,7 @@ significant gains in your performance. If you have the resources, it
 might even make sense to write your own specialized layer in CUDA. If
 you want to change hardware later, you can usually export weights and
 import them to a different layer.
-:::
+
 
 
 
@@ -2019,7 +2019,7 @@ your GPU utilization by entering the following command in your Terminal:
 ``` {.programlisting .language-markup}
 nvidia-smi -l 2
 ```
-:::
+
 
 If your GPU utilization is not at around 80% to 100%, you can gain
 significantly by optimizing your pipeline. There are several
@@ -2046,12 +2046,12 @@ significantly by optimizing your pipeline. There are several
     
     
     Copy
-    :::
+    
 
     ``` {.programlisting .language-markup}
     model.fit_generator(generator, steps_per_epoch = 40, workers=4, use_multiprocessing=False)
     ```
-    :::
+    
 
     You need to make sure your generator is thread safe. You can make
     any generator thread safe with the following code snippet:
@@ -2059,7 +2059,7 @@ significantly by optimizing your pipeline. There are several
     
     
     Copy
-    :::
+    
 
     ``` {.programlisting .language-markup}
     import threading
@@ -2084,7 +2084,7 @@ significantly by optimizing your pipeline. There are several
     @thread_safe_generator
     def gen():
     ```
-    :::
+    
 
     Let\'s look at the three key components of the preceding code:
 
@@ -2104,7 +2104,7 @@ significantly by optimizing your pipeline. There are several
         thread-safe iterator. It takes the function, passes it to the
         thread-safe iterator, and then returns the thread-safe version
         of the function.
-    :::
+    
 
     You can also use the `tf.data` API together with an
     estimator, which does most of the work for you.
@@ -2130,7 +2130,7 @@ significantly by optimizing your pipeline. There are several
     **Note**: For a more comprehensive guide to the
     `Dat` `aset` API, see
     <https://www.tensorflow.org/get_started/datasets_quickstart>.
-    :::
+    
 
     In this example, we will use the dataset API
     with NumPy arrays that we have already loaded into RAM, such as the
@@ -2141,13 +2141,13 @@ significantly by optimizing your pipeline. There are several
     
     
     Copy
-    :::
+    
 
     ``` {.programlisting .language-markup}
     dxtrain = tf.data.Dataset.from_tensor_slices(x_test)
     dytrain = tf.data.Dataset.from_tensor_slices(y_train)
     ```
-    :::
+    
 
     The `map` function allows us to perform operations on data
     before passing it to the model. In this case, we apply one-hot
@@ -2158,7 +2158,7 @@ significantly by optimizing your pipeline. There are several
     
     
     Copy
-    :::
+    
 
     ``` {.programlisting .language-markup}
     def apply_one_hot(z):
@@ -2166,7 +2166,7 @@ significantly by optimizing your pipeline. There are several
 
     dytrain = dytrain.map(apply_one_hot,num_parallel_calls=4)
     ```
-    :::
+    
 
     We zip the data and targets into one dataset. We instruct TensorFlow
     to shuffle the data when loading, keeping 200
@@ -2176,12 +2176,12 @@ significantly by optimizing your pipeline. There are several
     
     
     Copy
-    :::
+    
 
     ``` {.programlisting .language-markup}
     train_data = tf.data.Dataset.zip((dxtrain,dytrain)).shuffle(200).batch(32)
     ```
-    :::
+    
 
     We can now fit a Keras model on this dataset just as we would fit it
     to a generator:
@@ -2189,20 +2189,20 @@ significantly by optimizing your pipeline. There are several
     
     
     Copy
-    :::
+    
 
     ``` {.programlisting .language-markup}
     model.fit(dataset, epochs=10, steps_per_epoch=60000 // 32)
     ```
-    :::
-:::
+    
+
 
 If you have truly large datasets, the more you can parallelize, the
 better. Parallelization does come with overhead costs, however, and not
 every problem actually features huge datasets. In these cases, refrain
 from trying to do too much in parallel and focus on slimming down your
 network, using CPUs and keeping all your data in RAM if possible.
-:::
+
 
 
 
@@ -2224,7 +2224,7 @@ documentation here:
 [http://cython.readthedocs.io](http://cython.readthedocs.io/){.ulink}.
 This section is a short introduction to Cython. If performance is
 important to your application, you should consider diving deeper.
-:::
+
 
 Say you have a Python function that prints out the Fibonacci series up
 to a specified point. This code snippet is taken straight from the
@@ -2241,7 +2241,7 @@ def fib(n):
         a, b = b, a + b
     print()
 ```
-:::
+
 
 Note that we have to import the `print_function` to make sure
 that `print()` works in the Python 3 style. To use this
@@ -2257,7 +2257,7 @@ from Cython.Build import cythonize                 #2
 
 setup(                                             #3ext_modules=cythonize("cython_fib_8_7.pyx"),)
 ```
-:::
+
 
 The three main features of the code are these:
 
@@ -2270,7 +2270,7 @@ The three main features of the code are these:
 
 3.  We create a new model by calling `setup` and passing on
     our Cythonized code.
-:::
+
 
 To run this, we now run the following command in a Terminal:
 
@@ -2279,7 +2279,7 @@ To run this, we now run the following command in a Terminal:
 ``` {.programlisting .language-markup}
 python 8_7_cython_setup.py build_ext --inplace
 ```
-:::
+
 
 This will create a C file, a build file, and a compiled module. We can
 import this module now by running:
@@ -2290,7 +2290,7 @@ import this module now by running:
 import cython_fib_8_7
 cython_fib_8_7.fib(1000)
 ```
-:::
+
 
 This will print out the Fibonacci numbers up to 1,000. Cython also comes
 with a handy debugger that shows where Cython has to fall back onto
@@ -2302,7 +2302,7 @@ into your Terminal:
 ``` {.programlisting .language-markup}
 cython -a cython_fib_8_7.pyx
 ```
-:::
+
 
 This will create an HTML file that looks similar to this when opened in
 a browser:
@@ -2312,8 +2312,8 @@ a browser:
 
 
 Cython profile
-:::
-:::
+
+
 
 As you can see, Cython has to fall back on Python all the time in our
 script because we did not specify the types of variables. By letting
@@ -2333,14 +2333,14 @@ def fib(int n):
         a, b = b, a + b
     print()
 ```
-:::
+
 
 This snippet is already better. Further optimization is certainly
 possible, by first calculating the numbers before printing them, we can
 reduce the reliance on Python `print` statements. Overall,
 Cython is a great way to keep the development speed and ease of Python
 and gain execution speed.
-:::
+
 
 
 
@@ -2412,7 +2412,7 @@ we have looked at:
 -   Deploying machine learning products and iterating on them
 
 -   Speeding up training and inference
-:::
+
 
 You now have a substantial number of tools in your toolbox that will
 help you run actual, practical machine learning projects and deploy them

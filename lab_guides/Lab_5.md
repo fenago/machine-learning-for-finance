@@ -51,7 +51,7 @@ The focus of this lab will be on the following:
 
 -   Training models to focus with attention, as well as to translate
     sentences with a sequence to sequence (seq2seq) model
-:::
+
 
 So, let\'s get started!
 
@@ -79,7 +79,7 @@ To install the library, we simply need to run the following command:
 $ pip install -U spacy
 $ python -m spacy download en
 ```
-:::
+
 
 
 ### Note {#note .title}
@@ -89,7 +89,7 @@ models, but more are available. Most features are available in English,
 German, Spanish, Portuguese, French, Italian, and Dutch. Entity
 recognition is available for many more languages through the
 multi-language model.
-:::
+
 
 The core of spaCy is made up of the `Doc` and
 `Vocab` classes. A `Doc` instance contains one
@@ -108,7 +108,7 @@ of practical tasks.
 
 You can find the data and code for this section on
 Kaggle at <https://www.kaggle.com/jannesklaas/analyzing-the-news>.
-:::
+
 
 The data that we\'ll use for this first section is from a collection of
 143,000 articles taken from 15 American publications. The data is spread
@@ -129,7 +129,7 @@ df = pd.concat([a1,a2,a3])
 
 del a1, a2, a3
 ```
-:::
+
 
 As a result of running the preceding code, the data will end up looking
 like this:
@@ -138,7 +138,7 @@ like this:
   id      title                        publication      author       date         year   month   url   content
   ------- ---------------------------- ---------------- ------------ ------------ ------ ------- ----- ----------------------------------------------
   17283   House Republicans Fret\...   New York Times   Carl Hulse   2016-12-31   0      0       NaN   WASHINGTON --- Congressional Republicans\...
-:::
+
 
 After getting our data to this state, we can then plot the
 distribution of publishers to get an idea of what
@@ -153,7 +153,7 @@ import matplotlib.pyplot as plt
 plt.figure(figsize=(10,7))
 df.publication.value_counts().plot(kind='bar')
 ```
-:::
+
 
 After successfully running this code, we\'ll see this chart showing the
 distribution of news sources from our dataset:
@@ -163,8 +163,8 @@ distribution of news sources from our dataset:
 
 
 News page distribution
-:::
-:::
+
+
 
 As you can see in the preceding graph the dataset
 that we extracted contains no articles from classical financial news
@@ -193,7 +193,7 @@ for English language processing:
 import spacy
 nlp = spacy.load('en')
 ```
-:::
+
 
 Next, we must select the text of the article from our data:
 
@@ -202,7 +202,7 @@ Next, we must select the text of the article from our data:
 ``` {.programlisting .language-markup}
 text = df.loc[0,'content']
 ```
-:::
+
 
 Finally, we\'ll run this piece of text through the English language
 model pipeline. This will create a `Doc` instance, something
@@ -214,7 +214,7 @@ information, including the named entities:
 ``` {.programlisting .language-markup}
 doc = nlp(text)
 ```
-:::
+
 
 One of the best features of spaCy is that it comes with a handy
 visualizer called `displacy`, which we can use to show the
@@ -227,7 +227,7 @@ based on the text from our article, we must run this code:
 from spacy import displacy
 displacy.render(doc,              #1style='ent',      #2jupyter=True)     #3
 ```
-:::
+
 
 With that command now executed, we\'ve done three important things,
 which are:
@@ -239,15 +239,15 @@ which are:
 
 3.  We let `displacy` know that we are running this in a
     Jupyter notebook so that rendering works correctly
-:::
+
 
 
 ![](./images/B10354_05_02.jpg)
 
 
 The output of the previous NER using spaCy tags
-:::
-:::
+
+
 
 And voilà! As you can see, there are a few mishaps, such as blank spaces
 being classified as organizations, and \"Obama\" being classified as a
@@ -276,7 +276,7 @@ code:
 ``` {.programlisting .language-markup}
 nlp = spacy.load('en',disable=['parser','tagger','textcat'])
 ```
-:::
+
 
 In the next step, we\'ll loop over the first 1,000 articles from our
 dataset, which can be done with the following code:
@@ -302,7 +302,7 @@ npf = pd.concat(frames)                                    #8
 
 npf.columns = ['Text','Start','Stop','Type','id']          #9
 ```
-:::
+
 
 The code we\'ve just created has nine key points. Let\'s take a minute
 to break it down, so we are confident in
@@ -335,7 +335,7 @@ following list:
     one big table with all tags.
 
 9.  For easier use, we give the columns meaningful names
-:::
+
 
 Now that we\'ve done that, the next step is to plot the distribution of
 the types of entities that we found. This code will produce a chart
@@ -346,7 +346,7 @@ which can be created with the following code:
 ``` {.programlisting .language-markup}
 npf.Type.value_counts().plot(kind='bar')
 ```
-:::
+
 
 The output of the code being this graph:
 
@@ -355,8 +355,8 @@ The output of the code being this graph:
 
 
 spaCy tag distribution
-:::
-:::
+
+
 
 After seeing the preceding graph, it is a fair
 question to ask which categories spaCy can identify and where they come
@@ -406,7 +406,7 @@ recognize the following categories:
 - **PRODUCT**: Objects, vehicles, food, and so on
 
 - **LANGUAGE**: Any named language
-:::
+
 
 Using this list, we will now look at the 15 most frequently named
 organizations, categorized as ORG. As part of this, we will produce a
@@ -420,7 +420,7 @@ To get the graph, we must run the following:
 orgs = npf[npf.Type == 'ORG']
 orgs.Text.value_counts()[:15].plot(kind='bar')
 ```
-:::
+
 
 The resulting code will give us the following graph:
 
@@ -429,8 +429,8 @@ The resulting code will give us the following graph:
 
 
 spaCy organization distance
-:::
-:::
+
+
 
 As you can see, political institutions such as the
 [*senate*] are most frequently named in our news dataset.
@@ -489,7 +489,7 @@ TRAIN_DATA = [
     })
 ]
 ```
-:::
+
 
 As you can see, you provide a list of tuples of the string, together
 with the start and end points, as well as the types of entities you want
@@ -510,7 +510,7 @@ function:
 ``` {.programlisting .language-markup}
 nlp = spacy.load('en')
 ```
-:::
+
 
 Alternatively, to create a new and empty model from scratch that is
 ready for the English language, use the `blank` function:
@@ -520,7 +520,7 @@ ready for the English language, use the `blank` function:
 ``` {.programlisting .language-markup}
 nlp = spacy.blank('en')
 ```
-:::
+
 
 Either way, we need to get access to the NER component. If you have
 created a blank model, you\'ll need to create an NER pipeline component
@@ -538,7 +538,7 @@ if 'ner' not in nlp.pipe_names:
 else:
     ner = nlp.get_pipe('ner')
 ```
-:::
+
 
 The next step is to ensure that our NER can recognize the labels we
 have. Imagine our data contained a new type of named entity such as
@@ -575,7 +575,7 @@ with nlp.disable_pipes(*other_pipes):
                 losses=losses)                     #10
         print(losses)
 ```
-:::
+
 
 What we\'ve just written is made up of 10 key elements:
 
@@ -611,7 +611,7 @@ What we\'ve just written is made up of 10 key elements:
 
 10. We can also pass a dictionary to write losses that we can later
     print to monitor progress.
-:::
+
 
 Once you\'ve run the code, the output should look something like this:
 
@@ -624,7 +624,7 @@ Once you\'ve run the code, the output should look something like this:
 {'ner': 3.457960373417813}
 {'ner': 2.570318400714134}
 ```
-:::
+
 
 What you are seeing is the loss value of a part of the spaCy pipeline,
 in this case, the **named entity recognition**
@@ -673,7 +673,7 @@ doc = 'Google to buy Apple'
 doc = nlp(doc)
 displacy.render(doc,style='dep',jupyter=True, options={'distance':120})
 ```
-:::
+
 
 Again, we will load the pretrained English model and run our sentence
 through it. Then we\'ll use `displacy` just as we did for NER.
@@ -688,8 +688,8 @@ see in the following diagram:
 
 
 spaCy POS tagger
-:::
-:::
+
+
 
 As you can see, the POS tagger identified **buy** as a verb
 and **Google** and **Apple** as the nouns in the
@@ -709,7 +709,7 @@ doc = nlp(doc)
 for chunk in doc.noun_chunks:
     print(chunk.text, chunk.root.text, chunk.root.dep_,chunk.root.head.text)
 ```
-:::
+
 
 After running the preceding code, we get the following table featured as
 the result:
@@ -719,7 +719,7 @@ the result:
   -------- ----------- ---------- ----------------
   Google   Google      ROOT       Google
   Apple    Apple       dobj       buy
-:::
+
 
 In our example, Google is the root of the sentence,
 while Apple is the object of the sentence. The verb applied to Apple is
@@ -763,7 +763,7 @@ from spacy.matcher import Matcher
 
 nlp = spacy.load('en')
 ```
-:::
+
 
 The matcher searches for patterns, which we encode as a list of
 dictionaries. It operates token by token, that is, word for word, except
@@ -777,7 +777,7 @@ do this, we would define a pattern as follows:
 ``` {.programlisting .language-markup}
 pattern = [{'LOWER': 'hello'}, {'IS_PUNCT': True}, {'LOWER': 'world'}]
 ```
-:::
+
 
 This pattern is fulfilled if the lower case first token is
 `hello`. The `LOWER` attribute checks if both words
@@ -817,7 +817,7 @@ The possible attributes for a token can be the following:
     dependency, lemma, or shape has to match
 
 -   `ENT_TYPE`: The token\'s entity type from NER has to match
-:::
+
 
 spaCy\'s lemmatization is extremely useful. A lemma is the base version
 of a word. For example, \"was\" is a version of \"be,\" so \"be\" is the
@@ -834,7 +834,7 @@ language model by running the following:
 ``` {.programlisting .language-markup}
 matcher = Matcher(nlp.vocab)
 ```
-:::
+
 
 In order to add the required attributes to our matcher, we must call the
 following:
@@ -844,7 +844,7 @@ following:
 ``` {.programlisting .language-markup}
 matcher.add('HelloWorld', None, pattern)
 ```
-:::
+
 
 The `add` function expects three arguments. The first is a
 name of the pattern, in this case, `HelloWorld`, so that we
@@ -864,7 +864,7 @@ this by running the following:
 doc = nlp(u'Hello, world! Hello world!')
 matches = matcher(doc)
 ```
-:::
+
 
 If we print out the matches, we can see the structure:
 
@@ -874,7 +874,7 @@ If we print out the matches, we can see the structure:
 matches
 [(15578876784678163569, 0, 3)]
 ```
-:::
+
 
 The first thing in a match is the hash of the string found. This is just
 to identify what was found internally; we won\'t use it here. The next
@@ -888,7 +888,7 @@ We can get the text back by indexing the original document:
 ``` {.programlisting .language-markup}
 doc[0:3]
 ```
-:::
+
 
 
 
@@ -896,7 +896,7 @@ doc[0:3]
 Hello, wor
 ld
 ```
-:::
+
 
 In the next section we will look at how we can add custom functions to
 matchers.
@@ -928,7 +928,7 @@ following:
 ``` {.programlisting .language-markup}
 PRODUCT = nlp.vocab.strings['PRODUCT']
 ```
-:::
+
 
 Next, we need to define an `on_match` rule. This function will
 be called every time the matcher finds a match. `on_match`
@@ -943,7 +943,7 @@ rules have four arguments:
     would have index zero, the second would have index one, and so on.
 
 -   `matches`: A list of all matches made.
-:::
+
 
 There are two things happening in our `on_match` rule:
 
@@ -954,7 +954,7 @@ def add_product_ent(matcher, doc, i, matches):
     match_id, start, end = matches[i]            #1
     doc.ents += ((PRODUCT, start, end),)         #2
 ```
-:::
+
 
 Let\'s break down what they are:
 
@@ -971,7 +971,7 @@ Let\'s break down what they are:
     include a comma at the end. It is important not to overwrite
     `doc.ents`, as we otherwise would remove all the entities
     that we have already found.
-:::
+
 
 Now that we have an `on_match` rule, we can define our
 matcher.
@@ -989,7 +989,7 @@ pattern2 = [{'ORTH': 'iPhone'}, {'IS_DIGIT': True}]        #2
 matcher = Matcher(nlp.vocab)                               #3
 matcher.add('iPhone', add_product_ent,pattern1, pattern2)  #4
 ```
-:::
+
 
 So, what makes these commands work?
 
@@ -1003,7 +1003,7 @@ So, what makes these commands work?
 4.  We add the patterns to the matcher. Both will fall under the rule
     called `iPhone`, and both will call our
     `on_match` rule called `add_product_ent`.
-:::
+
 
 We will now pass one of the news articles through the matcher:
 
@@ -1013,7 +1013,7 @@ We will now pass one of the news articles through the matcher:
 doc = nlp(df.content.iloc[14])         #1
 matches = matcher(doc)                 #2
 ```
-:::
+
 
 This code is relatively simple, with only two steps:
 
@@ -1025,12 +1025,12 @@ This code is relatively simple, with only two steps:
     created in the step before. We do not care as much about the matches
     but more about how the `on_match` method adds the matches
     as entities to our documents.
-:::
+
 
 Now that the matcher is set up, we need to add it to the pipeline so
 that spaCy can use it automatically. This will be the focus in the next
 section.
-:::
+
 
 
 
@@ -1048,7 +1048,7 @@ def matcher_component(doc):
     matches = matcher(doc)
     return doc
 ```
-:::
+
 
 The spaCy pipeline calls the components of the pipeline as functions and
 always expects the annotated document to be returned. Returning anything
@@ -1062,7 +1062,7 @@ following code:
 ``` {.programlisting .language-markup}
 nlp.add_pipe(matcher_component,last=True)
 ```
-:::
+
 
 The matcher is now the last piece of the pipeline. From this point
 onward iPhones will now get tagged based on the matcher\'s rules.
@@ -1077,7 +1077,7 @@ following code:
 ``` {.programlisting .language-markup}
 displacy.render(doc,style='ent',jupyter=True)
 ```
-:::
+
 
 The results of that code can be seen in the following screenshot:
 
@@ -1086,7 +1086,7 @@ The results of that code can be seen in the following screenshot:
 
 
 spaCy now finds the iPhone as a product
-:::
+
 
 
 ### Combining rule-based and learning-based systems {#combining-rule-based-and-learning-based-systems .title}
@@ -1107,7 +1107,7 @@ compensation could look like this:
 ``` {.programlisting .language-markup}
 pattern = [{'ENT_TYPE':'PERSON'},{'LEMMA':'receive'},{'ENT_TYPE':'MONEY'}]
 ```
-:::
+
 
 A matcher looking for this pattern would pick up any combination of a
 person\'s name, for example, John Appleseed, or Daniel; any version of
@@ -1187,7 +1187,7 @@ part of Python itself, we can import it with the following code:
 ``` {.programlisting .language-markup}
 import re
 ```
-:::
+
 
 Imagine we are working on an automatic invoice
 processor, and we want to find the VAT number of the company that sent
@@ -1200,7 +1200,7 @@ before, we know the pattern for a Dutch VAT number is as follows:
 ``` {.programlisting .language-markup}
 pattern = 'NL[0-9]{9}B[0-9]{2}'
 ```
-:::
+
 
 A string for finding a BTW number might look like this:
 
@@ -1209,7 +1209,7 @@ A string for finding a BTW number might look like this:
 ``` {.programlisting .language-markup}
 my_string = 'ING Bank N.V. BTW:NL003028112B01'
 ```
-:::
+
 
 So, to find all the occurrences of a BTW number in the string, we can
 call `re.findall`, which will return a list of all strings
@@ -1220,14 +1220,14 @@ matching the pattern found. To call this, we simply run:
 ``` {.programlisting .language-markup}
 re.findall(pattern,my_string)
 ```
-:::
+
 
 
 
 ``` {.programlisting .language-markup}
 ['NL003028112B01']
 ```
-:::
+
 
 `re` also allows the passing of flags to make the development
 of regex patterns a bit easier. For example, to ignore the case of
@@ -1239,7 +1239,7 @@ letters when matching a regular expression, we can add a
 ``` {.programlisting .language-markup}
 re.findall(pattern,my_string, flags=re.IGNORECASE)
 ```
-:::
+
 
 Often, we are interested in a bit more information about our matches. To
 this end, there is a `match` object. `re.search`
@@ -1250,7 +1250,7 @@ yields a `match` object for the first match found:
 ``` {.programlisting .language-markup}
 match = re.search(pattern,my_string)
 ```
-:::
+
 
 We can get more information out of this object, such as the location of
 our match, simply by running:
@@ -1261,11 +1261,11 @@ our match, simply by running:
 match.span()
 (18, 32)
 ```
-:::
+
 
 The span, the start and the end of our match, is the characters 18 to
 32.
-:::
+
 
 
 
@@ -1282,11 +1282,11 @@ dataset contain a Dutch BTW number, then we can pass the following code:
 ``` {.programlisting .language-markup}
 df[df.content.str.contains(pattern)]
 ```
-:::
+
 
 This would yield all the articles that include a Dutch BTW number, but
 unsurprisingly no articles in our dataset do.
-:::
+
 
 
 
@@ -1389,7 +1389,7 @@ do by running the following:
 import codecs
 input_file = codecs.open('../input/socialmedia-disaster-tweets-DFE.csv','r',',encoding='utf-8', errors='replace')
 ```
-:::
+
 
 In the preceding code, `codecs.open` acts as a stand-in
 replacement for Python\'s standard file opening function. It returns a
@@ -1407,7 +1407,7 @@ specified file path we can write to:
 ``` {.programlisting .language-markup}
 output_file = open('clean_socialmedia-disaster.csv', 'w')
 ```
-:::
+
 
 Now that\'s done, all we have to do is loop over the lines in our input
 file that we read with our `codecs` reader and save it as a
@@ -1420,7 +1420,7 @@ for line in input_file:
     out = line
     output_file.write(line)
 ```
-:::
+
 
 Likewise, it\'s good practice to close the file objects afterward, which
 we can do by running:
@@ -1431,7 +1431,7 @@ we can do by running:
 input_file.close()
 output_file.close()
 ```
-:::
+
 
 Now we can read the sanitized CSV file with pandas:
 
@@ -1466,7 +1466,7 @@ like this:
 import spacy
 nlp = spacy.load('en',disable=['tagger','parser','ner'])
 ```
-:::
+
 
 Lemmatization can be slow, especially for big files, so it makes sense
 to track our progress. `tqdm` allows us to show progress bars
@@ -1482,7 +1482,7 @@ following:
 from tqdm import tqdm, tqdm_notebook
 tqdm.pandas(tqdm_notebook)
 ```
-:::
+
 
 We can now run `progress_apply` on a DataFrame just as we
 would use the standard `apply` method, but here it has a
@@ -1496,7 +1496,7 @@ save the lemma of the word in a new `lemmas` column:
 ``` {.programlisting .language-markup}
 df['lemmas'] = df["text"].progress_apply(lambda row: [w.lemma_ for w in nlp(row)])
 ```
-:::
+
 
 Our `lemmas` column is now full of lists, so to turn the lists
 back into text, we will join all of the elements of the lists with a
@@ -1524,7 +1524,7 @@ lemmatized text shows:
 df.choose_one.unique()
 array(['Relevant', 'Not Relevant', "Can't Decide"], dtype=object)
 ```
-:::
+
 
 The tweets where humans cannot decide whether it is about a real
 disaster are not interesting to us. Therefore, we will just remove the
@@ -1536,7 +1536,7 @@ code:
 ``` {.programlisting .language-markup}
 df = df[df.choose_one != "Can't Decide"]
 ```
-:::
+
 
 We are also only interested in mapping text to relevance, therefore we
 can drop all the other metadata and just keep these
@@ -1547,7 +1547,7 @@ two columns, which we do here:
 ``` {.programlisting .language-markup}
 df = df[['text','choose_one']]
 ```
-:::
+
 
 Finally, we\'re going to convert the target into numbers. This is a
 binary classification task, as there are only two categories. So, we map
@@ -1604,7 +1604,7 @@ and dogs and elephants\" could look like this:
   i   see   cats   and   dogs   elephants
   --- ----- ------ ----- ------ -----------
   1   1     1      2     1      1
-:::
+
 
 In reality, count vectors are pretty sparse. There are about 23,000
 different words in our text corpus, so it makes sense to limit the
@@ -1624,7 +1624,7 @@ the 10,000 most frequent words:
 from sklearn.feature_extraction.text import CountVectorizer
 count_vectorizer = CountVectorizer(max_features=10000)
 ```
-:::
+
 
 Our count vectorizer can now transform texts into count vectors. Each
 count vector will have 10,000 dimensions:
@@ -1635,7 +1635,7 @@ count vector will have 10,000 dimensions:
 X_train_counts = count_vectorizer.fit_transform(X_train)
 X_test_counts = count_vectorizer.transform(X_test)
 ```
-:::
+
 
 Once we have obtained our count vectors, we can
 then perform a simple logistic regression on them. While we could use
@@ -1653,7 +1653,7 @@ clf.fit(X_train_counts, y_train)
 
 y_predicted = clf.predict(X_test_counts)
 ```
-:::
+
 
 Now that we have predictions from our logistic regressor, we can measure
 the accuracy of it with `sklearn`:
@@ -1664,14 +1664,14 @@ the accuracy of it with `sklearn`:
 from sklearn.metrics import accuracy_score
 accuracy_score(y_test, y_predicted)
 ```
-:::
+
 
 
 
 ``` {.programlisting .language-markup}
 0.8011049723756906
 ```
-:::
+
 
 As you can see, we\'ve got 80% accuracy, which is pretty decent for such
 a simple method. A simple count vector-based classification is useful as
@@ -1709,7 +1709,7 @@ tfidf_vectorizer = TfidfVectorizer()
 X_train_tfidf = tfidf_vectorizer.fit_transform(X_train)
 X_test_tfidf = tfidf_vectorizer.transform(X_test)
 ```
-:::
+
 
 Once we have the TF-IDF vectors, we can train a logistic regressor on
 them just like we did for count vectors:
@@ -1722,7 +1722,7 @@ clf_tfidf.fit(X_train_tfidf, y_train)
 
 y_predicted = clf_tfidf.predict(X_test_tfidf)
 ```
-:::
+
 
 In this case, TF-IDF does slightly worse than count vectors. However,
 because the performance difference is very small, this poorer
@@ -1733,7 +1733,7 @@ performance might be attributable to chance in this case:
 ``` {.programlisting .language-markup}
 accuracy_score(y_pred=y_predicted, y_true=y_test)
 ```
-:::
+
 
 
 
@@ -1759,7 +1759,7 @@ topics? The method to do this is called
 
 **Note**: The code and data for this section can be found on
 Kaggle at <https://www.kaggle.com/jannesklaas/topic-modeling-with-lda>.
-:::
+
 
 While the name is quite a mouth full, the algorithm is a very useful
 one, so we will look at it step by step. LDA makes the following
@@ -1779,7 +1779,7 @@ assumption about how texts are written:
     each word: first, a topic is chosen from the distribution of topics
     in the document. Then, a word is chosen for the distribution of
     words in that document.
-:::
+
 
 Note that not all documents in a corpus have the
 same distribution of topics. We need to specify a fixed number of
@@ -1789,7 +1789,7 @@ the following:
 
 
 ![](./images/B10354_05_001.jpg)
-:::
+
 
 The preceding formula is the probability of each topic,
 [*t,*] to be included in document [*d*]. For each
@@ -1797,7 +1797,7 @@ word, we then calculate:
 
 
 ![](./images/B10354_05_002.jpg)
-:::
+
 
 That is the probability of a word, [*w,*] to belong to a
 topic, [*t*]. We then assign the word to a new topic,
@@ -1805,7 +1805,7 @@ topic, [*t*]. We then assign the word to a new topic,
 
 
 ![](./images/B10354_05_003.jpg)
-:::
+
 
 In other words, we assume that all of the words are already correctly
 assigned to a topic except for the word currently under consideration.
@@ -1825,7 +1825,7 @@ This can be done by simply running the following:
 from sklearn.decomposition import LatentDirichletAllocation
 lda = LatentDirichletAllocation(n_components=2)
 ```
-:::
+
 
 We then create count vectors, just as we did for the bag-of-words
 analysis. For LDA, it is important to remove frequent words that don\'t
@@ -1841,7 +1841,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 vectorizer = CountVectorizer(stop_words='english')
 tf = vectorizer.fit_transform(df['joint_lemmas'])
 ```
-:::
+
 
 Next, we fit the LDA to the count vectors:
 
@@ -1850,7 +1850,7 @@ Next, we fit the LDA to the count vectors:
 ``` {.programlisting .language-markup}
 lda.fit(tf)
 ```
-:::
+
 
 To inspect our results, we can print out the most frequent words for
 each topic. To this end, we first need to specify
@@ -1863,7 +1863,7 @@ need to extract the mapping word count vector indices to words:
 n_top_words = 5
 tf_feature_names = vectorizer.get_feature_names()
 ```
-:::
+
 
 Now we can loop over the topics of the LDA, in order to print the most
 frequent words:
@@ -1879,7 +1879,7 @@ for topic_idx, topic in enumerate(lda.components_):
 Topic #0: http news bomb kill disaster
 Topic #1: pron http like just https
 ```
-:::
+
 
 As you can see, the LDA seems to have discovered the grouping into
 serious tweets and non-serious ones by itself without being given the
@@ -1953,7 +1953,7 @@ import numpy as np
 
 max_words = 10000
 ```
-:::
+
 
 The tokenizer works a lot like `CountVectorizer` from
 `sklearn`. First, we create a new `tokenizer`
@@ -1967,7 +1967,7 @@ tokenizer = Tokenizer(num_words=max_words)
 tokenizer.fit_on_texts(df['joint_lemmas'])
 sequences = tokenizer.texts_to_sequences(df['joint_lemmas'])
 ```
-:::
+
 
 The `sequences` variable now holds all of our texts as numeric
 tokens. We can look up the mapping of words to numbers from the
@@ -1982,7 +1982,7 @@ print('Token for "Movie"',word_index['movie'])
 Token for "the" 4
 Token for "Movie" 333
 ```
-:::
+
 
 As you can see, frequently used words such as \"the\" have lower token
 numbers than less frequent words such as \"movie.\" You can also see
@@ -2011,7 +2011,7 @@ maxlen = 140
 
 data = pad_sequences(sequences, maxlen=maxlen)
 ```
-:::
+
 
 Finally, we split our data into a training and validation set:
 
@@ -2021,7 +2021,7 @@ Finally, we split our data into a training and validation set:
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(data, df['relevant'],test_size = 0.2, shuffle=True, random_state = 42)
 ```
-:::
+
 
 Now we are ready to train our own word vectors.
 
@@ -2046,7 +2046,7 @@ model.add(Embedding(max_words, embedding_dim, input_length=maxlen))
 model.add(Flatten())
 model.add(Dense(1, activation='sigmoid'))
 ```
-:::
+
 
 Notice how we do not have to specify an input shape. Even specifying the
 input length is only necessary if the following
@@ -2062,7 +2062,7 @@ you can see if you are printing out the models summary:
 ``` {.programlisting .language-markup}
 model.summary()
 ```
-:::
+
 
 
 
@@ -2070,7 +2070,7 @@ model.summary()
 _________________________________________________________________Layer (type)                 Output Shape              Param #   =================================================================embedding_2 (Embedding)      (None, 140, 50)           500000    _________________________________________________________________flatten_2 (Flatten)          (None, 7000)              0         _________________________________________________________________dense_3 (Dense)              (None, 1)                 7001      =================================================================Total params: 507,001Trainable params: 507,001Non-trainable params: 0
 _________________________________________________________________
 ```
-:::
+
 
 As you can see, the embedding layer has 50 parameters for 10,000 words
 equaling 500,000 parameters in total. This makes training slower and can
@@ -2085,14 +2085,14 @@ model.compile(optimizer='adam',loss='binary_crossentropy',metrics=['acc'])
               
 history = model.fit(X_train, y_train,epochs=10,batch_size=32,validation_data=(X_test, y_test))
 ```
-:::
+
 
 This model achieves about 76% accuracy on the test set but over 90%
 accuracy on the training set. However, the large number of parameters in
 the custom embeddings has led us to overfitting. To avoid overfitting
 and reduce training time, it\'s often better to use pretrained word
 embeddings.
-:::
+
 
 
 
@@ -2141,7 +2141,7 @@ import os
 glove_dir = '../input/glove6b50d'
 f = open(os.path.join(glove_dir, 'glove.6B.50d.txt'))
 ```
-:::
+
 
 Then we create an empty dictionary that will later map words to
 embeddings:
@@ -2151,7 +2151,7 @@ embeddings:
 ``` {.programlisting .language-markup}
 embeddings_index = {}
 ```
-:::
+
 
 In the dataset, each line represents a new word embedding. The line
 starts with the word, and the embedding values follow. We can read out
@@ -2167,7 +2167,7 @@ for line in f:                                            #1
     embeddings_index[word] = embedding dictionary         #5
 f.close()                                                 #6
 ```
-:::
+
 
 But what does that mean? Let\'s take a minute to break down the meaning
 behind the code, which has six key elements:
@@ -2187,7 +2187,7 @@ behind the code, which has six key elements:
 5.  We then save the embedding vector in our embedding dictionary.
 
 6.  Once we are done with it, we close the file.
-:::
+
 
 As a result of running this code, we now have a
 dictionary mapping words to their embeddings:
@@ -2197,14 +2197,14 @@ dictionary mapping words to their embeddings:
 ``` {.programlisting .language-markup}
 print('Found %s word vectors.' % len(embeddings_index))
 ```
-:::
+
 
 
 
 ``` {.programlisting .language-markup}
 Found 400000-word vectors.
 ```
-:::
+
 
 This version of GloVe has vectors for 400,000 words, which should be
 enough to cover most of the words that we will encounter. However, there
@@ -2223,7 +2223,7 @@ all_embs = np.stack(embeddings_index.values())
 emb_mean = all_embs.mean()
 emb_std = all_embs.std()
 ```
-:::
+
 
 Our embedding layer will be a matrix with a row for each word and a
 column for each element of the embedding. Therefore, we need to specify
@@ -2235,7 +2235,7 @@ earlier has 50-dimensional vectors:
 ``` {.programlisting .language-markup}
 embedding_dim = 50
 ```
-:::
+
 
 Next, we need to find out how many words we actually have. Although we
 have set the maximum to 10,000, there might be fewer words in our
@@ -2248,7 +2248,7 @@ tokenizer, which we will use later:
 word_index = tokenizer.word_index
 nb_words = min(max_words, len(word_index))
 ```
-:::
+
 
 To create our embedding matrix, we first create a random matrix with the
 same `mean` and `std` as the embeddings:
@@ -2258,7 +2258,7 @@ same `mean` and `std` as the embeddings:
 ``` {.programlisting .language-markup}
 embedding_matrix = np.random.normal(emb_mean, emb_std, (nb_words, embedding_dim))
 ```
-:::
+
 
 Embedding vectors need to be in the same position as their token number.
 A word with token 1 needs to be in row 1 (rows start with zero), and so
@@ -2275,7 +2275,7 @@ for word, i in word_index.items():                    #1
     if embedding_vector is None:                      #4
         embedding_matrix[i] = embedding_vector
 ```
-:::
+
 
 This command has four key elements that we should
 explore in more detail before we move on:
@@ -2289,7 +2289,7 @@ explore in more detail before we move on:
     return none if there is no embedding for this word.
 
 4.  If there is an embedding vector, we put it in the embedding matrix.
-:::
+
 
 To use the pretrained embeddings, we just have to set the weights in the
 embedding layer to the embedding matrix that we just created. To make
@@ -2306,7 +2306,7 @@ model.add(Embedding(max_words, embedding_dim, input_length=maxlen, weights = [em
 model.add(Flatten())
 model.add(Dense(1, activation='sigmoid'))
 ```
-:::
+
 
 This model can be compiled and trained just like any other Keras model.
 You will notice that it trains much faster than the model in which we
@@ -2317,7 +2317,7 @@ Word embeddings are pretty cool in reducing training time and helping to
 build accurate models. However, semantic embeddings go further. They
 can, for example, be used to measure how similar two texts are on a
 semantical level, even if they include different words.
-:::
+
 
 
 
@@ -2328,8 +2328,8 @@ Text is a time series. Different words follow each
 other and the order in which they do matters. Therefore, every neural
 network-based technique from the previous lab can also be used for
 NLP. In addition, there are some building blocks that were not
-introduced in [Lab
-4](https://subscription.packtpub.com/course/data/9781789136364/4){.link},
+introduced in Lab
+4,
 [*Understanding Time Series*] that are useful for NLP.
 
 Let\'s start with an LSTM, otherwise known as long short-term memory.
@@ -2350,7 +2350,7 @@ model.add(Embedding(max_words, embedding_dim, input_length=maxlen, weights = [em
 model.add(CuDNNLSTM(32))
 model.add(Dense(1, activation='sigmoid'))
 ```
-:::
+
 
 One technique used frequently in NLP but less frequently in time series
 forecasting is a bidirectional **recurrent neural network**
@@ -2363,8 +2363,8 @@ the sequence backward:
 
 
 A bidirectional RNN
-:::
-:::
+
+
 
 In Keras, there is a `Bidirectional` layer that we can wrap
 any RNN layer around, such as an `LSTM`.
@@ -2379,7 +2379,7 @@ model.add(Embedding(max_words, embedding_dim, input_length=maxlen, weights = [em
 model.add(Bidirectional(CuDNNLSTM(32)))
 model.add(Dense(1, activation='sigmoid'))
 ```
-:::
+
 
 Word embeddings are great because they enrich neural networks. They are
 a space-efficient and powerful method that allows us to transform words
@@ -2416,8 +2416,8 @@ have a low similarity score. This is visualized in the following graph:
 
 
 Similarity vectors
-:::
-:::
+
+
 
 We can see the similarity between two phrases by running the following
 command:
@@ -2428,7 +2428,7 @@ command:
 sup1 = nlp('I would like to open a new checking account')
 sup2 = nlp('How do I open a checking account?')
 ```
-:::
+
 
 As you can see, these requests are pretty similar, achieving a rate of
 70%:
@@ -2438,14 +2438,14 @@ As you can see, these requests are pretty similar, achieving a rate of
 ``` {.programlisting .language-markup}
 sup1.similarity(sup2)
 ```
-:::
+
 
 
 
 ``` {.programlisting .language-markup}
 0.7079433112862716
 ```
-:::
+
 
 As you can see, their similarity score is quite
 high. This simple averaging method works pretty decently. It is not,
@@ -2476,8 +2476,8 @@ us to stack layers linearly:
 
 GoogLeNet Architecture from Szegedy and others\' \"Going Deeper with
 Convolutions\"
-:::
-:::
+
+
 
 Take a look at the preceding GoogLeNet architecture. While the graph is
 very detailed, what we need to take away is the fact that the model is
@@ -2513,7 +2513,7 @@ model.add(Dense(4))
 model.add(Activation('softmax'))
 model.summary()
 ```
-:::
+
 
 
 
@@ -2521,7 +2521,7 @@ model.summary()
 Layer (type)                 Output Shape              Param #   =================================================================dense_1 (Dense)              (None, 64)                4160      _________________________________________________________________activation_1 (Activation)    (None, 64)                0         _________________________________________________________________dense_2 (Dense)              (None, 4)                 260       _________________________________________________________________activation_2 (Activation)    (None, 4)                 0         =================================================================Total params: 4,420Trainable params: 4,420Non-trainable params: 0
 _________________________________________________________________
 ```
-:::
+
 
 The preceding model is a simple model implemented
 in the sequential API. Take note that this is how we have done it
@@ -2543,7 +2543,7 @@ model_output = Activation('softmax')(x)
 model = Model(model_input, model_output)              #5
 model.summary()
 ```
-:::
+
 
 Notice the differences to the sequential API:
 
@@ -2568,7 +2568,7 @@ Notice the differences to the sequential API:
 
 5.  To create a model, you pass the model input layer as well as the
     final output tensor of your graph into the `Model` class.
-:::
+
 
 Functional API models can be used just like sequential API models. In
 fact, from the output of this model\'s summary, you
@@ -2581,7 +2581,7 @@ sequential API:
 Layer (type)                 Output Shape              Param #   =================================================================input_2 (InputLayer)         (None, 64)                0         _________________________________________________________________dense_3 (Dense)              (None, 64)                4160      _________________________________________________________________activation_3 (Activation)    (None, 64)                0         _________________________________________________________________dense_4 (Dense)              (None, 4)                 260       _________________________________________________________________activation_4 (Activation)    (None, 4)                 0         =================================================================Total params: 4,420Trainable params: 4,420Non-trainable params: 0
 _________________________________________________________________
 ```
-:::
+
 
 You can see that the functional API can connect layers in more advanced
 ways than the sequential API. We can also separate the layer creation
@@ -2613,7 +2613,7 @@ model_output = Activation('softmax')(x)
 
 model = Model(model_input, model_output)
 ```
-:::
+
 
 Layers can be reused. For example, we could train some layers in one
 computational graph and then use them for another, as we will do in the
@@ -2631,7 +2631,7 @@ but is not strictly required. A `Dense` layer with a
 ``` {.programlisting .language-markup}
 Dense(24, activation='relu')
 ```
-:::
+
 
 When using the functional API, this can be easier than adding an
 activation function.
@@ -2653,8 +2653,8 @@ neural networks, means amplifying what is important:
 
 
 An example of an attention mechanism
-:::
-:::
+
+
 
 Attention layers are fully connected layers that take in a sequence and
 output the weighting for a sequence. The sequence
@@ -2675,7 +2675,7 @@ def attention_3d_block(inputs,time_steps,single_attention_vector = False):
     output_attention_mul = Multiply(name='Attention_mul')([inputs, a_probs])                                          #9
     return output_attention_mul
 ```
-:::
+
 
 Let\'s break down the sequence we\'ve just created. As you can see,
 it\'s made up of nine key elements:
@@ -2728,7 +2728,7 @@ it\'s made up of nine key elements:
 9.  Finally, we apply the attention to the input by element-wise
     multiplying the attention vector with the input. We return the
     resulting tensor.
-:::
+
 
 The following flowchart gives an overview of the process:
 
@@ -2737,8 +2737,8 @@ The following flowchart gives an overview of the process:
 
 
 Attention block
-:::
-:::
+
+
 
 Notice how the preceding function defines takes a tensor as an input,
 defines a graph, and returns a tensor. We can now call this function as
@@ -2761,7 +2761,7 @@ attention_mul = Flatten(name='flatten')(attention_mul)
 output = Dense(1, activation='sigmoid',name='output')(attention_mul)
 model = Model(input_tokens, output)
 ```
-:::
+
 
 In this case, we are using the attention block right after the
 embeddings. This means that we can amplify or suppress certain
@@ -2779,7 +2779,7 @@ summary:
 ``` {.programlisting .language-markup}
 model.summary()
 ```
-:::
+
 
 
 
@@ -2787,7 +2787,7 @@ model.summary()
 __________________________________________________________________________________________________Layer (type)                    Output Shape         Param #     Connected to                     ==================================================================================================input (InputLayer)              (None, 140)          0                                            __________________________________________________________________________________________________embedding (Embedding)           (None, 140, 50)      500000      input[0][0]                      __________________________________________________________________________________________________Attent_Permute (Permute)        (None, 50, 140)      0           embedding[0][0]                  __________________________________________________________________________________________________Reshape (Reshape)               (None, 50, 140)      0           Attent_Permute[0][0]             __________________________________________________________________________________________________Attent_Dense (Dense)            (None, 50, 140)      19740       Reshape[0][0]                    __________________________________________________________________________________________________Dim_reduction (Lambda)          (None, 140)          0           Attent_Dense[0][0]               __________________________________________________________________________________________________Repeat (RepeatVector)           (None, 50, 140)      0           Dim_reduction[0][0]              __________________________________________________________________________________________________Attention_vec (Permute)         (None, 140, 50)      0           Repeat[0][0]                     __________________________________________________________________________________________________Attention_mul (Multiply)        (None, 140, 50)      0           embedding[0][0]                  Attention_vec[0][0]              __________________________________________________________________________________________________flatten (Flatten)               (None, 7000)         0           Attention_mul[0][0]              __________________________________________________________________________________________________output (Dense)                  (None, 1)            7001        flatten[0][0]                    ==================================================================================================Total params: 526,741Trainable params: 26,741Non-trainable params: 500,000
 __________________________________________________________________________________________________
 ```
-:::
+
 
 This model can be trained, just as any Keras model
 can be, and achieves around 80% accuracy on the validation set.
@@ -2841,8 +2841,8 @@ our character-level translator, it looks like this:
 
 
 Seq2seq architecture overview
-:::
-:::
+
+
 
 Note how the output of the decoder is used as the input of the decoder
 again. This process is only stopped once the decoder 
@@ -2882,7 +2882,7 @@ latent_dim = 256               #3
 num_samples = 10000            #4
 data_path = 'fra-eng/fra.txt'  #5
 ```
-:::
+
 
 But what are the parameters that we\'ve set up?
 
@@ -2899,7 +2899,7 @@ But what are the parameters that we\'ve set up?
     reasons.
 
 5.  The path to the data `.txt` file on disk.
-:::
+
 
 Input (English) and target (French) is tab delimited in the data file.
 Each row represents a new phrase. The translations are separated by a
@@ -2922,7 +2922,7 @@ target_texts = []
 input_characters = set()
 target_characters = set()
 ```
-:::
+
 
 Then we loop over as many lines as we want samples and extract the texts
 and characters:
@@ -2947,7 +2947,7 @@ for line in lines[: min(num_samples, len(lines) - 1)]:
         if char not in target_characters:
             target_characters.add(char)
 ```
-:::
+
 
 Let\'s break this code down so that we can understand it in more detail:
 
@@ -2980,7 +2980,7 @@ sorted input and output characters, which we can do by running:
 input_characters = sorted(list(input_characters))
 target_characters = sorted(list(target_characters))
 ```
-:::
+
 
 We\'re also going to count how many input and output characters we have.
 This is important since we need to know how many dimensions our one-hot
@@ -2992,7 +2992,7 @@ encodings should have. We can find this by writing the following:
 num_encoder_tokens = len(input_characters)
 num_decoder_tokens = len(target_characters)
 ```
-:::
+
 
 Instead of using the Keras tokenizer, we will build our own dictionary
 mapping characters to token numbers. We can do this by running the
@@ -3004,7 +3004,7 @@ following:
 input_token_index = {char: i for i, char in enumerate(input_characters)}
 target_token_index = {char: i for i, char in enumerate(target_characters)}
 ```
-:::
+
 
 We can see how this works by printing the token numbers for all
 characters in a short sentence:
@@ -3015,14 +3015,14 @@ characters in a short sentence:
 for c in 'the cat sits on the mat':
     print(input_token_index[c], end = ' ')
 ```
-:::
+
 
 
 
 ``` {.programlisting .language-markup}
 63 51 48 0 46 44 63 0 62 52 63 62 0 58 57 0 63 51 48 0 56 44 63
 ```
-:::
+
 
 Next, we build up our model training data. Remember that our model has
 two inputs but only one output. While our model can
@@ -3038,7 +3038,7 @@ max_decoder_seq_length = max([len(txt) for txt in target_texts])
 print('Max sequence length for inputs:', max_encoder_seq_length)
 print('Max sequence length for outputs:', max_decoder_seq_length)
 ```
-:::
+
 
 
 
@@ -3046,7 +3046,7 @@ print('Max sequence length for outputs:', max_decoder_seq_length)
 Max sequence length for inputs: 16
 Max sequence length for outputs: 59
 ```
-:::
+
 
 Now we prepare input and output data for our model.
 `encoder_input_data` is a 3D array of shape
@@ -3058,7 +3058,7 @@ containing a one-hot vectorization of the English sentences:
 ``` {.programlisting .language-markup}
 encoder_input_data = np.zeros((len(input_texts), max_encoder_seq_length, num_encoder_tokens),dtype='float32')
 ```
-:::
+
 
 `decoder_input_data` is a 3D array of shape
 `(num_pairs, max_french_sentence_length, num_french_characters)`
@@ -3069,7 +3069,7 @@ containing a one-hot vectorization of the French sentences:
 ``` {.programlisting .language-markup}
 decoder_input_data = np.zeros((len(input_texts), max_decoder_seq_length, num_decoder_tokens),dtype='float32')
 ```
-:::
+
 
 `decoder_target_data` is the same as
 `decoder_input_data` but offset by one timestep.
@@ -3081,7 +3081,7 @@ decoder_input_data = np.zeros((len(input_texts), max_decoder_seq_length, num_dec
 ``` {.programlisting .language-markup}
 decoder_target_data = np.zeros((len(input_texts), max_decoder_seq_length, num_decoder_tokens),dtype='float32')
 ```
-:::
+
 
 You can see that the input and output of the decoder are the same except
 that the output is one timestep ahead. This makes
@@ -3113,7 +3113,7 @@ encoder_outputs, state_h, state_c = encoder(encoder_inputs)   #3
 
 encoder_states = [state_h, state_c]                           #4
 ```
-:::
+
 
 Let\'s look at the four key elements of the code:
 
@@ -3126,7 +3126,7 @@ Let\'s look at the four key elements of the code:
     and states
 
 4.  We discard `encoder_outputs` and only keep the states
-:::
+
 
 Now we define the decoder. The decoder uses the states of the encoder as
 initial states for its decoding LSTM.
@@ -3156,7 +3156,7 @@ decoder_outputs, _, _ = decoder_lstm(decoder_inputs,initial_state=encoder_states
 decoder_dense = Dense(num_decoder_tokens, activation='softmax', name = 'decoder_dense')
 decoder_outputs = decoder_dense(decoder_outputs)                   #4
 ```
-:::
+
 
 The preceding code is made up of four key elements:
 
@@ -3175,7 +3175,7 @@ The preceding code is made up of four key elements:
     next character. This is a classification task, so we will use a
     simple `Dense` layer with a `softmax` activation
     function.
-:::
+
 
 We now have the pieces we need to define our model with two inputs and
 one output:
@@ -3185,7 +3185,7 @@ one output:
 ``` {.programlisting .language-markup}
 model = Model([encoder_inputs, decoder_inputs], decoder_outputs)
 ```
-:::
+
 
 If you have the `graphviz` library installed, you can
  visualize the model very nicely using the following code
@@ -3199,7 +3199,7 @@ from keras.utils.vis_utils import model_to_dot
 
 SVG(model_to_dot(model).create(prog='dot', format='svg'))
 ```
-:::
+
 
 As you can see, this visualization is represented in the following
 diagram:
@@ -3209,8 +3209,8 @@ diagram:
 
 
 Seq2seq visual
-:::
-:::
+
+
 
 You can now compile and train the model. Since we have to choose between
 a number of possible characters to output next, this is basically a
@@ -3223,7 +3223,7 @@ cross-entropy loss:
 model.compile(optimizer='rmsprop', loss='categorical_crossentropy')
 history = model.fit([encoder_input_data, decoder_input_data], decoder_target_data,batch_size=batch_size,epochs=epochs,validation_split=0.2)
 ```
-:::
+
 
 The training process takes about 7 minutes on a
 GPU. However, if we were to plot the model\'s progress, you can see that
@@ -3234,8 +3234,8 @@ it\'s overfitting:
 
 
 Seq2seq overfitting
-:::
-:::
+
+
 
 The reason it\'s overfitting is largely because we used only 10,000
 sentence pairs of only relatively short sentences. To get a bigger
@@ -3243,7 +3243,7 @@ model, a real translation or summarization system would have to be
 trained on many more examples. To allow you to follow the examples
 without owning a massive datacenter, we are just using a smaller model
 to give an example of what a seq2seq architecture can do.
-:::
+
 
 
 
@@ -3265,7 +3265,7 @@ The encoder model maps from the encoder inputs to the encoder states:
 ``` {.programlisting .language-markup}
 encoder_model = Model(encoder_inputs, encoder_states)
 ```
-:::
+
 
 The decoder model then takes in the encoder memory plus its own memory
 from the last character as an input. It then spits out a prediction plus
@@ -3291,7 +3291,7 @@ decoder_outputs = decoder_dense(decoder_outputs)       #5
 
 decoder_model = Model([decoder_inputs] + decoder_states_inputs,[decoder_outputs] + decoder_states)                #6
 ```
-:::
+
 
 Let\'s look at the six elements of this code:
 
@@ -3327,7 +3327,7 @@ must first create an index that maps tokens to characters again:
 reverse_input_char_index = {i: char for char, i in input_token_index.items()}
 reverse_target_char_index = {i: char for char, i in target_token_index.items()}
 ```
-:::
+
 
 When we translate a phrase, we must first encode the input. We\'ll then
 loop, feeding the decoder states back into the decoder until we receive
@@ -3373,7 +3373,7 @@ def decode_sequence(input_seq):
 
     return decoded_sentence
 ```
-:::
+
 
 For the final time in this lab, let\'s break down the code:
 
@@ -3402,7 +3402,7 @@ For the final time in this lab, let\'s break down the code:
 11. Update the target sequence (of length one)
 
 12. Update states
-:::
+
 
 Now we can translate English into French! At least for some phrases, it
 works quite well. Given that we did not supply our model with any rules
@@ -3419,7 +3419,7 @@ array full of zeros:
 my_text = 'Thanks!'
 placeholder = np.zeros((1,len(my_text)+10,num_encoder_tokens))
 ```
-:::
+
 
 We then one-hot encode all characters in the text by setting the element
 at the index of the characters\' token numbers to `1`:
@@ -3431,7 +3431,7 @@ for i, char in enumerate(my_text):
     print(i,char, input_token_index[char])
     placeholder[0,i,input_token_index[char]] = 1
 ```
-:::
+
 
 This will print out the characters\' token numbers alongside the
 character and its position in the text:
@@ -3447,7 +3447,7 @@ character and its position in the text:
 5 s 62
 6 ! 1
 ```
-:::
+
 
 Now we can feed this placeholder into our decoder:
 
@@ -3456,7 +3456,7 @@ Now we can feed this placeholder into our decoder:
 ``` {.programlisting .language-markup}
 decode_sequence(placeholder)
 ```
-:::
+
 
 And we get the translation back:
 
@@ -3465,7 +3465,7 @@ And we get the translation back:
 ``` {.programlisting .language-markup}
 'Merci !\n'
 ```
-:::
+
 
 Seq2seq models are useful not only for translating between languages.
 They can be trained on just about anything that takes a sequence as an
@@ -3542,7 +3542,7 @@ about understanding:
 -   Training your model to focus on attention
 
 -   Translating sentences with the seq2seq model
-:::
+
 
 You now have a big set of tools in your toolbox that will allow you to
 tackle NLP problems. Throughout the rest of this course, you will see some

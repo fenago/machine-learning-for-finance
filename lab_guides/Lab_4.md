@@ -24,8 +24,8 @@ past:
 
 
 Multiple time series graphs as seen on Bloomberg TV
-:::
-:::
+
+
 
 Most forecasting that is done involves looking at past developments over
 a period of time. The concept of a time series set of data is an
@@ -82,8 +82,8 @@ Visualization and preparation in pandas {#visualization-and-preparation-in-panda
 
 
 
-As we saw in [Lab
-2](https://subscription.packtpub.com/course/data/9781789136364/2){.link},
+As we saw in Lab
+2,
 [*Applying Machine Learning to Structured Data*], it\'s
 usually a good idea to get an overview of the data before we
  start training. You can achieve this for the data we
@@ -95,7 +95,7 @@ obtained from Kaggle by running the following:
 train = pd.read_csv('../input/train_1.csv').fillna(0)
 train.head()
 ```
-:::
+
 
 Running this code will give us the following table:
 
@@ -104,7 +104,7 @@ Running this code will give us the following table:
   --- -------------------------------------------- ------------ ------------ ----- ------------
   0   2NE1\_zh.wikipedia.org\_all-access\_spider   0            0            ...   0
   1   2PM\_zh.wikipedia.org\_all-access\_spider    0            0            ...   0
-:::
+
 
 The data in the **Page** column contains the name of the
 page, the language of the Wikipedia page, the type of accessing device,
@@ -128,7 +128,7 @@ def parse_page(page):
     x = page.split('_')
     return ' '.join(x[:-3]), x[-3], x[-2], x[-1]
 ```
-:::
+
 
 We split the string by underscores. The name of a page could also
 include an underscore, so we separate off the last three fields and then
@@ -144,7 +144,7 @@ second-from-last element is the access, and the last element the agent:
 ``` {.programlisting .language-markup}
 parse_page(train.Page[0])
 ```
-:::
+
 
 
 
@@ -152,7 +152,7 @@ parse_page(train.Page[0])
 Out:
 ('2NE1', 'zh.wikipedia.org', 'all-access', 'spider')
 ```
-:::
+
 
 When we apply this function to every page entry in the training set, we
 obtain a list of tuples that we can then join together into a new
@@ -165,7 +165,7 @@ l = list(train.Page.apply(parse_page))
 df = pd.DataFrame(l)
 df.columns = ['Subject','Sub_Page','Access','Agent']
 ```
-:::
+
 
 Finally, we must add this new DataFrame back to our original DataFrame
 before removing the original page column, which we can do by running the
@@ -177,7 +177,7 @@ following:
 train = pd.concat([train,df],axis=1)
 del train['Page']
 ```
-:::
+
 
 As a result of running this code, we have successfully finished loading
 the dataset. This means we can now move on to exploring it.
@@ -199,7 +199,7 @@ we will get a bar chart output of our Wikipedia dataset:
 ``` {.programlisting .language-markup}
 train.Sub_Page.value_counts().plot(kind='bar')
 ```
-:::
+
 
 As a result of running the previous code, we will output a bar chat that
 ranks the distributions of records within our dataset:
@@ -209,8 +209,8 @@ ranks the distributions of records within our dataset:
 
 
 Distribution of records by Wikipedia country page
-:::
-:::
+
+
 
 The preceding plot shows the number of time series
 available for each subpage. Wikipedia has subpages for different
@@ -231,7 +231,7 @@ Let\'s run that command again, this time focusing on the type of access:
 ``` {.programlisting .language-markup}
 train.Access.value_counts().plot(kind='bar')
 ```
-:::
+
 
 After running this code, we\'ll then see the following bar chart as the
 output:
@@ -241,8 +241,8 @@ output:
 
 
 Distribution of records by access type
-:::
-:::
+
+
 
 There are two possible access methods:
 **mobile** and **desktop**. There\'s also a third
@@ -257,7 +257,7 @@ following code:
 ``` {.programlisting .language-markup}
 train.Agent.value_counts().plot(kind='bar')
 ```
-:::
+
 
 After running that code, we\'ll output the following chart:
 
@@ -266,8 +266,8 @@ After running that code, we\'ll output the following chart:
 
 
 Distribution of records by agent
-:::
-:::
+
+
 
 There are time series available not only for spider agents, but also for
 all other types of access. In classic statistical modeling, the next
@@ -338,7 +338,7 @@ ax.plot(np.convolve(data,
 
 ax.set_yscale('log')
 ```
-:::
+
 
 There is a lot going on in this code snippet, and it is worth going
 through it step by step. Firstly, we define which row we want to plot.
@@ -360,8 +360,8 @@ page views.
 
 To compute the mean, we are going to use a **convolve**
 operation, which you might be familiar with as we explored convolutions
-in [Lab
-3](https://subscription.packtpub.com/course/data/9781789136364/3){.link},
+in Lab
+3,
 [*Utilizing Computer Vision*]. This 
 convolve operation creates a vector of ones divided by the
 window size, in this case 10. The convolve operation slides the vector
@@ -377,8 +377,8 @@ Finally, we specify that we want to use a log scale for the
 
 Access statistics for the Twenty One Pilots Wikipedia page with a
 rolling mean
-:::
-:::
+
+
 
 You can see there are some pretty large spikes in the Twenty One Pilots
 graph we just generated, even though we used a logarithmic axis. On some
@@ -414,7 +414,7 @@ for country in ['de','en','es','fr','ru']:
 
 ax.legend()
 ```
-:::
+
 
 In this snippet, we first set up the graph, as before. We then loop over
 the language codes and find the index of Twenty One Pilots. The index is
@@ -430,8 +430,8 @@ just produced:
 
 
 Access statistics for Twenty One Pilots by country
-:::
-:::
+
+
 
 There is clearly some correlation between the time series. The English
 language version of Wikipedia (the top line) is, not surprisingly, by
@@ -510,7 +510,7 @@ in our discrete function. The DFT formula is, therefore, as follows:
 
 
 ![](./images/B10354_04_003.jpg)
-:::
+
 
 Here [*y*]\[[*f*]\] is the [*f*]th
 element in the transformed series, and
@@ -536,7 +536,7 @@ data = train.iloc[:,0:-4]
 fft_complex = fft(data)
 fft_mag = [np.sqrt(np.real(x)*np.real(x)+np.imag(x)*np.imag(x)) for x in fft_complex]
 ```
-:::
+
 
 Here, we first extract the time series measurements without the global
 features from our training set. Then we run the FFT algorithm, before
@@ -553,7 +553,7 @@ them by simply running:
 arr = np.array(fft_mag)
 fft_mean = np.mean(arr,axis=0)
 ```
-:::
+
 
 This first turns the magnitudes into a NumPy array before then computing
 the mean. We want to compute the mean per frequency, not just the mean
@@ -572,7 +572,7 @@ run:
 ``` {.programlisting .language-markup}
 fft_xvals = [day / fft_mean.shape[0] for day in range(fft_mean.shape[0])]
 ```
-:::
+
 
 In this visualization, we only care about the range of frequencies in a
 weekly range, so we will remove the second half of the transformation,
@@ -585,7 +585,7 @@ npts = len(fft_xvals) // 2 + 1
 fft_mean = fft_mean[:npts]
 fft_xvals = fft_xvals[:npts]
 ```
-:::
+
 
 Finally, we can plot our transformation:
 
@@ -598,7 +598,7 @@ plt.axvline(x=1./7,color='red',alpha=0.3)
 plt.axvline(x=2./7,color='red',alpha=0.3)
 plt.axvline(x=3./7,color='red',alpha=0.3)
 ```
-:::
+
 
 Upon plotting the transformation, we will have successfully produced a
 chart similar to the one you see here:
@@ -609,8 +609,8 @@ chart similar to the one you see here:
 
 Fourier transformation of Wikipedia access statistics. Spikes marked by
 vertical lines
-:::
-:::
+
+
 
 As you can see in the chart we produced, there are spikes at roughly 1/7
 (0.14), 2/7 (0.28), and 3/7 (0.42). As a week has seven days, that is a
@@ -648,7 +648,7 @@ from pandas.plotting import autocorrelation_plot
 autocorrelation_plot(data.iloc[110])
 plt.title(' '.join(train.loc[110,['Subject', 'Sub_Page']]))
 ```
-:::
+
 
 This will present us with the following diagram:
 
@@ -657,8 +657,8 @@ This will present us with the following diagram:
 
 
 Autocorrelation of the Oh My Girl Chinese Wikipedia page
-:::
-:::
+
+
 
 The plot in the preceding chart shows the 
 correlation of page views for the Wikipedia page of [*Oh My
@@ -684,7 +684,7 @@ for i in a:
     
 plt.title('1K Autocorrelations')
 ```
-:::
+
 
 This code snippet first samples 1,000 random
 numbers between 0 and the number of series in our dataset, which in our
@@ -697,8 +697,8 @@ we can see in the following graphic:
 
 
 Autocorrelations for 1,000 Wikipedia pages
-:::
-:::
+
+
 
 As you can see, autocorrelations can be quite different for different
 series and there is a lot of noise within the chart. There also seems to
@@ -736,8 +736,8 @@ ways of splitting: a walk-forward split, and a side-by-side split:
 
 
 Possible testing regimes
-:::
-:::
+
+
 
 In a walk-forward split, we train on all 145,000 series. To validate, we
 are going to use more recent data from all the series. In a side-by-side
@@ -791,7 +791,7 @@ y = data.iloc[:,500:]
 
 X_train, X_val, y_train, y_val = train_test_split(X.values, y.values, test_size=0.1, random_state=42)
 ```
-:::
+
 
 When splitting, we use `X.values` to only get the data, not a
 DataFrame containing the data. After splitting we are left with 130,556
@@ -874,7 +874,7 @@ be aware of:
     backtests. While it might be subtle, such as relying on certain
     correlations that held up well in the past, but it is easy to build
     bias into models that are evaluated in backtesting.
-:::
+
 
 Building good testing regimes is a core activity of any quantitative
 investment firm or anyone working intensively with forecasting. One
@@ -931,7 +931,7 @@ med = np.median(lb_data,axis=1,keepdims=True)
 
 err = mape(y_train,med)
 ```
-:::
+
 
 The output returned shows we obtain an error of about 68.1%; not bad
 given the simplicity of our method. To see how the medians work, let\'s
@@ -955,7 +955,7 @@ plt.title(' '.join(train.loc[idx,['Subject', 'Sub_Page']]))
 ax.legend()
 ax.set_yscale('log')
 ```
-:::
+
 
 As you can see, our plotting consists of drawing three plots. For each
 plot, we must specify the [*X*] and [*Y*] values
@@ -974,8 +974,8 @@ The output can be seen here:
 Median forecast and actual values for access of an image file. The True
 values are to the right-hand side of the plot, and the median forecast
 is the horizontal line in the center of them.
-:::
-:::
+
+
 
 As you can see in the preceding output median forecast, the data for
 this page, in this case, an image of American actor Eric Stoltz, is very
@@ -1021,7 +1021,7 @@ Moving Average**, is made up of three core components:
 
 - **Moving Average**: The model uses
     residual errors from a moving average.
-:::
+
 
 We have to manually specify how many lagged observations we want to
 include, [*p*], how often we want to differentiate the
@@ -1038,7 +1038,7 @@ many helpful statistical tools. To do this, we simply run this:
 ``` {.programlisting .language-markup}
 from statsmodels.tsa.arima_model import ARIMA
 ```
-:::
+
 
 Then, to create a new ARIMA model, we pass the data we want to fit, in
 this case from our earlier example of views for 2NE1 from the Chinese
@@ -1052,7 +1052,7 @@ moving average window of five. In code, this works out as follows:
 ``` {.programlisting .language-markup}
 model = ARIMA(X_train[0], order=(5,1,5))
 ```
-:::
+
 
 We can then fit the model using `model.fit()`:
 
@@ -1061,7 +1061,7 @@ We can then fit the model using `model.fit()`:
 ``` {.programlisting .language-markup}
 model = model.fit()
 ```
-:::
+
 
 Running `model.summary()` at this point would output all the
 coefficients as well as significance values for statistical analysis.
@@ -1077,7 +1077,7 @@ ax.plot(residuals)
 
 plt.title('ARIMA residuals for 2NE1 pageviews')
 ```
-:::
+
 
 After running the previous code, we\'ll be able to output the results
 for 2NE1 page views, as we can see in this graph:
@@ -1087,8 +1087,8 @@ for 2NE1 page views, as we can see in this graph:
 
 
 The residual error of the ARIMA forecast
-:::
-:::
+
+
 
 In the preceding chart, we can see that the model does very well in the
 beginning but really begins to struggle at around the 300-day mark. This
@@ -1108,7 +1108,7 @@ We can do this by running the following code:
 ``` {.programlisting .language-markup}
 residuals.plot(kind='kde',figsize=(10,7),title='ARIMA residual distribution 2NE1 ARIMA',legend = False)
 ```
-:::
+
 
 This code will then output the following graph:
 
@@ -1117,8 +1117,8 @@ This code will then output the following graph:
 
 
 Approximately normally distributed residuals from ARIMA forecast
-:::
-:::
+
+
 
 As you can see, our model roughly represents a Gaussian distribution
 with a mean of zero. So, it\'s all good on that front, but then the
@@ -1133,7 +1133,7 @@ code:
 ``` {.programlisting .language-markup}
 predictions, stderr, conf_int = model.forecast(50)
 ```
-:::
+
 
 This forecast not only gives us predictions but
 also the standard error and confidence interval, which is 95% by
@@ -1157,7 +1157,7 @@ plt.title('2NE1 ARIMA forecasts')
 ax.legend()
 ax.set_yscale('log')
 ```
-:::
+
 
 This code will output the following graph:
 
@@ -1166,8 +1166,8 @@ This code will output the following graph:
 
 
 ARIMA forecast and actual access
-:::
-:::
+
+
 
 You can see that ARIMA captures the periodicity of
 the series very well. Its forecast does steer off a bit toward the end,
@@ -1214,7 +1214,7 @@ Gaussian normal distribution with mean zero and variance
 
 
 ![](./images/B10354_04_007.jpg)
-:::
+
 
 The obtained measurement at time [*k*],
 [![](./images/B10354_04_008.jpg)]{.inlinemediaobject}, is an observation
@@ -1227,7 +1227,7 @@ and variance [*R*]:
 
 
 ![](./images/B10354_04_011.jpg)
-:::
+
 
 Roughly speaking, Kalman filters fit a function by estimating
 [*A*], [*H*], [*Q,*] and
@@ -1254,7 +1254,7 @@ state_transition[0,0] = 1
 state_transition[1,1:-1] = [-1.0] * (n_seasons-1)
 state_transition[2:,1:-1] = np.eye(n_seasons-1)
 ```
-:::
+
 
 The transition matrix, [*A,*] looks like the following table,
 describing one hidden level, which we might interpret as the real
@@ -1272,7 +1272,7 @@ array([[ 1.,  0.,  0.,  0.,  0.,  0.,  0.,  0.],
        [ 0.,  0.,  0.,  0.,  0.,  1.,  0.,  0.],
        [ 0.,  0.,  0.,  0.,  0.,  0.,  1.,  0.]])
 ```
-:::
+
 
 The observation model, [*H,*] maps the general interest plus
 seasonality to a single measurement:
@@ -1282,7 +1282,7 @@ seasonality to a single measurement:
 ``` {.programlisting .language-markup}
 observation_model = [[1,1] + [0]*(n_seasons-1)]
 ```
-:::
+
 
 The observation model looks like this:
 
@@ -1291,7 +1291,7 @@ The observation model looks like this:
 ``` {.programlisting .language-markup}
 [[1, 1, 0, 0, 0, 0, 0, 0]]
 ```
-:::
+
 
 The noise priors are just estimates scaled by a
 \"smoothing factor,\" which allows us to control the update process:
@@ -1308,7 +1308,7 @@ season_noise = 1e-3
 process_noise_cov = np.diag([level_noise, season_noise] + [0]*(n_seasons-1))**2
 observation_noise_cov = observation_noise**2
 ```
-:::
+
 
 `process_noise_cov` is an eight-dimensional vector, matching
 the eight-dimensional state vector. Meanwhile,
@@ -1330,7 +1330,7 @@ series to process.
 
 **Note**: The library\'s repository can be found here:
 <https://github.com/oseiskar/simdkalman>.
-:::
+
 
 You can install his library using the following command:
 
@@ -1339,7 +1339,7 @@ You can install his library using the following command:
 ``` {.programlisting .language-markup}
 pip install simdkalman
 ```
-:::
+
 
 To import it, run the following code:
 
@@ -1348,7 +1348,7 @@ To import it, run the following code:
 ``` {.programlisting .language-markup}
 import simdkalman
 ```
-:::
+
 
 Although `simdkalman` is very sophisticated, it is quite
 simple to use. Firstly, we are going to specify a Kalman filter using
@@ -1359,7 +1359,7 @@ the priors we just defined:
 ``` {.programlisting .language-markup}
 kf = simdkalman.KalmanFilter(state_transition = state_transition,process_noise = process_noise_cov,observation_model = observation_model,observation_noise = observation_noise_cov)
 ```
-:::
+
 
 From there we can then estimate the parameters and compute a forecast in
 one step:
@@ -1369,7 +1369,7 @@ one step:
 ``` {.programlisting .language-markup}
 result = kf.compute(X_train[0], 50)
 ```
-:::
+
 
 Once again, we make forecasts for 2NE1\'s Chinese page and create a
 forecast for 50 days. Take a minute to note that we could also pass
@@ -1415,7 +1415,7 @@ ax.plot(np.arange(480,500),
 ax.legend()
 ax.set_yscale('log')
 ```
-:::
+
 
 The preceding code will then output the following chart:
 
@@ -1424,8 +1424,8 @@ The preceding code will then output the following chart:
 
 
 Predictions and inner states from the Kalman filter
-:::
-:::
+
+
 
 We can clearly see in the preceding graph the effects of our prior
 modeling on the predictions. We can see the model predicts strong weekly
@@ -1509,7 +1509,7 @@ For each series, we will assemble the following features:
 
 -   `medians`: The median of page views over the lookback
     period.
-:::
+
 
 These features are assembled for each time series,
 giving our input data the shape (batch size, look back window size, 29).
@@ -1535,7 +1535,7 @@ from sklearn.preprocessing import OneHotEncoder
 weekdays = [datetime.datetime.strptime(date, '%Y-%m-%d').strftime('%a')
             for date in train.columns.values[:-4]]
 ```
-:::
+
 
 Firstly, we turn the date strings (such as 2017-03-02) into their
 weekday (Thursday). This is very simple to do, and can be done with the
@@ -1547,7 +1547,7 @@ following code:
 day_one_hot = LabelEncoder().fit_transform(weekdays)
 day_one_hot = day_one_hot.reshape(-1, 1)
 ```
-:::
+
 
 We then encode the weekdays into integers, so that \"Monday\" becomes
 `1`, \"Tuesday\" becomes `2`, and so on. We reshape
@@ -1561,7 +1561,7 @@ one feature, and not the other way around:
 day_one_hot = OneHotEncoder(sparse=False).fit_transform(day_one_hot)
 day_one_hot = np.expand_dims(day_one_hot,0)
 ```
-:::
+
 
 Finally, we one-hot encode the days. We then add a new dimension to the
 tensor showing that we only have one \"row\" of dates. We will later
@@ -1577,7 +1577,7 @@ agent_one_hot = OneHotEncoder(sparse=False).fit(agent_enc)
 
 del agent_enc
 ```
-:::
+
 
 We will need the encoders for the agents later when we encode the agent
 of each series.
@@ -1607,7 +1607,7 @@ acc_one_hot = OneHotEncoder(sparse=False).fit(acc_enc)
 
 del acc_enc
 ```
-:::
+
 
 Now we come to the lagged features. Technically, neural networks could
 discover what past events are relevant for forecasting themselves.
@@ -1626,7 +1626,7 @@ def lag_arr(arr, lag, fill):
     result = comb[:,:arr.shape[1]]
     return result
 ```
-:::
+
 
 This function first creates a new array that will fill up the \"empty
 space\" from the shift. The new array has as many rows as the original
@@ -1641,7 +1641,7 @@ compute the autocorrelation:
 
 
 ![](./images/B10354_04_012.jpg)
-:::
+
 
 In this formula [![](./images/B10354_04_013.jpg)]{.inlinemediaobject} is
 the lag indicator. We do not just use a NumPy function since there is a
@@ -1661,7 +1661,7 @@ def single_autocorr(series, lag):
     divider = np.sqrt(np.sum(ds1 * ds1)) * np.sqrt(np.sum(ds2 * ds2))
     return np.sum(ds1 * ds2) / divider if divider != 0 else 0
 ```
-:::
+
 
 We can use this function, which we wrote for a single series, to create
 a batch of autocorrelation features, as seen here:
@@ -1680,7 +1680,7 @@ def batc_autocorr(data,lag,series_length):
     corr = np.repeat(corr,series_length,axis=1)
     return corr
 ```
-:::
+
 
 Firstly, we calculate the autocorrelations for each series in the batch.
 Then we fuse the correlations together into one NumPy array. Since
@@ -1745,7 +1745,7 @@ def get_batch(train,start=0,lookback = 100):                  #1
     
     return batch, target
 ```
-:::
+
 
 That was a lot of code, so let\'s take a minute to walk through the
 preceding code step by step in order to fully understand it:
@@ -1780,11 +1780,11 @@ preceding code step by step in order to fully understand it:
 11. Calculates the median for the lookback data.
 
 12. Fuses all these features into one batch.
-:::
+
 
 Finally, we can use our `get_batch` function to write a
-generator, just like we did in [Lab
-3](https://subscription.packtpub.com/course/data/9781789136364/3){.link},
+generator, just like we did in Lab
+3,
 [*Utilizing Computer Vision*]. This generator loops over the
 original training set and passes a subset into the `get_batch`
 function. It then yields the batch obtained.
@@ -1807,7 +1807,7 @@ def generate_batches(train,batch_size = 32, lookback = 100):
             X,y = get_batch(train.iloc[batch_start:batch_end],start=seq_start)
             yield X,y
 ```
-:::
+
 
 This function is what we will train and validate on.
 
@@ -1820,7 +1820,7 @@ Conv1D {#conv1d .title style="clear: both"}
 
 You might remember Convolution Neural Networks (ConvNets, or CNNs) from
 [Lab
-3,](https://subscription.packtpub.com/course/data/9781789136364/3){.link}
+3,
 [*Utilizing Computer Vision*], where we looked briefly at
 roofs and insurance. In computer vision, convolutional filters slide
 over the image two-dimensionally. There is also a version of
@@ -1851,7 +1851,7 @@ model.add(MaxPool1D(5))
 model.add(Flatten())
 model.add(Dense(1))
 ```
-:::
+
 
 Notice that next to `Conv1D` and `Activation`, there
 are two more layers in this network. `MaxPool1D` works exactly
@@ -1882,7 +1882,7 @@ Our model compiles just as you would expect:
 ``` {.programlisting .language-markup}
 model.compile(optimizer='adam',loss='mean_absolute_percentage_error')
 ```
-:::
+
 
 We then train it on the generator that we wrote earlier. To obtain
 separate train and validation sets, we must first split the overall
@@ -1902,7 +1902,7 @@ val_gen = generate_batches(val_df, batch_size=batch_size)
 n_train_samples = train_df.shape[0]
 n_val_samples = val_df.shape[0]
 ```
-:::
+
 
 Finally, we can train our model on a generator,
 just like we did in computer vision:
@@ -1912,7 +1912,7 @@ just like we did in computer vision:
 ``` {.programlisting .language-markup}
 model.fit_generator(train_gen, epochs=20,steps_per_epoch=n_train_samples // batch_size, validation_data= val_gen, validation_steps=n_val_samples // batch_size)
 ```
-:::
+
 
 Your validation loss will still be quite high, around 12,798,928. The
 absolute loss value is never a good guide for how well your model is
@@ -1936,8 +1936,8 @@ to make sure that our model does not suffer from look-ahead bias:
 
 Standard convolution does not take the direction of convolution into
 account
-:::
-:::
+
+
 
 As the convolutional filter slides over the data,
 it looks into the future as well as the past. Causal convolution ensures
@@ -1949,8 +1949,8 @@ time [*t - 1*]:
 
 
 Causal convolution shifts the filter in the right direction
-:::
-:::
+
+
 
 In Keras, all we have to do is set the
 `padding` parameter to `causal`. We can do this by
@@ -1961,7 +1961,7 @@ executing the following code:
 ``` {.programlisting .language-markup}
 model.add(Conv1D(16,5, padding='causal'))
 ```
-:::
+
 
 Another useful trick is dilated convolutional networks. Dilation means
 that the filter only accesses every [*n*]th element, as we
@@ -1972,8 +1972,8 @@ can see in the image below.
 
 
 Dilated convolution skips over inputs while convolving
-:::
-:::
+
+
 
 In the preceding diagram, the upper convolutional
 layer has a dilation rate of 4 and the lower layer a dilation rate of 1.
@@ -2003,15 +2003,15 @@ with a **recurrent neural network** (**RNN**):
 
 
 The scheme of an RNN
-:::
-:::
+
+
 
 RNNs contain recurrent layers. Recurrent layers can remember their last
 activation and use it as their own input:
 
 
 ![](./images/B10354_04_014.jpg)
-:::
+
 
 A recurrent layer takes a sequence as an input. For
 each element, it then computes a matrix multiplication ([*W \*
@@ -2037,7 +2037,7 @@ model.add(Dense(1))
 
 model.compile(optimizer='adam',loss='mean_absolute_percentage_error')
 ```
-:::
+
 
 The only parameter we need to specify is the size of the recurrent
 layer. This is basically the same as setting the size of a
@@ -2066,7 +2066,7 @@ You can then fit the model on the generator as before:
 
 model.fit_generator(train_gen,epochs=20,steps_per_epoch=n_train_samples // batch_size, validation_data= val_gen, validation_steps=n_val_samples // batch_size)
 ```
-:::
+
 
 As a result of this code, we\'ll be able to see that a simple 
 RNN does much better than the convolutional model, with a
@@ -2109,11 +2109,11 @@ simple RNN that has been unrolled over time:
 
 
 A rolled out RNN
-:::
-:::
 
-As you can see, this is the same as the RNN that we saw in [Lab
-2](https://subscription.packtpub.com/course/data/9781789136364/2){.link},
+
+
+As you can see, this is the same as the RNN that we saw in Lab
+2,
 [*Applying Machine Learning to Structured Data*], except that
 this has been unrolled over time.
 
@@ -2133,19 +2133,19 @@ carry, in a separate operation from the RNN layer itself::
 
 
 The LSTM schematic
-:::
-:::
+
+
 
 To understand what the Compute Carry is, we should determine what
 should be added from the input and state:
 
 
 ![](./images/B10354_04_016.jpg)
-:::
+
 
 
 ![](./images/B10354_04_017.jpg)
-:::
+
 
 In these formulas [![](./images/B10354_04_018.jpg)]{.inlinemediaobject}
 is the state at time [*t*] (output of the simple RNN layer),
@@ -2160,13 +2160,13 @@ to use the following formula:
 
 
 ![](./images/B10354_04_020.jpg)
-:::
+
 
 The new carry is then computed as follows:
 
 
 ![](./images/B10354_04_021.jpg)
-:::
+
 
 While the standard theory claims that the LSTM layer learns what to add
 and what to forget, in practice, nobody knows what
@@ -2188,7 +2188,7 @@ model = Sequential()
 model.add(LSTM(16,input_shape=(max_len,n_features)))
 model.add(Dense(1))
 ```
-:::
+
 
 To stack layers, you also need to set `return_sequences` to
 `True`. Note that you can easily combine `LSTM` and
@@ -2203,7 +2203,7 @@ model.add(SimpleRNN(16, return_sequences = True))
 model.add(LSTM(16))
 model.add(Dense(1))
 ```
-:::
+
 
 
 ### Note {#note .title}
@@ -2211,7 +2211,7 @@ model.add(Dense(1))
 **Note**: If you are using a GPU and TensorFlow backend with
 Keras, use `CuDNNLSTM` instead of `LSTM`. It\'s
 significantly faster while working in exactly the same way.
-:::
+
 
 We\'ll now compile and run the model just as we did before:
 
@@ -2222,7 +2222,7 @@ model.compile(optimizer='adam',loss='mean_absolute_percentage_error')
 
 model.fit_generator(train_gen, epochs=20,steps_per_epoch=n_train_samples // batch_size, validation_data= val_gen, validation_steps=n_val_samples // batch_size)
 ```
-:::
+
 
 This time, the loss went as low as 88,735, which is
 several orders of magnitude better than our initial model.
@@ -2245,8 +2245,8 @@ not remove any inputs between layers but inputs between time steps:
 
 
 Recurrent dropout scheme
-:::
-:::
+
+
 
 Just as with regular dropout, recurrent dropout has a regularizing
 effect and can prevent overfitting. It\'s used in Keras by simply
@@ -2302,7 +2302,7 @@ We start by running the following code:
 X = np.random.rand(20,1) * 10-5
 y = np.sin(X)
 ```
-:::
+
 
 Our neural network is relatively straightforward, too. Note that Keras
 does not allow us to make a dropout layer the first layer, therefore we
@@ -2333,7 +2333,7 @@ model.add(Activation('sigmoid'))
 
 model.add(Dense(1))
 ```
-:::
+
 
 To fit this function, we need a relatively low learning rate, so we
 import the Keras vanilla stochastic gradient descent optimizer in order
@@ -2351,7 +2351,7 @@ from keras.optimizers import SGD
 model.compile(loss='mse',optimizer=SGD(lr=0.01))
 model.fit(X,y,epochs=10000,batch_size=10,verbose=0)
 ```
-:::
+
 
 We want to test our model over a larger range of
 values, so we create a test dataset with 200 values ranging from -10 to
@@ -2364,7 +2364,7 @@ code:
 X_test = np.arange(-10,10,0.1)
 X_test = np.expand_dims(X_test,-1)
 ```
-:::
+
 
 And now comes the magic trick! Using
 `keras.backend`, we can pass settings to TensorFlow, which
@@ -2384,7 +2384,7 @@ and training the model, as the training process will leave the setting
 in the TensorFlow graph. You can also save the trained model, clear the
 session, and reload the model. See the code for this section for a
 working implementation.
-:::
+
 
 To start this process, we first run:
 
@@ -2395,7 +2395,7 @@ import keras.backend as K
 K.clear_session()
 K.set_learning_phase(1)
 ```
-:::
+
 
 And now we can obtain our distributions with the following code:
 
@@ -2407,7 +2407,7 @@ for i in range(100):
     out = model.predict(X_test)
     probs.append(out)
 ```
-:::
+
 
 Next we can calculate the mean and standard deviation for our
 distributions:
@@ -2420,7 +2420,7 @@ p = np.array(probs)
 mean = p.mean(axis=0)
 std = p.std(axis=0)
 ```
-:::
+
 
 Finally, we plot the model\'s predictions with one,
 two, and four standard deviations (corresponding to
@@ -2446,7 +2446,7 @@ plt.fill_between(X_test.flatten(),upper_bound.flatten(),lower_bound.flatten(),al
 
 plt.scatter(X,y,c='black')
 ```
-:::
+
 
 As a result of running this code, we will see the following graph:
 
@@ -2455,8 +2455,8 @@ As a result of running this code, we will see the following graph:
 
 
 Predictions with uncertainty bands
-:::
-:::
+
+
 
 As you can see, the model is relatively confident
 around areas where it had data and becomes less and less confident the
@@ -2542,7 +2542,7 @@ traffic for Wikipedia:
 -   Getting to grips with understanding how to add uncertainty to our
     forecasts with the dropout trick, taking our first step into
     Bayesian learning
-:::
+
 
 This rich toolbox of time series techniques comes in especially handy in
 the next lab, where we will cover natural language processing.

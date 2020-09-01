@@ -27,7 +27,7 @@ In the final lab of this course, you\'ll learn about the following:
     programming
 
 -   How various methods get applied in stochastic volatility models
-:::
+
 
 This course has largely covered deep learning and its applications in the
 finance industry. As we\'ve witnessed, deep learning has been made
@@ -61,7 +61,7 @@ the following code:
 import numpy as np
 import matplotlib.pyplot as plt% matplotlib inline
 ```
-:::
+
 
 This example is similar to the one given in the 2015 course, [*Bayesian
 Methods for Hackers: Probabilistic Programming and Bayesian
@@ -74,7 +74,7 @@ the mathematical concepts intuitively arise from the code.
 
 **Note**: You can view the example at the following link:
 <http://camdavidsonpilon.github.io/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/>.
-:::
+
 
 Let\'s imagine that you have a security that can
 either pay \$1 or, alternatively, nothing. The payoff depends on a
@@ -90,8 +90,8 @@ This payoff scheme is visualized in the following diagram:
 
 
 Payoff scheme
-:::
-:::
+
+
 
 You are interested in finding out what the true payoff ratio is, as it
 will inform your trading strategy. In our case, your boss allows you to
@@ -135,7 +135,7 @@ def run_sim(x):
     res = np.sum(first_random*truth + (1-first_random)*second_random)/100
     return res
 ```
-:::
+
 
 Next, we would like to try out a number of possible TPPs. So, in our
 case, we\'ll sample a candidate TPP and run the simulation with the
@@ -153,7 +153,7 @@ def sample(data = 0.54):
     if run_sim(x) == data:
         return x
 ```
-:::
+
 
 As we have to sample a number of possible TPPs, it\'s only natural that
 we want to speed this process up. To do this, we can use a library
@@ -165,7 +165,7 @@ called `JobLib`, which will help with parallel execution.
 **Note**: `JobLib` is preinstalled on Kaggle
 kernels. For more information, you can visit
 <https://joblib.readthedocs.io/en/latest/>.
-:::
+
 
 To do this, we need to import the `Parallel` class, which
 will help to run loops in parallel, and the
@@ -177,7 +177,7 @@ inside the parallel loop. We can import them by running the following:
 ``` {.programlisting .language-markup}
 from JobLib import Parallel, delayed
 ```
-:::
+
 
 The details are not relevant for this example, but
 the `Parallel(n_jobs=-1)` method makes the job run with as
@@ -199,14 +199,14 @@ t = np.array(t,dtype=float)
 share = np.sum(np.isnan(t))/len(t)*100
 print(f'{share:.2f}% are throwaways')
 ```
-:::
+
 
 
 
 ``` {.programlisting .language-markup}
 98.01% are throwaways
 ```
-:::
+
 
 Therefore, we\'ll now throw away all of the `None` values,
 leaving us with the possible values for [*x*]:
@@ -219,7 +219,7 @@ plt.hist(t_flat, bins=30,density=True)
 plt.title('Distribution of possible TPPs')
 plt.xlim(0,1);
 ```
-:::
+
 
 As a result of running this code, we\'ll get the following output:
 
@@ -229,8 +229,8 @@ As a result of running this code, we\'ll get the following output:
 
 Distribution of possible true payoff probabilities as found by our naïve
 sampler
-:::
-:::
+
+
 
 As you can see, there is a [*distribution*] of possible TPPs.
 What this graph shows us is that the most likely TPP is somewhere around
@@ -247,7 +247,7 @@ what other values parameters in our model could have. Relating it back
 to our interest in finance, with financial applications, where millions
 are staked on the outputs of models, it becomes very advantageous to
 quantify such uncertainty.
-:::
+
 
 
 
@@ -275,7 +275,7 @@ def sample(data = 0.54):
     if run_sim(x) == data:
         return x
 ```
-:::
+
 
 Now you can run the simulations exactly as before:
 
@@ -288,14 +288,14 @@ t = np.array(t,dtype=float)
 share = np.sum(np.isnan(t))/len(t)*100
 print(f'{share:.2f}% are throwaways')
 ```
-:::
+
 
 
 
 ``` {.programlisting .language-markup}
 99.10% are throwaways
 ```
-:::
+
 
 
 
@@ -305,7 +305,7 @@ plt.hist(t_cut, bins=15,density=True)
 plt.title('Distribution of possible TPPs')
 plt.xlim(0,1);
 ```
-:::
+
 
 Which, just like before, will give us the following output:
 
@@ -314,7 +314,7 @@ Which, just like before, will give us the following output:
 
 
 Distribution of possible TPPs from 0 to 0.5
-:::
+
 
 
 ### Prior and posterior {#prior-and-posterior .title}
@@ -352,7 +352,7 @@ plt.title('Distribution of $x$ with no assumptions')
 plt.legend()
 plt.xlim(0,1);
 ```
-:::
+
 
 This produces the following chart:
 
@@ -361,8 +361,8 @@ This produces the following chart:
 
 
 The results of our sampler with a flat prior
-:::
-:::
+
+
 
 The next plot shows the output of our sampler with a \<50% prior:
 
@@ -376,7 +376,7 @@ plt.title('Distribution of $x$ assuming TPP <50%')
 plt.legend()
 plt.xlim(0,1);
 ```
-:::
+
 
 While it\'s still the same sampler, you can see that the outcome is
 quite different:
@@ -386,8 +386,8 @@ quite different:
 
 
 The results of our sampler with a \<50% prior
-:::
-:::
+
+
 
 Have you noticed anything curious? The posterior values of the
 second round are roughly equal to the posterior
@@ -412,7 +412,7 @@ Mathematically, this is represented as follows:
 
 
 ![](./images/B10354_10_007.jpg)
-:::
+
 
 When the data is naturally obtained, such as
 through a face-to-face meeting, then we might need to account for biases
@@ -426,7 +426,7 @@ to our posterior formula and arrive at the following formula:
 
 
 ![](./images/B10354_10_009.jpg)
-:::
+
 
 As you can see, it\'s the Bayes formula! When running our simulation, we
 are sampling from the posterior. So, why can\'t we just use the Bayes
@@ -435,7 +435,7 @@ evaluating
 
 
 ![](./images/B10354_10_010.jpg)
-:::
+
 
 requires integrating over [*TPP*], which is intractable. Our
 simulation method is, as an alternative, a simple and convenient
@@ -486,8 +486,8 @@ Carlo algorithm:
 
 
 The Markov Chain Monte Carlo algorithm
-:::
-:::
+
+
 
 What the image shows is that we are on a \"random walk\" in which we
 more or less randomly go over different parameter values. However, we
@@ -511,10 +511,10 @@ To execute this algorithm, we need to do four things:
     probabilities have to be smaller than one):
     
     ![](./images/B10354_10_016.jpg)
-    :::
+    
 4.  Move to the new parameter value with probability
     [![](./images/B10354_10_017.jpg)]{.inlinemediaobject}.
-:::
+
 
 The next step is to build up these components step
 by step:
@@ -534,7 +534,7 @@ def sample(x,data = 0.54):
     if run_sim(x) == data:
         return x
 ```
-:::
+
 
 First, we need to propose a new [*X~c~*]. This has to be
 dependent on the previous value of [*x*] since we do not want
@@ -552,7 +552,7 @@ standard deviations, as long as [*x~cand~*] is related to
 def propose(x):
     return np.random.randn() * 0.1 + x
 ```
-:::
+
 
 In the first section, by sampling from the prior
 and then running the simulation, we sampled directly from the posterior.
@@ -580,7 +580,7 @@ def likelihood(x):
     t = np.array(t,dtype=float)
     return (1 - np.sum(np.isnan(t))/len(t))
 ```
-:::
+
 
 For starters, we will use a flat prior again; each TPP is equally
 likely:
@@ -591,7 +591,7 @@ likely:
 def prior(x):
     return 1 #Flat prior
 ```
-:::
+
 
 The posterior probability of a parameter value, [*x*], is the
 likelihood times the prior:
@@ -602,7 +602,7 @@ likelihood times the prior:
 def posterior(x):    
     return likelihood(x) * prior(x)
 ```
-:::
+
 
 Now we are ready to put it all together into the Metropolis-Hastings
 MCMC algorithm!
@@ -619,7 +619,7 @@ which we can do by running the following code:
 x = 0.5
 pi_x = posterior(x)
 ```
-:::
+
 
 Likewise, we need to keep track of all of the values sampled in a trace.
 Purely for exhibition purposes, we will also keep track of the posterior
@@ -631,7 +631,7 @@ probabilities. To do this, we\'re going to run the following:
 trace = [x]
 pi_trace = [pi_x]
 ```
-:::
+
 
 Now we get to the main loop. However, before we do,
 it\'s important to remember that the algorithm consists of four steps:
@@ -643,20 +643,20 @@ it\'s important to remember that the algorithm consists of four steps:
 
     
     ![](./images/B10354_10_027.jpg)
-    :::
+    
 
 3.  Compute the acceptance probability:
 
     
     ![](./images/B10354_10_028.jpg)
-    :::
+    
 
 4.  Set [*x*] to [*X~C~*] and with a probability,
     [![](./images/B10354_10_030.jpg)]{.inlinemediaobject}:
     
     
     Copy
-    :::
+    
 
     ``` {.programlisting .language-markup}
     for i in range(1000): #Main Loop
@@ -676,15 +676,15 @@ it\'s important to remember that the algorithm consists of four steps:
         if i % 10 == 0:
             print(f'Epoch {i}, X = {x:.2f}, pi = {pi_x:.2f}')
     ```
-    :::
-:::
+    
+
 
 
 
 ``` {.programlisting .language-markup}
 Epoch 0, X = 0.50, pi = 0.00Epoch 10, X = 0.46, pi = 0.04...Epoch 990, X = 0.50, pi = 0.06g
 ```
-:::
+
 
 After running this algorithm for a number of epochs, we end up with a
 distribution of possible cheater shares with payoffs. As we\'ve done
@@ -697,7 +697,7 @@ plt.hist(trace,bins=30)
 plt.title('Metropolis Hastings Outcome')
 plt.xlim(0,1);
 ```
-:::
+
 
 Once we\'ve run the previous code, we\'ll receive this graph as the
 output:
@@ -707,8 +707,8 @@ output:
 
 
 The outcome of the Metropolis Hastings sampler
-:::
-:::
+
+
 
 By viewing the trace over time, it shows how the
 algorithm moves randomly but centers around highly likely values:
@@ -719,7 +719,7 @@ algorithm moves randomly but centers around highly likely values:
 plt.plot(trace)
 plt.title('MH Trace');
 ```
-:::
+
 
 We will then get an output, in the form of a chart, which shows us the
 trace of the **Metropolis Hasings** (**MH**)
@@ -730,8 +730,8 @@ sampler:
 
 
 Trace of the Metropolis Hastings sampler
-:::
-:::
+
+
 
 For a better understanding, we can plot the
 posterior probabilities over the tried out values:
@@ -744,7 +744,7 @@ plt.xlabel('Proposed X')
 plt.ylabel('Posterior Probability')
 plt.title('X vs Pi');
 ```
-:::
+
 
 After successful executing the code, we\'ll then get the following chart
 as an output:
@@ -754,7 +754,7 @@ as an output:
 
 
 The proposed value versus posterior probability
-:::
+
 
 
 ### Metropolis-Hastings MCMC {#metropolis-hastings-mcmc .title}
@@ -773,7 +773,7 @@ from the PyMC3 documentation:
 turn, is an adaptation of an example from Hoffman\'s 2011 paper,
 [*No-U-Turn Sampler*], available at:
 <https://arxiv.org/abs/1111.4246>.
-:::
+
 
 Stock prices and other financial asset prices fluctuate, and the
 variance of daily returns is called volatility. Volatility is a commonly
@@ -801,7 +801,7 @@ To load the data, run the following code:
 df = pd.read_csv('../input/S&P.csv')
 df['Date'] = pd.to_datetime(df['Date'])
 ```
-:::
+
 
 In the example we\'re looking at, we are interested in the
  closing prices, so we need to extract the closing prices
@@ -814,7 +814,7 @@ it, which we achieve with the following code:
 close = pd.Series(df.Close.values,index=pd.DatetimeIndex(df.Date))
 close = close[::-1]
 ```
-:::
+
 
 When plotting the closing prices, which we do in the following code, we
 see, through the outputted graphic, a familiar plot:
@@ -824,14 +824,14 @@ see, through the outputted graphic, a familiar plot:
 ``` {.programlisting .language-markup}
 close.plot(title='S&P 500 From Inception');
 ```
-:::
+
 
 
 
 ``` {.programlisting .language-markup}
 SP500
 ```
-:::
+
 
 As a result, we\'ll then get the following chart as an output:
 
@@ -840,8 +840,8 @@ As a result, we\'ll then get the following chart as an output:
 
 
 The S&P 500 from inception to late 2018
-:::
-:::
+
+
 
 The dataset contains the S&P since its inception,
 which for us is a bit too much, so in our case, we\'re going to cut it
@@ -852,7 +852,7 @@ off at 1990. We can specify this date by running the following:
 ``` {.programlisting .language-markup}
 close = close['1990-01-01':]
 ```
-:::
+
 
 As we are interested in the returns, we need to compute the price
 differences. We can use `np.diff` to get daily price
@@ -865,7 +865,7 @@ series for easier plotting:
 returns = pd.Series(np.diff(close.values),index=close.index[1:])
 returns.plot();
 ```
-:::
+
 
 This will give us the following chart:
 
@@ -874,8 +874,8 @@ This will give us the following chart:
 
 
 The returns of the S&P 500 from 1990 to late 2018
-:::
-:::
+
+
 
 Now the fun with PyMC3 begins. PyMC3 includes some
 special distributions for dealing with time series, such as a random
@@ -891,7 +891,7 @@ random walk class:
 import pymc3 as pm
 from pymc3.distributions.timeseries import GaussianRandomWalk
 ```
-:::
+
 
 Then lastly, we need to set up the model. We can achieve this by running
 the following code:
@@ -910,7 +910,7 @@ with pm.Model() as model:
                     lam=pm.math.exp(-2*s),
                     observed=returns.values)
 ```
-:::
+
 
 Let\'s now look at the commands we just executed in order to set up the
 model. As you can see, it consists of four key elements:
@@ -938,12 +938,12 @@ model. As you can see, it consists of four key elements:
 
     
     ![](./images/B10354_10_032.jpg)
-    :::
+    
 
     (or `lam` in code) produced by our stochastic volatile
     model. To condition the model on observed data, we pass on the
     observed return values.
-:::
+
 
 The standard sampler for PyMC3 is not Metropolis Hastings, but the
 **No-U-Turn Sampler** (**NUTS**). PyMC3 will
@@ -965,7 +965,7 @@ the following:
 with model:
     trace = pm.sample(tune=2000, nuts_kwargs=dict(target_accept=.9))
 ```
-:::
+
 
 PyMC3 has a nice utility that we can use to visualize the outcomes of
 sampling. We are interested in the standard deviation of the volatility
@@ -985,7 +985,7 @@ let\'s now try that with the following code:
 pm.traceplot(trace, varnames=['sigma', 'nu']);
 TracePlot
 ```
-:::
+
 
 With the result of that code being shown in the following charts:
 
@@ -996,8 +996,8 @@ With the result of that code being shown in the following charts:
 Results overview of the PyMC3 sampler. On the left, you can see the
 distributions produced by the two sampler chains. On the right, you can
 see their traces.
-:::
-:::
+
+
 
 In the final step, we can show how stochastic
 volatility has behaved over time. You can see how it nicely aligns with
@@ -1014,7 +1014,7 @@ plt.xlabel('time')
 plt.ylabel('returns')
 plt.legend(['S&P500', 'Stochastic Vol.']);
 ```
-:::
+
 
 As we can see, the output of that code will return the chart that we see
 below:
@@ -1024,8 +1024,8 @@ below:
 
 
 Inferred stochastic volatility from 1990 to late 2018
-:::
-:::
+
+
 
 There are a large number of applications that can
 be modeled well with such relatively small Bayesian models. The main
@@ -1036,7 +1036,7 @@ expressed in the model.
 
 In the next section, we will move from shallow probabilistic programming
 to deep probabilistic programming.
-:::
+
 
 
 
@@ -1122,7 +1122,7 @@ the following:
     programming
 
 -   How these methods get applied in stochastic volatility models
-:::
+
 
 Notice how everything you have learned here transfers to bigger models
 as well, such as the deep neural networks that we\'ve discussed
@@ -1165,7 +1165,7 @@ following:
 -   Ethics in machine learning
 
 -   Bayesian inference
-:::
+
 
 In each lab, we created a large bag of practical tips and tricks
 that you can use. This will allow you to build state-of-the-art systems
@@ -1202,13 +1202,13 @@ Wes McKinney, [*Python for Data Analysis*],
 <http://wesmckinney.com/pages/course.html>.
 
 Wes is the original creator of pandas, a popular Python data-handling
-tool that we saw in [Lab
-2](https://subscription.packtpub.com/course/data/9781789136364/2){.link},
+tool that we saw in Lab
+2,
 [*Applying Machine Learning to Structured Data*]. pandas is a
 core component of any data science workflow in Python and will remain so
 for the foreseeable future. Investing in sound knowledge of the tools he
 presents is definitely worth your time.
-:::
+
 
 
 
@@ -1224,7 +1224,7 @@ largely focused on the danger of overfitting and how careful researchers
 have to be when doing proper science. While focused more on
 high-frequency trading, Marcos writes very clearly and makes potential
 issues and solutions very understandable.
-:::
+
 
 
 
@@ -1249,7 +1249,7 @@ companion to [*Elements of Statistical Learning*]. Written by
 some of the same authors, it introduces the most important concepts in
 statistical learning in a rigorous manner. It\'s ideal if you are new to
 statistical learning.
-:::
+
 
 
 
@@ -1262,7 +1262,7 @@ Learning*], <https://www.deeplearningbook.org/>.
 While this course is very praxis-oriented, [*Deep Learning*] is
 more focused on the theory behind deep learning. It covers a broad range
 of topics and derives practical applications from theoretical concepts.
-:::
+
 
 
 
@@ -1276,7 +1276,7 @@ Introduction*],
 The standard work of reinforcement learning discusses all major
 algorithms in depth. The focus is less on flashy results and more on the
 reasoning behind and derivation of reinforcement learning algorithms.
-:::
+
 
 
 

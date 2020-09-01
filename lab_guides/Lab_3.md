@@ -66,7 +66,7 @@ vision models. This will include a focus on the following topics:
 -   Advanced architectures for computer vision beyond classification.
 
 -   A note on libraries.
-:::
+
 
 Before we start, let\'s have a look at all the different libraries we
 will be using in this lab:
@@ -93,7 +93,7 @@ will be using in this lab:
 
 - **tqdm**: A tool to monitor the
     progress of Python programs.
-:::
+
 
 It\'s worth taking a minute to note that all of these libraries, except
 for OpenCV, can be installed via `pip`; for example,
@@ -152,8 +152,8 @@ the following:
 
 
 The number 7 from the MNIST dataset
-:::
-:::
+
+
 
 The preceding is an example from the MNIST dataset. The handwritten
 number in the image has been highlighted to make the figure seven
@@ -182,8 +182,8 @@ over the image.
 
 
 A vertical line filter
-:::
-:::
+
+
 
 Using the MNIST dataset on the following page, we start in the top-left
 corner and slice out the top-left 3x3 grid of pixels, which in this case
@@ -197,7 +197,7 @@ layer:
 
 
 ![](./images/B10354_03_001.jpg)
-:::
+
 
 As a result, the output of our vertical line filter will look like this:
 
@@ -206,8 +206,8 @@ As a result, the output of our vertical line filter will look like this:
 
 
 The output of a vertical line filter
-:::
-:::
+
+
 
 Take a minute to notice that the vertical lines are
 visible while the horizontal lines are gone. Only a
@@ -220,7 +220,7 @@ values. Meanwhile, the left side of the line
 actually shows negative values. This is not a big problem in practice as
 there are usually different filters for different kinds of lines and
 directions.
-:::
+
 
 
 
@@ -238,8 +238,8 @@ Our horizontal line filter might look like this:
 
 
 A horizontal line filter
-:::
-:::
+
+
 
 Using that example, we can now slide this filter over our image in the
 exact same way we did with the vertical filter, resulting in the
@@ -250,8 +250,8 @@ following output:
 
 
 The output of the vertical line filter
-:::
-:::
+
+
 
 See how this filter removes the vertical lines and
 pretty much only leaves the horizontal lines? The question now is what
@@ -263,8 +263,8 @@ filters on top of each other, creating a three-dimensional cube:
 
 
 The MNIST convolution
-:::
-:::
+
+
 
 By adding multiple convolutional layers, our
 ConvNet is able to extract ever more complex and semantic features.
@@ -300,8 +300,8 @@ plus the bias:
 
 
 An example of a filter cube or convolutional kernel
-:::
-:::
+
+
 
 This cube, which is referred to as a convolutional
 kernel, gets slid over the image just like the two-dimensional matrix
@@ -336,7 +336,7 @@ following code:
 from keras.datasets import mnist
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
 ```
-:::
+
 
 Our dataset contains 60,000 28x28-pixel images. MNIST characters are
 black and white, so the data shape usually does not include channels:
@@ -346,14 +346,14 @@ black and white, so the data shape usually does not include channels:
 ``` {.programlisting .language-markup}
 x_train.shape
 ```
-:::
+
 
 
 
 ``` {.programlisting .language-markup}
 out: (60000, 28, 28)
 ```
-:::
+
 
 We will take a closer look at color channels later,
 but for now, let\'s expand our data dimensions to show that we
@@ -368,14 +368,14 @@ x_train = np.expand_dims(x_train,-1)
 x_test = np.expand_dims(x_test,-1)
 x_train.shape
 ```
-:::
+
 
 
 
 ``` {.programlisting .language-markup}
 out: (60000, 28, 28, 1)
 ```
-:::
+
 
 With the code being run, you can see that we now have a single color
 channel added.
@@ -406,7 +406,7 @@ model.add(Conv2D(filters=6,
                  padding='valid',
                  input_shape=img_shape))
 ```
-:::
+
 
 When creating a new Conv2D layer, we must specify the number of filters
 we want to use, and the size of each filter.
@@ -429,7 +429,7 @@ choose to have a 3x4-pixel filter through
 majority of cases, filters have a size of either 3x3 or 5x5.
 Empirically, researchers have found that this is a size that yields good
 results.
-:::
+
 
 
 
@@ -450,7 +450,7 @@ and in the vast majority of cases that is correct. However, if we want
 to use a stride size of one horizontally, but two vertically, we can
 pass a tuple to the parameter as follows: `strides=(1,2)`. As
 in the case of the filter size, this is rarely done.
-:::
+
 
 
 
@@ -479,8 +479,8 @@ Let\'s have a look at each of the three paddings. First, No Padding:
 
 
 Option 1: No padding
-:::
-:::
+
+
 
 Then we have Same Padding:
 
@@ -489,8 +489,8 @@ Then we have Same Padding:
 
 
 Option 2: Same padding
-:::
-:::
+
+
 
 To ensure the output has the same size as the
 input, we can use `same` padding. Keras will then add enough
@@ -505,7 +505,7 @@ input feature map:
 
 
 Option 3: Valid padding
-:::
+
 
 
 #### Input shape {#input-shape .title}
@@ -515,7 +515,7 @@ Keras requires us to specify the input shape.
 However, this is only required for the first layer.
 For all the following layers, Keras will infer the input shape from the
 previous layer\'s output shape.
-:::
+
 
 
 
@@ -531,14 +531,14 @@ specify the same layer would be by using the following code:
 ``` {.programlisting .language-markup}
 model.add(Conv2D(6,3,input_shape=img_shape))
 ```
-:::
+
 
 The number of filters (here `6`) and the filter size (here
 `3`) are set as positional arguments, while
 `strides` and `padding` default to `1` and
 `valid` respectively. If this was a layer deeper in the
 network, we wouldn\'t even have to specify the input shape.
-:::
+
 
 
 
@@ -559,8 +559,8 @@ function, which we can see here:
 
 
 The ReLU activation function
-:::
-:::
+
+
 
 The ReLU formula, which was used to produce the above chart, can be seen
 below:
@@ -600,7 +600,7 @@ function in the activation layer, by running this code:
 from keras.layers import Activation
 model.add(Activation('relu'))
 ```
-:::
+
 
 
 ### MaxPooling2D {#maxpooling2d .title}
@@ -618,8 +618,8 @@ Below, we can see an example of Max Pooling:
 
 
 Max pooling
-:::
-:::
+
+
 
 Max pooling returns the maximum element out of a
 pool. This is in contrast to the example average of
@@ -638,7 +638,7 @@ model.add(MaxPool2D(pool_size=2,
                     strides=None, 
                     padding='valid'))
 ```
-:::
+
 
 When using a max pooling layer in Keras, we have to specify the desired
 pool size. The most common value is a 2x2 pool. Just as with the
@@ -663,13 +663,13 @@ following:
 ``` {.programlisting .language-markup}
 model.add(MaxPool2D(2))
 ```
-:::
+
 
 In this case, both `strides` and `padding` are set
 to their defaults, `None` and `valid` respectively.
 There is usually no activation after a pooling layer since the pooling
 layer does not perform a linear step.
-:::
+
 
 
 
@@ -706,11 +706,11 @@ model.add(Flatten())
 ConvNets usually consist of a feature extraction
 part, the convolutional layers, as well as a classification part. The
 classification part is made up out of the simple fully connected layers
-that we've already explored in [Lab
-1](https://subscription.packtpub.com/course/data/9781789136364/1){.link},
+that we've already explored in Lab
+1,
 [*Neural Networks and Gradient-Based Optimization*], and
 [Lab
-2](https://subscription.packtpub.com/course/data/9781789136364/2){.link},
+2,
 [*Applying Machine Learning to Structured Data*].
 
 To distinguish the plain layers from all other types of layers, we refer
@@ -726,7 +726,7 @@ This can be done by running the following code:
 from keras.layers import Dense
 model.add(Dense(10))
 ```
-:::
+
 
 After the linear step of the dense layer, we can add a
 `softmax` activation for multi-class regression, just as we
@@ -781,7 +781,7 @@ model.add(Dense(10))
 
 model.add(Activation('softmax'))
 ```
-:::
+
 
 In the following code, you can see the general structure of a typical
 ConvNet:
@@ -799,7 +799,7 @@ Flatten
 
 Dense
 ```
-:::
+
 
 The convolution and pooling layers are often used together in these
 blocks; you can find neural networks that repeat
@@ -812,7 +812,7 @@ We can get an overview of our model with the following command:
 ``` {.programlisting .language-markup}
 model.summary()
 ```
-:::
+
 
 Which will give us the following output:
 
@@ -844,7 +844,7 @@ Trainable params: 3,730
 Non-trainable params: 0
 _________________________________________________________________
 ```
-:::
+
 
 In this summary, you can clearly see how the pooling layers reduce the
 size of the feature map. It\'s a little bit less obvious from the
@@ -863,7 +863,7 @@ as many parameters. Convolutional layers usually achieve surprising
 feats with very few parameters, which is why they are so popular. The
 total number of parameters in a network can often be significantly
 reduced by convolutional and pooling layers.
-:::
+
 
 
 
@@ -883,7 +883,7 @@ You can import the dataset with the following code:
 from keras.datasets import mnist
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
 ```
-:::
+
 
 As explained at the beginning of the lab, we want to reshape the
 dataset so that it can have a channel dimension as well. The dataset as
@@ -895,7 +895,7 @@ can do:
 ``` {.programlisting .language-markup}
 x_train.shape
 ```
-:::
+
 
 
 
@@ -903,7 +903,7 @@ x_train.shape
 out:
 (60000, 28, 28)
 ```
-:::
+
 
 So, we add a channel dimension with NumPy, with the following code:
 
@@ -916,7 +916,7 @@ x_train = np.expand_dims(x_train,-1)
 
 x_test = np.expand_dims(x_test,-1)
 ```
-:::
+
 
 Now there is a channel dimension, as we can see here:
 
@@ -925,7 +925,7 @@ Now there is a channel dimension, as we can see here:
 ``` {.programlisting .language-markup}
 x_train.shape
 ```
-:::
+
 
 
 
@@ -950,7 +950,7 @@ MNIST dataset:
 ``` {.programlisting .language-markup}
 y_train.shape
 ```
-:::
+
 
 
 
@@ -958,7 +958,7 @@ y_train.shape
 out:
 (60000,)
 ```
-:::
+
 
 Transforming targets through one-hot encoding is a frequent and annoying
 task, so Keras allows us to just specify a loss function that converts
@@ -980,7 +980,7 @@ with the following code:
 ``` {.programlisting .language-markup}
 model.compile(loss='sparse_categorical_crossentropy',optimizer='adam',metrics=['acc'])
 ```
-:::
+
 
 As you can see, we are using an Adam optimizer. The exact workings of
 Adam are explained in the next section, [*More bells and whistles for
@@ -996,7 +996,7 @@ set in Keras by running the following code:
 ``` {.programlisting .language-markup}
 history = model.fit(x_train,y_train,batch_size=32,epochs=5,validation_data=(x_test,y_test))
 ```
-:::
+
 
 Once we have successfully run that code, we\'ll get the following
 output:
@@ -1013,7 +1013,7 @@ Epoch 2/10
 Epoch 10/10
 60000/60000 [==============================] - 18s 296us/step - loss: 0.0473 - acc: 0.9854 - val_loss: 0.0663 - val_acc: 0.9814
 ```
-:::
+
 
 To better see what is going on, we can plot the
 progress of training with the following code:
@@ -1031,7 +1031,7 @@ legend = ax.legend(loc='lower center', shadow=True)
 
 plt.show()
 ```
-:::
+
 
 This will give us the following chart:
 
@@ -1040,8 +1040,8 @@ This will give us the following chart:
 
 
 The visualized output of validation and training accuracy
-:::
-:::
+
+
 
 As you can see in the preceding chart, the model achieves about 98%
 validation accuracy, which is pretty nice!
@@ -1080,8 +1080,8 @@ the gradient, as we can see in the following diagram:
 
 
 How momentum smoothens gradient updates
-:::
-:::
+
+
 
 The exponentially weighted moving average is a clever mathematical trick
 used to compute a moving average without having to
@@ -1092,7 +1092,7 @@ follows:
 
 
 ![](./images/B10354_03_003.jpg)
-:::
+
 
 A beta value of 0.9 would mean that 90% of the mean would come from the
 previous moving average,
@@ -1113,7 +1113,7 @@ following code:
 from keras.optimizers import SGD
 momentum_optimizer = SGD(lr=0.01, momentum=0.9)
 ```
-:::
+
 
 This little code snippet creates a stochastic gradient descent optimizer
 with a learning rate of 0.01 and a beta value of 0.9. We can use it when
@@ -1143,20 +1143,20 @@ with the following formula:
 
 
 ![](./images/B10354_03_006.jpg)
-:::
+
 
 It then also computes the exponentially weighted average of the squared
 gradients:
 
 
 ![](./images/B10354_03_007.jpg)
-:::
+
 
 It then updates the model parameters like this:
 
 
 ![](./images/B10354_03_008.jpg)
-:::
+
 
 Here [![](./images/B10354_03_009.jpg)]{.inlinemediaobject} is a very
 small number to avoid division by zero.
@@ -1174,7 +1174,7 @@ recommended values for
 
 
 ![](./images/B10354_03_013.jpg)
-:::
+
 
 and [![](./images/B10354_03_014.jpg)]{.inlinemediaobject} are 0.9 and
 0.999 respectively.
@@ -1190,13 +1190,13 @@ adam_optimizer=adam(lr=0.1,beta_1=0.9, beta_2=0.999, epsilon=1e-08)
 
 model.compile(optimizer=adam_optimizer,loss='sparse_categorical_crossentropy',metrics=['acc'])
 ```
-:::
+
 
 As you have seen earlier in this lab, we can also compile the model
 just by passing the `adam` string as an optimizer. In this
 case, Keras will create an Adam optimizer for us and choose the
 recommended values.
-:::
+
 
 
 
@@ -1241,7 +1241,7 @@ the loss function. We can see an example of this in the formula below:
 
 
 ![](./images/B10354_03_015.jpg)
-:::
+
 
 Here [*N*] is the number of training examples and
 [![](./images/B10354_03_016.jpg)]{.inlinemediaobject} is the
@@ -1257,7 +1257,7 @@ Therefore, a regularized algorithm will rely less on every single
 feature and every single node activation, and instead will have a more
 holistic view, taking into account many features and activations. This
 will prevent the algorithm from overfitting.
-:::
+
 
 
 
@@ -1270,11 +1270,11 @@ sum of absolute values, as we can see in this formula:
 
 
 ![](./images/B10354_03_018.jpg)
-:::
+
 
 In practice, it is often a bit uncertain as to which of the two will
 work best, but the difference between the two is not very large.
-:::
+
 
 
 
@@ -1318,7 +1318,7 @@ model.add(Dense(10,bias_regularizer=l2(0.01)))
 
 model.add(Activation('softmax'))
 ```
-:::
+
 
 Setting `kernel_regularizer` as done in the first
 convolutional layer in Keras means regularizing weights. Setting
@@ -1351,7 +1351,7 @@ Epoch 2/10
 Epoch 10/10
 60000/60000 [==============================] - 20s 329us/step - loss: 0.9231 - acc: 0.8650 - val_loss: 0.8309 - val_acc: 0.8749
 ```
-:::
+
 
 You\'ll notice that the model achieves a higher
 accuracy on the validation than on the training set; this is a clear
@@ -1372,8 +1372,8 @@ randomly removing nodes from the neural network:
 
 Schematic of the dropout method. From Srivastava et al, \"Dropout: A
 Simple Way to Prevent Neural Networks from Overfitting,\" 2014
-:::
-:::
+
+
 
 With dropout, each node has a small probability of having its activation
 set to zero. This means that the learning algorithm can no longer rely
@@ -1409,7 +1409,7 @@ model.add(Dense(10,bias_regularizer=l2(0.01)))
 
 model.add(Activation('softmax'))
 ```
-:::
+
 
 A dropout value of 0.5 is considered a good choice
 if overfitting is a serious problem, while values that are over 0.5 are
@@ -1426,7 +1426,7 @@ model.compile(loss='sparse_categorical_crossentropy',optimizer = 'adam',metrics=
               
 history = model.fit(x_train,y_train,batch_size=32,epochs=10,validation_data=(x_test,y_test))
 ```
-:::
+
 
 
 
@@ -1440,14 +1440,14 @@ Epoch 2/10
 Epoch 10/10
 60000/60000 [==============================] - 21s 344us/step - loss: 0.1064 - acc: 0.9662 - val_loss: 0.0545 - val_acc: 0.9835
 ```
-:::
+
 
 The low dropout value creates nice results for us,
 but again, the network does better on the validation set rather than the
 training set, a clear sign of underfitting taking place. Note that
 dropout is only applied at training time. When the model is used
 for predictions, dropout doesn\'t do anything.
-:::
+
 
 
 
@@ -1497,7 +1497,7 @@ model.compile(loss='sparse_categorical_crossentropy',optimizer = 'adam',metrics=
               
 history = model.fit(x_train,y_train,batch_size=32,epochs=10,validation_data=(x_test,y_test))
 ```
-:::
+
 
 
 
@@ -1511,7 +1511,7 @@ Epoch 2/10
 Epoch 10/10
 60000/60000 [==============================] - 26s 432us/step - loss: 0.0314 - acc: 0.9897 - val_loss: 0.0518 - val_acc: 0.9843
 ```
-:::
+
 
 Batchnorm often accelerates training by making it
 easier. You can see how the accuracy rate jumps up in the first epoch
@@ -1522,8 +1522,8 @@ here:
 
 
 Training and validation accuracy of our MNIST classifier with batchnorm
-:::
-:::
+
+
 
 Batchnorm also has a mildly regularizing effect. Extreme values are
 often overfitted to, and batchnorm reduces extreme
@@ -1571,7 +1571,7 @@ Space*] dataset.
 The code and data for this section and the section on stacking
 pretrained models can be found and run here:
 <https://www.kaggle.com/jannesklaas/stacking-vgg>.
-:::
+
 
 Keras comes with an image data generator that can
 load files from disk out of the box. To do this, you simply need to run:
@@ -1581,7 +1581,7 @@ load files from disk out of the box. To do this, you simply need to run:
 ``` {.programlisting .language-markup}
 from keras.preprocessing.image import ImageDataGenerator
 ```
-:::
+
 
 To obtain a generator reading from the files, we first have to specify
 the generator. In Keras, `ImageDataGenerator` offers a range
@@ -1597,7 +1597,7 @@ to rescale by 1/255. We can achieve this by running the following:
 ``` {.programlisting .language-markup}
 imgen = ImageDataGenerator(rescale=1/255)
 ```
-:::
+
 
 This, however, is not yet the generator that loads the images for us.
 The `ImageDataGenerator` class offers a range of generators
@@ -1617,7 +1617,7 @@ this, we can simply run the following code:
 train_generator = imgen.flow_from_directory('train',batch_size=32, target_size=(150,150))
 validation_generator = imgen.flow_from_directory('validation',batch_size=32, tar get_size=(150,150))
 ```
-:::
+
 
 How did Keras find the images and how does it know
 which classes the images belong to? The Keras generator expects the
@@ -1632,8 +1632,8 @@ following folder structure:
         -   img
         -   img
         -   ...
-        :::
-    :::
+        
+    
 
     
     -   Class 1
@@ -1641,16 +1641,16 @@ following folder structure:
         -   img
         -   img
         -   ...
-        :::
-    :::
+        
+    
 
     
     -   Class 1
         
         -   img
-        :::
-    :::
-:::
+        
+    
+
 
 Our dataset is already set up that way, and it\'s usually not hard to
 sort images to match the generator\'s expectations.
@@ -1699,7 +1699,7 @@ VGG-16 can be downloaded via Keras by using the following code:
 from keras.applications.vgg16 import VGG16
 vgg_model = VGG16(include_top=False,input_shape=(150,150,3))
 ```
-:::
+
 
 
 
@@ -1708,7 +1708,7 @@ out:
 Downloading data from https://github.com/fchollet/deep-learning-models/releases/download/v0.1/vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5
 58892288/58889256 [==============================] - 5s 0us/step
 ```
-:::
+
 
 When downloading the data, we want to let Keras know that we don\'t want
 to include the top part (the classification part); we also want to let
@@ -1721,7 +1721,7 @@ will not be possible to add `Dense` layers on top:
 ``` {.programlisting .language-markup}
 vgg_model.summary()
 ```
-:::
+
 
 
 
@@ -1773,7 +1773,7 @@ Trainable params: 14,714,688
 Non-trainable params: 0
 _________________________________________________________________
 ```
-:::
+
 
 As you can see, the VGG model is very large, with
 over 14.7 million trainable parameters. It also consists of both
@@ -1787,7 +1787,7 @@ From this point, there are two different ways we can proceed:
 
 -   Preprocess all the images through the pertained model and then train
     a new model.
-:::
+
 
 
 
@@ -1807,11 +1807,11 @@ VGG-16, which we can do by running the following:
 for the layer in vgg_model.layers:
   layer.trainable = False
 ```
-:::
+
 
 Keras downloads VGG as a functional API model. We will learn more about
-the functional API in [Lab
-6](https://subscription.packtpub.com/course/data/9781789136364/6){.link},
+the functional API in Lab
+6,
 [*Using Generative Models*], but for now, we just want to use
 the Sequential API, which allows us to stack layers through
 `model.add()`. We can convert a model with the functional API
@@ -1822,7 +1822,7 @@ with the following code:
 ``` {.programlisting .language-markup}
 finetune = Sequential(layers = vgg_model.layers)
 ```
-:::
+
 
 As a result of running the code, we have now created a new model called
 `finetune` that works just like a normal Sequential model. We
@@ -1840,7 +1840,7 @@ finetune.add(Flatten())
 finetune.add(Dense(12))
 finetune.add(Activation('softmax'))
 ```
-:::
+
 
 The newly added layers are by default trainable, while the reused model
 socket is not. We can train this stacked model just as we would train
@@ -1854,11 +1854,11 @@ finetune.compile(loss='categorical_crossentropy',optimizer='adam',metrics = ['ac
                  
 finetune.fit_generator(train_generator,epochs=8,steps_per_epoch= 4606 // 32, validation_data=validation_generator, validation_steps= 144//32)
 ```
-:::
+
 
 After running this, the model manages to achieve a rate of about 75%
 validation accuracy.
-:::
+
 
 
 
@@ -1909,7 +1909,7 @@ train_datagen = ImageDataGenerator(
   horizontal_flip=True,
   fill_mode='nearest')
 ```
-:::
+
 
 This training data generator makes use of a few built-in augmentation
 techniques.
@@ -1920,7 +1920,7 @@ techniques.
 **Note**: There are more commands
 available in Keras. For a full list, you should refer to the Keras
 documentation at <https://keras.io/>.
-:::
+
 
 In the following list, we\'ve highlighted several commonly used
 commands:
@@ -1947,7 +1947,7 @@ commands:
 
 -   `fill_mode` specifies how to fill empty spaces created by,
     for example, rotation.
-:::
+
 
 We can check out what the generator does by running one image through it
 multiple times.
@@ -1962,7 +1962,7 @@ following:
 from keras.preprocessing import image
 fname = 'train/Charlock/270209308.png'
 ```
-:::
+
 
 We then need to load the image and convert it to a
 NumPy array, which is achieved with the following code:
@@ -1973,7 +1973,7 @@ NumPy array, which is achieved with the following code:
 img = image.load_img(fname, target_size=(150, 150))
 img = image.img_to_array(img)
 ```
-:::
+
 
 As before, we have to add a batch size dimension to the image:
 
@@ -1982,7 +1982,7 @@ As before, we have to add a batch size dimension to the image:
 ``` {.programlisting .language-markup}
 img = np.expand_dims(img,axis=0)
 ```
-:::
+
 
 We then use the `ImageDataGenerator` instance we just created,
 but instead of using `flow_from_directory`, we\'ll use
@@ -1995,7 +1995,7 @@ by running this:
 ``` {.programlisting .language-markup}
 gen = train_datagen.flow(img, batch_size=1)
 ```
-:::
+
 
 In a loop, we then call `next` on our generator four times:
 
@@ -2009,7 +2009,7 @@ for i in range(4):
     
 plt.show()
 ```
-:::
+
 
 This will produce the following output:
 
@@ -2051,7 +2051,7 @@ However, end-to-end deep learning does have several drawbacks:
 
 -   Some things are hard to learn but easy to write down as a code,
     especially sanity-check rules.
-:::
+
 
 Recently, researchers have begun to make their models more modular. A
 great example is Ha and Schmidthuber\'s [*World Models*],
@@ -2137,8 +2137,8 @@ visual representation of this idea in the following diagram:
 
 
 Schematic of a Siamese network
-:::
-:::
+
+
 
 To this end, you\'ll have to run the two images through first. A Siamese
 network is a class of neural network architecture that contains two or
@@ -2184,7 +2184,7 @@ The loss function looks like this:
 
 
 ![](./images/B10354_03_019.jpg)
-:::
+
 
 Here [![](./images/B10354_03_020.jpg)]{.inlinemediaobject} is an anchor
 image, and [![](./images/B10354_03_021.jpg)]{.inlinemediaobject} is the
@@ -2204,7 +2204,7 @@ through some binary classification tasks but also by treating the
 outputs as embeddings and using a triplet loss. This insight extends to
 more than faces. If you wanted to compare time series to classify
 events, then you could use the exact same approach.
-:::
+
 
 
 
@@ -2225,8 +2225,8 @@ images to your experts, who will check them:
 
 
 California homes with bounding boxes around their roofs
-:::
-:::
+
+
 
 What you need are bounding box predictions. A bounding box predictor
 outputs the coordinates of several bounding boxes together with
@@ -2272,7 +2272,7 @@ available at <https://arxiv.org/abs/1804.027>.
 
 Both are well-written, tongue-in-cheek papers, that explain the YOLO
 concept in more detail.
-:::
+
 
 The main advantage of YOLO over an R-CNN is that it\'s much faster. Not
 having to slide a large classification model is much more efficient.
@@ -2288,8 +2288,8 @@ deep learning model that classifies damaged roofs. Of course, you could
 train an object locator to distinguish between damaged and intact roofs
 directly, but in practice, this is usually not a good idea.
 
-If you\'re interested in reading more about this, [Lab
-4](https://subscription.packtpub.com/course/data/9781789136364/4){.link},
+If you\'re interested in reading more about this, Lab
+4,
 [*Understanding Time Series*], has a great discussion on
 modularity.
 

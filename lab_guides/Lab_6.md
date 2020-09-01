@@ -38,12 +38,12 @@ turning them into street maps. Another example is that generative models
 can generate code from website screenshots. They can even be used to
 combat unfairness and discrimination in machine learning models,
 as we will
-see in [Chapter 9](https://subscription.packtpub.com/course/data/9781789136364/9){.link},
+see in [Chapter 9,
 [*Fighting Bias*].
 
 In the field of finance, data is frequently sparse. Think back to the
-fraud case from [Lab
-2](https://subscription.packtpub.com/course/data/9781789136364/2){.link},
+fraud case from Lab
+2,
 [*Applying Machine Learning to Structured Data,*] in which we
 were classifying fraudulent transactions from transaction metadata. We
 found that there was not much fraud taking place in the dataset that we
@@ -93,7 +93,7 @@ the following is true:
 
 
 ![](./images/B10354_06_001.jpg)
-:::
+
 
 This might sound trivial at first, but the trick here is that
 autoencoders have a bottleneck. The middle hidden layer\'s size is
@@ -109,8 +109,8 @@ compressed representation of the Autoencoder scheme:
 
 
 Autoencoder scheme
-:::
-:::
+
+
 
 This compressed representation aims to capture the essence of the input,
 which turns out to be useful for us. We might, for example, want to
@@ -154,7 +154,7 @@ experiments are reproducible.
 **Note**: You can find the code for the
 MNIST autoencoder and variational autoencoder under the following URL
 <https://www.kaggle.com/jannesklaas/mnist-autoencoder-vae.>
-:::
+
 
 We\'re going to set the encoding dimensionality hyperparameter now so
 that we can use it later:
@@ -164,7 +164,7 @@ that we can use it later:
 ``` {.programlisting .language-markup}
 encoding_dim = 32
 ```
-:::
+
 
 Then, we construct the autoencoder using the Keras functional API. While
 a simple autoencoder could be constructed using the sequential API, this
@@ -183,7 +183,7 @@ the following:
 from keras.models import Model
 from keras.layers import Input, Dense
 ```
-:::
+
 
 Now we are chaining up the autoencoder\'s layers: an `Input`
 layer followed by a `Dense` layer that encodes the image to a
@@ -201,7 +201,7 @@ encoded = Dense(encoding_dim, activation='relu')(input_img)
 
 decoded = Dense(784, activation='sigmoid')(encoded)
 ```
-:::
+
 
 After we have created and chained up the layers, we are then able to
 create a model that maps from the input to the decoded image:
@@ -211,7 +211,7 @@ create a model that maps from the input to the decoded image:
 ``` {.programlisting .language-markup}
 autoencoder = Model(input_img, decoded)
 ```
-:::
+
 
 To get a better idea of what is going on, we can plot a visualization of
 the resulting autoencoder model with the following code:
@@ -223,7 +223,7 @@ from keras.utils import plot_model
 plot_model(autoencoder, to_file='model.png', show_shapes=True) plt.figure(figsize=(10,10))
 plt.imshow(plt.imread('model.png'))
 ```
-:::
+
 
 You can see our autoencoder as follows:
 
@@ -232,8 +232,8 @@ You can see our autoencoder as follows:
 
 
 Autoencoder model
-:::
-:::
+
+
 
 Which we can compile with:
 
@@ -242,7 +242,7 @@ Which we can compile with:
 ``` {.programlisting .language-markup}
 autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
 ```
-:::
+
 
 To train this autoencoder, we use the [*X*] values as both
 the input and output:
@@ -252,7 +252,7 @@ the input and output:
 ``` {.programlisting .language-markup}
 autoencoder.fit(X_train_flat, X_train_flat,epochs=50,batch_size=256,shuffle=True,validation_data=(X_test_flat, X_test_flat))
 ```
-:::
+
 
 After we train this autoencoder, which will take between one and two
 minutes, we can visually inspect how well it is doing. To do this, we
@@ -265,7 +265,7 @@ the model, which is what we use `np.expand_dims` for:
 ``` {.programlisting .language-markup}
 original = np.expand_dims(X_test_flat[0],0)
 ```
-:::
+
 
 Now we\'re going to run the original image through the autoencoder.
 You\'ll remember that the original MNIST image showed us a number seven,
@@ -277,7 +277,7 @@ well:
 ``` {.programlisting .language-markup}
 seven = autoencoder.predict(original)
 ```
-:::
+
 
 Next, we\'re going to reshape both the autoencoder output as well as the
 original image back into 28x28-pixel images:
@@ -288,7 +288,7 @@ original image back into 28x28-pixel images:
 seven = seven.reshape(1,28,28)
 original = original.reshape(1,28,28)
 ```
-:::
+
 
 We then plot the original and reconstructed image next to each other.
 `matplotlib` does not allow the image to have a batch
@@ -310,7 +310,7 @@ b=fig.add_subplot(1,2,2)
 b.set_title('Autoencoder')
 imgplot = plt.imshow(seven[0,:,:])
 ```
-:::
+
 
 After running that code, you\'ll see that our hopes have been achieved!
 Compared to the original image (left), our autoencoder image (right) is
@@ -321,8 +321,8 @@ also showing a seven!:
 
 
 Autoencoder result
-:::
-:::
+
+
 
 As you can see in the preceding screenshot, the
 reconstructed seven is still a seven, so the autoencoder was able to
@@ -340,7 +340,7 @@ good features that another classifier would be able to work with.
 
 In the next section, we will apply an autoencoder to the credit card
 fraud problem.
-:::
+
 
 
 
@@ -349,8 +349,8 @@ fraud problem.
 
 Throughout this section, we will once again be dealing with the problem
 of credit card fraud. This time, we will be using a slightly different
-dataset from that in [Lab
-2](https://subscription.packtpub.com/course/data/9781789136364/2){.link},
+dataset from that in Lab
+2,
 [*Applying Machine Learning to Structured Data*].
 
 This new dataset contains records of actual credit
@@ -365,7 +365,7 @@ end-to-end learning methods in order to build a good fraud detector.
 <https://www.kaggle.com/mlg-ulb/creditcardfraud> and the notebook with
 an implementation of an autoencoder and variational autoencoder at:
 <https://www.kaggle.com/jannesklaas/credit-vae>.
-:::
+
 
 As usual, we first load the data. The `Time` feature shows the
 absolute time of the transaction, which makes the data a bit hard to
@@ -378,7 +378,7 @@ running:
 df = pd.read_csv('../input/creditcard.csv')
 df = df.drop('Time',axis=1)
 ```
-:::
+
 
 We then separate the `X` data on the transaction from the
 classification of the transaction and extract the NumPy array that
@@ -390,7 +390,7 @@ underlies the pandas DataFrame:
 X = df.drop('Class',axis=1).values
 y = df['Class'].values
 ```
-:::
+
 
 Now we need to scale the features. Feature scaling makes it easier for
 our model to learn a good representation of the data. This time around,
@@ -413,7 +413,7 @@ By specifying `axis=0`, we perform the scaling column-wise:
 X -= X.min(axis=0)
 X /= X.max(axis=0)
 ```
-:::
+
 
 Then, finally, we split our data:
 
@@ -423,7 +423,7 @@ Then, finally, we split our data:
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train,y_test = train_test_split(X,y,test_size=0.1)
 ```
-:::
+
 
 We then create the exact same autoencoder as we did before; however,
 this time, we do it with different dimensions. Our input now has 29
@@ -440,7 +440,7 @@ still significantly compressing the data:
 from keras.models import Model
 from keras.layers import Input, Dense
 ```
-:::
+
 
 We are going to use the sigmoid activation function for the decoded
 data. This is only possible because we\'ve scaled the data to have
@@ -462,7 +462,7 @@ encoded = Dense(12,activation='tanh')(data_in)
 decoded = Dense(29,activation='sigmoid')(encoded)
 autoencoder = Model(data_in,decoded)
 ```
-:::
+
 
 In this example, we\'ve used a mean squared error loss. This seems a bit
 of an unusual choice at first, using a sigmoid activation with a mean
@@ -482,7 +482,7 @@ one, which is not what we always want:
 ``` {.programlisting .language-markup}
 autoencoder.compile(optimizer='adam',loss='mean_squared_error')
 ```
-:::
+
 
 After training, which will take around two minutes, the autoencoder
 converges to a low loss:
@@ -492,7 +492,7 @@ converges to a low loss:
 ``` {.programlisting .language-markup}
 autoencoder.fit(X_train,X_train,epochs = 20,batch_size=128,validation_data=(X_test,X_test))
 ```
-:::
+
 
 The reconstruction loss is low, but how do we know whether our
 autoencoder is working well? Once again, a visual inspection will come
@@ -508,7 +508,7 @@ autoencoder:
 ``` {.programlisting .language-markup}
 pred = autoencoder.predict(X_test[0:10])
 ```
-:::
+
 
 We must can then plot individual samples. The following code produces an
 overlaid bar chart comparing the original transaction data with the
@@ -539,7 +539,7 @@ plt.legend()
 
 plt.show()
 ```
-:::
+
 
 This code will then give us the following chart:
 
@@ -548,8 +548,8 @@ This code will then give us the following chart:
 
 
 Autoencoder reconstruction versus original data
-:::
-:::
+
+
 
 As you can see, our model does a fine job at
 reconstructing the original values. The reconstructed values often match
@@ -578,7 +578,7 @@ model that maps from the input to the encoded state:
 ``` {.programlisting .language-markup}
 encoder = Model(data_in,encoded)
 ```
-:::
+
 
 Note that you don\'t need to train this model again. The layers keep the
 weights from the previously trained autoencoder.
@@ -590,7 +590,7 @@ To encode our data, we now use the encoder model:
 ``` {.programlisting .language-markup}
 enc = encoder.predict(X_test)
 ```
-:::
+
 
 But how would we know whether these encodings contain any meaningful
 information about fraud? Once again, visual representation is key. While
@@ -628,8 +628,8 @@ neighbors as in the high-dimensional data:
 
 
 How t-SNE measures similarity
-:::
-:::
+
+
 
 The t-SNE algorithm follows these steps:
 
@@ -644,7 +644,7 @@ The t-SNE algorithm follows these steps:
 
     
     ![](./images/B10354_06_002.jpg)
-    :::
+    
 
     In the preceding formula,
     [![](./images/B10354_06_003.jpg)]{.inlinemediaobject}2 is the
@@ -663,7 +663,7 @@ The t-SNE algorithm follows these steps:
 
     
     ![](./images/B10354_06_006.jpg)
-    :::
+    
 
     In the preceding formula, [*n*] is the number of data
     points.
@@ -675,7 +675,7 @@ The t-SNE algorithm follows these steps:
 
     
     ![](./images/B10354_06_007.jpg)
-    :::
+    
 
 4.  Just like in training neural networks, we will
     optimize the positions of the data points in the lower dimensional
@@ -692,7 +692,7 @@ The t-SNE algorithm follows these steps:
 
     
     ![](./images/B10354_06_008.jpg)
-    :::
+    
 
 5.  Adjust the data points in the lower dimensional space by using
     gradient descent, moving points that were close in the
@@ -701,11 +701,11 @@ The t-SNE algorithm follows these steps:
 
     
     ![](./images/B10354_06_009.jpg)
-    :::
+    
 
 6.  You will recognize this as a form of gradient descent with momentum,
     as the previous gradient is incorporated into the updated position.
-:::
+
 
 The t-distribution used always has one degree of freedom. This freedom
 leads to a simpler formula as well as some nice numerical properties
@@ -721,7 +721,7 @@ calculated as follows:
 
 
 ![](./images/B10354_06_010.jpg)
-:::
+
 
 Here [*P~i~*] is a probability distribution over the position
 of all data points in the dataset and
@@ -730,7 +730,7 @@ entropy of this distribution, calculated as follows:
 
 
 ![](./images/B10354_06_012.jpg)
-:::
+
 
 While the details of this formula are not very relevant to using t-SNE,
 it is important to know that t-SNE performs a search over values of the
@@ -767,7 +767,7 @@ from sklearn.manifold import TSNE
 tsne = TSNE(verbose=1,n_iter=5000)
 res = tsne.fit_transform(enc)
 ```
-:::
+
 
 As a word of warning, t-SNE is quite slow as it needs to compute the
 distances between all the points. By default, scikit-learn uses a faster
@@ -785,7 +785,7 @@ will not be covering it in this book.
 **Note**: You can find the faster implementation with
 installation instructions under the following URL
 <https://github.com/DmitryUlyanov/Multicore-TSNE>.
-:::
+
 
 We can then plot our t-SNE results as a scatterplot. For illustration,
 we will distinguish frauds from non-frauds by color, with frauds being
@@ -800,7 +800,7 @@ scatter =plt.scatter(res[:,0],res[:,1],c=y_test, cmap='coolwarm', s=0.6)
 scatter.axes.get_xaxis().set_visible(False)
 scatter.axes.get_yaxis().set_visible(False)
 ```
-:::
+
 
 Let\'s now see, what the output chart will look like:
 
@@ -809,8 +809,8 @@ Let\'s now see, what the output chart will look like:
 
 
 t-SNE results in the form of a scatter graph
-:::
-:::
+
+
 
 For easier spotting, and for those reading the print version,
 the cluster containing the most frauds, those that
@@ -868,8 +868,8 @@ standard deviation of this encoding,
 
 
 VAE scheme
-:::
-:::
+
+
 
 Both the mean and standard deviation are vectors, just as with the
 encoding vector we used for the vanilla autoencoder. However, to create
@@ -905,7 +905,7 @@ from keras.layers import Input, Dense, Lambda
 from keras import backend as K
 from keras import metrics
 ```
-:::
+
 
 Notice the two new imports, the `Lambda` layer and the
 `metrics` module. The `metrics` module provides
@@ -931,7 +931,7 @@ latent_dim = 32
 intermediate_dim = 256
 epochs = 50
 ```
-:::
+
 
 For computational reasons, it is easier to learn the log of the standard
 deviation rather than the standard deviation itself. To do this we
@@ -981,7 +981,7 @@ def sampling(args):
     epsilon = K.random_normal(shape=(K.shape(z_mean)[0], latent_dim), mean=0.,stddev=1.0)                     #2
     return z_mean + K.exp(z_log_var / 2) * epsilon            #3
 ```
-:::
+
 
 Let\'s take a minute to break down the function:
 
@@ -997,7 +997,7 @@ Let\'s take a minute to break down the function:
     give it the learned standard deviation and add the learned mean.
     Since we are learning the log standard deviation, we have to apply
     the exponent function to our learned tensor.
-:::
+
 
 All these operations are differentiable since we are using the Keras
 backend functions. Now we can turn this function into a layer and
@@ -1008,7 +1008,7 @@ connect it to the previous two layers with one line:
 ``` {.programlisting .language-markup}
 z = Lambda(sampling)([z_mean, z_log_var])
 ```
-:::
+
 
 And voilà! We\'ve now got a custom layer that samples from a normal
 distribution described by two tensors. Keras can automatically
@@ -1024,14 +1024,14 @@ are able to do this with two `Dense` layers:
 decoder_h = Dense(intermediate_dim, activation='relu')(z)
 x_decoded = Dense(original_dim, activation='sigmoid')decoder_mean(h_decoded)
 ```
-:::
+
 
 Our network is now complete. This network will encode any MNIST image
 into a mean and a standard deviation tensor from which the decoding part
 then reconstructs the image. The only thing missing is the custom loss
 incentivizing the network to both reconstruct images and produce a
 normal Gaussian distribution in its encodings. Let\'s address that now.
-:::
+
 
 
 
@@ -1064,8 +1064,8 @@ cover continuous distributions later:
 
 
 Approximation versus actual
-:::
-:::
+
+
 
 Of course, the returns in your data are not exactly normally
 distributed. So, just how much information about returns would you lose
@@ -1074,7 +1074,7 @@ divergence is measuring:
 
 
 ![](./images/B10354_06_021.jpg)
-:::
+
 
 Here [![](./images/B10354_06_022.jpg)]{.inlinemediaobject} and
 [![](./images/B10354_06_023.jpg)]{.inlinemediaobject} are the
@@ -1086,7 +1086,7 @@ logarithm of probabilities of the distributions [*p*] and
 
 
 ![](./images/B10354_06_024.jpg)
-:::
+
 
 This expected difference of log probabilities is the same as the average
 information lost if you approximate distribution [*p*] with
@@ -1094,19 +1094,19 @@ distribution [*q*]. See the following:
 
 
 ![](./images/B10354_06_025.jpg)
-:::
+
 
 Given that the KL divergence is usually written out as follows:
 
 
 ![](./images/B10354_06_026.jpg)
-:::
+
 
 It can also be written in its continuous form as:
 
 
 ![](./images/B10354_06_027.jpg)
-:::
+
 
 For VAEs, we want the distribution of encodings to be a normal Gaussian
 distribution with a mean of zero and a standard deviation of one.
@@ -1122,20 +1122,20 @@ simplifies to the following:
 
 
 ![](./images/B10354_06_032.jpg)
-:::
+
 
 The partial derivatives to our mean and standard deviation vectors are,
 therefore as follows:
 
 
 ![](./images/B10354_06_033.jpg)
-:::
+
 
 With the other being:
 
 
 ![](./images/B10354_06_034.jpg)
-:::
+
 
 You can see that the derivative with respect to
 [![](./images/B10354_06_035.jpg)]{.inlinemediaobject} is zero if
@@ -1144,7 +1144,7 @@ derivative with respect to
 [![](./images/B10354_06_037.jpg)]{.inlinemediaobject} is zero if
 [![](./images/B10354_06_038.jpg)]{.inlinemediaobject} is one. This loss
 term is added to the reconstruction loss.
-:::
+
 
 
 
@@ -1170,14 +1170,14 @@ by the output dimensionality:
 ``` {.programlisting .language-markup}
 reconstruction_loss = original_dim * metrics.binary_crossentropy(x, x_decoded)
 ```
-:::
+
 
 The KL divergence loss is the simplified version of KL divergence, which
 we discussed earlier on in the section on KL divergence:
 
 
 ![](./images/B10354_06_039.jpg)
-:::
+
 
 Expressed in Python, the KL divergence loss appears like the following
 code:
@@ -1187,7 +1187,7 @@ code:
 ``` {.programlisting .language-markup}
 kl_loss = - 0.5 * K.sum(1 + z_log_var - K.square(z_mean) - K.exp(z_log_var), axis=-1)
 ```
-:::
+
 
 Our final loss is then the mean of the sum of the reconstruction loss
 and KL divergence loss:
@@ -1197,7 +1197,7 @@ and KL divergence loss:
 ``` {.programlisting .language-markup}
 vae_loss = K.mean(reconstruction_loss + kl_loss)
 ```
-:::
+
 
 Since we have used the Keras backend for all of the calculations, the
 resulting loss is a tensor that can be automatically differentiated. Now
@@ -1208,7 +1208,7 @@ we can create our model as usual:
 ``` {.programlisting .language-markup}
 vae = Model(x, x_decoded)
 ```
-:::
+
 
 Since we are using a custom loss, we have the loss separately, and we
 can\'t just add it in the `compile` statement:
@@ -1218,7 +1218,7 @@ can\'t just add it in the `compile` statement:
 ``` {.programlisting .language-markup}
 vae.add_loss(vae_loss)
 ```
-:::
+
 
 Now we will compile the model. Since our model already has a loss, we
 only have to specify the optimizer:
@@ -1228,7 +1228,7 @@ only have to specify the optimizer:
 ``` {.programlisting .language-markup}
 vae.compile(optimizer='rmsprop')
 ```
-:::
+
 
 Another side effect of the custom loss is that it compares the
 [*output*] of the VAE with the [*input*] of the
@@ -1245,10 +1245,10 @@ values, as only specifying an input is enough:
             batch_size=batch_size,
             validation_data=(X_test_flat, None))
 ```
-:::
+
 
 In the next section we will learn how we can use a VAE to generate data.
-:::
+
 
 
 
@@ -1268,7 +1268,7 @@ To showcase this, from our test data, we\'re going to take a seven:
 ``` {.programlisting .language-markup}
 one_seven = X_test_flat[0]
 ```
-:::
+
 
 We then add a batch dimension and repeat the seven across the batch four
 times. After which we now have a batch of four, identical sevens:
@@ -1279,7 +1279,7 @@ times. After which we now have a batch of four, identical sevens:
 one_seven = np.expand_dims(one_seven,0)
 one_seven = one_seven.repeat(4,axis=0)
 ```
-:::
+
 
 We can then make a prediction on that batch, in which case, we get back
 the reconstructed sevens:
@@ -1289,7 +1289,7 @@ the reconstructed sevens:
 ``` {.programlisting .language-markup}
 s = vae.predict(one_seven)
 ```
-:::
+
 
 The next step is broken in two parts. Firstly, we\'re going to reshape
 all the sevens back into image form:
@@ -1299,7 +1299,7 @@ all the sevens back into image form:
 ``` {.programlisting .language-markup}
 s= s.reshape(4,28,28)
 ```
-:::
+
 
 Then we are going to plot them:
 
@@ -1315,7 +1315,7 @@ for i in range(1, columns*rows +1):
     plt.imshow(img)
 plt.show()
 ```
-:::
+
 
 As a result of running the code that we\'ve just walked through, we\'ll
 then see the following screenshot showing our four sevens as our output:
@@ -1325,8 +1325,8 @@ then see the following screenshot showing our four sevens as our output:
 
 
 A collection of sevens
-:::
-:::
+
+
 
 As you can see, all of the images show a seven.
 While they look quite similar, if you look closely, you can see that
@@ -1339,7 +1339,7 @@ While using this data for more training is not as good as compared to
 using using completely new real-world data, it is still very useful.
 While generative models such as this one are nice on the eye we will now
 discuss how this technique can be used for credit card fraud detection.
-:::
+
 
 
 
@@ -1359,7 +1359,7 @@ original_dim = 29
 latent_dim = 6
 intermediate_dim = 16
 ```
-:::
+
 
 The following visualization shows the resulting VAE including both the
 input and output shapes:
@@ -1369,8 +1369,8 @@ input and output shapes:
 
 
 Overview of the credit card VAE
-:::
-:::
+
+
 
 Armed with a VAE that can encode and generate
 credit card data, we can now tackle the task of an end-to-end fraud
@@ -1393,7 +1393,7 @@ VAEs for time series {#vaes-for-time-series .title style="clear: both"}
 This section covers the how and why of time series
 VAEs and gives a couple of examples where they have been used. Time
 series are such a big topic in finance that [Lab
-4](https://subscription.packtpub.com/course/data/9781789136364/4){.link},
+4,
 [*Understanding Time Series,*] is heavily focused to it.
 
 Autoencoders have found applications in connection to time series as
@@ -1463,7 +1463,7 @@ model.add(LSTM(latent_dim, input_shape=(maxlen, nb_features)))  #2
 model.add(RepeatVector(maxlen))                                 #3
 model.add(LSTM(nb_features, return_sequences=True))             #4
 ```
-:::
+
 
 Let\'s pause for a second and break down what we\'ve just coded. As you
 can see, there are four key elements to this code:
@@ -1482,7 +1482,7 @@ can see, there are four key elements to this code:
 
 4.  Now we feed the sequence of repeated encodings into a decoding
     LSTM, which this time returns the full sequence.
-:::
+
 
 VAEs can also find their way into trading. They can be used to augment
 backtesting by generating new, unseen data for testing. Likewise, we can
@@ -1549,8 +1549,8 @@ We can visualize a GAN scheme, as we can see in the following diagram:
 
 
 GAN scheme
-:::
-:::
+
+
 
 Once again, generative models are easier to
 understand when images are generated, so in this section, we will look
@@ -1584,19 +1584,18 @@ The training process for a GAN works as follows:
     images, which get mixed with real images in order to train the
     discriminator, whose gradients are used to train the generator
     again.
-:::
+
 
 
 ### Note {#note .title}
 
 **Note**: GAN training has a lot of similarities to the
-visualization of the network layers that we discussed in [Lab
-3](https://subscription.packtpub.com/course/data/9781789136364/3){.link},
+visualization of the network layers that we discussed in Lab 3,
 [*Utilizing Computer Vision*], only this time we don\'t just
 create one image that maximizes an activation
 function, instead we create a generative network that specializes in
 maximizing the activation function of another network.
-:::
+
 
 Mathematically, generator [*G*] and discriminator
 [*D*] play a mini-max two-player game with the value function
@@ -1604,7 +1603,7 @@ Mathematically, generator [*G*] and discriminator
 
 
 ![](./images/B10354_06_041.jpg)
-:::
+
 
 In this formula [*x*] is an item drawn from the distribution
 of real data, [![](./images/B10354_06_042.jpg)]{.inlinemediaobject}, and
@@ -1617,15 +1616,15 @@ game is
 
 
 ![](./images/B10354_06_043.jpg)
-:::
+
 
 , that is, if the distribution of the generated data is equal to the
 distribution of actual data.
 
 GANs get optimized following a game-theoretic value function. Solving
 this type of optimization problem with deep learning is an active area
-of research, and an area we will visit again in [Lab
-8](https://subscription.packtpub.com/course/data/9781789136364/8){.link},
+of research, and an area we will visit again in Lab
+8,
 [*Privacy, Debugging, and Launching Your Products,*] where we
 will discuss reinforcement learning. The fact that deep learning can be
 used to solve Minimax games is exciting news for the field of finance
@@ -1646,7 +1645,7 @@ for easy model building:
 ``` {.programlisting .language-markup}
 from keras.models import Model, Sequential
 ```
-:::
+
 
 In this example we will be using a few new layer types:
 
@@ -1657,7 +1656,7 @@ from keras.layers import Input, Dense, Dropout, Flatten
 from keras.layers import LeakyReLU, Reshape
 from keras.layers import Conv2D, UpSampling2D
 ```
-:::
+
 
 Let\'s look at some of the key elements:
 
@@ -1666,15 +1665,15 @@ Let\'s look at some of the key elements:
     allows for small negative values. This prevents
     the gradient from ever becoming zero. This activation function works
     well for GANs, something we will discuss in the next section:
-:::
+
 
 
 ![](./images/B10354_06_12.jpg)
 
 
 Leaky ReLU
-:::
-:::
+
+
 
 
 -   `Reshape` does the same as `np.reshape`: it
@@ -1682,7 +1681,7 @@ Leaky ReLU
 
 -   `UpSampling2D` scales a 2D feature map up, for example, by
     a factor of two, by repeating all numbers in the feature map.
-:::
+
 
 We will be using the `Adam` optimizer as we often do:
 
@@ -1691,7 +1690,7 @@ We will be using the `Adam` optimizer as we often do:
 ``` {.programlisting .language-markup}
 from keras.optimizers import Adam
 ```
-:::
+
 
 Neural network layers get initialized randomly. Usually, the random
 numbers are drawn from a distribution that supports
@@ -1703,7 +1702,7 @@ distribution is a better alternative:
 ``` {.programlisting .language-markup}
 from keras.initializers import RandomNormal
 ```
-:::
+
 
 Now we\'re going to build the generator model:
 
@@ -1728,7 +1727,7 @@ generator.add(Conv2D(1, kernel_size=(5, 5),padding='same', activation='tanh'))  
 adam = Adam(lr=0.0002, beta_1=0.5)
 generator.compile(loss='binary_crossentropy', optimizer=adam) #10
 ```
-:::
+
 
 Again, let\'s take a look at the generator model code, which consists of
 10 key steps:
@@ -1752,8 +1751,8 @@ Again, let\'s take a look at the generator model code, which consists of
 
 4.  Now we reshape our flat vector into a 3D tensor. This is the
     opposite of using a `Flatten` layer, which
-     we did in [Lab
-    3](https://subscription.packtpub.com/course/data/9781789136364/3){.link},
+     we did in Lab
+    3,
     [*Utilizing Computer Vision*]. We now have a tensor with
     128 channels in a 7x7-pixel image or feature map.
 
@@ -1783,7 +1782,7 @@ Again, let\'s take a look at the generator model code, which consists of
 10. Finally, we compile the generator to train with the `Adam`
     optimizer with a very small learning rate and smaller-than-usual
     momentum.
-:::
+
 
 The discriminator is a relatively standard image classifier that
 classifies images as real or fake. There are only a few GAN-specific
@@ -1805,7 +1804,7 @@ discriminator.add(Flatten())
 discriminator.add(Dense(1, activation='sigmoid'))
 discriminator.compile(loss='binary_crossentropy', optimizer=adam)
 ```
-:::
+
 
 There are two key elements here:
 
@@ -1815,7 +1814,7 @@ There are two key elements here:
 
 2.  Dropout is commonly used in image classifiers. For GANs, it should
     also be used just before the last layer.
-:::
+
 
 Now we have both a generator and a discriminator. To train the
 generator, we have to get the gradients from the discriminator to
@@ -1826,7 +1825,7 @@ of Keras\' modular design comes into play.
 ### Note {#note-1 .title}
 
 **Note**: Keras models can be treated just like Keras layers.
-:::
+
 
 The following code creates a GAN model that can be used to train the
 generator from the discriminator gradients:
@@ -1841,7 +1840,7 @@ ganOutput = discriminator(x)                            #4
 gan = Model(inputs=ganInput, outputs=ganOutput)         #5
 gan.compile(loss='binary_crossentropy', optimizer=adam) #6
 ```
-:::
+
 
 Within that code, there are six key stages:
 
@@ -1872,7 +1871,7 @@ Within that code, there are six key stages:
     they are part of the GAN model. Keras will throw a warning on
     training time that the weights are not frozen for the actual
     discriminator model.
-:::
+
 
 Training our GAN requires some customization of the training process and
 a couple of GAN-specific tricks as well. More specifically, we have to
@@ -1916,7 +1915,7 @@ for e in range(1, epochs+1):                                   #2
     dLosses.append(dloss)                                      #16
     gLosses.append(gloss)
 ```
-:::
+
 
 That was a lot of code we just introduced. So, let\'s take a minute to
 pause and think about the 16 key steps:
@@ -1969,7 +1968,7 @@ pause and think about the 16 key steps:
     part will classify the generated images as real.
 
 16. We save the losses from training.
-:::
+
 
 In the following figure, you can see some of the generated MNIST
 characters:
@@ -1979,8 +1978,8 @@ characters:
 
 
 GAN-generated MNIST characters
-:::
-:::
+
+
 
 Most of these characters look like identifiable
 numbers, although some, such as those in the bottom left and right, seem
@@ -1995,8 +1994,8 @@ increasing number of Epochs.
 
 
 GAN training progress
-:::
-:::
+
+
 
 Note that the loss in GAN training is not
 interpretable as it is for supervised learning. The loss of a GAN will
@@ -2021,7 +2020,7 @@ been developed over time that makes GAN training more stable. Knowing
 these tricks can help you with your GAN building
 process and save you countless hours, even though there is often no
 theoretical reason for why these tricks work.
-:::
+
 
 
 
@@ -2044,7 +2043,7 @@ the latent representation of different objects creates realistic, new
 objects. Yet, research on the latent space of GANs is still in its
 infancy and drawing conclusions about the world from its latent space
 representations is an active field of research.
-:::
+
 
 
 
@@ -2069,14 +2068,14 @@ that matters to us is that they help in practice:
 
     
     ![](./images/B10354_06_044.jpg)
-    :::
+    
 
     In this formula, [*D*] is the discriminator output. In
     practice, it works better if the objective of the generator is this:
 
     
     ![](./images/B10354_06_044-1.jpg)
-    :::
+    
 
     In other words, instead of minimizing the negative discriminator
     output, it is better to maximize the discriminator output. The
@@ -2096,8 +2095,8 @@ that matters to us is that they help in practice:
 - **Use batch normalization**: We\'ve already seen that
     GANs don\'t work well with extreme values since they are so fragile.
     Another way to reduce extreme values is to use batch normalization,
-    as we discussed in [Lab
-    3](https://subscription.packtpub.com/course/data/9781789136364/3){.link},
+    as we discussed in Lab
+    3,
     [*Utilizing Computer Vision*].
 
 - **Use separate batches for real and fake data**: In the
@@ -2233,8 +2232,8 @@ can then be clustered without the need for labels that describe
 the image.
 
 **Supervised learning** uses data with
-labels. An example is the image classifier we built in [Lab
-3](https://subscription.packtpub.com/course/data/9781789136364/3){.link},
+labels. An example is the image classifier we built in Lab
+3,
 [*Utilizing Computer Vision,*] or most of the other models
 that we\'ve built in this book.
 
@@ -2277,8 +2276,8 @@ is, while the points further in the back are not as relevant:
 
 
 Frontier points are more valuable
-:::
-:::
+
+
 
 As such, the frontier points are more valuable than points further away
 from the decision boundary. You can train on less data by doing the
@@ -2295,11 +2294,11 @@ following:
     adding them to your training set
 
 5.  Repeating the process
-:::
+
 
 This process of labeling data is much more efficient than just randomly
 labeling data and can accelerate your efforts quite drastically.
-:::
+
 
 
 
@@ -2327,8 +2326,8 @@ or just put the item back on the stack and display the next most likely
 label the next time.
 
 A great implementation of this technique is \"Prodigy,\" a labeling tool
-by the company that makes spaCy, which we learned about in [Lab
-5](https://subscription.packtpub.com/course/data/9781789136364/5){.link},
+by the company that makes spaCy, which we learned about in Lab
+5,
 [*Parsing Textual Data with Natural Language Processing*], we
 can see an example of the Prodigy tool in the following screenshot:
 
@@ -2337,8 +2336,8 @@ can see an example of the Prodigy tool in the following screenshot:
 
 
 Screenshot of the Prodigy labeling tool
-:::
-:::
+
+
 
 Prodigy is a labeling tool that leverages machines,
 you can find more out about it by reading its official documentation
@@ -2368,7 +2367,7 @@ for different circumstances. This works under the condition that errors
 are random. If they are biased, your model will be biased as well. This
 simple method is surprisingly effective and can greatly reduce labeling
 efforts.
-:::
+
 
 
 
@@ -2416,8 +2415,8 @@ this section, we will create an SGAN as follows:
 
 
 SGAN scheme
-:::
-:::
+
+
 
 We will train this model on fewer than 1,000
 transactions and still get a decent fraud detector.
@@ -2428,7 +2427,7 @@ transactions and still get a decent fraud detector.
 **Note**: You can find the code for the
 SGAN on Kaggle under this link:
 <https://www.kaggle.com/jannesklaas/semi-supervised-gan-for-fraud-detection/code>.
-:::
+
 
 In this case, our data has 29 dimensions. We set
 our latent vectors to have 10 dimensions:
@@ -2439,7 +2438,7 @@ our latent vectors to have 10 dimensions:
 latent_dim=10
 data_dim=29
 ```
-:::
+
 
 The generator model is constructed as a fully connected network with
 `LeakyReLU` activations and batch normalization. The output
@@ -2457,7 +2456,7 @@ model.add(LeakyReLU(alpha=0.2))
 model.add(BatchNormalization(momentum=0.8))
 model.add(Dense(data_dim,activation='tanh'))
 ```
-:::
+
 
 To use the generator model better, we wrap the model we created into
 a functional API model that maps the noise vector
@@ -2473,7 +2472,7 @@ img = model(noise)
         
 generator = Model(noise, img)
 ```
-:::
+
 
 Just as we did with the generator, we build the discriminator in the
 sequential API. The discriminator has two output:
@@ -2491,7 +2490,7 @@ model.add(Dropout(0.25))
 model.add(Dense(16,input_dim=data_dim))
 model.add(LeakyReLU(alpha=0.2))
 ```
-:::
+
 
 Now we\'ll map the input of the discriminator to its two heads using the
 functional API:
@@ -2506,7 +2505,7 @@ label = Dense(num_classes+1, activation="softmax")(features) #4
 
 discriminator = Model(img, [valid, label])                   #5
 ```
-:::
+
 
 Let\'s take a minute to look at the five key aspects of the preceding
 code:
@@ -2523,7 +2522,7 @@ code:
     transactions as genuine or fake
 
 5.  We create a model mapping the input to the two heads
-:::
+
 
 To compile the discriminator with two heads, we need to use a few
 advanced model-compiling tricks:
@@ -2538,7 +2537,7 @@ advanced model-compiling tricks:
                                     optimizer=optimizer, #4
                                     metrics=['accuracy']) #5
 ```
-:::
+
 
 Breaking that code down, we see five key elements:
 
@@ -2559,7 +2558,7 @@ Breaking that code down, we see five key elements:
 
 5.  As long as we are not using soft labels, we can
     track progress using the accuracy metric.
-:::
+
 
 Finally, we create our combined GAN model:
 
@@ -2573,7 +2572,7 @@ valid,_ = discriminator(img)                     #4
 combined = Model(noise , valid)                  #5
 combined.compile(loss=['binary_crossentropy'],optimizer=optimizer)
 ```
-:::
+
 
 Again, looking at the code, we can see the following key points:
 
@@ -2591,7 +2590,7 @@ Again, looking at the code, we can see the following key points:
 
 5.  We map the noise input to the \"fake or not fake\" output of the
     discriminator.
-:::
+
 
 For training, we define a `train` function, which handles all
 the training for us:
@@ -2649,7 +2648,7 @@ the training for us:
             
     return f1_progress
 ```
-:::
+
 
 Take a minute to pause: that was a very long and complicated function to
 code. Before we summarize this lab, let\'s look at the 15 key
@@ -2707,7 +2706,7 @@ elements of that code:
     time, we only care about the classification data and discard the
     \"real or fake\" head. We classify the transactions by the highest
     value that is not the \"is real\" class of the classifier.
-:::
+
 
 Now that we have everything set up, we are going to train our SGAN for
 5,000 epochs. This will take about 5 minutes on a GPU but could take
@@ -2718,7 +2717,7 @@ much longer if you do not have a GPU:
 ``` {.programlisting .language-markup}
 f1_p = train(X_res,y_res,X_test,y_test,generator,discriminator,combined,num_classes=2,epochs=5000, batch_size=128)
 ```
-:::
+
 
 Finally, we plot the F1 score of our semi-supervised fraud classifier
 over time:
@@ -2731,7 +2730,7 @@ plt.plot(f1_p)
 plt.xlabel('10 Epochs')
 plt.ylabel('F1 Score Validation')
 ```
-:::
+
 
 This would output as the following graph:
 
@@ -2740,8 +2739,8 @@ This would output as the following graph:
 
 
 SGAN progress
-:::
-:::
+
+
 
 As you can see, the model learns pretty quickly at
 first, but then collapses with its F1 score going to zero. This is a

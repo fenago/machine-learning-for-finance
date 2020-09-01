@@ -71,8 +71,8 @@ easier:
 
 
 The \"Catch\" game that we will be creating
-:::
-:::
+
+
 
 While playing Catch, the player decides between three possible actions.
 They can move the basket to the left, to the right, or make it stay put.
@@ -105,8 +105,8 @@ state, along with any rewards:
 
 
 RL scheme
-:::
-:::
+
+
 
 The model then learns to find actions that lead to maximum rewards.
 There are many ways this can work in practice. Right now, we are going
@@ -164,7 +164,7 @@ therefore, arrive at an expected reward of this:
 
 
 ![](./images/B10354_07_007.jpg)
-:::
+
 
 
 ### Note {#note .title}
@@ -172,7 +172,7 @@ therefore, arrive at an expected reward of this:
 **Note**: We discount future rewards in RL for the same
 reason we discount future returns in finance. They are uncertain. Our
 choice here reflects how much we value future returns.
-:::
+
 
 Good chess players are very good at estimating
 future rewards in their head. In other words, their Q-function,
@@ -201,7 +201,7 @@ When playing a game, we generate lots of
 
 -   The state that followed,
     [![](./images/B10354_07_008.jpg)]{.inlinemediaobject}
-:::
+
 
 These experiences are our training data. We can frame the problem of
 estimating [*Q(s,a)*] as a regression problem. To solve this,
@@ -221,7 +221,7 @@ Q-function.
 neural network as [*Q(s,a)*]. This leads to some instability
 as our targets now change as the networks learn, just as with
 **generative adversarial networks (GANs)**.
-:::
+
 
 Given a batch of experiences,
 [![](./images/B10354_07_011.jpg)]{.inlinemediaobject}, the training
@@ -244,7 +244,7 @@ process then looks as follows:
     function. Effectively, we want to minimize the squared error between
     prediction and target. The factor of 0.5 is just there to make the
     gradient nicer.
-:::
+
 
 During gameplay, all the experiences are stored in a replay memory. This
 acts like a simple buffer in which we store
@@ -292,7 +292,7 @@ class ExperienceReplay(object):                                   #1
                 targets[i, action_t] = reward_t + self.discount * Q_sa
         return inputs, targets
 ```
-:::
+
 
 Let\'s pause for a second and break down the code that we\'ve just
 created:
@@ -311,12 +311,12 @@ created:
     
     
     Copy
-    :::
+    
 
     ``` {.programlisting .language-markup}
     [...[experience, game_over][experience, game_over]...]
     ```
-    :::
+    
 
 3.  Within this, `experience` is a tuple holding the
     experience information and `game_over` is a binary Boolean
@@ -386,7 +386,7 @@ game is being played on a 10x10-pixel grid:
 num_actions = 3
 grid_size = 10
 ```
-:::
+
 
 As this is a regression problem, the final layer has no activation
 function, and the loss is a mean squared error loss. We optimize the
@@ -456,7 +456,7 @@ def train(model,epochs):
         win_hist.append(win_cnt)
     return win_hist
 ```
-:::
+
 
 Before we go further, again let\'s break down the code so we can see
 what we\'re doing:
@@ -495,7 +495,7 @@ what we\'re doing:
 
 9.  We then sample a new training batch from the experience replay and
     train on that batch.
-:::
+
 
 The following graph shows the rolling mean of successful games. After
 about 2,000 epochs of training, the neural network should be quite good
@@ -506,8 +506,8 @@ at playing Catch:
 
 
 The progress of a Q-learning neural network playing Catch
-:::
-:::
+
+
 
 Looking at the preceding graph, it\'s safe to say that you have now
 successfully created your first reinforcement
@@ -540,7 +540,7 @@ introduction by Victor Powell here:
 A more formal, but still simple, introduction is available
  on the website Analytics Vidhya:
 <https://www.analyticsvidhya.com/blog/2014/07/markov-chain-simplified/>.
-:::
+
 
 A Markov model describes a stochastic process with different states in
 which the probability of ending up in a specific state is purely
@@ -553,8 +553,8 @@ recommendations given for a stock:
 
 
 The Markov model
-:::
-:::
+
+
 
 As you can see, there are three states in this model,
 **BUY**, **HOLD,** and **SELL**. For
@@ -578,7 +578,7 @@ recommendation, you will gain a negative reward, or punishment, of
 state transitions and not states themselves. It turns out to be
 mathematically equivalent, and for the ease of notation, we are
 associating the rewards with states here.
-:::
+
 
 In a Markov model, an agent can follow a policy, usually denoted as
 [![](./images/B10354_07_023.jpg)]{.inlinemediaobject}. A policy describes
@@ -591,15 +591,15 @@ state **SELL** can be described as follows:
 
 
 ![](./images/B10354_07_024.jpg)
-:::
+
 
 
 ![](./images/B10354_07_025.jpg)
-:::
+
 
 
 ![](./images/B10354_07_026.jpg)
-:::
+
 
 Some traders have a better policy and can make more money from a state
 than others. Therefore, the value of state [*s*] depends on
@@ -612,14 +612,14 @@ the expected return from state [*s*] when policy
 
 
 ![](./images/B10354_07_030.jpg)
-:::
+
 
 The expected return is the reward gained immediately plus the discounted
 future rewards:
 
 
 ![](./images/B10354_07_031.jpg)
-:::
+
 
 The other value function frequently used in RL is the function
 [*Q(s,a),*] which we have already seen in the previous
@@ -629,7 +629,7 @@ policy [![](./images/B10354_07_032.jpg)]{.inlinemediaobject} is followed:
 
 
 ![](./images/B10354_07_033.jpg)
-:::
+
 
 
 ### Note {#note-2 .title}
@@ -637,7 +637,7 @@ policy [![](./images/B10354_07_032.jpg)]{.inlinemediaobject} is followed:
 **Note**: We use the expected value since our environment and
 our actions are stochastic. We cannot say for certain that we will land
 in a specific state; we can only give a probability.
-:::
+
 
 [*Q*] and [*V*] describe the same thing. If we
 find ourselves in a certain state, what should we do? [*V*]
@@ -659,7 +659,7 @@ you are in state [*s*], what is the chance
 
 
 ![](./images/B10354_07_036.jpg)
-:::
+
 
 Equally, you would be interested in the expected
 reward [![](./images/B10354_07_037.jpg)]{.inlinemediaobject} of being in
@@ -668,7 +668,7 @@ state [![](./images/B10354_07_038.jpg)]{.inlinemediaobject}:
 
 
 ![](./images/B10354_07_039.jpg)
-:::
+
 
 With this in mind, we can now derive the two Bellman equations for
 [*Q*] and [*V*]. First, we rewrite the equation
@@ -677,13 +677,13 @@ describing [*V*] to contain the actual formula for
 
 
 ![](./images/B10354_07_041.jpg)
-:::
+
 
 We can pull the first reward out of the sum:
 
 
 ![](./images/B10354_07_042.jpg)
-:::
+
 
 The first part of our expectation is the expected reward we directly
 receive from being in state [*s*] and the following policy,
@@ -691,7 +691,7 @@ receive from being in state [*s*] and the following policy,
 
 
 ![](./images/B10354_07_044.jpg)
-:::
+
 
 The preceding equation shows a nested sum. First, we sum over all
 actions, [*a,*] weighted by their probability of occurrence
@@ -708,7 +708,7 @@ The second part of our expectation can be rewritten as follows:
 
 
 ![](./images/B10354_07_049.jpg)
-:::
+
 
 The expected discounted value of the future rewards
 after state [*s*] is the discounted expected future value of
@@ -724,7 +724,7 @@ expectation in our value function, it becomes clearer:
 
 
 ![](./images/B10354_07_053.jpg)
-:::
+
 
 The inner expectation represents the value function for the next step,
 [![](./images/B10354_07_054.jpg)]{.inlinemediaobject}! That means we can
@@ -733,14 +733,14 @@ replace the expectation with the value function,
 
 
 ![](./images/B10354_07_056.jpg)
-:::
+
 
 Following the same logic, we can derive the [*Q*] function as
 follows:
 
 
 ![](./images/B10354_07_057.jpg)
-:::
+
 
 Congratulations, you have just derived the Bellman equation! For now,
 pause and take a second to ponder and make sure you really 
@@ -855,7 +855,7 @@ action, [*a,*] rather than just following the policy,
 
 
 ![](./images/B10354_07_061.jpg)
-:::
+
 
 The advantage of action [*a*] in state [*s*] is
 the value of executing [*a*] in [*s*] minus the
@@ -868,14 +868,14 @@ expressing the expected value of the starting state,
 
 
 ![](./images/B10354_07_066.jpg)
-:::
+
 
 Now, to compute the gradient of the policy, we have to do two steps,
 which are shown inside the expectation in the policy gradient formula:
 
 
 ![](./images/B10354_07_067.jpg)
-:::
+
 
 First, we have to calculate the advantage of a given action,
 [*a,*] with [*A(s,a)*]. Then we have to calculate
@@ -900,14 +900,14 @@ in after taking that action:
 
 
 ![](./images/B10354_07_071.jpg)
-:::
+
 
 So, we can substitute [*Q(s,a)*] in the advantage
 calculation:
 
 
 ![](./images/B10354_07_072.jpg)
-:::
+
 
 As calculating [*V*] turns out to be useful for calculating
 the policy gradient, researchers have come up with the A2C architecture.
@@ -922,8 +922,8 @@ environment:
 
 
 A2C scheme
-:::
-:::
+
+
 
 If you are training an agent that operates on high-dimensional image
 data, for instance, the value function and the policy head then both
@@ -965,8 +965,8 @@ swing up and balance a pendulum:
 
 
 Pendulum gym
-:::
-:::
+
+
 
 The pendulum is controlled by a rotational force that can be applied in
 either direction. In the preceding diagram, you can see the arrow that
@@ -986,7 +986,7 @@ pitfalls.
 **Note**: When implementing a new algorithm, try it out on a
 task you can visualize. Failures are often subtle and easier to spot
 visually than through data.
-:::
+
 
 The pendulum environment is part of the OpenAI Gym,
 a suite of games made to train reinforcement learning algorithms. You
@@ -997,7 +997,7 @@ can install it via the command line as follows:
 ``` {.programlisting .language-markup}
 pip install
 ```
-:::
+
 
 Before we start, we have to make some imports:
 
@@ -1017,7 +1017,7 @@ from keras import backend as K
 from collections import deque                        #4
 import random
 ```
-:::
+
 
 There are quite a few new imports, so let\'s walk through them one by
 one:
@@ -1041,7 +1041,7 @@ one:
     data structure that conveniently manages a maximum length for us. No
     more manually removing experiences! We can randomly sample from
     `deque` using Python\'s `random` module.
-:::
+
 
 Now it is time to build the agent. The following methods all form the
 `A2CAgent` class:
@@ -1068,7 +1068,7 @@ def __init__(self, state_size, action_size):
     self.optimize_actor = self.actor_optimizer()       #5
     self.optimize_critic = self.critic_optimizer()
 ```
-:::
+
 
 Let\'s walk through the code step by step:
 
@@ -1106,7 +1106,7 @@ Let\'s walk through the code step by step:
     these, we also create a separate function. The optimizers themselves
     are functions that can be called at training
     time:
-:::
+
 
 
 
@@ -1151,7 +1151,7 @@ def build_model(self):
     
     return actor, critic                                       #13
 ```
-:::
+
 
 The preceding function sets up the Keras model. It is quite complicated,
 so let\'s go through it:
@@ -1174,7 +1174,7 @@ so let\'s go through it:
     distribution with the limits
     
     ![](./images/B10354_07_081.jpg)
-    :::
+    
 
     , with [*o*] being the output dimensionality. The
     difference between the two is rather small, but as it turns out, the
@@ -1198,8 +1198,8 @@ so let\'s go through it:
     ![](./images/B10354_07_07.jpg)
     
     ReLU versus softplus
-    :::
-    :::
+    
+    
 
 6.  To make sure the standard deviation is not zero, we add a tiny
     constant to it. Again we use the `Lambda` layer for this
@@ -1231,7 +1231,7 @@ so let\'s go through it:
 12. For debugging purposes, we print the summaries of our models.
 
 13. Finally, we return the models.
-:::
+
 
 Now we have to create the optimizer for the actor. The actor uses a
 custom optimizer that optimizes it along the policy gradient. Before we
@@ -1252,7 +1252,7 @@ probability density function, [*f*], is as follows:
 
 
 ![](./images/B10354_07_089.jpg)
-:::
+
 
 In this term, [![](./images/B10354_07_090.jpg)]{.inlinemediaobject}
 stands for the constant, 3.14..., not for the policy. Later, we only
@@ -1298,7 +1298,7 @@ def actor_optimizer(self):
                         
     return train                                               #12
 ```
-:::
+
 
 
 1.  First, we need to set up some placeholders for the action taken and
@@ -1325,7 +1325,7 @@ def actor_optimizer(self):
 
     
     ![](./images/B10354_07_092.jpg)
-    :::
+    
 
     Here, again, [![](./images/B10354_07_093.jpg)]{.inlinemediaobject} is
     a constant 3.14... and
@@ -1360,7 +1360,7 @@ def actor_optimizer(self):
 12. We return the function. Since we call `actor_optimizer()`
     in the `init` function of our class, the optimizer
     function we just created becomes `self.optimize_actor`.
-:::
+
 
 For the critic, we also need to create a custom optimizer. The loss for
 the critic is the mean squared error between the predicted value and the
@@ -1386,7 +1386,7 @@ def critic_optimizer(self):
                       
     return train
 ```
-:::
+
 
 The preceding function optimizes our critic model:
 
@@ -1407,7 +1407,7 @@ The preceding function optimizes our critic model:
 4.  Again, and finally, as we did previously, we\'ll roll the update
     into a single function. This function will become
     `self.optimize_critic`.
-:::
+
 
 For our agent to take actions, we need to define a method that produces
 actions from a state:
@@ -1423,7 +1423,7 @@ def get_action(self, state):
     action = np.clip(action, -2, 2)                            #5
     return action
 ```
-:::
+
 
 With this function, our actor can now act. Let\'s go through it:
 
@@ -1443,7 +1443,7 @@ With this function, our actor can now act. Let\'s go through it:
 
 5.  To make sure we are within the bounds of the action space, we clip
     the action at -2, 2, so it won\'t be outside of those boundaries.
-:::
+
 
 At last, we need to train the model. The `train_model`
 function will train the model after receiving one new experience:
@@ -1471,7 +1471,7 @@ def train_model(self, state, action, reward, next_state, done):
     self.optimize_actor([state, action, advantages])        #6
     self.optimize_critic([state, target])
 ```
-:::
+
 
 And this is how we optimize both actor and critic:
 
@@ -1500,7 +1500,7 @@ And this is how we optimize both actor and critic:
 6.  Knowing the advantage, the action taken, and the value target, we
     can optimize both the actor and critic with the optimizers we
     created earlier.
-:::
+
 
 And that is it; our `A2CAgent` class is done. Now it is time
 to use it. We define a `run_experiment` function. This
@@ -1550,7 +1550,7 @@ def run_experiment(render=False, agent=None, epochs = 3000):
                     print('Solved Pendulum-v0 after {} iterations'.format(len(scores)))
                     return agent, scores
 ```
-:::
+
 
 Our experiment boils down to these functions:
 
@@ -1627,7 +1627,7 @@ within a large universe of stocks.
 **Note**: Please do not trade based on this algorithm. It is
 only a simplified and slightly naive implementation to demonstrate the
 concept and shouldn\'t be used in the real world.
-:::
+
 
 To train a new reinforcement learning algorithm, we first need to create
 a training environment. In this environment, the agent trades in
@@ -1648,7 +1648,7 @@ to add them, however.
 
 **Tip**: The full implementation of the environment and agent
 can be found at <https://www.kaggle.com/jannesklaas/a2c-stock-trading>.
-:::
+
 
 The environment looks like this:
 
@@ -1709,7 +1709,7 @@ class TradeEnv():
         assert data.shape[-1] == 100
         return data
 ```
-:::
+
 
 Our trade environment is somewhat similar to the
 pendulum environment. Let\'s see how we set it up:
@@ -1778,7 +1778,7 @@ pendulum environment. Let\'s see how we set it up:
     first 100 steps are the basis for the agent\'s decision. The 101st
     element is the next day\'s return, on which the agent will be
     evaluated.
-:::
+
 
 We only have to make minor edits in the `A2CAgent` agent
 class. Namely, we only have to modify the model so that it can take in
@@ -1818,7 +1818,7 @@ critic.summary()
 
 return actor, critic
 ```
-:::
+
 
 Again, we have built a Keras model in a function.
 It is only slightly different from the model before. Let\'s explore it:
@@ -1834,7 +1834,7 @@ It is only slightly different from the model before. Let\'s explore it:
 4.  Outputs should lie between -1 and 1, and 100% short and 100% long,
     so that we can save ourselves the step of multiplying the mean by
     two.
-:::
+
 
 And that is it! This algorithm can now learn to balance a portfolio just
 as it could learn to balance before.
@@ -1865,8 +1865,8 @@ strategies work:
 
 
 Evolutionary strategy
-:::
-:::
+
+
 
 To get a better grip on how this works, consider the following example.
 We want to find a vector that minimizes the mean squared error to a
@@ -1881,7 +1881,7 @@ def f(w):
   reward = -np.sum(np.square(solution - w))
   return reward
 ```
-:::
+
 
 A key advantage of evolutionary strategies is that
 they have fewer hyperparameters. In this case, we need just three:
@@ -1893,7 +1893,7 @@ npop =   50 #1
 sigma = 0.1 #2
 alpha = 0.1 #3
 ```
-:::
+
 
 
 1.  **Population size**: We will create
@@ -1905,7 +1905,7 @@ alpha = 0.1 #3
 3.  **Learning rate**: Weights don\'t just simply get set to
     the new average but are slowly moved in the direction to avoid
     overshooting
-:::
+
 
 The optimization algorithm will look like the following code:
 
@@ -1923,7 +1923,7 @@ for i in range(300):                            #2
   A = (R - np.mean(R)) / np.std(R)              #5
   w = w + alpha * np.dot(N.T, A)/npop           #6
 ```
-:::
+
 
 Genetic optimization is relatively short in code, so let\'s go through
 it:
@@ -1949,7 +1949,7 @@ it:
 6.  Finally, we add the weighted average noise vector to the weight
     solution. We use a learning rate to slow down
     the process and avoid overshooting.
-:::
+
 
 Similar to neural networks themselves, evolutionary
 strategies are loosely inspired by nature. In nature, species optimize
@@ -2030,14 +2030,14 @@ risk-averse reinforcement learning maximizes an evaluation function,
 
 
 ![](./images/B10354_07_098.jpg)
-:::
+
 
 , which is an extension of the utility-based shortfall to a multistage
 setting:
 
 
 ![](./images/B10354_07_099.jpg)
-:::
+
 
 Here [![](./images/B10354_07_100.jpg)]{.inlinemediaobject} is a concave,
 continuous, and strictly increasing function that can be freely chosen
@@ -2096,8 +2096,8 @@ the human indicate which one is more preferable:
 
 
 Learning from preferences
-:::
-:::
+
+
 
 
 ### Robust RL {#robust-rl .title}
@@ -2141,7 +2141,7 @@ But there are a few ways to make RL more robust:
     representations, then training a dynamics model that can predict the
     next compressed state, and then training a relatively small policy
     network from the two inputs.
-:::
+
 
 Similar to the GAN tips, there is little theoretical reason for why
 these tricks work, but they will make your RL work better in practice.
@@ -2176,8 +2176,8 @@ compete, and communicate depending on the situation.
 
 Multiple agents (in red) working together to chase the green dots. From
 the OpenAI blog.
-:::
-:::
+
+
 
 In an experiment, Lowe and others let agents communicate by including a
 communication vector into the action space. The communication vector
@@ -2201,7 +2201,7 @@ Awareness*] (see <https://arxiv.org/abs/1709.04326>),
 developed a new kind of RL algorithm that allows the agent to learn how
 another agent will behave and develop actions to influence the other
 agent.
-:::
+
 
 
 
@@ -2223,8 +2223,8 @@ trained by standard backpropagation:
 
 
 A network developed by the NEAT algorithm
-:::
-:::
+
+
 
 As you can see in the preceding diagram, the networks developed by NEAT
 are often smaller than traditional, layer-based
@@ -2264,7 +2264,7 @@ couple \"off-the-shelf\" AutoML solutions:
     (<https://cloud.google.com/automl/>): This is currently focused on
     pipelines for computer 
     vision.
-:::
+
 
 For the subfield of hyperparameter search, there are a few packages
 available as well:
@@ -2277,13 +2277,13 @@ available as well:
 - **Spearmint** (<https://github.com/HIPS/Spearmint>): This
     package is similar to Hyperopt, optimizing hyperparameters but using
     a more advanced Bayesian optimization process.
-:::
+
 
 AutoML is still an active field of research, but it holds great promise.
 Many firms struggle to use machine learning due to a lack of skilled
 employees. If machine learning could optimize itself, more firms could
 start using machine learning.
-:::
+
 
 
 

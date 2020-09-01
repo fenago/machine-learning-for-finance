@@ -58,8 +58,8 @@ entirely E2E-trained systems. These systems, in addition to machine
 learning, are both focuses of this lab where we will explore several
 commonly used approaches to flag fraud.
 
-This lab will act as an important baseline to [Lab
-6](https://subscription.packtpub.com/course/data/9781789136364/6){.link},
+This lab will act as an important baseline to Lab
+6,
 [*Using Generative Models*], where we will again be
 revisiting the credit card fraud problem for a full E2E model using
 auto-encoders.
@@ -89,7 +89,7 @@ found under <https://www.kaggle.com/jannesklaas/structured-data-code>
 
 The code can also be found on GitHub, in this course\'s repository:
 <https://github.com/PacktPublishing/Machine-Learning-for-Finance>
-:::
+
 
 The dataset we\'re using stems from the paper [*PaySim: A financial
 mobile money simulator for fraud detection*], by E. A.
@@ -114,7 +114,7 @@ download the data with the preceding link.
   1      PAYMENT     64       C1912850431   23                59                M633326333    0                 0                 0         0
   1      PAYMENT     36       C1265012928   0                 0                 M1176932104   0                 0                 0         0
   1      DEBIT       77       C712410124    0                 23                C195600860    0                 79                0         0
-:::
+
 
 As seen in the first row, the dataset has 11
 columns. Let\'s explain what each one represents before we move on:
@@ -151,7 +151,7 @@ columns. Let\'s explain what each one represents before we move on:
 
 - **isFlaggedFraud**: Whether the old system has flagged
     the transaction as fraud.
-:::
+
 
 In the preceding table, we can see 10 rows of data.
 It\'s worth noting that there are about 6.3 million transactions in our
@@ -183,7 +183,7 @@ the different kinds of models we could build.
 
 -   An E2E model learns purely from raw data. No human expertise is
     used, and the model learns everything directly from observations.
-:::
+
 
 In our case, a heuristic-based model could be created to mark all
 transactions with the TRANSFER transaction type and an amount over
@@ -235,8 +235,8 @@ against the time taken to implement them.
 
 
 The methods used and the performance of the system during development
-:::
-:::
+
+
 
 The best method is to use a combination of all three. If we deploy a
 heuristic model that meets the basic requirements of the task that it
@@ -291,7 +291,7 @@ software:
 - **Jupyter**: A development
     environment. All of the code examples in this course are available in
     Jupyter Notebooks.
-:::
+
 
 The majority of this course is dedicated to working with the Keras
 library, while this lab makes extensive use of
@@ -305,8 +305,8 @@ predictive model.
 
 **Note**: All of the libraries needed for this lab are
 installed on Kaggle kernels by default. If you are running this code
-locally, please refer to the setup instructions in [Lab
-1](https://subscription.packtpub.com/course/data/9781789136364/1){.link},
+locally, please refer to the setup instructions in Lab
+1,
 [*Neural Networks and Gradient-Based Optimization*], and
 install all of the libraries needed.
 
@@ -345,11 +345,11 @@ amount is more than \$200,000:
 ``` {.programlisting .language-markup}
 df['Fraud_Heuristic '] = np.where(((df['type'] == 'TRANSFER') &(df['amount'] > 200000)),1,0)
 ```
-:::
+
 
 With just two lines of code, it\'s easy to see how such a simple metric
 can be easy to write, and quick to deploy.
-:::
+
 
 
 
@@ -359,7 +359,7 @@ can be easy to write, and quick to deploy.
 One important thing we must consider is the need
 for a common metric on which we can evaluate all of our models on. In
 [Lab
-1](https://subscription.packtpub.com/course/data/9781789136364/1){.link},
+1,
 [*Neural Networks and Gradient-Based Optimization*], we used
 accuracy as our emulation tool. However, as we\'ve seen, there are far
 fewer fraudulent transactions than there are genuine ones. Therefore a
@@ -375,7 +375,7 @@ positives and negatives, as you can see in this chart:
   ----------------- --------------------------------------------------- ---------------------------------------------------
   Actual Negative   **True Negative** (**TN**)    **False Positive** (**FP**)
   Actual Positive   **False Negative** (**FN**)   **True Positive** (**TP**)
-:::
+
 
 We can first compute the precision of our model, which specifies the
 share of predicted positives that were positives, using the following
@@ -383,21 +383,21 @@ formula:
 
 
 ![](./images/B10354_02_001.jpg)
-:::
+
 
 Recall measures the share of predicted positives over the actual number
 of positives, as seen in this formula:
 
 
 ![](./images/B10354_02_002.jpg)
-:::
+
 
 The F1 score is then calculated from the harmonic mean, an average, of
 the two measures, which can be seen in the following formula:
 
 
 ![](./images/B10354_02_003.jpg)
-:::
+
 
 To compute this metric in Python, we can use the `metrics`
 module of scikit-learn, or sklearn for short:
@@ -407,7 +407,7 @@ module of scikit-learn, or sklearn for short:
 ``` {.programlisting .language-markup}
 from sklearn.metrics import f1_score
 ```
-:::
+
 
 Given the predictions we\'ve made, we can now easily compute the F1
 score using the following command:
@@ -417,14 +417,14 @@ score using the following command:
 ``` {.programlisting .language-markup}
 f1_score(y_pred=df['Fraud_Heuristic '],y_true=df['isFraud'])
 ```
-:::
+
 
 
 
 ``` {.programlisting .language-markup}
 out: 0.013131315551742895
 ```
-:::
+
 
 You\'ll see that the preceding command outputs a number--starting
 0.013131315...-What this number means exactly is that our heuristic
@@ -433,7 +433,7 @@ worst is 0. In our case, this number represents the
 harmonic mean of the share of correctly caught frauds over everything
 labeled as fraud and the share of correctly caught frauds over all
 frauds.
-:::
+
 
 
 
@@ -454,7 +454,7 @@ from sklearn.metrics import confusion_matrix cm = confusion_matrix(
     y_pred=df['Fraud_Heuristic '],y_true=df['isFraud']) 
 plot_confusion_matrix(cm,['Genuine','Fraud'])
 ```
-:::
+
 
 Which, when we run, produces the following graphic:
 
@@ -463,8 +463,8 @@ Which, when we run, produces the following graphic:
 
 
 A confusion matrix for a heuristic model
-:::
-:::
+
+
 
 So, just how accurate was that model? As you can see in our confusion
 matrix, from our dataset of 2,770,409 examples, 2,355,826 were correctly
@@ -571,7 +571,7 @@ remainder of a division by 24, as seen in this code:
 ``` {.programlisting .language-markup}
 df['hour'] = df['step'] % 24
 ```
-:::
+
 
 From there, we can then count the number of fraudulent and genuine
 transactions at different times. To calculate this, we must run the
@@ -588,7 +588,7 @@ for i in range(24):
     frauds.append(f)
     genuine.append(g)
 ```
-:::
+
 
 Then finally, we can plot the share of genuine and fraudulent
 transactions over the course of the day into a chart. To do this, we
@@ -603,7 +603,7 @@ ax.plot(frauds/np.sum(frauds),dashes=[5, 2], label='Fraud')
 plt.xticks(np.arange(24))
 legend = ax.legend(loc='upper center', shadow=True)
 ```
-:::
+
 
 
 ![](./images/B10354_02_03.jpg)
@@ -611,8 +611,8 @@ legend = ax.legend(loc='upper center', shadow=True)
 
 The share of fraudulent and genuine transactions conducted throughout
 each hour of the day
-:::
-:::
+
+
 
 As we can see in the preceding chart, there are much fewer genuine
 transactions at night, while fraudulent behavior
@@ -629,20 +629,20 @@ ax.plot(np.divide(frauds,np.add(genuine,frauds)), label='Share of fraud')
 plt.xticks(np.arange(24))
 legend = ax.legend(loc='upper center', shadow=True)
 ```
-:::
+
 
 
 ![](./images/B10354_02_04.jpg)
 
 
 The share of transactions that are fraudulent per hour of the day
-:::
-:::
+
+
 
 Once we run that code, we can see that at around 5 AM, over 60% of all
 transactions seem to be fraudulent, which appears
 to make this a great time of the day to catch fraud.
-:::
+
 
 
 
@@ -665,14 +665,14 @@ dfFraudTransfer = df[(df.isFraud == 1) & (df.type == 'TRANSFER')]
 dfFraudCashOut = df[(df.isFraud == 1) & (df.type == 'CASH_OUT')]
 dfFraudTransfer.nameDest.isin(dfFraudCashOut.nameOrig).any()
 ```
-:::
+
 
 
 
 ``` {.programlisting .language-markup}
 out: False
 ```
-:::
+
 
 According to the output, there seems to be no fraudulent transfers that
 are the origin of fraudulent cash outs. The behavior expected by the
@@ -680,7 +680,7 @@ experts is not visible in our data. This could mean two things: firstly,
 it could mean that the fraudsters behave differently now, or secondly
 that our data does not capture their behavior. Either way, we cannot use
 this insight for predictive modeling here.
-:::
+
 
 
 
@@ -704,14 +704,14 @@ dfOdd = df[(df.oldBalanceDest == 0) &
            (df.amount)]
 len(dfOdd[(df.isFraud == 1)]) / len(dfOdd)
 ```
-:::
+
 
 
 
 ``` {.programlisting .language-markup}
 out: 0.7046398891966759
 ```
-:::
+
 
 As you can see, the share of fraudulent transactions stands at 70%, so
 this quirk seems to be a good feature at detecting fraud in
@@ -732,14 +732,14 @@ insufficient funds. To do this, we have to run the following code:
 ``` {.programlisting .language-markup}
 len(dfOdd[(dfOdd.oldBalanceOrig <= dfOdd.amount)]) / len(dfOdd)
 ```
-:::
+
 
 
 
 ``` {.programlisting .language-markup}
 out: 0.8966412742382271
 ```
-:::
+
 
 As we can see in the output, close to 90% of the odd transactions have
 insufficient funds in their origin accounts. From this, we can now
@@ -758,8 +758,8 @@ Preparing the data for the Keras library {#preparing-the-data-for-the-keras-libr
 
 
 
-In [Lab
-1](https://subscription.packtpub.com/course/data/9781789136364/1){.link},
+In Lab
+1,
 [*Neural Networks and Gradient-Based Optimization*], we saw
 that neural networks would only take numbers as inputs. The
  issue for us in our dataset is that not all of the
@@ -791,7 +791,7 @@ data, [*Nominal*], [*Ordinal*], and
     ordered, but we can also perform mathematical operations on it. An
     example in our data is the number of funds, as we can both compare
     the amounts, and also subtract or add them up.
-:::
+
 
 Both nominal and ordinal data are **categorical
 data**, as they describe discrete categories. While numerical
@@ -822,7 +822,7 @@ encoding:
   1             TRANSFER
   2             CASH\_OUT
   3             TRANSFER
-:::
+
 
 This is what the data would look like after one-hot encoding:
 
@@ -832,7 +832,7 @@ This is what the data would look like after one-hot encoding:
   1             1                0
   2             0                1
   3             1                0
-:::
+
 
 The Pandas software library offers a function that
 allows us to create dummy variables out of the box. Before doing so,
@@ -853,7 +853,7 @@ column of combined strings then replaces the original
 ``` {.programlisting .language-markup}
 df['type'] = 'Type_' + df['type'].astype(str)
 ```
-:::
+
 
 We can now get the dummy variables by running the following code:
 
@@ -862,7 +862,7 @@ We can now get the dummy variables by running the following code:
 ``` {.programlisting .language-markup}
 dummies = pd.get_dummies(df['type'])
 ```
-:::
+
 
 We should note that the `get_dummies()` function creates a new
 data frame. Next we attach this data frame to the main data frame, which
@@ -873,7 +873,7 @@ can be done by running:
 ``` {.programlisting .language-markup}
 df = pd.concat([df,dummies],axis=1)
 ```
-:::
+
 
 The `concat()` method, as seen in the preceding code,
 concatenates two data frames. We concatenate along axis 1 to add the
@@ -885,11 +885,11 @@ data frame, we can remove the original column by running this:
 ``` {.programlisting .language-markup}
 del df['type']
 ```
-:::
+
 
 And, voilà! We have turned our categorical variable into something a
 neural network will be able to work with.
-:::
+
 
 
 
@@ -899,8 +899,8 @@ neural network will be able to work with.
 In this section, we\'re going to walk through
 making use of both embeddings and the Keras
 functional API, showing you the general workflow. Both of these topics
-get introduced and explored fully in [Lab
-5](https://subscription.packtpub.com/course/data/9781789136364/5){.link},
+get introduced and explored fully in Lab
+5,
 [*Parsing Textual Data with Natural Language Processing*],
 where we will go beyond the general ideas presented here and where
 we\'ll begin discussing topics like implementation.
@@ -922,8 +922,8 @@ of dimensions needed for encoding over one-hot
 encoding and thus decrease memory usage, but they also reduce sparsity
 in input activations, which helps reduce overfitting, and they can
 encode semantic meanings as vectors. The same advantages that made
-embeddings useful for text, [Lab
-5](https://subscription.packtpub.com/course/data/9781789136364/5){.link},
+embeddings useful for text, Lab
+5,
 [*Parsing Textual Data with Natural Language Processing*],
 also make them useful for categorical data.
 
@@ -944,7 +944,7 @@ map_dict = {}
 for token, value in enumerate(df['type'].unique()):
     map_dict[value] = token
 ```
-:::
+
 
 This code loops over all the unique type categories while counting
 upward. The first category gets token 0, the second 1, and so on. Our
@@ -955,7 +955,7 @@ upward. The first category gets token 0, the second 1, and so on. Our
 ``` {.programlisting .language-markup}
 {'CASH_IN': 4, 'CASH_OUT': 2, 'DEBIT': 3, 'PAYMENT': 0, 'TRANSFER': 1}
 ```
-:::
+
 
 We can now apply this mapping to our data frame:
 
@@ -964,7 +964,7 @@ We can now apply this mapping to our data frame:
 ``` {.programlisting .language-markup}
 df["type"].replace(map_dict, inplace=True)
 ```
-:::
+
 
 As a result, all types will now be replaced by their tokens.
 
@@ -994,7 +994,7 @@ arrays:
 inputs = []
 outputs = []
 ```
-:::
+
 
 The model that acts as an input for the type receives a one-dimensional
 input and parses it through an embedding layer. The outputs of the
@@ -1016,7 +1016,7 @@ type_model = Model(type_in,type_out)
 inputs.append(type_in)
 outputs.append(type_out)
 ```
-:::
+
 
 The `type` embeddings have three layers here. This is an
 arbitrary choice, and experimentation with different numbers of
@@ -1041,7 +1041,7 @@ rest_model = Model(rest_in,rest_out)
 inputs.append(rest_in)
 outputs.append(rest_out)
 ```
-:::
+
 
 Now that we have created the two input models, we can concatenate them.
 On top of the two concatenated inputs, we will also build our head
@@ -1052,7 +1052,7 @@ model. To begin this process, we must first run the following:
 ``` {.programlisting .language-markup}
 concatenated = Concatenate()(outputs)
 ```
-:::
+
 
 Then, by running the following code, we can build
 and compile the overall model:
@@ -1085,7 +1085,7 @@ types = df['type']
 rest = df[other_cols]
 target = df['isFraud']
 ```
-:::
+
 
 Then, we can train the model by providing a list of the two inputs and
 the target, as we can see in the following code:
@@ -1095,7 +1095,7 @@ the target, as we can see in the following code:
 ``` {.programlisting .language-markup}
 history = merged_model.fit([types.values,rest.values],target.values, epochs = 1, batch_size = 128)
 ```
-:::
+
 
 
 
@@ -1127,7 +1127,7 @@ isFlaggedFraud,
 type_CASH_OUT, 
 type_TRANSFER, isNight
 ```
-:::
+
 
 Now that we\'ve got the columns, our data is prepared, and we can use it
 to create a model.
@@ -1147,7 +1147,7 @@ separate it from the rest of the data. We can do this by running:
 y_df = df['isFraud']
 x_df = df.drop('isFraud',axis=1)
 ```
-:::
+
 
 The first step only returns the `isFraud` column and assigns
 it to `y_df`.
@@ -1195,7 +1195,7 @@ convenient function to do this, as we can see in the following code:
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
 ```
-:::
+
 
 The element, `train_test_split` will randomly assign rows to
 either the train or test set. You can specify `test_size`, the
@@ -1206,7 +1206,7 @@ same split, which makes our work more reproducible.
 Note that the actual choice of number (for example, `42`) does
 not really matter. What matters is that the same number is used in all
 experiments.
-:::
+
 
 
 
@@ -1259,7 +1259,7 @@ genuine transactions.
 **Note**: A useful library for this kind of task is
 `imblearn`, which includes a SMOTE function. See,
 <http://contrib.scikitlearn.org/imbalanced-learn/>.
-:::
+
 
 **Synthetic Minority Over-sampling Technique**
 (**SMOTE**) is a clever way of oversampling. This
@@ -1282,7 +1282,7 @@ X_train_res, y_train_res = sm.fit_sample(X_train, y_train)
 We\'ve successfully addressed several key learning
 points, and so it\'s now finally time to build a neural network! As in
 [Lab
-1](https://subscription.packtpub.com/course/data/9781789136364/1){.link},
+1,
 [*Neural Networks and Gradient-Based Optimization*], we need
 to import the required Keras modules using the following code:
 
@@ -1292,7 +1292,7 @@ to import the required Keras modules using the following code:
 from keras.models import Sequential
 from keras.layers import Dense, Activation
 ```
-:::
+
 
 In practice, many structured data problems require very low learning
 rates. To set the learning rate for the gradient descent optimizer, we
@@ -1303,7 +1303,7 @@ also need to import the optimizer. We can do this by running:
 ``` {.programlisting .language-markup}
 from keras.optimizers import SGD
 ```
-:::
+
 
 
 
@@ -1323,7 +1323,7 @@ model = Sequential()
 model.add(Dense(1, input_dim=9))
 model.add(Activation('sigmoid'))
 ```
-:::
+
 
 You can see here a logistic regressor, which is the same as a one-layer
 neural network:
@@ -1333,7 +1333,7 @@ neural network:
 ``` {.programlisting .language-markup}
 model.compile(loss='binary_crossentropy', optimizer=SGD(lr=1e-5), metrics=['acc'])
 ```
-:::
+
 
 Here, we will compile the model. Instead of just passing `SGD`
 to specify the optimizer for Stochastic Gradient Descent, we\'ll create
@@ -1347,7 +1347,7 @@ behavior, as you can see in the following code:
 ``` {.programlisting .language-markup}
 model.fit(X_train_res,y_train_res, epochs=5, batch_size=256, validation_data=(X_val,y_val))
 ```
-:::
+
 
 Notice how we have passed the validation data into Keras by creating a
 tuple in which we store data and labels. We will train this model for 5
@@ -1368,7 +1368,7 @@ Train on 3331258 samples, validate on 185618 samples Epoch 1/5
 3331258/3331258 [==============================] - 20s 6us/step - loss: 
 2.3336 - acc: 0.8546 - val_loss: 0.8829 - val_acc: 0.9446
 ```
-:::
+
 
 Notice a few things here: first, we have trained on about 3.3 million
 samples, which is more data than we initially had. The sudden increase
@@ -1404,7 +1404,7 @@ somewhat slow and would end up slowing down the training of our model.
 
 **Note**: Remember that accuracy on an imbalanced dataset can
 be very high, even if the model is performing poorly.
-:::
+
 
 If the model exhibits a higher degree of accuracy on an imbalanced
 validation set than compared to that seen with a balanced training set,
@@ -1427,7 +1427,7 @@ in order to evaluate the baseline. We start by using
 ``` {.programlisting .language-markup}
 y_pred = model.predict(X_test)
 ```
-:::
+
 
 Before evaluating our baseline, we need to turn the probabilities given
 by our model into absolute predictions. In our example, we\'ll classify
@@ -1440,7 +1440,7 @@ we need to run the following code:
 y_pred[y_pred > 0.5] = 1
 y_pred[y_pred < 0.5] = 0
 ```
-:::
+
 
 Our F1 score is already significantly better than it was for the
 heuristic model, which if you go back, you\'ll see that it only achieved
@@ -1451,14 +1451,14 @@ a rate of 0.013131315551742895:
 ``` {.programlisting .language-markup}
 f1_score(y_pred=y_pred,y_true=y_test)
 ```
-:::
+
 
 
 
 ``` {.programlisting .language-markup}
 out: 0.054384286716408395
 ```
-:::
+
 
 By plotting the confusion matrix, we\'re able to see that our
 feature-based model has indeed improved on the heuristic model:
@@ -1469,7 +1469,7 @@ feature-based model has indeed improved on the heuristic model:
 cm = confusion_matrix(y_pred=y_pred,y_true=y_test)
 plot_confusion_matrix(cm,['Genuine','Fraud'], normalize=False)
 ```
-:::
+
 
 This code should produce the following confusion matrix:
 
@@ -1478,13 +1478,13 @@ This code should produce the following confusion matrix:
 
 
 A confusion matrix for a simple Keras model
-:::
-:::
+
+
 
 But what if we wanted to build more complex models that can express more
 subtle relationships, than the one that we\'ve just built? Let\'s now do
 that!
-:::
+
 
 
 
@@ -1512,7 +1512,7 @@ y_pred = model.predict(X_test)
 y_pred[y_pred > 0.5] = 1
 y_pred[y_pred < 0.5] = 0
 ```
-:::
+
 
 After running that code, we\'ll then again benchmark with the F1 score:
 
@@ -1521,14 +1521,14 @@ After running that code, we\'ll then again benchmark with the F1 score:
 ``` {.programlisting .language-markup}
 f1_score(y_pred=y_pred,y_true=y_test)
 ```
-:::
+
 
 
 
 ``` {.programlisting .language-markup}
 out: 0.087220701988752675
 ```
-:::
+
 
 In this case, the more complex model does better than the simple
 baseline created earlier. It seems as though the
@@ -1570,7 +1570,7 @@ XGBoost, check out the tutorials on the XGBoost documentation page:
 There is a nice explanation of how tree-based methods and gradient
 boosting work in theory and practice under the **Tutorials**
 section of the website.
-:::
+
 
 
 
@@ -1598,7 +1598,7 @@ from sklearn.tree import DecisionTreeClassifier
 dtree=DecisionTreeClassifier()
 dtree.fit(X_train,y_train)
 ```
-:::
+
 
 The resulting tree will look like this:
 
@@ -1607,14 +1607,14 @@ The resulting tree will look like this:
 
 
 A decision tree for fraud detection
-:::
-:::
+
+
 
 Simple decision trees, like the one we\'ve
 produced, can give a lot of insight into data. For example, in our
 decision tree, the most important feature seems to be the old balance of
 the origin account, given that it is the first node in the tree.
-:::
+
 
 
 
@@ -1643,7 +1643,7 @@ from sklearn.ensemble import RandomForestClassifier
 rf = RandomForestClassifier(n_estimators=10,n_jobs=-1)
 rf.fit(X_train_res,y_train_res)
 ```
-:::
+
 
 You\'ll notice that with the code we\'ve just generated, random forests
 have far fewer knobs to tune than neural networks. In this case, we just
@@ -1660,14 +1660,14 @@ we would like to train in parallel. Note that `-1` stands for
 y_pred = rf.predict(X_test)
 f1_score(y_pred=y_pred,y_true=y_test)
 ```
-:::
+
 
 
 
 ``` {.programlisting .language-markup}
 out: 0.8749502190362406
 ```
-:::
+
 
 The random forest does an order of magnitude better than the neural
 network as its F1 score is close to 1, which is the maximum score. Its
@@ -1679,8 +1679,8 @@ random forest significantly reduced the number of false positives:
 
 
 A confusion matrix for the random forest
-:::
-:::
+
+
 
 A shallow learning approach, such as a random forest, often does better
 than deep learning on relatively simple problems. The reason for this is
@@ -1690,7 +1690,7 @@ in order to match the simple function.
 
 As we will see in later chapters of this course, as soon as relationships
 do get more complex, deep learning gets to shine.
-:::
+
 
 
 
@@ -1714,7 +1714,7 @@ popular library that implements gradient boosting very efficiently.
 kernels by default. If you are running these examples locally, see the
 XGBoost manual for installation instructions and more information:
 <http://xgboost.readthedocs.io/>.
-:::
+
 
 Gradient boosting classifiers can be created and trained just like
 random forests from `sklearn`, as can be seen in the following
@@ -1729,14 +1729,14 @@ booster = booster.fit(X_train,y_train)
 y_pred = booster.predict(X_test)
 f1_score(y_pred=y_pred,y_true=y_test)
 ```
-:::
+
 
 
 
 ``` {.programlisting .language-markup}
 out: 0.85572959604286891
 ```
-:::
+
 
 The gradient booster performs at almost the same
 level as a random forest on this task. A common approach that is used is
