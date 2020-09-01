@@ -37,14 +37,10 @@ data that other models can then train on. Generative models are able to
 turning them into street maps. Another example is that generative models
 can generate code from website screenshots. They can even be used to
 combat unfairness and discrimination in machine learning models,
-as we will
-see in [Lab 9,
-[*Fighting Bias*].
+as we will see in [Lab 9, *Fighting Bias*].
 
 In the field of finance, data is frequently sparse. Think back to the
-fraud case from Lab
-2,
-[*Applying Machine Learning to Structured Data,*] in which we
+fraud case from Lab 2, [*Applying Machine Learning to Structured Data,*] in which we
 were classifying fraudulent transactions from transaction metadata. We
 found that there was not much fraud taking place in the dataset that we
 used, so the model had a hard time detecting when fraud was taking

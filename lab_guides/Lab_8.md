@@ -32,29 +32,29 @@ failures so that they don\'t impact the machine learning algorithms that
 you\'ve created. This will include looking at the following subject
 areas:
 
-
--   Finding flaws in your data that lead to flaws in your learned model
-
--   Using creative tricks to make your model learn more from less data
-
--   Unit testing data in production or training to ensure standards are
+- Finding flaws in your data that lead to flaws in your learned model
+- Using creative tricks to make your model learn more from less data
+- Unit testing data in production or training to ensure standards are
     met
+- Being mindful of privacy and regulation, such as GDPR
+- Preparing data for training and avoiding common pitfalls
+- Inspecting the model and peering into the \"black box\"
+- Finding optimal hyperparameters
+- Scheduling learning rates in order to reduce overfitting
+- Monitoring training progress with TensorBoard
+- Deploying machine learning products and iterating on them
+- Speeding up training and inference
 
--   Being mindful of privacy and regulation, such as GDPR
 
--   Preparing data for training and avoiding common pitfalls
+#### Pre-reqs:
+- Google Chrome (Recommended)
 
--   Inspecting the model and peering into the \"black box\"
+#### Lab Environment
+Notebooks are ready to run. All packages and datasets have been installed. There is no requirement for any setup.
 
--   Finding optimal hyperparameters
+**Note:** Elev8ed Notebooks (powered by Jupyter) will be accessible at the port given to you by your instructor. Password for jupyterLab : `1234`
 
--   Scheduling learning rates in order to reduce overfitting
-
--   Monitoring training progress with TensorBoard
-
--   Deploying machine learning products and iterating on them
-
--   Speeding up training and inference
+All Notebooks are present in `work/machine-learning-for-finance` folder.
 
 
 The first step you must take, before even attempting to debug your
@@ -97,10 +97,8 @@ enough data, and how to test your data.
 There are two aspects to consider when wanting to know whether your data
 is up to the task of training a good model:
 
-
--   Does the data predict what you want it to predict?
-
--   Do you have enough data?
+- Does the data predict what you want it to predict?
+- Do you have enough data?
 
 
 To find out whether your model does contain predicting information, also
@@ -153,14 +151,11 @@ enough, but roughly speaking, the amount needed depends on the
 complexity of the model you hope to create. There are a couple of rules
 of thumb to follow, however:
 
-
--   For classification, you should have around 30
+- For classification, you should have around 30
     independent samples per class.
-
--   You should have 10 times as many samples as there are features,
+- You should have 10 times as many samples as there are features,
     especially for structured data problems.
-
--   Your dataset should get bigger as the number of parameters in your
+- Your dataset should get bigger as the number of parameters in your
     model gets bigger.
 
 
@@ -649,8 +644,7 @@ each one:
     If you know for sure that your data contains no outliers, which is
     the case in images, for instance, Min-Max scaling will give you a
     nice scaling of values between zero and one.
-
--   Similar to Min-Max, **mean normalization** ensures your
+- Similar to Min-Max, **mean normalization** ensures your
     data has values between minus one and one with
     a mean of zero. This is done by subtracting the mean and then
     dividing by the range of data, which is expressed in the following
@@ -662,8 +656,7 @@ each one:
 
     Mean normalization is done less frequently but, depending on your
     application, might be a good approach.
-
--   For some applications, it is better to not scale
+- For some applications, it is better to not scale
      individual features, but instead vectors of features. In
     this case, you would apply **unit length scaling** by
     dividing each element in the vector by the
@@ -2371,12 +2364,10 @@ Now that we\'re at the end of this lab, it\'s time to put what
 we\'ve learned into use. Using the knowledge that you\'ve gained in this
 lab, why not try the following exercises?
 
-
--   Try to build any model that features exploding gradients in
+- Try to build any model that features exploding gradients in
     training. Hint: Do not normalize inputs and play with the
     initialization of layers.
-
--   Go to any example in this course and try to optimize performance by
+- Go to any example in this course and try to optimize performance by
     improving the data pipeline.
 
 
@@ -2390,29 +2381,18 @@ In this lab, you have learned a number of practical tips for
 debugging and improving your model. Let\'s recap all of the things that
 we have looked at:
 
-
--   Finding flaws in your data that lead to flaws in your learned model
-
--   Using creative tricks to make your model learn more from less data
-
--   Unit testing data in production or training to make sure standards
+- Finding flaws in your data that lead to flaws in your learned model
+- Using creative tricks to make your model learn more from less data
+- Unit testing data in production or training to make sure standards
     are met
-
--   Being mindful of privacy
-
--   Preparing data for training and avoiding common pitfalls
-
--   Inspecting the model and peering into the \"black box\"
-
--   Finding optimal hyperparameters
-
--   Scheduling learning rates in order to reduce overfitting
-
--   Monitoring training progress with TensorBoard
-
--   Deploying machine learning products and iterating on them
-
--   Speeding up training and inference
+- Being mindful of privacy
+- Preparing data for training and avoiding common pitfalls
+- Inspecting the model and peering into the \"black box\"
+- Finding optimal hyperparameters
+- Scheduling learning rates in order to reduce overfitting
+- Monitoring training progress with TensorBoard
+- Deploying machine learning products and iterating on them
+- Speeding up training and inference
 
 
 You now have a substantial number of tools in your toolbox that will

@@ -54,45 +54,41 @@ vision models. This will include a focus on the following topics:
 
 
 -   Convolutional layers.
-
 -   Padding.
-
 -   Pooling.
-
 -   Regularization to prevent overfitting.
-
 -   Momentum-based optimization.
-
 -   Batch normalization.
-
 -   Advanced architectures for computer vision beyond classification.
-
 -   A note on libraries.
+
+#### Pre-reqs:
+- Google Chrome (Recommended)
+
+#### Lab Environment
+Notebooks are ready to run. All packages and datasets have been installed. There is no requirement for any setup.
+
+**Note:** Elev8ed Notebooks (powered by Jupyter) will be accessible at the port given to you by your instructor. Password for jupyterLab : `1234`
+
+All Notebooks are present in `work/machine-learning-for-finance` folder.
 
 
 Before we start, let\'s have a look at all the different libraries we
 will be using in this lab:
 
-
 - **Keras**: A high-level neural 
     network library and an interface to TensorFlow.
-
 - **TensorFlow**: A dataflow programming
      and machine learning library that we use for
     GPU-accelerated computation.
-
 - **Scikit-learn**: A popular machine
     learning library with implementation of many classic algorithms as
     well as evaluation tools.
-
 - **OpenCV**: An image processing
     library that can be used for rule-based augmentation
-
 - **NumPy**: A library for handling
     matrices in Python.
-
 - **Seaborn**: A plotting library.
-
 - **tqdm**: A tool to monitor the
     progress of Python programs.
 
@@ -114,8 +110,7 @@ you have OpenCV installed and can import with `import cv2`.
 
 
 Convolutional Neural Networks
------------------------------------------------
-
+------------------------------
 
 
 **Convolutional Neural Networks**, **ConvNets**,

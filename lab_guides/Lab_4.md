@@ -29,7 +29,6 @@ past:
 Multiple time series graphs as seen on Bloomberg TV
 
 
-
 Most forecasting that is done involves looking at past developments over
 a period of time. The concept of a time series set of data is an
 important element related to forecasting; for example, farmers will look
@@ -45,7 +44,7 @@ uncertainty.
 
 Before we jump into looking at time series, I need to set your
 expectations for this lab. Many of you might have
- come to this lab to read about stock market forecasting,
+come to this lab to read about stock market forecasting,
 but I need to warn you that this lab is not about stock market
 forecasting, neither is any other lab in this course.
 
@@ -71,6 +70,7 @@ The dataset that we are going to use here is the traffic data of around
 be obtained from Kaggle.
 
 
+
 ### Note
 
 The data can be found at the following links:
@@ -79,14 +79,22 @@ The data can be found at the following links:
 <https://www.kaggle.com/muonneutrino/wikipedia-traffic-data-exploratio>
 
 
+#### Pre-reqs:
+- Google Chrome (Recommended)
+
+#### Lab Environment
+Notebooks are ready to run. All packages and datasets have been installed. There is no requirement for any setup.
+
+**Note:** Elev8ed Notebooks (powered by Jupyter) will be accessible at the port given to you by your instructor. Password for jupyterLab : `1234`
+
+All Notebooks are present in `work/machine-learning-for-finance` folder.
+
+
 
 Visualization and preparation in pandas
 ---------------------------------------------------------
 
-
-
-As we saw in Lab
-2,
+As we saw in Lab 2,
 [*Applying Machine Learning to Structured Data*], it\'s
 usually a good idea to get an overview of the data before we
  start training. You can achieve this for the data we

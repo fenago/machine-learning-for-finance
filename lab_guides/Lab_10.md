@@ -22,12 +22,9 @@ In the final lab of this course, you\'ll learn about the following:
 
 
 -   The empirical derivation of the Bayes formula
-
 -   How and why the Markov Chain Monte Carlo works
-
 -   How to use PyMC3 for Bayesian inference and probabilistic
     programming
-
 -   How various methods get applied in stochastic volatility models
 
 
@@ -46,17 +43,23 @@ Bayesian models are interpretable and can express uncertainty naturally.
 They are less \"black box,\" instead making the modeler\'s assumptions
 more explicit.
 
+#### Pre-reqs:
+- Google Chrome (Recommended)
+
+#### Lab Environment
+Notebooks are ready to run. All packages and datasets have been installed. There is no requirement for any setup.
+
+**Note:** Elev8ed Notebooks (powered by Jupyter) will be accessible at the port given to you by your instructor. Password for jupyterLab : `1234`
+
+All Notebooks are present in `work/machine-learning-for-finance` folder.
+
 
 
 An intuitive guide to Bayesian inference
------------------------------------------------------------
+------------------------------------------
 
-
-
-Before starting, we need to import
-`numpy` and `matplotlib`, which we can do by running
+Before starting, we need to import `numpy` and `matplotlib`, which we can do by running
 the following code:
-
 
 
 ``` {.programlisting .language-markup}

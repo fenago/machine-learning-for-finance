@@ -42,20 +42,27 @@ The focus of this lab will be on the following:
 
 
 -   Fine-tuning spaCy\'s models for your own custom applications
-
 -   Finding parts of speech and mapping the grammatical structure of
     sentences
-
 -   Using techniques such as Bag-of-Words and TF-IDF for classification
-
 -   Understanding how to build advanced models with the Keras functional
     API
-
 -   Training models to focus with attention, as well as to translate
     sentences with a sequence to sequence (seq2seq) model
 
 
 So, let\'s get started!
+
+
+#### Pre-reqs:
+- Google Chrome (Recommended)
+
+#### Lab Environment
+Notebooks are ready to run. All packages and datasets have been installed. There is no requirement for any setup.
+
+**Note:** Elev8ed Notebooks (powered by Jupyter) will be accessible at the port given to you by your instructor. Password for jupyterLab : `1234`
+
+All Notebooks are present in `work/machine-learning-for-finance` folder.
 
 
 

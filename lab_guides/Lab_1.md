@@ -145,12 +145,19 @@ Thinking outside of the box is a necessary skill to have if you want to
 make use of the data that is around you.
 
 
+#### Pre-reqs:
+- Google Chrome (Recommended)
+
+#### Lab Environment
+Notebooks are ready to run. All packages and datasets have been installed. There is no requirement for any setup.
+
+**Note:** Elev8ed Notebooks (powered by Jupyter) will be accessible at the port given to you by your instructor. Password for jupyterLab : `1234`
+
+All Notebooks are present in `work/machine-learning-for-finance` folder.
+
 
 What is machine learning? 
--------------------------------------------
-
-
-
+--------------------------
 
 > \"Machine learning is the subfield of computer science that gives
 > computers the ability to learn without being explicitly programmed.\"

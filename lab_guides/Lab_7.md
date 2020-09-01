@@ -52,6 +52,16 @@ on that machine. Of course, you can also run the code on Kaggle, however
 the visualizations will not work there.
 
 
+#### Pre-reqs:
+- Google Chrome (Recommended)
+
+#### Lab Environment
+Notebooks are ready to run. All packages and datasets have been installed. There is no requirement for any setup.
+
+**Note:** Elev8ed Notebooks (powered by Jupyter) will be accessible at the port given to you by your instructor. Password for jupyterLab : `1234`
+
+All Notebooks are present in `work/machine-learning-for-finance` folder.
+
 
 Catch -- a quick guide to reinforcement learning
 ------------------------------------------------------------------
@@ -107,8 +117,6 @@ state, along with any rewards:
 
 
 RL scheme
-
-
 
 The model then learns to find actions that lead to maximum rewards.
 There are many ways this can work in practice. Right now, we are going
