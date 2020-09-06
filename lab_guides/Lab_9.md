@@ -212,16 +212,14 @@ point. Let\'s look at the distribution of applicants in this graph:
 **Note**: The data for this example is synthetic; you can
 find the Excel file used for these calculations in the GitHub repository
 of this course,
-<https://github.com/PacktPublishing/Machine-Learning-for-Finance/blob/master/9.1_parity.xlsx>.
+<https://github.com/fenago/machine-learning-for-finance/blob/master/9.1_parity.xlsx>.
 
 
 
 ![](./images/B10354_09_01.jpg)
 
 
-Max profits
-
-
+**Max profits**
 
 For this exercise, we assume that a successful applicant yields a profit
 of \$300, while a defaulting successful applicant costs \$700. The

@@ -1069,9 +1069,6 @@ understand the code we\'ve just produced:
     Finally, we run the optimization:
 
     
-    
-    Copy
-    
 
     ``` {.programlisting .language-markup}
     best_run, best_model = optim.minimize(model=model,
@@ -1183,16 +1180,12 @@ preceding featured code:
 
 1.  We specify a low, but still reasonable, initial learning rate from
     which we start our search.
-
 2.  We then perform training 20 times with different learning rates. We
     need to set up the model from scratch each time.
-
 3.  We calculate our new learning rate. In our case, we double the
     learning rate in each evaluation step. You could also use a smaller
     increase if you want a more fine-grained picture.
-
 4.  We then fit the model with our new learning rate.
-
 5.  Finally, we keep track of the loss.
 
 
@@ -1266,16 +1259,13 @@ def cosine_anneal_schedule(t):
 
 The preceding code features three key features:
 
-
 1.  In our function, we need to set up a starting point from which we
     anneal. This can be a relatively large learning rate. We also need
     to specify how many epochs we want to anneal.
-
 2.  A cosine function does not monotonically
     decrease; it goes back up after a cycle. We will use this property
     later; for now, we will just make sure that the learning rate does
     not go back up.
-
 3.  Finally we calculate the new learning rate using the preceding
     formula. This is the new learning rate.
 
@@ -2249,7 +2239,10 @@ Now create a new file called `8_7_cython_setup.py`:
 from distutils.core import setup                   #1
 from Cython.Build import cythonize                 #2
 
-setup(                                             #3ext_modules=cythonize("cython_fib_8_7.pyx"),)
+setup(                                             #3
+ext_modules=cythonize("cython_fib_8_7.pyx"),
+)
+
 ```
 
 
@@ -2258,10 +2251,8 @@ The three main features of the code are these:
 
 1.  The `setup` function is a Python function to create
     modules, such as the ones you install with `pip`.
-
 2.  `cythonize` is a function to turn a `pyx` Python
     file into Cython C code.
-
 3.  We create a new model by calling `setup` and passing on
     our Cythonized code.
 
@@ -2305,14 +2296,12 @@ a browser:
 ![](./images/B10354_08_10.jpg)
 
 
-Cython profile
-
-
+**Cython profile**
 
 As you can see, Cython has to fall back on Python all the time in our
 script because we did not specify the types of variables. By letting
 Cython know what data type a variable has, we can speed
- up the code significantly. To define a variable with a type,
+up the code significantly. To define a variable with a type,
 we use `cdef`:
 
 

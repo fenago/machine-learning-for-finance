@@ -436,7 +436,7 @@ in the cloud, or on a website such as Kaggle.
 ### Note
 
 **Note**: All code examples for this course can be found here:
-<https://github.com/PacktPublishing/Machine-Learning-for-Finance> and
+<https://github.com/fenago/machine-learning-for-finance> and
 for lab 1 refer the following link:
 <https://www.kaggle.com/jannesklaas/machine-learning-for-finance-lab-1-code>.
 

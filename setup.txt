@@ -32,7 +32,10 @@ Lab 9
 https://www.kaggle.com/jannesklaas/learning-how-to-be-fair
 https://www.kaggle.com/jannesklaas/explaining-income-classification-with-keras
  
- 
+
+Lab 10
+https://www.kaggle.com/crescenzo/sp500
+
 6.4 warning imblearn
 
 import warnings

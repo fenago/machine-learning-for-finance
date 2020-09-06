@@ -96,9 +96,6 @@ online, via the following two links:
 An interactive notebook containing the code for this lab can be
 found under <https://www.kaggle.com/jannesklaas/structured-data-code>
 
-The code can also be found on GitHub, in this course\'s repository:
-<https://github.com/PacktPublishing/Machine-Learning-for-Finance>
-
 
 The dataset we\'re using stems from the paper [*PaySim: A financial
 mobile money simulator for fraud detection*], by E. A.
@@ -193,7 +190,7 @@ the different kinds of models we could build.
 
 In our case, a heuristic-based model could be created to mark all
 transactions with the TRANSFER transaction type and an amount over
-\$200,000 as fraudulent. Heuristic-based models have the advantage that
+200,000 dollars as fraudulent. Heuristic-based models have the advantage that
 they are both fast to develop and easy to implement; however, this comes
 with a pay-off, their performance is often poor, and fraudsters can
 easily play the system. Let\'s imagine that we went with the preceding
@@ -762,13 +759,9 @@ end up hurting the performance of our model in production.
 Preparing the data for the Keras library
 ----------------------------------------------------------
 
-
-
-In Lab
-1,
-[*Neural Networks and Gradient-Based Optimization*], we saw
+In Lab 1, [*Neural Networks and Gradient-Based Optimization*], we saw
 that neural networks would only take numbers as inputs. The
- issue for us in our dataset is that not all of the
+issue for us in our dataset is that not all of the
 information in our table is numbers, some of it is presented as
 characters.
 

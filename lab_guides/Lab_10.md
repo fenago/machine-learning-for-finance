@@ -63,20 +63,6 @@ import numpy as np
 import matplotlib.pyplot as plt% matplotlib inline
 ```
 
-
-This example is similar to the one given in the 2015 course, [*Bayesian
-Methods for Hackers: Probabilistic Programming and Bayesian
-Inference*], written by Cameron Davidson-Pilon. However, in
-our case, this is adapted to a financial context and rewritten so that
-the mathematical concepts intuitively arise from the code.
-
-
-### Note
-
-**Note**: You can view the example at the following link:
-<http://camdavidsonpilon.github.io/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/>.
-
-
 Let\'s imagine that you have a security that can
 either pay \$1 or, alternatively, nothing. The payoff depends on a
 two-step process. With a 50% probability, the payoff is random, with a
