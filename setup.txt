@@ -32,17 +32,38 @@ Lab 9
 https://www.kaggle.com/jannesklaas/learning-how-to-be-fair
 https://www.kaggle.com/jannesklaas/explaining-income-classification-with-keras
  
-
-Lab 10
-https://www.kaggle.com/crescenzo/sp500
-
+ 
 6.4 warning imblearn
 
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
+pip install tensorboard==2.1.1 tensorboard-plugin-profile==2.2.0 tensorflow-datasets==2.1.0
+tensorflow-hub==0.7.0
+tensorflow-probability==0.9.0
+
+
+
 error
 7.1, 8.1, 8.2, 8.6 (fixed)
 
 PYMC3 (S&P.csv) missing 
+
+
+
+### Testing
+"%tensorboard --logdir=./my_mnist_logs --port=6006
+
+tensorboard --bind_all  --logdir=./my_logs --port=6006
+
+tensorboard --bind_all --logdir=/full_path_to_your_logs --debugger_port 2018
+
+pip install Cython pymc3 mkl
+
+
+install tensorboard==2.1.1 tensorboard-plugin-profile==2.2.0 tensorflow-datasets==2.1.0
+
+conda install mkl-service`: No module named 'mkl'
+
+
